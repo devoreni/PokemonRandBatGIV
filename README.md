@@ -1,0 +1,1 @@
+Always run pokemon_dml.py after pulling.

@@ -1,0 +1,16 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+
+# ZODB data file
+*.fs
+*.fs.index
+*.fs.lock
+*.fs.tmp
+
+# PyCharm project files
+.idea/
+
+# OS-specific files
+.DS_Store
