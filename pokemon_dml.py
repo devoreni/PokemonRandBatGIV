@@ -589,8 +589,7 @@ def runDML():
         root.moves['Will-o-wisp'] = pokemon_ddl.Move('Will-o-wisp', 0, 0.75, 'Stat', 'Fire')
 
     for move_id, move in root.moves.items():
-        if move.category == 'Stat':
-            print(move.toString())
+        print(move.toString())
 
 
 
