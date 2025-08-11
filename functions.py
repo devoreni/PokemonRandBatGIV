@@ -1,58 +1,52 @@
 from typing import List, Tuple, Set
 import pokemon_ddl
 import random
+import ZODB, ZODB.FileStorage
 
-def getSixPokemon() -> List:
-    typeNames = ['Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric', 'Rock', 'Poison', 'Ground',
-                 'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water']
-    weights = [12, 14, 15, 16, 16, 17, 18, 19, 20, 21, 23, 26, 26, 34, 40, 41, 48]
-    """
-    afterWeights = []
-    for i, x in enumerate(beforeWeights):
-        afterWeights.append(((sum(beforeWeights) / len(beforeWeights)) - x) * .4 + x)
-    weights = afterWeights
-    """
-    counts = {'Dragon': 2, 'Ice': 2, 'Fighting': 2, 'Dark': 2, 'Fire': 2, 'Ghost': 2, 'Steel': 2, 'Electric': 2, 'Rock': 2, 'Poison': 2, 'Ground': 2,
-                 'Bug': 2, 'Grass': 2, 'Psychic': 2, 'Flying': 2, 'Normal': 2, 'Water': 2}
+def getFullPokemon(num: int) -> list:
+    storage = ZODB.FileStorage.FileStorage('PokeData.fs')
+    db = ZODB.DB(storage)
+    connection = db.open()
+    root = connection.root
 
-    def isTypeAvailable(typeName: str) -> bool:
-        if counts[typeName] > 0:
-            counts[typeName] -= 1
-            return True
-        return False
+    counts = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
+              'Rock': 0, 'Poison': 0, 'Ground': 0,
+              'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
+    setup = root.pokeprobability['pokemon']
+    chosen = []
 
-    chosenTypes = []
-    for i in range(6):
-        currType = ''
+    for i in range(num):
+        selected = None
         for j in range(50):
-            if j >= 48 and isTypeAvailable('Dragon'):
-                currType = 'Dragon'
-                break
-            elif j >= 46 and isTypeAvailable('Ice'):
-                currType = 'Ice'
-                break
-            elif j >= 44 and isTypeAvailable('Fighting'):
-                currType = 'Fighting'
-                break
-            currType = random.choices(typeNames, weights)[0]
-            if isTypeAvailable(currType):
-                break
-        chosenTypes.append(currType)
+            selected = random.choices(setup[0], setup[1])[0]
+            selected_types = root.pokeprobability['pokemon_to_types_map'][selected]
+            odds = 1
+            for p_type in selected_types:
+                if counts[p_type] < max(num // 4, 2):
+                    odds *= 1
+                elif counts[p_type] == max(num // 4, 2):
+                    odds *= 0.25
+                else:
+                    odds = 0
+            if odds < random.random():
+                continue
 
-    return chosenTypes
+            for pokemon in chosen:
+                if pokemon.species == selected.species:
+                    continue
+
+            if j == 49:
+                return chosen
+            chosen.append(selected)
+            for p_type in selected_types:
+                counts[p_type] += 1
+            break
+    return chosen
+
 
 if __name__ == '__main__':
     counts = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
               'Rock': 0, 'Poison': 0, 'Ground': 0,
               'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
 
-    for i in range(2000):
-        for x in getSixPokemon():
-            counts[x] = counts[x] + 1
-
-    print(counts.values())
-    seen = list(counts.values())
-    weights = [12, 14, 15, 16, 16, 17, 18, 19, 20, 21, 23, 26, 26, 34, 40, 41, 48]
-    for i, x in enumerate(seen):
-        seen[i] = x/weights[i]
-    print(seen)
+    print(getFullPokemon(1))

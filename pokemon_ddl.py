@@ -88,9 +88,38 @@ class MoveSet(persistent.Persistent):
 
         return f'{self.starting}{graphView}'
 
+class PokemonIndiv:
+    def __init__(self):
+        self.name = 'Venusaur'
+        self.gender = '(F)'
+        self.item = 'Life Orb'
+        self.ability = 'Overgrow'
+        self.nature = 'Serious'
+        self.level = 50
+        self.shiny = 'No'
+        self.hpIV = 31
+        self.atkIV = 31
+        self.defIV = 31
+        self.spaIV = 31
+        self.spdIV = 31
+        self.speIV = 31
+        self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'Solarbeam']
+
+
+    def toString(self):
+        attacks = ''
+        for move in self.moves:
+            attacks += f'- {move}\n'
+        return f'''{self.name} {self.gender} @ {self.item}
+Ability: {self.ability}
+Level: {self.level}
+Shiny: {self.shiny}
+{self.nature} Nature
+IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {self.spdIv} SpD / {self.speIV} / Spe
+{attacks}'''
 
 class PokemonSet(persistent.Persistent):
-    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], legalMoves: Tuple[str, ...], baseStats: Tuple[int, int, int, int, int, int]):
+    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], legalMoves: Set, baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...]):
         self.name = name
         self.species = species
         self.abilities = abilities
@@ -105,6 +134,8 @@ class PokemonSet(persistent.Persistent):
         self.spDefIV = 31
         self.spdIV = 31
         self.nature = 'Bashful'
+        self.gender = random.choice(genders)
+        self.indiv = PokemonIndiv
         pass
 
     def chooseMovesAndIV(self) -> List:
@@ -119,8 +150,11 @@ class PokemonSet(persistent.Persistent):
     def chooseNature(self) -> str:
         return ''
 
-    def buildSet(self):
-        return
+    def buildSet(self) -> PokemonIndiv:
+        self.indiv.name = self.name
+        self.indiv.gender = self.gender
+        self.indiv.shiny = random.choices(['Yes', 'No'], [1, 15])[0]
+        return self.indiv
 
     def toString(self) -> str:
         movesetString = ''
@@ -130,6 +164,3 @@ class PokemonSet(persistent.Persistent):
 
         return f'{self.name}: {self.pkTypes}{movesetString}\n{self.baseStats}'
 
-class PokemonIndiv:
-    def __init__(self):
-        pass
