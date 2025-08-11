@@ -9,6 +9,9 @@ __pycache__/
 *.fs.lock
 *.fs.tmp
 
+# notes file
+notes.txt
+
 # PyCharm project files
 .idea/
 
