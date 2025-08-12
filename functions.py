@@ -2,51 +2,76 @@ from typing import List, Tuple, Set
 import pokemon_ddl
 import random
 import ZODB, ZODB.FileStorage
+import pprint
 
-def getFullPokemon(num: int) -> list:
-    storage = ZODB.FileStorage.FileStorage('PokeData.fs')
-    db = ZODB.DB(storage)
-    connection = db.open()
-    root = connection.root
+def getPokemonTeam(num: int, root = None) -> Tuple[list, list]:
+    if not root:
+        storage = ZODB.FileStorage.FileStorage('PokeData.fs')
+        db = ZODB.DB(storage)
+        connection = db.open()
+        root = connection.root
 
-    counts = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
+    local_type_counts = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
               'Rock': 0, 'Poison': 0, 'Ground': 0,
               'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
     setup = root.pokeprobability['pokemon']
-    chosen = []
+    chosen_names, chosen_objects = [], []
 
     for i in range(num):
-        selected = None
         for j in range(50):
-            selected = random.choices(setup[0], setup[1])[0]
-            selected_types = root.pokeprobability['pokemon_to_types_map'][selected]
+            selected_name = random.choices(setup[0], setup[1])[0]
+            selected_species = root.pokesets[selected_name]
+            selected_types = root.pokeprobability['pokemon_to_types_map'][selected_name]
             odds = 1
             for p_type in selected_types:
-                if counts[p_type] < max(num // 4, 2):
+                if local_type_counts[p_type] < max(num // 4, 2):
                     odds *= 1
-                elif counts[p_type] == max(num // 4, 2):
+                elif max(num // 4, 2) <= local_type_counts[p_type] <= max(num // 3.3, 2):
                     odds *= 0.25
                 else:
                     odds = 0
             if odds < random.random():
                 continue
 
-            for pokemon in chosen:
-                if pokemon.species == selected.species:
-                    continue
+            dupe = False
+            for pokemon in chosen_objects:
+                if pokemon.species == selected_species.species:
+                    dupe = True
+                    break
+            if dupe:
+                continue
 
-            if j == 49:
-                return chosen
-            chosen.append(selected)
+            chosen_names.append(selected_name)
+            chosen_objects.append(selected_species)
             for p_type in selected_types:
-                counts[p_type] += 1
+                local_type_counts[p_type] += 1
             break
-    return chosen
+    return chosen_names, chosen_objects
+
+def createIndivPokemon(team: list) -> list:
+    created_indivs = []
+    for pk_set in team:
+        pk_set.buildSet()
+        created_indivs.append(pk_set.moves)
+    return created_indivs
+
 
 
 if __name__ == '__main__':
-    counts = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
-              'Rock': 0, 'Poison': 0, 'Ground': 0,
-              'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
+    storage = ZODB.FileStorage.FileStorage('PokeData.fs')
+    db = ZODB.DB(storage)
+    connection = db.open()
+    root = connection.root
 
-    print(getFullPokemon(1))
+    pk2 = root.pokesets['Dewgong']
+    pk3 = root.pokesets['Dewgong']
+    pk4 = root.pokesets['Dewgong']
+    pk5 = root.pokesets['Dewgong']
+    pk1 = root.pokesets['Dewgong']
+    pk6 = root.pokesets['Dewgong']
+    pk7 = root.pokesets['Dewgong']
+    pk8 = root.pokesets['Dewgong']
+    pk9 = root.pokesets['Dewgong']
+    pk10 = root.pokesets['Dewgong']
+
+    pprint.pprint(createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk10]))

@@ -22,138 +22,593 @@ def runDML():
         root.pokeprobability = OOBTree()
 
     if 'Pokemon':
-        if 'Dragonite':
-            root.pokesets['Dragonite'] = pokemon_ddl.PokemonSet(
-                name='Dragonite', species='Dragonite', abilities=('Inner Focus',), pkTypes=('Dragon', 'Flying'),
-                sets=(), legalMoves=set(), baseStats=(91, 134, 95, 100, 100, 80), genders=('M', 'F')
-            )
-        if 'Kingdra':
-            root.pokesets['Kingdra'] = pokemon_ddl.PokemonSet(
-                name='Kingdra', species='Kingdra', abilities=('Swift Swim', 'Sniper'), pkTypes=('Water', 'Dragon'),
-                sets=(), legalMoves=set(), baseStats=(75, 95, 95, 95, 95, 85), genders=('M', 'F')
-            )
-        if 'Flygon':
-            root.pokesets['Flygon'] = pokemon_ddl.PokemonSet(
-                name='Flygon', species='Flygon', abilities=('Levitate',), pkTypes=('Ground', 'Dragon'),
-                sets=(), legalMoves=set(), baseStats=(80, 100, 80, 80, 80, 100), genders=('M', 'F')
-            )
-        if 'Salamence':
-            root.pokesets['Salamence'] = pokemon_ddl.PokemonSet(
-                name='Salamence', species='Salamence', abilities=('Intimidate',), pkTypes=('Dragon', 'Flying'),
-                sets=(), legalMoves=set(), baseStats=(95, 135, 80, 110, 80, 100), genders=('M', 'F')
-            )
-        if 'Latias':
-            root.pokesets['Latias'] = pokemon_ddl.PokemonSet(
-                name='Latias', species='Latias', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
-                sets=(), legalMoves=set(), baseStats=(80, 80, 90, 110, 130, 110), genders=('F',)
-            )
-        if 'Latios':
-            root.pokesets['Latios'] = pokemon_ddl.PokemonSet(
-                name='Latios', species='Latios', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
-                sets=(), legalMoves=set(), baseStats=(80, 90, 80, 130, 110, 110), genders=('M',)
-            )
-        if 'Rayquaza':
-            root.pokesets['Rayquaza'] = pokemon_ddl.PokemonSet(
-                name='Rayquaza', species='Rayquaza', abilities=('Air Lock',), pkTypes=('Dragon', 'Flying'),
-                sets=(), legalMoves=set(), baseStats=(105, 150, 90, 150, 90, 95), genders=('',)
-            )
-        if 'Dialga':
-            root.pokesets['Dialga'] = pokemon_ddl.PokemonSet(
-                name='Dialga', species='Dialga', abilities=('Pressure',), pkTypes=('Steel', 'Dragon'),
-                sets=(), legalMoves=set(), baseStats=(100, 120, 120, 150, 100, 90), genders=('',)
-            )
-        if 'Palkia':
-            root.pokesets['Palkia'] = pokemon_ddl.PokemonSet(
-                name='Palkia', species='Palkia', abilities=('Pressure',), pkTypes=('Water', 'Dragon'),
-                sets=(), legalMoves=set(), baseStats=(90, 120, 100, 150, 120, 100), genders=('',)
-            )
-        if 'Giratina':
-            root.pokesets['Giratina'] = pokemon_ddl.PokemonSet(
-                name='Giratina', species='Giratina', abilities=('Pressure',), pkTypes=('Ghost', 'Dragon'),
-                sets=(), legalMoves=set(), baseStats=(150, 100, 120, 100, 120, 90), genders=('',)
-            )
-        if 'Arceus-Dragon':
-            root.pokesets['Arceus-Dragon'] = pokemon_ddl.PokemonSet(
-                name='Arceus-Dragon', species='Arceus', abilities=('Multitype',), pkTypes=('Dragon',),
-                sets=(), legalMoves=set(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
-            )
+        # Dragon type pokemon
+        if 'Dragon':
+            if 'Dragonite':
+                root.pokesets['Dragonite'] = pokemon_ddl.PokemonSet(
+                    name='Dragonite', species='Dragonite', abilities=('Inner Focus',), pkTypes=('Dragon', 'Flying'),
+                    sets=(
+                        pokemon_ddl.MoveSet(['Protect'],
+                                            {
+                                                'Protect': ['Dragon Dance', 'Thunder Wave', 'Dragon Rush', 'Draco Meteor', 'Outrage', 'Extreme Speed', 'Aqua Tail', 'Dragon Claw'],
+                                                'Dragon Dance': ['Fly', 'Outrage', 'Rock Slide'],
+                                                'Aqua Tail': ['Roost', 'Attract', 'Steel Wing', 'Rain Dance'],
+                                                'Roost': ['Double Team', 'Safeguard'],
+                                                'Fly': ['Dragon Claw', 'Outrage', 'Iron Tail', 'Return'],
+                                                'Thunder Wave': ['Dragon Claw', 'Fling', 'Light Screen', 'Haze', 'Aerial Ace'],
+                                                'Dragon Claw': ['Earthquake', 'Fire Punch', 'Roar', 'Aerial Ace'],
+                                                'Fire Punch': ['Thunder Punch', 'Ice Punch', 'Return'],
+                                                'Dragon Rush': ['Fire Punch', 'Thunder Punch', 'Ice Punch'],
+                                                'Ice Punch': ['Fire Punch', 'Thunder Punch', 'Stone Edge', 'Rock Slide'],
+                                                'Draco Meteor': ['Surf', 'Thunderbolt', 'Flamethrower', 'Fire Blast', 'Blizzard'],
+                                                'Surf': ['Flamethrower', 'Thunderbolt', 'Focus Blast', 'Icy Wind', 'Blizzard'],
+                                                'Outrage': ['Earthquake', 'Superpower', 'Giga Impact', 'Focus Punch'],
+                                                'Thunderbolt': ['Heat Wave']
+                                            }),
+                    ), baseStats=(91, 134, 95, 100, 100, 80), genders=('M', 'F')
+                )
+            if 'Kingdra':
+                root.pokesets['Kingdra'] = pokemon_ddl.PokemonSet(
+                    name='Kingdra', species='Kingdra', abilities=('Swift Swim', 'Sniper'), pkTypes=('Water', 'Dragon'),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rain Dance', 'Hydro Pump', 'Muddy Water', 'Draco Meteor', 'Dragon Pulse', 'Outrage'],
+                                'Hydro Pump': ['Rain Dance', 'Signal Beam', 'SmokeScreen', 'Swift'],
+                                'Muddy Water': ['Rain Dance', 'Dragon Pulse', 'Yawn', 'Hidden Power [Electric]'],
+                                'Draco Meteor': ['Rain Dance', 'Outrage', 'Ice Beam', 'Muddy Water'],
+                                'Dragon Pulse': ['Rain Dance', 'Brine', 'Hidden Power [Electric]'],
+                                'Outrage': ['Waterfall', 'Iron Head', 'Double Edge', 'Headbutt'],
+                                'Waterfall': ['Rain Dance', 'Dragon Dance'],
+                                'Iron Head': ['Dragon Dance', 'Substitute'],
+                                'Dragon Dance': ['Waterfall']
+                            }
+                        ),
+                    ), baseStats=(75, 95, 95, 95, 95, 85), genders=('M', 'F')
+                )
+            if 'Flygon':
+                root.pokesets['Flygon'] = pokemon_ddl.PokemonSet(
+                    name='Flygon', species='Flygon', abilities=('Levitate',), pkTypes=('Ground', 'Dragon'),
+                    sets=(pokemon_ddl.MoveSet(
+                        ['Protect'],
+                        {
+                            'Protect': ['Earthquake', 'Dragon Claw', 'Roost', 'Draco Meteor'],
+                            'Earthquake': ['Bug Bite', 'U-turn', 'Outrage', 'Stone Edge', 'Crunch'],
+                            'Dragon Claw': ['Bug Bite', 'U-turn', 'Sandstorm', 'Thunderpunch', 'Dig'],
+                            'Roost': ['Sandstorm', 'Thunderpunch', 'Stone Edge', 'Giga Drain'],
+                            'Draco Meteor': ['Fire Blast', 'Earthpower', 'Gust', 'Ominous Wind'],
+                            'Fire Blast': ['Earthquake', 'Fissure', 'Hyper Beam', 'Solar Beam'],
+                            'U-turn': ['Fire Punch', 'Dig', 'Toxic', 'Swagger', 'Tailwind', 'Sunny Day', 'Steel Wing']
+                        }
+                    ),), baseStats=(80, 100, 80, 80, 80, 100), genders=('M', 'F')
+                )
+            if 'Salamence':
+                root.pokesets['Salamence'] = pokemon_ddl.PokemonSet(
+                    name='Salamence', species='Salamence', abilities=('Intimidate',), pkTypes=('Dragon', 'Flying'),
+                    sets=(pokemon_ddl.MoveSet(
+                        ['Protect'],
+                        {'Protect': ['Fire Fang', 'Thunder Fang', 'Crunch', 'Headbutt', 'Hydro Pump', 'Dragon Breath'],
+                         'Fire Fang': ['Scary Face', 'Dragon Claw', 'Double-edge', 'Thunder Fang', 'Dragon Dance'],
+                         'Thunder Fang': ['Aerial Ace', 'Fire Fang', 'Zen Headbutt', 'Rain Dance', 'Roar'],
+                         'Crunch': ['Brick Break', 'Facade', 'Rest', 'Substitute', 'Earthquake'],
+                         'Rest': ['Sleep Talk', 'Snore'],
+                         'Headbutt': ['Outrage', 'Rollout', 'Aqua Tail', 'Fury Cutter', 'Shadow Claw', 'Dragon Dance'],
+                         'Hydro Pump': ['Dragon Pulse', 'Draco Meteor', 'Heat Wave', 'Swift', 'Air Cutter'],
+                         'Dragon Breath': ['Flamethrower', 'Fire Blast'],
+                         'Flamethrower': ['Hidden Power [Ice]', 'Sunny Day', 'Hidden Power [Bug]'],
+                         'Fire Blast': ['Sunny Day', 'Giga Impact', 'Double Team', 'Mud-slap'],
+                         'Dragon Dance': ['Secret Power', 'Shadow Claw', 'Steel Wing', 'Rock Slide']
+                         }
+                    ),), baseStats=(95, 135, 80, 110, 80, 100), genders=('M', 'F')
+                )
+            if 'Latias':
+                root.pokesets['Latias'] = pokemon_ddl.PokemonSet(
+                    name='Latias', species='Latias', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
+                    sets=(pokemon_ddl.MoveSet(
+                        ['Protect'],
+                         {
+                             'Protect': ['Mist Ball', 'Helping Hand', 'Trick'],
+                             'Mist Ball': ['Dragon Pulse', 'Water Pulse', 'Calm Mind', 'Thunder'],
+                             'Dragon Pulse': ['Thunderbolt', 'Thunder', 'Solar Beam', 'Hidden Power [Fire]'],
+                             'Thunder': ['Rain Dance', 'Attract'],
+                             'Water Pulse': ['Shadow Ball', 'Shock Wave', 'Energy Ball', 'Charge Beam', 'Ice Beam'],
+                             'Calm Mind': ['Grass Knot', 'Icy Wind', 'Swift'],
+                             'Helping Hand': ['Mist Ball', 'Healing Wish', 'Thunder Wave', 'Roost', 'Safeguard', 'Light Screen', 'Reflect'],
+                             'Healing Wish': ['Mist Ball', 'Charm'],
+                             'Thunder Wave': ['Mist Ball', 'Psychic', 'Wish'],
+                             'Roost': ['Draco Meteor', 'Hyper Beam', 'Dragon Pulse']
+                         }
+                    ),), baseStats=(80, 80, 90, 110, 130, 110), genders=('F',)
+                )
+            if 'Latios':
+                if 'Latios':
+                    root.pokesets['Latios'] = pokemon_ddl.PokemonSet(
+                        name='Latios', species='Latios', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
+                        sets=(
+                            pokemon_ddl.MoveSet(
+                                ['Protect'],
+                                {
+                                    # --- MAIN BRANCHING POINT ---
+                                    'Protect': ['Calm Mind', 'Luster Purge', 'Draco Meteor', 'Light Screen',
+                                                'Dragon Dance', 'Trick'],
+
+                                    # --- 1. Calm Mind Setup Sweeper Path ---
+                                    'Calm Mind': ['Luster Purge', 'Dragon Pulse', 'Recover', 'Surf', 'Thunderbolt',
+                                                  'Shadow Ball'],
+                                    'Recover': ['Calm Mind', 'Luster Purge', 'Dragon Pulse', 'Light Screen', 'Reflect'],
+
+                                    # --- 2. All-Out Attacker Paths (Special) ---
+                                    'Luster Purge': ['Dragon Pulse', 'Ice Beam', 'Thunderbolt', 'Surf', 'Shadow Ball',
+                                                     'Energy Ball', 'Recover'],
+                                    'Draco Meteor': ['Surf', 'Thunder', 'Hidden Power [Fire]', 'Shadow Ball', 'Trick',
+                                                     'Psychic'],  # Psychic is rare here
+                                    'Dragon Pulse': ['Luster Purge', 'Surf', 'Thunderbolt', 'Grass Knot', 'Ice Beam',
+                                                     'Recover'],
+
+                                    # Coverage moves branching and looping
+                                    'Surf': ['Thunderbolt', 'Ice Beam', 'Hidden Power [Fire]', 'Grass Knot'],
+                                    'Thunderbolt': ['Ice Beam', 'Surf', 'Hidden Power [Fire]', 'Grass Knot',
+                                                    'Charge Beam'],
+                                    'Ice Beam': ['Thunderbolt', 'Shadow Ball', 'Energy Ball'],
+                                    'Shadow Ball': ['Hidden Power [Fire]', 'Luster Purge', 'Psychic'],
+                                    'Energy Ball': ['Hidden Power [Fire]', 'Shadow Ball'],
+                                    'Grass Knot': ['Ice Beam', 'Hidden Power [Fire]'],
+                                    'Charge Beam': ['Luster Purge', 'Dragon Pulse'],  # Alternative boosting move
+
+                                    # --- 3. Support & Disruption Paths ---
+                                    'Light Screen': ['Reflect', 'Recover', 'Dragon Pulse', 'Luster Purge'],
+                                    'Reflect': ['Light Screen', 'Recover', 'Memento', 'Dragon Claw'],
+                                    # Memento is a final option
+                                    'Memento': [],  # Terminal move, forces backtracking
+                                    'Trick': ['Draco Meteor', 'Surf', 'Thunderbolt', 'Ice Beam'],
+                                    # For Choice item sets
+
+                                    # --- 4. Physical Attacker Gimmick Path ---
+                                    'Dragon Dance': ['Dragon Claw', 'Earthquake', 'Shadow Claw', 'Zen Headbutt',
+                                                     'Recover', 'Roost'],
+                                    'Dragon Claw': ['Earthquake', 'Zen Headbutt', 'Waterfall'],
+                                    'Earthquake': ['Dragon Claw', 'Shadow Claw', 'Steel Wing'],
+
+                                    # --- 5. Niche Weather Paths ---
+                                    'Rain Dance': ['Thunder', 'Surf', 'Dragon Pulse'],
+                                    'Sunny Day': ['Solar Beam', 'Psychic'],
+                                    'Thunder': ['Surf', 'Rain Dance', 'Dragon Pulse'],
+                                    'Solar Beam': ['Sunny Day', 'Psychic'],
+                                }
+                            ),
+                        ),
+                        baseStats=(80, 90, 80, 130, 110, 110),
+                        genders=('M',)
+                    )
+            if 'Rayquaza':
+                root.pokesets['Rayquaza'] = pokemon_ddl.PokemonSet(
+                    name='Rayquaza', species='Rayquaza', abilities=('Air Lock',), pkTypes=('Dragon', 'Flying'),
+                    sets=(
+                        # MoveSet 1: "The Unpredictable Mix" - Starts with Protect, but the paths are messy.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                # --- Starting nodes are now weaker, more situational, or non-damaging ---
+                                'Protect': ['Aerial Ace', 'Scary Face', 'Bulk Up', 'Ancient Power', 'Dragon Claw',
+                                            'Draco Meteor'],
+
+                                # --- Setup paths that force mixed attacking ---
+                                'Bulk Up': ['Dragon Claw', 'Earthquake', 'Rock Slide', 'Fire Blast', 'Surf'],
+                                # Physical setup -> Special moves
+                                'Scary Face': ['Dragon Dance', 'Icy Wind', 'Rock Tomb', 'Draco Meteor'],
+                                # Speed control leads to setup or more control
+                                'Dragon Dance': ['Fly', 'Waterfall', 'Crunch', 'Overheat'],
+                                # The best setup move leads to weaker or self-nerfing attacks
+
+                                # --- Attacking paths with awkward branches ---
+                                'Dragon Claw': ['Fly', 'Dive', 'Earthquake', 'Swords Dance', 'Ice Beam'],
+                                # Good physical move -> 2-turn moves or special coverage
+                                'Draco Meteor': ['Waterfall', 'Rock Slide', 'Extreme Speed', 'Thunder'],
+                                # Powerful special move -> Physical moves
+                                'Aerial Ace': ['Dragon Dance', 'Swords Dance', 'Rock Slide', 'Tailwind'],
+
+                                # --- Deeper, more specialized moves ---
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Brick Break', 'Fly'],
+                                # A rare but potent physical set
+                                'Tailwind': ['Icy Wind', 'Air Slash', 'Dragon Pulse', 'Protect'],
+                                # A dedicated support set branch
+                                'Extreme Speed': ['Draco Meteor', 'Overheat', 'Dragon Claw', 'Protect'],
+                                # The best move is a connector, not a finisher
+                                'Ancient Power': ['Earth Power', 'Shadow Claw', 'Signal Beam', 'Cosmic Power'],
+
+                                # Weaker filler moves
+                                'Fly': ['Rest', 'Dive'],
+                                'Dive': ['Waterfall', 'Rest'],
+                                'Rest': ['Sleep Talk']
+                            }
+                        ),
+
+                        # MoveSet 2: "The Reckless Gambler" - No Protect, high risk, awkward combinations.
+                        pokemon_ddl.MoveSet(
+                            # Starting moves are powerful but have significant drawbacks or are just plain weird.
+                            ['Outrage', 'Overheat', 'Fly', 'Extreme Speed'],
+                            {
+                                'Outrage': ['Surf', 'Thunder', 'Giga Impact', 'Scary Face'],
+                                # Lock-in move leads to special attacks
+                                'Overheat': ['Rock Slide', 'Earthquake', 'Extreme Speed', 'Dragon Claw'],
+                                # Self-nerfing move leads to physical attacks
+                                'Fly': ['Dragon Dance', 'Bulk Up', 'Dive', 'Rest'],  # Risky 2-turn move leads to setup
+                                'Extreme Speed': ['Draco Meteor', 'Blizzard', 'Outrage', 'Swords Dance'],
+                                # Good priority leads to nukes or lock-in
+
+                                # These paths are short and aggressive, offering little synergy
+                                'Draco Meteor': ['Extreme Speed', 'Hyper Beam', 'Giga Impact'],
+                                'Earthquake': ['Stone Edge', 'Outrage'],
+                                'Blizzard': ['Thunder', 'Focus Blast'],
+                                'Dragon Dance': ['Fly', 'Outrage', 'Waterfall']
+                            }
+                        )
+                    ),
+                    baseStats=(105, 150, 90, 150, 90, 95),
+                    genders=('',)
+                )
+            if 'Dialga':
+                root.pokesets['Dialga'] = pokemon_ddl.PokemonSet(
+                    name='Dialga', species='Dialga', abilities=('Pressure',), pkTypes=('Steel', 'Dragon'),
+                    sets=(
+                        # MoveSet 1: The "Strategic Disrupter" set with Protect.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                # Starting nodes are now focused on strategy and utility over raw power.
+                                'Protect': ['Trick Room', 'Gravity', 'Flash Cannon', 'Substitute', 'Scary Face', 'Roar of Time'],
+
+                                # The Trick Room path now encourages spread moves or defensive plays.
+                                'Trick Room': ['Swift', 'Flash Cannon', 'Dragon Pulse', 'Aura Sphere', 'Iron Defense', 'Roar of Time'],
+
+                                # The Gravity path enables low-accuracy, high-power moves.
+                                'Gravity': ['Thunder', 'Blizzard', 'Fire Blast', 'Stone Edge', 'Focus Blast'],
+                                'Thunder': ['Blizzard', 'Gravity', 'Dragon Pulse'],
+                                'Blizzard': ['Thunder', 'Gravity', 'Aura Sphere'],
+                                'Fire Blast': ['Thunder', 'Gravity', 'Flash Cannon'],
+
+                                # Substitute provides a defensive pivot into attacks.
+                                'Substitute': ['Flash Cannon', 'Flamethrower', 'Thunderbolt', 'Ice Beam',
+                                               'Dragon Pulse'],
+                                'Flash Cannon': ['Dragon Pulse', 'Aura Sphere', 'Earth Power', 'Power Gem'],
+
+                                # General utility and weaker options.
+                                'Dragon Pulse': ['Flash Cannon', 'Aura Sphere', 'Thunderbolt', 'Ice Beam'],
+                                'Scary Face': ['Rock Tomb', 'Icy Wind', 'Dragon Breath', 'Roar of Time'],
+                                'Swift': ['Dragon Pulse', 'Aura Sphere', 'Shock Wave', 'Roar of Time'],
+                                # Leads to other guaranteed-hit or spread moves
+                            }
+                        ),
+
+                        # MoveSet 2: The "Flawed Powerhouse" set without Protect.
+                        pokemon_ddl.MoveSet(
+                            # Starting moves are high-commitment or force a mixed role.
+                            ['Bulk Up', 'Roar of Time', 'Draco Meteor', 'Roar of Time'],
+                            {
+                                # High-risk signature move leads to other powerful but non-synergistic moves.
+                                'Roar of Time': ['Giga Impact', 'Fire Blast', 'Earthquake'],
+
+                                # Physical setup is intentionally paired with special moves or less ideal physical ones.
+                                'Bulk Up': ['Dragon Claw', 'Iron Head', 'Shadow Claw', 'Overheat', 'Thunderbolt', 'Roar of Time'],
+                                'Dragon Claw': ['Slash', 'Brick Break', 'Rock Slide', 'Overheat', 'Roar of Time'],
+                                'Iron Head': ['Stone Edge', 'Aerial Ace', 'Shadow Claw'],
+
+                                # Special nuke forces stat drops and leads to physical or utility options.
+                                'Draco Meteor': ['Earthquake', 'Outrage', 'Metal Burst', 'Swagger'],
+                                'Overheat': ['Dragon Claw', 'Earthquake', 'Aura Sphere', 'Roar of Time'],
+
+                                # Outrage is a risky late-graph option.
+                                'Outrage': ['Earthquake', 'Stone Edge', 'Roar of Time']
+                            }
+                        )
+                    ),
+                    baseStats=(100, 120, 120, 150, 100, 90),
+                    genders=('',)
+                )
+            if 'Palkia':
+                root.pokesets['Palkia'] = pokemon_ddl.PokemonSet(
+                    name='Palkia', species='Palkia', abilities=('Pressure',), pkTypes=('Water', 'Dragon'),
+                    sets=(
+                        # MoveSet 1: "The Disruptive Stall" set. High variance and strategic gimmicks.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                # Starting nodes are now high-commitment strategies or weaker STAB.
+                                'Protect': ['Spacial Rend', 'Substitute', 'Rest', 'Whirlpool', 'Heal Block'],
+
+                                # Signature move is present, but leads to less optimal coverage.
+                                'Spacial Rend': ['Water Pulse', 'Swift', 'Ancient Power', 'Aura Sphere', 'Earth Power'],
+
+                                # High-risk, high-reward recovery path.
+                                'Rest': ['Snore', 'Sleep Talk'],
+                                'Sleep Talk': ['Spacial Rend', 'Surf', 'Flamethrower'],
+
+                                # Sub-Punch path remains.
+                                'Substitute': ['Focus Punch', 'Spacial Rend', 'Brine'],
+                                'Focus Punch': ['Spacial Rend', 'Aqua Tail'],
+
+                                # Trapping and disruption paths.
+                                'Whirlpool': ['Toxic', 'Spacial Rend', 'Surf'],
+                                'Heal Block': ['Spacial Rend', 'Surf', 'Toxic', 'Swagger'],
+
+                                # Weaker moves have paths to stronger ones, making them more common.
+                                'Water Pulse': ['Ice Beam', 'Thunderbolt', 'Spacial Rend'],
+                                'Brine': ['Thunder', 'Blizzard', 'Spacial Rend'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Awkward Attacker" set. No Protect, forces mixed roles.
+                        pokemon_ddl.MoveSet(
+                            # Starts are physical setup, or a choice of STABs.
+                            ['Bulk Up', 'Spacial Rend', 'Aqua Tail'],
+                            {
+                                # Physical setup leads to a messy mix of attacks.
+                                'Bulk Up': ['Aqua Tail', 'Dragon Claw', 'Avalanche', 'Stone Edge', 'Fire Blast',
+                                            'Fling'],
+                                'Aqua Tail': ['Outrage', 'Earthquake', 'Stone Edge', 'Spacial Rend'],
+                                'Avalanche': ['Dragon Claw', 'Earthquake', 'Aqua Tail'],
+
+                                # Special STAB leads to physical moves or high-risk special moves.
+                                'Spacial Rend': ['Outrage', 'Earthquake', 'Hydro Pump', 'Thunder', 'Hail'],
+                                'Hydro Pump': ['Draco Meteor', 'Blizzard', 'Focus Blast'],
+
+                                # Risky lock-in move.
+                                'Outrage': ['Aqua Tail', 'Earthquake', 'Stone Edge'],
+
+                                # Weather disruption.
+                                'Hail': ['Blizzard', 'Spacial Rend', 'Protect']  # Rare chance to get Protect here.
+                            }
+                        )
+                    ),
+                    baseStats=(90, 120, 100, 150, 120, 100),
+                    genders=('',)
+                )
+            if 'Giratina':
+                root.pokesets['Giratina'] = pokemon_ddl.PokemonSet(
+                    name='Giratina', species='Giratina', abilities=('Pressure',), pkTypes=('Ghost', 'Dragon'),
+                    sets=(
+                        # MoveSet 1: The "Bulky Attacker" set. Has Protect but is forced into a mixed role.
+                        pokemon_ddl.MoveSet(
+                            ['Shadow Force'],
+                            {
+                                # Starting nodes offer a mix of setup, utility, and reliable STAB.
+                                'Protect': ['Calm Mind', 'Will-O-Wisp', 'Shadow Claw', 'Dragon Pulse', 'Shadow Sneak', 'Dragon Claw','Will-O-Wisp'],
+
+                                # Calm Mind is paired with physical options to create an awkward mixed set.
+                                'Calm Mind': ['Dragon Pulse', 'Shadow Ball', 'Earthquake', 'Aura Sphere', 'Rest'],
+
+                                # Will-O-Wisp is a key utility move with offensive follow-ups.
+                                'Will-O-Wisp': ['Shadow Ball', 'Dragon Pulse', 'Hex', 'Ominous Wind'],
+
+                                # Physical STAB leads to the risky signature move or special coverage.
+                                'Shadow Claw': ['Shadow Force', 'Dragon Claw', 'Earthquake', 'Stone Edge',
+                                                'Aura Sphere'],
+                                'Dragon Claw': ['Shadow Claw', 'Earthquake', 'Aqua Tail', 'Iron Head'],
+
+                                # The signature move is powerful but slow.
+                                'Shadow Force': ['Protect'],
+
+                                # Reliable special STAB and priority.
+                                'Dragon Pulse': ['Shadow Ball', 'Aura Sphere', 'Thunderbolt', 'Energy Ball'],
+                                'Shadow Sneak': ['Will-O-Wisp', 'Shadow Claw', 'Dragon Claw', 'Toxic'],
+                            }
+                        ),
+
+                        # MoveSet 2: The "Disruptive Stall" set. No Protect, focuses on status and disruption.
+                        pokemon_ddl.MoveSet(
+                            # Starts with core stall/disruption moves.
+                            ['Will-O-Wisp', 'Rest', 'Toxic', 'Substitute', 'Shadow Force'],
+                            {
+                                'Will-O-Wisp': ['Hex', 'Spite', 'Heal Block', 'Dragon Breath'],
+
+                                # Classic RestTalk strategy.
+                                'Rest': ['Sleep Talk', 'Snore'],
+                                'Sleep Talk': ['Dragon Pulse', 'Shadow Ball', 'Earthquake'],
+
+                                # Toxic stall paths.
+                                'Toxic': ['Protect', 'Substitute', 'Spite', 'Pain Split'],
+                                # A rare chance to get Protect
+                                'Pain Split': ['Will-O-Wisp', 'Substitute', 'Destiny Bond'],
+
+                                # Substitute provides a defensive pivot.
+                                'Substitute': ['Will-O-Wisp', 'Toxic', 'Calm Mind', 'Dragon Pulse'],
+
+                                # Disruptive moves.
+                                'Spite': ['Toxic', 'Will-O-Wisp', 'Protect'],
+                                'Hex': ['Will-O-Wisp', 'Toxic', 'Dragon Pulse'],  # Synergizes with status
+                                'Destiny Bond': [],  # Terminal move
+                            }
+                        )
+                    ),
+                    baseStats=(150, 100, 120, 100, 120, 90),
+                    genders=('',)
+                )
+            if 'Arceus-Dragon':
+                root.pokesets['Arceus-Dragon'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Dragon', species='Arceus', abilities=('Multitype',), pkTypes=('Dragon',),
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgment'],
+
+                                # Judgment is the central hub for a chaotic web of possibilities.
+                                'Judgment': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgment'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                'Will-O-Wisp': ['Hex', 'Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgment'],
+                            {
+                                'Judgment': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
+                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ),
+                    baseStats=(120, 120, 120, 120, 120, 120),
+                    genders=('',)
+                )
 
         # Ice type pokemon
         if 'Ice Type Pokemon':
             if 'Dewgong':
                 root.pokesets['Dewgong'] = pokemon_ddl.PokemonSet(
                     name='Dewgong', species='Dewgong', abilities=('Thick Fat', 'Hydration'), pkTypes=('Water', 'Ice'),
-                    sets=(), legalMoves=set(), baseStats=(90, 70, 80, 70, 95, 70), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            # Protect is the most reliable start, but Fake Out is a strong alternative.
+                            ['Protect', 'Fake Out'],
+                            {
+                                # --- Main branching point ---
+                                'Protect': ['Perish Song', 'Rain Dance', 'Encore', 'Toxic'],
+
+                                # --- 1. Primary Path: Perish Trap ---
+                                # This path is linear and highly synergistic.
+                                'Perish Song': ['Whirlpool'],
+                                'Whirlpool': ['Protect', 'Rest', 'Aqua Ring'],
+                                # Protect is a loop, Rest moves to stall/OHKO path.
+
+                                # --- 2. Secondary Path: Hydration Tank ---
+                                'Rain Dance': ['Rest', 'Surf', 'Ice Beam'],
+                                'Rest': ['Sleep Talk', 'Rain Dance'],
+                                'Sleep Talk': ['Sheer Cold', 'Horn Drill', 'Surf', 'Ice Beam'],
+
+                                # --- 3. Tertiary Paths: Disruption & Variance ---
+                                'Encore': ['Ice Beam', 'Surf', 'Disable'],
+                                'Fake Out': ['Aqua Jet', 'Ice Shard', 'Waterfall', 'Protect'],
+                                # Leads to priority or back to main tree.
+                                'Toxic': ['Protect', 'Dive', 'Blizzard'],
+
+                                # Standard STAB moves provide endpoints or basic coverage.
+                                'Surf': ['Ice Beam', 'Signal Beam'],
+                                'Ice Beam': ['Surf', 'Signal Beam'],
+                                'Aqua Jet': ['Ice Shard', 'Waterfall'],
+                                'Ice Shard': ['Aqua Jet', 'Avalanche'],
+                            }
+                        ),
+                    ),
+                    baseStats=(90, 70, 80, 70, 95, 70),
+                    genders=('M', 'F')
                 )
             if 'Cloyster':
                 root.pokesets['Cloyster'] = pokemon_ddl.PokemonSet(
                     name='Cloyster', species='Cloyster', abilities=('Shell Armor', 'Skill Link'), pkTypes=('Water', 'Ice'),
-                    sets=(), legalMoves=set(), baseStats=(50, 95, 180, 85, 45, 70), genders=('M', 'F')
+                    sets=(), baseStats=(50, 95, 180, 85, 45, 70), genders=('M', 'F')
                 )
             if 'Jynx':
                 root.pokesets['Jynx'] = pokemon_ddl.PokemonSet(
                     name='Jynx', species='Jynx', abilities=('Oblivious', 'Forewarn'), pkTypes=('Ice', 'Psychic'),
-                    sets=(), legalMoves=set(), baseStats=(65, 50, 35, 115, 95, 95), genders=('F',)
+                    sets=(), baseStats=(65, 50, 35, 115, 95, 95), genders=('F',)
                 )
             if 'Lapras':
                 root.pokesets['Lapras'] = pokemon_ddl.PokemonSet(
                     name='Lapras', species='Lapras', abilities=('Water Absorb', 'Shell Armor'), pkTypes=('Water', 'Ice'),
-                    sets=(), legalMoves=set(), baseStats=(130, 85, 80, 85, 95, 60), genders=('M', 'F')
+                    sets=(), baseStats=(130, 85, 80, 85, 95, 60), genders=('M', 'F')
                 )
             if 'Articuno':
                 root.pokesets['Articuno'] = pokemon_ddl.PokemonSet(
                     name='Articuno', species='Articuno', abilities=('Pressure',), pkTypes=('Ice', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(90, 85, 100, 95, 125, 85), genders=('',)
+                    sets=(), baseStats=(90, 85, 100, 95, 125, 85), genders=('',)
                 )
             if 'Delibird':
                 root.pokesets['Delibird'] = pokemon_ddl.PokemonSet(
                     name='Delibird', species='Delibird', abilities=('Vital Spirit', 'Hustle'), pkTypes=('Ice', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(45, 55, 45, 65, 45, 75), genders=('M', 'F')
+                    sets=(), baseStats=(45, 55, 45, 65, 45, 75), genders=('M', 'F')
                 )
             if 'Glalie':
                 root.pokesets['Glalie'] = pokemon_ddl.PokemonSet(
                     name='Glalie', species='Glalie', abilities=('Inner Focus', 'Ice Body'), pkTypes=('Ice',),
-                    sets=(), legalMoves=set(), baseStats=(80, 80, 80, 80, 80, 80), genders=('M', 'F')
+                    sets=(), baseStats=(80, 80, 80, 80, 80, 80), genders=('M', 'F')
                 )
             if 'Walrein':
                 root.pokesets['Walrein'] = pokemon_ddl.PokemonSet(
                     name='Walrein', species='Walrein', abilities=('Thick Fat', 'Ice Body'), pkTypes=('Ice', 'Water'),
-                    sets=(), legalMoves=set(), baseStats=(110, 80, 90, 95, 90, 65), genders=('M', 'F')
+                    sets=(), baseStats=(110, 80, 90, 95, 90, 65), genders=('M', 'F')
                 )
             if 'Regice':
                 root.pokesets['Regice'] = pokemon_ddl.PokemonSet(
                     name='Regice', species='Regice', abilities=('Clear Body',), pkTypes=('Ice',),
-                    sets=(), legalMoves=set(), baseStats=(80, 50, 100, 100, 200, 50), genders=('',)
+                    sets=(), baseStats=(80, 50, 100, 100, 200, 50), genders=('',)
                 )
             if 'Abomasnow':
                 root.pokesets['Abomasnow'] = pokemon_ddl.PokemonSet(
                     name='Abomasnow', species='Abomasnow', abilities=('Snow Warning',), pkTypes=('Grass', 'Ice'),
-                    sets=(), legalMoves=set(), baseStats=(90, 92, 75, 92, 85, 60), genders=('M', 'F')
+                    sets=(), baseStats=(90, 92, 75, 92, 85, 60), genders=('M', 'F')
                 )
             if 'Weavile':
                 root.pokesets['Weavile'] = pokemon_ddl.PokemonSet(
                     name='Weavile', species='Weavile', abilities=('Pressure',), pkTypes=('Dark', 'Ice'),
-                    sets=(), legalMoves=set(), baseStats=(70, 120, 65, 45, 85, 125), genders=('M', 'F')
+                    sets=(), baseStats=(70, 120, 65, 45, 85, 125), genders=('M', 'F')
                 )
             if 'Glaceon':
                 root.pokesets['Glaceon'] = pokemon_ddl.PokemonSet(
                     name='Glaceon', species='Glaceon', abilities=('Snow Cloak',), pkTypes=('Ice',),
-                    sets=(), legalMoves=set(), baseStats=(65, 60, 110, 130, 95, 65), genders=('M', 'F')
+                    sets=(), baseStats=(65, 60, 110, 130, 95, 65), genders=('M', 'F')
                 )
             if 'Mamoswine':
                 root.pokesets['Mamoswine'] = pokemon_ddl.PokemonSet(
                     name='Mamoswine', species='Mamoswine', abilities=('Oblivious', 'Snow Cloak'), pkTypes=('Ice', 'Ground'),
-                    sets=(), legalMoves=set(), baseStats=(110, 130, 80, 70, 60, 80), genders=('M', 'F')
+                    sets=(), baseStats=(110, 130, 80, 70, 60, 80), genders=('M', 'F')
                 )
             if 'Froslass':
                 root.pokesets['Froslass'] = pokemon_ddl.PokemonSet(
                     name='Froslass', species='Froslass', abilities=('Snow Cloak',), pkTypes=('Ice', 'Ghost'),
-                    sets=(), legalMoves=set(), baseStats=(70, 80, 70, 80, 70, 110), genders=('F',)
+                    sets=(), baseStats=(70, 80, 70, 80, 70, 110), genders=('F',)
                 )
             if 'Arceus-Ice':
                 root.pokesets['Arceus-Ice'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Ice', species='Arceus', abilities=('Multitype',), pkTypes=('Ice',),
-                    sets=(), legalMoves=set(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
                 )
 
         #Fighting type pokemon
@@ -161,87 +616,87 @@ def runDML():
             if 'Primape':
                 root.pokesets['Primape'] = pokemon_ddl.PokemonSet(
                     name='Primape', species='Primape', abilities=('Vital Spirit', 'Anger Point'), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(65, 105, 60, 60, 70, 95), genders=('M', 'F')
+                    sets=(), baseStats=(65, 105, 60, 60, 70, 95), genders=('M', 'F')
                 )
             if 'Poliwrath':
                 root.pokesets['Poliwrath'] = pokemon_ddl.PokemonSet(
                     name='Poliwrath', species='Poliwrath', abilities=('Water Absorb', 'Damp'),
                     pkTypes=('Water', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(90, 85, 95, 70, 90, 70), genders=('M', 'F')
+                    sets=(), baseStats=(90, 85, 95, 70, 90, 70), genders=('M', 'F')
                 )
             if 'Machamp':
                 root.pokesets['Machamp'] = pokemon_ddl.PokemonSet(
                     name='Machamp', species='Machamp', abilities=('Guts', 'No Guard'), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(90, 130, 80, 65, 85, 55), genders=('M', 'F')
+                    sets=(), baseStats=(90, 130, 80, 65, 85, 55), genders=('M', 'F')
                 )
             if 'Hitmonlee':
                 root.pokesets['Hitmonlee'] = pokemon_ddl.PokemonSet(
                     name='Hitmonlee', species='Hitmonlee', abilities=('Limber', 'Reckless'), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(50, 120, 53, 35, 110, 87), genders=('M',)
+                    sets=(), baseStats=(50, 120, 53, 35, 110, 87), genders=('M',)
                 )
             if 'Hitmonchan':
                 root.pokesets['Hitmonchan'] = pokemon_ddl.PokemonSet(
                     name='Hitmonchan', species='Hitmonchan', abilities=('Keen Eye', 'Iron Fist'), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(50, 105, 79, 35, 110, 76), genders=('M',)
+                    sets=(), baseStats=(50, 105, 79, 35, 110, 76), genders=('M',)
                 )
             if 'Heracross':
                 root.pokesets['Heracross'] = pokemon_ddl.PokemonSet(
                     name='Heracross', species='Heracross', abilities=('Swarm', 'Guts'), pkTypes=('Bug', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(80, 125, 75, 40, 95, 85), genders=('M', 'F')
+                    sets=(), baseStats=(80, 125, 75, 40, 95, 85), genders=('M', 'F')
                 )
             if 'Hitmontop':
                 root.pokesets['Hitmontop'] = pokemon_ddl.PokemonSet(
                     name='Hitmontop', species='Hitmontop', abilities=('Intimidate', 'Technician'),
                     pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(50, 95, 95, 35, 110, 70), genders=('M',)
+                    sets=(), baseStats=(50, 95, 95, 35, 110, 70), genders=('M',)
                 )
             if 'Blaziken':
                 root.pokesets['Blaziken'] = pokemon_ddl.PokemonSet(
                     name='Blaziken', species='Blaziken', abilities=('Blaze',), pkTypes=('Fire', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(80, 120, 70, 110, 70, 80), genders=('M', 'F')
+                    sets=(), baseStats=(80, 120, 70, 110, 70, 80), genders=('M', 'F')
                 )
             if 'Breloom':
                 root.pokesets['Breloom'] = pokemon_ddl.PokemonSet(
                     name='Breloom', species='Breloom', abilities=('Effect Spore', 'Poison Heal'),
                     pkTypes=('Grass', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(60, 130, 80, 60, 60, 70), genders=('M', 'F')
+                    sets=(), baseStats=(60, 130, 80, 60, 60, 70), genders=('M', 'F')
                 )
             if 'Hariyama':
                 root.pokesets['Hariyama'] = pokemon_ddl.PokemonSet(
                     name='Hariyama', species='Hariyama', abilities=('Thick Fat', 'Guts'), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(144, 120, 60, 40, 60, 50), genders=('M', 'F')
+                    sets=(), baseStats=(144, 120, 60, 40, 60, 50), genders=('M', 'F')
                 )
             if 'Medicham':
                 root.pokesets['Medicham'] = pokemon_ddl.PokemonSet(
                     name='Medicham', species='Medicham', abilities=('Pure Power',), pkTypes=('Fighting', 'Psychic'),
-                    sets=(), legalMoves=set(), baseStats=(60, 60, 75, 60, 75, 80), genders=('M', 'F')
+                    sets=(), baseStats=(60, 60, 75, 60, 75, 80), genders=('M', 'F')
                 )
             if 'Infernape':
                 root.pokesets['Infernape'] = pokemon_ddl.PokemonSet(
                     name='Infernape', species='Infernape', abilities=('Blaze',), pkTypes=('Fire', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(76, 104, 71, 104, 71, 108), genders=('M', 'F')
+                    sets=(), baseStats=(76, 104, 71, 104, 71, 108), genders=('M', 'F')
                 )
             if 'Lucario':
                 root.pokesets['Lucario'] = pokemon_ddl.PokemonSet(
                     name='Lucario', species='Lucario', abilities=('Steadfast', 'Inner Focus'),
                     pkTypes=('Fighting', 'Steel'),
-                    sets=(), legalMoves=set(), baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F')
+                    sets=(), baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F')
                 )
             if 'Toxicroak':
                 root.pokesets['Toxicroak'] = pokemon_ddl.PokemonSet(
                     name='Toxicroak', species='Toxicroak', abilities=('Anticipation', 'Dry Skin'),
                     pkTypes=('Poison', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(83, 106, 65, 86, 65, 85), genders=('M', 'F')
+                    sets=(), baseStats=(83, 106, 65, 86, 65, 85), genders=('M', 'F')
                 )
             if 'Gallade':
                 root.pokesets['Gallade'] = pokemon_ddl.PokemonSet(
                     name='Gallade', species='Gallade', abilities=('Steadfast',), pkTypes=('Psychic', 'Fighting'),
-                    sets=(), legalMoves=set(), baseStats=(68, 125, 65, 65, 115, 80), genders=('M',)
+                    sets=(), baseStats=(68, 125, 65, 65, 115, 80), genders=('M',)
                 )
             if 'Arceus-Fighting':
                 root.pokesets['Arceus-Fighting'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Fighting', species='Arceus', abilities=('Multitype',), pkTypes=('Fighting',),
-                    sets=(), legalMoves=set(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
                 )
 
         # Dark type pokemon
@@ -249,89 +704,89 @@ def runDML():
             if 'Umbreon':
                 root.pokesets['Umbreon'] = pokemon_ddl.PokemonSet(
                     name='Umbreon', species='Umbreon', abilities=('Synchronize',), pkTypes=('Dark',),
-                    sets=(), legalMoves=set(), baseStats=(95, 65, 110, 60, 130, 65), genders=('M', 'F')
+                    sets=(), baseStats=(95, 65, 110, 60, 130, 65), genders=('M', 'F')
                 )
             if 'Houndoom':
                 root.pokesets['Houndoom'] = pokemon_ddl.PokemonSet(
                     name='Houndoom', species='Houndoom', abilities=('Early Bird', 'Flash Fire'),
                     pkTypes=('Dark', 'Fire'),
-                    sets=(), legalMoves=set(), baseStats=(75, 90, 50, 110, 80, 95), genders=('M', 'F')
+                    sets=(), baseStats=(75, 90, 50, 110, 80, 95), genders=('M', 'F')
                 )
             if 'Tyranitar':
                 root.pokesets['Tyranitar'] = pokemon_ddl.PokemonSet(
                     name='Tyranitar', species='Tyranitar', abilities=('Sand Stream',), pkTypes=('Rock', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(100, 134, 110, 95, 100, 61), genders=('M', 'F')
+                    sets=(), baseStats=(100, 134, 110, 95, 100, 61), genders=('M', 'F')
                 )
             if 'Mightyena':
                 root.pokesets['Mightyena'] = pokemon_ddl.PokemonSet(
                     name='Mightyena', species='Mightyena', abilities=('Intimidate', 'Quick Feet'),
                     pkTypes=('Dark',),
-                    sets=(), legalMoves=set(), baseStats=(70, 90, 70, 60, 60, 70), genders=('M', 'F')
+                    sets=(), baseStats=(70, 90, 70, 60, 60, 70), genders=('M', 'F')
                 )
             if 'Shiftry':
                 root.pokesets['Shiftry'] = pokemon_ddl.PokemonSet(
                     name='Shiftry', species='Shiftry', abilities=('Chlorophyll', 'Early Bird'),
                     pkTypes=('Grass', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(90, 100, 60, 90, 60, 80), genders=('M', 'F')
+                    sets=(), baseStats=(90, 100, 60, 90, 60, 80), genders=('M', 'F')
                 )
             if 'Sableye':
                 root.pokesets['Sableye'] = pokemon_ddl.PokemonSet(
                     name='Sableye', species='Sableye', abilities=('Keen Eye', 'Stall'), pkTypes=('Dark', 'Ghost'),
-                    sets=(), legalMoves=set(), baseStats=(50, 75, 75, 65, 65, 50), genders=('M', 'F')
+                    sets=(), baseStats=(50, 75, 75, 65, 65, 50), genders=('M', 'F')
                 )
             if 'Sharpedo':
                 root.pokesets['Sharpedo'] = pokemon_ddl.PokemonSet(
                     name='Sharpedo', species='Sharpedo', abilities=('Rough Skin',), pkTypes=('Water', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(70, 120, 40, 95, 40, 95), genders=('M', 'F')
+                    sets=(), baseStats=(70, 120, 40, 95, 40, 95), genders=('M', 'F')
                 )
             if 'Cacturne':
                 root.pokesets['Cacturne'] = pokemon_ddl.PokemonSet(
                     name='Cacturne', species='Cacturne', abilities=('Sand Veil',), pkTypes=('Grass', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(70, 115, 60, 115, 60, 55), genders=('M', 'F')
+                    sets=(), baseStats=(70, 115, 60, 115, 60, 55), genders=('M', 'F')
                 )
             if 'Crawdaunt':
                 root.pokesets['Crawdaunt'] = pokemon_ddl.PokemonSet(
                     name='Crawdaunt', species='Crawdaunt', abilities=('Hyper Cutter', 'Shell Armor'),
                     pkTypes=('Water', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(63, 120, 85, 90, 55, 55), genders=('M', 'F')
+                    sets=(), baseStats=(63, 120, 85, 90, 55, 55), genders=('M', 'F')
                 )
             if 'Absol':
                 root.pokesets['Absol'] = pokemon_ddl.PokemonSet(
                     name='Absol', species='Absol', abilities=('Pressure', 'Super Luck'), pkTypes=('Dark',),
-                    sets=(), legalMoves=set(), baseStats=(65, 130, 60, 75, 60, 75), genders=('M', 'F')
+                    sets=(), baseStats=(65, 130, 60, 75, 60, 75), genders=('M', 'F')
                 )
             if 'Honchkrow':
                 root.pokesets['Honchkrow'] = pokemon_ddl.PokemonSet(
                     name='Honchkrow', species='Honchkrow', abilities=('Insomnia', 'Super Luck'),
                     pkTypes=('Dark', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(100, 125, 52, 105, 52, 71), genders=('M', 'F')
+                    sets=(), baseStats=(100, 125, 52, 105, 52, 71), genders=('M', 'F')
                 )
             if 'Skuntank':
                 root.pokesets['Skuntank'] = pokemon_ddl.PokemonSet(
                     name='Skuntank', species='Skuntank', abilities=('Stench', 'Aftermath'),
                     pkTypes=('Poison', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(103, 93, 67, 71, 61, 84), genders=('M', 'F')
+                    sets=(), baseStats=(103, 93, 67, 71, 61, 84), genders=('M', 'F')
                 )
             if 'Spiritomb':
                 root.pokesets['Spiritomb'] = pokemon_ddl.PokemonSet(
                     name='Spiritomb', species='Spiritomb', abilities=('Pressure',), pkTypes=('Ghost', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(50, 92, 108, 92, 108, 35), genders=('',)
+                    sets=(), baseStats=(50, 92, 108, 92, 108, 35), genders=('',)
                 )
             if 'Drapion':
                 root.pokesets['Drapion'] = pokemon_ddl.PokemonSet(
                     name='Drapion', species='Drapion', abilities=('Battle Armor', 'Sniper'),
                     pkTypes=('Poison', 'Dark'),
-                    sets=(), legalMoves=set(), baseStats=(70, 90, 110, 60, 75, 95), genders=('M', 'F')
+                    sets=(), baseStats=(70, 90, 110, 60, 75, 95), genders=('M', 'F')
                 )
             if 'Darkrai':
                 root.pokesets['Darkrai'] = pokemon_ddl.PokemonSet(
                     name='Darkrai', species='Darkrai', abilities=('Bad Dreams',), pkTypes=('Dark',),
-                    sets=(), legalMoves=set(), baseStats=(70, 90, 90, 135, 90, 125), genders=('',)
+                    sets=(), baseStats=(70, 90, 90, 135, 90, 125), genders=('',)
                 )
             if 'Arceus-Dark':
                 root.pokesets['Arceus-Dark'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Dark', species='Arceus', abilities=('Multitype',), pkTypes=('Dark',),
-                    sets=(), legalMoves=set(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
                 )
 
         # Fire type pokemon
@@ -339,79 +794,1246 @@ def runDML():
             if 'Charizard':
                 root.pokesets['Charizard'] = pokemon_ddl.PokemonSet(
                     name='Charizard', species='Charizard', abilities=('Blaze',), pkTypes=('Fire', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
+                    sets=(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
                 )
             if 'Ninetales':
                 root.pokesets['Ninetales'] = pokemon_ddl.PokemonSet(
                     name='Ninetales', species='Ninetales', abilities=('Flash Fire',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(73, 76, 75, 81, 100, 100), genders=('M', 'F')
+                    sets=(), baseStats=(73, 76, 75, 81, 100, 100), genders=('M', 'F')
                 )
             if 'Arcanine':
                 root.pokesets['Arcanine'] = pokemon_ddl.PokemonSet(
                     name='Arcanine', species='Arcanine', abilities=('Intimidate', 'Flash Fire'), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(90, 110, 80, 100, 80, 95), genders=('M', 'F')
+                    sets=(), baseStats=(90, 110, 80, 100, 80, 95), genders=('M', 'F')
                 )
             if 'Rapidash':
                 root.pokesets['Rapidash'] = pokemon_ddl.PokemonSet(
                     name='Rapidash', species='Rapidash', abilities=('Run Away', 'Flash Fire'), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(65, 100, 70, 80, 80, 105), genders=('M', 'F')
+                    sets=(), baseStats=(65, 100, 70, 80, 80, 105), genders=('M', 'F')
                 )
             if 'Flareon':
                 root.pokesets['Flareon'] = pokemon_ddl.PokemonSet(
                     name='Flareon', species='Flareon', abilities=('Flash Fire',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(65, 130, 60, 95, 110, 65), genders=('M', 'F')
+                    sets=(), baseStats=(65, 130, 60, 95, 110, 65), genders=('M', 'F')
                 )
             if 'Moltres':
                 root.pokesets['Moltres'] = pokemon_ddl.PokemonSet(
                     name='Moltres', species='Moltres', abilities=('Pressure',), pkTypes=('Fire', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(90, 100, 90, 125, 85, 90), genders=('',)
+                    sets=(), baseStats=(90, 100, 90, 125, 85, 90), genders=('',)
                 )
             if 'Typhlosion':
                 root.pokesets['Typhlosion'] = pokemon_ddl.PokemonSet(
                     name='Typhlosion', species='Typhlosion', abilities=('Blaze',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
+                    sets=(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
                 )
             if 'Magcargo':
                 root.pokesets['Magcargo'] = pokemon_ddl.PokemonSet(
                     name='Magcargo', species='Magcargo', abilities=('Magma Armor', 'Flame Body'),
                     pkTypes=('Fire', 'Rock'),
-                    sets=(), legalMoves=set(), baseStats=(50, 50, 120, 80, 80, 30), genders=('M', 'F')
+                    sets=(), baseStats=(50, 50, 120, 80, 80, 30), genders=('M', 'F')
                 )
             if 'Entei':
                 root.pokesets['Entei'] = pokemon_ddl.PokemonSet(
                     name='Entei', species='Entei', abilities=('Pressure',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(115, 115, 85, 90, 75, 100), genders=('',)
+                    sets=(), baseStats=(115, 115, 85, 90, 75, 100), genders=('',)
                 )
             if 'Ho-oh':
                 root.pokesets['Ho-oh'] = pokemon_ddl.PokemonSet(
                     name='Ho-oh', species='Ho-oh', abilities=('Pressure',), pkTypes=('Fire', 'Flying'),
-                    sets=(), legalMoves=set(), baseStats=(106, 130, 90, 110, 154, 90), genders=('',)
+                    sets=(), baseStats=(106, 130, 90, 110, 154, 90), genders=('',)
                 )
             if 'Camerupt':
                 root.pokesets['Camerupt'] = pokemon_ddl.PokemonSet(
                     name='Camerupt', species='Camerupt', abilities=('Magma Armor', 'Solid Rock'),
                     pkTypes=('Fire', 'Ground'),
-                    sets=(), legalMoves=set(), baseStats=(70, 100, 70, 105, 75, 40), genders=('M', 'F')
+                    sets=(), baseStats=(70, 100, 70, 105, 75, 40), genders=('M', 'F')
                 )
             if 'Torkoal':
                 root.pokesets['Torkoal'] = pokemon_ddl.PokemonSet(
                     name='Torkoal', species='Torkoal', abilities=('White Smoke',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(70, 85, 140, 85, 70, 20), genders=('M', 'F')
+                    sets=(), baseStats=(70, 85, 140, 85, 70, 20), genders=('M', 'F')
                 )
             if 'Magmortar':
                 root.pokesets['Magmortar'] = pokemon_ddl.PokemonSet(
                     name='Magmortar', species='Magmortar', abilities=('Flame Body',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(75, 95, 67, 125, 95, 83), genders=('M', 'F')
+                    sets=(), baseStats=(75, 95, 67, 125, 95, 83), genders=('M', 'F')
                 )
             if 'Heatran':
                 root.pokesets['Heatran'] = pokemon_ddl.PokemonSet(
                     name='Heatran', species='Heatran', abilities=('Flash Fire',), pkTypes=('Fire', 'Steel'),
-                    sets=(), legalMoves=set(), baseStats=(91, 90, 106, 130, 106, 77), genders=('M', 'F')
+                    sets=(), baseStats=(91, 90, 106, 130, 106, 77), genders=('M', 'F')
                 )
             if 'Arceus-Fire':
                 root.pokesets['Arceus-Fire'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Fire', species='Arceus', abilities=('Multitype',), pkTypes=('Fire',),
-                    sets=(), legalMoves=set(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Ghost type pokemon
+        if 'Ghost':
+            if 'Gengar':
+                root.pokesets['Gengar'] = pokemon_ddl.PokemonSet(
+                    name='Gengar', species='Gengar', abilities=('Levitate',), pkTypes=('Ghost', 'Poison'),
+                    sets=(), baseStats=(60, 65, 60, 130, 75, 110), genders=('M', 'F')
+                )
+            if 'Shedinja':
+                root.pokesets['Shedinja'] = pokemon_ddl.PokemonSet(
+                    name='Shedinja', species='Shedinja', abilities=('Wonder Guard',), pkTypes=('Bug', 'Ghost'),
+                    sets=(), baseStats=(1, 90, 45, 30, 30, 40), genders=('',)
+                )
+            if 'Banette':
+                root.pokesets['Banette'] = pokemon_ddl.PokemonSet(
+                    name='Banette', species='Banette', abilities=('Insomnia', 'Frisk'), pkTypes=('Ghost',),
+                    sets=(), baseStats=(64, 115, 65, 83, 63, 65), genders=('M', 'F')
+                )
+            if 'Drifblim':
+                root.pokesets['Drifblim'] = pokemon_ddl.PokemonSet(
+                    name='Drifblim', species='Drifblim', abilities=('Aftermath', 'Unburden'),
+                    pkTypes=('Ghost', 'Flying'),
+                    sets=(), baseStats=(150, 80, 44, 90, 54, 80), genders=('M', 'F')
+                )
+            if 'Mismagius':
+                root.pokesets['Mismagius'] = pokemon_ddl.PokemonSet(
+                    name='Mismagius', species='Mismagius', abilities=('Levitate',), pkTypes=('Ghost',),
+                    sets=(), baseStats=(60, 60, 60, 105, 105, 105), genders=('M', 'F')
+                )
+            if 'Dusknoir':
+                root.pokesets['Dusknoir'] = pokemon_ddl.PokemonSet(
+                    name='Dusknoir', species='Dusknoir', abilities=('Pressure',), pkTypes=('Ghost',),
+                    sets=(), baseStats=(45, 100, 135, 65, 135, 45), genders=('M', 'F')
+                )
+            if 'Rotom':
+                root.pokesets['Rotom'] = pokemon_ddl.PokemonSet(
+                    name='Rotom', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Ghost'),
+                    sets=(), baseStats=(50, 50, 77, 95, 77, 91), genders=('',)
+                )
+            if 'Rotom-Fan':
+                root.pokesets['Rotom-Fan'] = pokemon_ddl.PokemonSet(
+                    name='Rotom-Fan', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Flying'),
+                    sets=(), baseStats=(50, 65, 107, 105, 107, 86), genders=('',)
+                )
+            if 'Rotom-Frost':
+                root.pokesets['Rotom-Frost'] = pokemon_ddl.PokemonSet(
+                    name='Rotom-Frost', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Ice'),
+                    sets=(), baseStats=(50, 65, 107, 105, 107, 86), genders=('',)
+                )
+            if 'Rotom-Heat':
+                root.pokesets['Rotom-Heat'] = pokemon_ddl.PokemonSet(
+                    name='Rotom-Heat', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Fire'),
+                    sets=(), baseStats=(50, 65, 107, 105, 107, 86), genders=('',)
+                )
+            if 'Rotom-Mow':
+                root.pokesets['Rotom-Mow'] = pokemon_ddl.PokemonSet(
+                    name='Rotom-Mow', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Grass'),
+                    sets=(), baseStats=(50, 65, 107, 105, 107, 86), genders=('',)
+                )
+            if 'Rotom-Wash':
+                root.pokesets['Rotom-Wash'] = pokemon_ddl.PokemonSet(
+                    name='Rotom-Wash', species='Rotom', abilities=('Levitate',), pkTypes=('Electric', 'Water'),
+                    sets=(), baseStats=(50, 65, 107, 105, 107, 86), genders=('',)
+                )
+            if 'Arceus-Ghost':
+                root.pokesets['Arceus-Ghost'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Ghost', species='Arceus', abilities=('Multitype',), pkTypes=('Ghost',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Steel type pokemon
+        if 'Steel':
+            if 'Forretress':
+                root.pokesets['Forretress'] = pokemon_ddl.PokemonSet(
+                    name='Forretress', species='Forretress', abilities=('Sturdy',), pkTypes=('Bug', 'Steel'),
+                    sets=(), baseStats=(75, 90, 140, 60, 60, 40), genders=('M', 'F')
+                )
+            if 'Steelix':
+                root.pokesets['Steelix'] = pokemon_ddl.PokemonSet(
+                    name='Steelix', species='Steelix', abilities=('Rock Head', 'Sturdy'), pkTypes=('Steel', 'Ground'),
+                    sets=(), baseStats=(75, 85, 200, 55, 65, 30), genders=('M', 'F')
+                )
+            if 'Scizor':
+                root.pokesets['Scizor'] = pokemon_ddl.PokemonSet(
+                    name='Scizor', species='Scizor', abilities=('Swarm', 'Technician'), pkTypes=('Bug', 'Steel'),
+                    sets=(), baseStats=(70, 130, 100, 55, 80, 65), genders=('M', 'F')
+                )
+            if 'Skarmory':
+                root.pokesets['Skarmory'] = pokemon_ddl.PokemonSet(
+                    name='Skarmory', species='Skarmory', abilities=('Keen Eye', 'Sturdy'), pkTypes=('Steel', 'Flying'),
+                    sets=(), baseStats=(65, 80, 140, 40, 70, 70), genders=('M', 'F')
+                )
+            if 'Mawile':
+                root.pokesets['Mawile'] = pokemon_ddl.PokemonSet(
+                    name='Mawile', species='Mawile', abilities=('Hyper Cutter', 'Intimidate'), pkTypes=('Steel',),
+                    sets=(), baseStats=(50, 85, 85, 55, 55, 50), genders=('M', 'F')
+                )
+            if 'Aggron':
+                root.pokesets['Aggron'] = pokemon_ddl.PokemonSet(
+                    name='Aggron', species='Aggron', abilities=('Sturdy', 'Rock Head'), pkTypes=('Steel', 'Rock'),
+                    sets=(), baseStats=(70, 110, 180, 60, 60, 50), genders=('M', 'F')
+                )
+            if 'Metagross':
+                root.pokesets['Metagross'] = pokemon_ddl.PokemonSet(
+                    name='Metagross', species='Metagross', abilities=('Clear Body',), pkTypes=('Steel', 'Psychic'),
+                    sets=(), baseStats=(80, 135, 130, 95, 90, 70), genders=('',)
+                )
+            if 'Registeel':
+                root.pokesets['Registeel'] = pokemon_ddl.PokemonSet(
+                    name='Registeel', species='Registeel', abilities=('Clear Body',), pkTypes=('Steel',),
+                    sets=(), baseStats=(80, 75, 150, 75, 150, 50), genders=('',)
+                )
+            if 'Jirachi':
+                root.pokesets['Jirachi'] = pokemon_ddl.PokemonSet(
+                    name='Jirachi', species='Jirachi', abilities=('Serene Grace',), pkTypes=('Steel', 'Psychic'),
+                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                )
+            if 'Empoleon':
+                root.pokesets['Empoleon'] = pokemon_ddl.PokemonSet(
+                    name='Empoleon', species='Empoleon', abilities=('Torrent',), pkTypes=('Water', 'Steel'),
+                    sets=(), baseStats=(84, 86, 88, 111, 101, 60), genders=('M', 'F')
+                )
+            if 'Bastiodon':
+                root.pokesets['Bastiodon'] = pokemon_ddl.PokemonSet(
+                    name='Bastiodon', species='Bastiodon', abilities=('Sturdy',), pkTypes=('Rock', 'Steel'),
+                    sets=(), baseStats=(60, 52, 168, 47, 138, 30), genders=('M', 'F')
+                )
+            if 'Wormadam-Trash':
+                root.pokesets['Wormadam-Trash'] = pokemon_ddl.PokemonSet(
+                    name='Wormadam-Trash', species='Wormadam', abilities=('Anticipation',), pkTypes=('Bug', 'Steel'),
+                    sets=(), baseStats=(60, 79, 105, 59, 85, 36), genders=('F',)
+                )
+            if 'Bronzong':
+                root.pokesets['Bronzong'] = pokemon_ddl.PokemonSet(
+                    name='Bronzong', species='Bronzong', abilities=('Levitate', 'Heatproof'),
+                    pkTypes=('Steel', 'Psychic'),
+                    sets=(), baseStats=(67, 89, 116, 79, 116, 33), genders=('',)
+                )
+            if 'Magnezone':
+                root.pokesets['Magnezone'] = pokemon_ddl.PokemonSet(
+                    name='Magnezone', species='Magnezone', abilities=('Magnet Pull', 'Sturdy'),
+                    pkTypes=('Electric', 'Steel'),
+                    sets=(), baseStats=(70, 70, 115, 130, 90, 60), genders=('',)
+                )
+            if 'Probopass':
+                root.pokesets['Probopass'] = pokemon_ddl.PokemonSet(
+                    name='Probopass', species='Probopass', abilities=('Sturdy', 'Magnet Pull'),
+                    pkTypes=('Rock', 'Steel'),
+                    sets=(), baseStats=(60, 55, 145, 75, 150, 40), genders=('M', 'F')
+                )
+            if 'Arceus-Steel':
+                root.pokesets['Arceus-Steel'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Steel', species='Arceus', abilities=('Multitype',), pkTypes=('Steel',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Electric type pokemon
+        if 'Electric':
+            if 'Pikachu':
+                root.pokesets['Pikachu'] = pokemon_ddl.PokemonSet(
+                    name='Pikachu', species='Pikachu', abilities=('Static',), pkTypes=('Electric',),
+                    sets=(), baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F')
+                )
+            if 'Raichu':
+                root.pokesets['Raichu'] = pokemon_ddl.PokemonSet(
+                    name='Raichu', species='Raichu', abilities=('Static',), pkTypes=('Electric',),
+                    sets=(), baseStats=(60, 90, 55, 90, 80, 100), genders=('M', 'F')
+                )
+            if 'Electrode':
+                root.pokesets['Electrode'] = pokemon_ddl.PokemonSet(
+                    name='Electrode', species='Electrode', abilities=('Soundproof', 'Static'), pkTypes=('Electric',),
+                    sets=(), baseStats=(60, 50, 70, 80, 80, 140), genders=('',)
+                )
+            if 'Jolteon':
+                root.pokesets['Jolteon'] = pokemon_ddl.PokemonSet(
+                    name='Jolteon', species='Jolteon', abilities=('Volt Absorb',), pkTypes=('Electric',),
+                    sets=(), baseStats=(65, 65, 60, 110, 95, 130), genders=('M', 'F')
+                )
+            if 'Zapdos':
+                root.pokesets['Zapdos'] = pokemon_ddl.PokemonSet(
+                    name='Zapdos', species='Zapdos', abilities=('Pressure',), pkTypes=('Electric', 'Flying'),
+                    sets=(), baseStats=(90, 90, 85, 125, 90, 100), genders=('',)
+                )
+            if 'Lanturn':
+                root.pokesets['Lanturn'] = pokemon_ddl.PokemonSet(
+                    name='Lanturn', species='Lanturn', abilities=('Volt Absorb', 'Illuminate'),
+                    pkTypes=('Water', 'Electric'),
+                    sets=(), baseStats=(125, 58, 58, 76, 76, 67), genders=('M', 'F')
+                )
+            if 'Ampharos':
+                root.pokesets['Ampharos'] = pokemon_ddl.PokemonSet(
+                    name='Ampharos', species='Ampharos', abilities=('Static',), pkTypes=('Electric',),
+                    sets=(), baseStats=(90, 75, 75, 115, 90, 55), genders=('M', 'F')
+                )
+            if 'Raikou':
+                root.pokesets['Raikou'] = pokemon_ddl.PokemonSet(
+                    name='Raikou', species='Raikou', abilities=('Pressure',), pkTypes=('Electric',),
+                    sets=(), baseStats=(90, 85, 75, 115, 100, 115), genders=('',)
+                )
+            if 'Manectric':
+                root.pokesets['Manectric'] = pokemon_ddl.PokemonSet(
+                    name='Manectric', species='Manectric', abilities=('Static', 'Lightning Rod'), pkTypes=('Electric',),
+                    sets=(), baseStats=(70, 75, 60, 105, 60, 105), genders=('M', 'F')
+                )
+            if 'Plusle':
+                root.pokesets['Plusle'] = pokemon_ddl.PokemonSet(
+                    name='Plusle', species='Plusle', abilities=('Plus',), pkTypes=('Electric',),
+                    sets=(), baseStats=(60, 50, 40, 85, 75, 95), genders=('M', 'F')
+                )
+            if 'Minun':
+                root.pokesets['Minun'] = pokemon_ddl.PokemonSet(
+                    name='Minun', species='Minun', abilities=('Minus',), pkTypes=('Electric',),
+                    sets=(), baseStats=(60, 40, 50, 75, 85, 95), genders=('M', 'F')
+                )
+            if 'Luxray':
+                root.pokesets['Luxray'] = pokemon_ddl.PokemonSet(
+                    name='Luxray', species='Luxray', abilities=('Rivalry', 'Intimidate'), pkTypes=('Electric',),
+                    sets=(), baseStats=(80, 120, 79, 95, 79, 70), genders=('M', 'F')
+                )
+            if 'Pachirisu':
+                root.pokesets['Pachirisu'] = pokemon_ddl.PokemonSet(
+                    name='Pachirisu', species='Pachirisu', abilities=('Run Away', 'Pick Up'), pkTypes=('Electric',),
+                    sets=(), baseStats=(60, 45, 70, 45, 90, 95), genders=('M', 'F')
+                )
+            if 'Electivire':
+                root.pokesets['Electivire'] = pokemon_ddl.PokemonSet(
+                    name='Electivire', species='Electivire', abilities=('Motor Drive',), pkTypes=('Electric',),
+                    sets=(), baseStats=(75, 123, 67, 95, 85, 95), genders=('M', 'F')
+                )
+            if 'Arceus-Electric':
+                root.pokesets['Arceus-Electric'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Electric', species='Arceus', abilities=('Multitype',), pkTypes=('Electric',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Rock type pokemon
+        if 'Rock':
+            if 'Golem':
+                root.pokesets['Golem'] = pokemon_ddl.PokemonSet(
+                    name='Golem', species='Golem', abilities=('Rock Head', 'Sturdy'), pkTypes=('Rock', 'Ground'),
+                    sets=(), baseStats=(80, 110, 130, 55, 65, 45), genders=('M', 'F')
+                )
+            if 'Omastar':
+                root.pokesets['Omastar'] = pokemon_ddl.PokemonSet(
+                    name='Omastar', species='Omastar', abilities=('Swift Swim', 'Shell Armor'),
+                    pkTypes=('Rock', 'Water'),
+                    sets=(), baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F')
+                )
+            if 'Kabutops':
+                root.pokesets['Kabutops'] = pokemon_ddl.PokemonSet(
+                    name='Kabutops', species='Kabutops', abilities=('Swift Swim', 'Battle Armor'),
+                    pkTypes=('Rock', 'Water'),
+                    sets=(), baseStats=(60, 115, 105, 65, 70, 80), genders=('M', 'F')
+                )
+            if 'Aerodactyl':
+                root.pokesets['Aerodactyl'] = pokemon_ddl.PokemonSet(
+                    name='Aerodactyl', species='Aerodactyl', abilities=('Rock Head', 'Pressure'),
+                    pkTypes=('Rock', 'Flying'),
+                    sets=(), baseStats=(80, 105, 65, 60, 75, 130), genders=('M', 'F')
+                )
+            if 'Sudowoodo':
+                root.pokesets['Sudowoodo'] = pokemon_ddl.PokemonSet(
+                    name='Sudowoodo', species='Sudowoodo', abilities=('Sturdy', 'Rock Head'), pkTypes=('Rock',),
+                    sets=(), baseStats=(70, 100, 115, 30, 65, 30), genders=('M', 'F')
+                )
+            if 'Shuckle':
+                root.pokesets['Shuckle'] = pokemon_ddl.PokemonSet(
+                    name='Shuckle', species='Shuckle', abilities=('Sturdy', 'Gluttony'), pkTypes=('Bug', 'Rock'),
+                    sets=(), baseStats=(20, 10, 230, 10, 230, 5), genders=('M', 'F')
+                )
+            if 'Corsola':
+                root.pokesets['Corsola'] = pokemon_ddl.PokemonSet(
+                    name='Corsola', species='Corsola', abilities=('Hustle', 'Natural Cure'), pkTypes=('Water', 'Rock'),
+                    sets=(), baseStats=(55, 55, 85, 65, 85, 35), genders=('M', 'F')
+                )
+            if 'Lunatone':
+                root.pokesets['Lunatone'] = pokemon_ddl.PokemonSet(
+                    name='Lunatone', species='Lunatone', abilities=('Levitate',), pkTypes=('Rock', 'Psychic'),
+                    sets=(), baseStats=(70, 55, 65, 95, 85, 70), genders=('',)
+                )
+            if 'Solrock':
+                root.pokesets['Solrock'] = pokemon_ddl.PokemonSet(
+                    name='Solrock', species='Solrock', abilities=('Levitate',), pkTypes=('Rock', 'Psychic'),
+                    sets=(), baseStats=(70, 95, 85, 55, 65, 70), genders=('',)
+                )
+            if 'Cradily':
+                root.pokesets['Cradily'] = pokemon_ddl.PokemonSet(
+                    name='Cradily', species='Cradily', abilities=('Suction Cups',), pkTypes=('Rock', 'Grass'),
+                    sets=(), baseStats=(86, 81, 97, 81, 107, 43), genders=('M', 'F')
+                )
+            if 'Armaldo':
+                root.pokesets['Armaldo'] = pokemon_ddl.PokemonSet(
+                    name='Armaldo', species='Armaldo', abilities=('Battle Armor',), pkTypes=('Rock', 'Bug'),
+                    sets=(), baseStats=(75, 125, 100, 70, 80, 45), genders=('M', 'F')
+                )
+            if 'Relicanth':
+                root.pokesets['Relicanth'] = pokemon_ddl.PokemonSet(
+                    name='Relicanth', species='Relicanth', abilities=('Swift Swim', 'Rock Head'),
+                    pkTypes=('Water', 'Rock'),
+                    sets=(), baseStats=(100, 90, 130, 45, 65, 55), genders=('M', 'F')
+                )
+            if 'Regirock':
+                root.pokesets['Regirock'] = pokemon_ddl.PokemonSet(
+                    name='Regirock', species='Regirock', abilities=('Clear Body',), pkTypes=('Rock',),
+                    sets=(), baseStats=(80, 100, 200, 50, 100, 50), genders=('',)
+                )
+            if 'Rampardos':
+                root.pokesets['Rampardos'] = pokemon_ddl.PokemonSet(
+                    name='Rampardos', species='Rampardos', abilities=('Mold Breaker',), pkTypes=('Rock',),
+                    sets=(), baseStats=(97, 165, 60, 65, 50, 58), genders=('M', 'F')
+                )
+            if 'Rhyperior':
+                root.pokesets['Rhyperior'] = pokemon_ddl.PokemonSet(
+                    name='Rhyperior', species='Rhyperior', abilities=('Lightning Rod', 'Solid Rock'),
+                    pkTypes=('Rock', 'Ground'),
+                    sets=(), baseStats=(115, 140, 130, 55, 55, 40), genders=('M', 'F')
+                )
+            if 'Arceus-Rock':
+                root.pokesets['Arceus-Rock'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Rock', species='Arceus', abilities=('Multitype',), pkTypes=('Rock',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Poison type pokemon
+        if 'Poison':
+            if 'Venusaur':
+                root.pokesets['Venusaur'] = pokemon_ddl.PokemonSet(
+                    name='Venusaur', species='Venusaur', abilities=('Overgrow',), pkTypes=('Grass', 'Poison'),
+                    sets=(), baseStats=(80, 82, 83, 100, 100, 80), genders=('M', 'F')
+                )
+            if 'Beedrill':
+                root.pokesets['Beedrill'] = pokemon_ddl.PokemonSet(
+                    name='Beedrill', species='Beedrill', abilities=('Swarm',), pkTypes=('Bug', 'Poison'),
+                    sets=(), baseStats=(65, 80, 40, 45, 80, 75), genders=('M', 'F')
+                )
+            if 'Arbok':
+                root.pokesets['Arbok'] = pokemon_ddl.PokemonSet(
+                    name='Arbok', species='Arbok', abilities=('Intimidate', 'Shed Skin'), pkTypes=('Poison',),
+                    sets=(), baseStats=(60, 85, 69, 65, 79, 80), genders=('M', 'F')
+                )
+            if 'Nidoqueen':
+                root.pokesets['Nidoqueen'] = pokemon_ddl.PokemonSet(
+                    name='Nidoqueen', species='Nidoqueen', abilities=('Poison Point', 'Rivalry'),
+                    pkTypes=('Poison', 'Ground'),
+                    sets=(), baseStats=(90, 82, 87, 75, 85, 76), genders=('F',)
+                )
+            if 'Nidoking':
+                root.pokesets['Nidoking'] = pokemon_ddl.PokemonSet(
+                    name='Nidoking', species='Nidoking', abilities=('Poison Point', 'Rivalry'),
+                    pkTypes=('Poison', 'Ground'),
+                    sets=(), baseStats=(81, 92, 77, 85, 75, 85), genders=('M',)
+                )
+            if 'Vileplume':
+                root.pokesets['Vileplume'] = pokemon_ddl.PokemonSet(
+                    name='Vileplume', species='Vileplume', abilities=('Chlorophyll',), pkTypes=('Grass', 'Poison'),
+                    sets=(), baseStats=(75, 80, 85, 100, 90, 50), genders=('M', 'F')
+                )
+            if 'Venomoth':
+                root.pokesets['Venomoth'] = pokemon_ddl.PokemonSet(
+                    name='Venomoth', species='Venomoth', abilities=('Shield Dust', 'Tinted Lens'),
+                    pkTypes=('Bug', 'Poison'),
+                    sets=(), baseStats=(70, 65, 60, 90, 75, 90), genders=('M', 'F')
+                )
+            if 'Victreebel':
+                root.pokesets['Victreebel'] = pokemon_ddl.PokemonSet(
+                    name='Victreebel', species='Victreebel', abilities=('Chlorophyll',), pkTypes=('Grass', 'Poison'),
+                    sets=(), baseStats=(80, 105, 65, 100, 60, 70), genders=('M', 'F')
+                )
+            if 'Tentacruel':
+                root.pokesets['Tentacruel'] = pokemon_ddl.PokemonSet(
+                    name='Tentacruel', species='Tentacruel', abilities=('Clear Body', 'Liquid Ooze'),
+                    pkTypes=('Water', 'Poison'),
+                    sets=(), baseStats=(80, 70, 65, 80, 120, 100), genders=('M', 'F')
+                )
+            if 'Muk':
+                root.pokesets['Muk'] = pokemon_ddl.PokemonSet(
+                    name='Muk', species='Muk', abilities=('Stench', 'Sticky Hold'), pkTypes=('Poison',),
+                    sets=(), baseStats=(105, 105, 75, 65, 100, 50), genders=('M', 'F')
+                )
+            if 'Weezing':
+                root.pokesets['Weezing'] = pokemon_ddl.PokemonSet(
+                    name='Weezing', species='Weezing', abilities=('Levitate',), pkTypes=('Poison',),
+                    sets=(), baseStats=(65, 90, 120, 85, 70, 60), genders=('M', 'F')
+                )
+            if 'Ariados':
+                root.pokesets['Ariados'] = pokemon_ddl.PokemonSet(
+                    name='Ariados', species='Ariados', abilities=('Swarm', 'Insomnia'), pkTypes=('Bug', 'Poison'),
+                    sets=(), baseStats=(70, 90, 70, 60, 60, 40), genders=('M', 'F')
+                )
+            if 'Crobat':
+                root.pokesets['Crobat'] = pokemon_ddl.PokemonSet(
+                    name='Crobat', species='Crobat', abilities=('Inner Focus',), pkTypes=('Poison', 'Flying'),
+                    sets=(), baseStats=(85, 90, 80, 70, 80, 130), genders=('M', 'F')
+                )
+            if 'Dustox':
+                root.pokesets['Dustox'] = pokemon_ddl.PokemonSet(
+                    name='Dustox', species='Dustox', abilities=('Shield Dust',), pkTypes=('Bug', 'Poison'),
+                    sets=(), baseStats=(60, 50, 70, 50, 90, 65), genders=('M', 'F')
+                )
+            if 'Swalot':
+                root.pokesets['Swalot'] = pokemon_ddl.PokemonSet(
+                    name='Swalot', species='Swalot', abilities=('Liquid Ooze', 'Sticky Hold'), pkTypes=('Poison',),
+                    sets=(), baseStats=(100, 73, 83, 73, 83, 55), genders=('M', 'F')
+                )
+            if 'Seviper':
+                root.pokesets['Seviper'] = pokemon_ddl.PokemonSet(
+                    name='Seviper', species='Seviper', abilities=('Shed Skin',), pkTypes=('Poison',),
+                    sets=(), baseStats=(73, 100, 60, 100, 60, 65), genders=('M', 'F')
+                )
+            if 'Roserade':
+                root.pokesets['Roserade'] = pokemon_ddl.PokemonSet(
+                    name='Roserade', species='Roserade', abilities=('Natural Cure', 'Poison Point'),
+                    pkTypes=('Grass', 'Poison'),
+                    sets=(), baseStats=(60, 70, 55, 125, 105, 90), genders=('M', 'F')
+                )
+            if 'Arceus-Poison':
+                root.pokesets['Arceus-Poison'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Poison', species='Arceus', abilities=('Multitype',), pkTypes=('Poison',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Ground type pokemon
+        if 'Ground':
+            if 'Sandslash':
+                root.pokesets['Sandslash'] = pokemon_ddl.PokemonSet(
+                    name='Sandslash', species='Sandslash', abilities=('Sand Veil',), pkTypes=('Ground',),
+                    sets=(), baseStats=(75, 100, 110, 45, 55, 65), genders=('M', 'F')
+                )
+            if 'Dugtrio':
+                root.pokesets['Dugtrio'] = pokemon_ddl.PokemonSet(
+                    name='Dugtrio', species='Dugtrio', abilities=('Sand Veil', 'Arena Trap'), pkTypes=('Ground',),
+                    sets=(), baseStats=(35, 80, 50, 50, 70, 120), genders=('M', 'F')
+                )
+            if 'Marowak':
+                root.pokesets['Marowak'] = pokemon_ddl.PokemonSet(
+                    name='Marowak', species='Marowak', abilities=('Rock Head', 'Lightning Rod'), pkTypes=('Ground',),
+                    sets=(), baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F')
+                )
+            if 'Quagsire':
+                root.pokesets['Quagsire'] = pokemon_ddl.PokemonSet(
+                    name='Quagsire', species='Quagsire', abilities=('Damp', 'Water Absorb'),
+                    pkTypes=('Water', 'Ground'),
+                    sets=(), baseStats=(95, 85, 85, 65, 65, 35), genders=('M', 'F')
+                )
+            if 'Donphan':
+                root.pokesets['Donphan'] = pokemon_ddl.PokemonSet(
+                    name='Donphan', species='Donphan', abilities=('Sturdy',), pkTypes=('Ground',),
+                    sets=(), baseStats=(90, 120, 120, 60, 60, 50), genders=('M', 'F')
+                )
+            if 'Swampert':
+                root.pokesets['Swampert'] = pokemon_ddl.PokemonSet(
+                    name='Swampert', species='Swampert', abilities=('Torrent',), pkTypes=('Water', 'Ground'),
+                    sets=(), baseStats=(100, 110, 90, 85, 90, 60), genders=('M', 'F')
+                )
+            if 'Whiscash':
+                root.pokesets['Whiscash'] = pokemon_ddl.PokemonSet(
+                    name='Whiscash', species='Whiscash', abilities=('Oblivious', 'Anticipation'),
+                    pkTypes=('Water', 'Ground'),
+                    sets=(), baseStats=(110, 78, 73, 76, 71, 60), genders=('M', 'F')
+                )
+            if 'Claydol':
+                root.pokesets['Claydol'] = pokemon_ddl.PokemonSet(
+                    name='Claydol', species='Claydol', abilities=('Levitate',), pkTypes=('Ground', 'Psychic'),
+                    sets=(), baseStats=(60, 70, 105, 70, 120, 75), genders=('',)
+                )
+            if 'Groudon':
+                root.pokesets['Groudon'] = pokemon_ddl.PokemonSet(
+                    name='Groudon', species='Groudon', abilities=('Drought',), pkTypes=('Ground',),
+                    sets=(), baseStats=(100, 150, 140, 100, 90, 90), genders=('',)
+                )
+            if 'Torterra':
+                root.pokesets['Torterra'] = pokemon_ddl.PokemonSet(
+                    name='Torterra', species='Torterra', abilities=('Overgrow',), pkTypes=('Grass', 'Ground'),
+                    sets=(), baseStats=(95, 109, 105, 75, 85, 56), genders=('M', 'F')
+                )
+            if 'Wormadam-Sandy':
+                root.pokesets['Wormadam-Sandy'] = pokemon_ddl.PokemonSet(
+                    name='Wormadam-Sandy', species='Wormadam', abilities=('Anticipation',), pkTypes=('Bug', 'Ground'),
+                    sets=(), baseStats=(60, 79, 105, 59, 85, 36), genders=('F',)
+                )
+            if 'Gastrodon':
+                root.pokesets['Gastrodon'] = pokemon_ddl.PokemonSet(
+                    name='Gastrodon', species='Gastrodon', abilities=('Sticky Hold', 'Storm Drain'),
+                    pkTypes=('Water', 'Ground'),
+                    sets=(), baseStats=(111, 83, 68, 92, 82, 39), genders=('M', 'F')
+                )
+            if 'Gastrodon-East':
+                root.pokesets['Gastrodon-East'] = pokemon_ddl.PokemonSet(
+                    name='Gastrodon-East', species='Gastrodon', abilities=('Sticky Hold', 'Storm Drain'),
+                    pkTypes=('Water', 'Ground'),
+                    sets=(), baseStats=(111, 83, 68, 92, 82, 39), genders=('M', 'F')
+                )
+            if 'Garchomp':
+                root.pokesets['Garchomp'] = pokemon_ddl.PokemonSet(
+                    name='Garchomp', species='Garchomp', abilities=('Sand Veil',), pkTypes=('Dragon', 'Ground'),
+                    sets=(), baseStats=(108, 130, 95, 80, 85, 102), genders=('M', 'F')
+                )
+            if 'Hippowdon':
+                root.pokesets['Hippowdon'] = pokemon_ddl.PokemonSet(
+                    name='Hippowdon', species='Hippowdon', abilities=('Sand Stream',), pkTypes=('Ground',),
+                    sets=(), baseStats=(108, 112, 118, 68, 72, 47), genders=('M', 'F')
+                )
+            if 'Gliscor':
+                root.pokesets['Gliscor'] = pokemon_ddl.PokemonSet(
+                    name='Gliscor', species='Gliscor', abilities=('Hyper Cutter', 'Sand Veil'),
+                    pkTypes=('Ground', 'Flying'),
+                    sets=(), baseStats=(75, 95, 125, 45, 75, 95), genders=('M', 'F')
+                )
+            if 'Arceus-Ground':
+                root.pokesets['Arceus-Ground'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Ground', species='Arceus', abilities=('Multitype',), pkTypes=('Ground',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Bug type pokemon
+        if 'Bug':
+            if 'Butterfree':
+                root.pokesets['Butterfree'] = pokemon_ddl.PokemonSet(
+                    name='Butterfree', species='Butterfree', abilities=('Compound Eyes',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(60, 45, 50, 80, 80, 70), genders=('M', 'F')
+                )
+            if 'Parasect':
+                root.pokesets['Parasect'] = pokemon_ddl.PokemonSet(
+                    name='Parasect', species='Parasect', abilities=('Effect Spore', 'Dry Skin'),
+                    pkTypes=('Bug', 'Grass'),
+                    sets=(), baseStats=(60, 95, 80, 60, 80, 30), genders=('M', 'F')
+                )
+            if 'Pinsir':
+                root.pokesets['Pinsir'] = pokemon_ddl.PokemonSet(
+                    name='Pinsir', species='Pinsir', abilities=('Hyper Cutter', 'Mold Breaker'), pkTypes=('Bug',),
+                    sets=(), baseStats=(65, 125, 100, 55, 70, 85), genders=('M', 'F')
+                )
+            if 'Ledian':
+                root.pokesets['Ledian'] = pokemon_ddl.PokemonSet(
+                    name='Ledian', species='Ledian', abilities=('Swarm', 'Early Bird'), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(55, 35, 50, 55, 110, 85), genders=('M', 'F')
+                )
+            if 'Beautifly':
+                root.pokesets['Beautifly'] = pokemon_ddl.PokemonSet(
+                    name='Beautifly', species='Beautifly', abilities=('Swarm',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(60, 70, 50, 90, 50, 65), genders=('M', 'F')
+                )
+            if 'Masquerain':
+                root.pokesets['Masquerain'] = pokemon_ddl.PokemonSet(
+                    name='Masquerain', species='Masquerain', abilities=('Intimidate',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(70, 60, 62, 80, 82, 60), genders=('M', 'F')
+                )
+            if 'Ninjask':
+                root.pokesets['Ninjask'] = pokemon_ddl.PokemonSet(
+                    name='Ninjask', species='Ninjask', abilities=('Speed Boost',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(61, 90, 45, 50, 50, 160), genders=('M', 'F')
+                )
+            if 'Volbeat':
+                root.pokesets['Volbeat'] = pokemon_ddl.PokemonSet(
+                    name='Volbeat', species='Volbeat', abilities=('Illuminate', 'Swarm'), pkTypes=('Bug',),
+                    sets=(), baseStats=(65, 73, 55, 47, 75, 85), genders=('M',)
+                )
+            if 'Illumise':
+                root.pokesets['Illumise'] = pokemon_ddl.PokemonSet(
+                    name='Illumise', species='Illumise', abilities=('Oblivious', 'Tinted Lens'), pkTypes=('Bug',),
+                    sets=(), baseStats=(65, 47, 55, 73, 75, 85), genders=('F',)
+                )
+            if 'Kricketune':
+                root.pokesets['Kricketune'] = pokemon_ddl.PokemonSet(
+                    name='Kricketune', species='Kricketune', abilities=('Swarm',), pkTypes=('Bug',),
+                    sets=(), baseStats=(77, 85, 51, 55, 51, 65), genders=('M', 'F')
+                )
+            if 'Wormadam':
+                root.pokesets['Wormadam'] = pokemon_ddl.PokemonSet(
+                    name='Wormadam', species='Wormadam', abilities=('Anticipation',), pkTypes=('Bug', 'Grass'),
+                    sets=(), baseStats=(60, 59, 85, 79, 105, 36), genders=('F',)
+                )
+            if 'Mothim':
+                root.pokesets['Mothim'] = pokemon_ddl.PokemonSet(
+                    name='Mothim', species='Mothim', abilities=('Swarm',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(70, 94, 50, 94, 50, 66), genders=('M',)
+                )
+            if 'Vespiquen':
+                root.pokesets['Vespiquen'] = pokemon_ddl.PokemonSet(
+                    name='Vespiquen', species='Vespiquen', abilities=('Pressure',), pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(70, 80, 102, 80, 102, 40), genders=('F',)
+                )
+            if 'Yanmega':
+                root.pokesets['Yanmega'] = pokemon_ddl.PokemonSet(
+                    name='Yanmega', species='Yanmega', abilities=('Speed Boost', 'Tinted Lens'),
+                    pkTypes=('Bug', 'Flying'),
+                    sets=(), baseStats=(86, 76, 86, 116, 56, 95), genders=('M', 'F')
+                )
+            if 'Arceus-Bug':
+                root.pokesets['Arceus-Bug'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Bug', species='Arceus', abilities=('Multitype',), pkTypes=('Bug',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Grass type pokemon
+        if 'Grass':
+            if 'Exeggutor':
+                root.pokesets['Exeggutor'] = pokemon_ddl.PokemonSet(
+                    name='Exeggutor', species='Exeggutor', abilities=('Chlorophyll',), pkTypes=('Grass', 'Psychic'),
+                    sets=(), baseStats=(95, 95, 85, 125, 65, 55), genders=('M', 'F')
+                )
+            if 'Meganium':
+                root.pokesets['Meganium'] = pokemon_ddl.PokemonSet(
+                    name='Meganium', species='Meganium', abilities=('Overgrow',), pkTypes=('Grass',),
+                    sets=(), baseStats=(80, 82, 100, 83, 100, 80), genders=('M', 'F')
+                )
+            if 'Bellossom':
+                root.pokesets['Bellossom'] = pokemon_ddl.PokemonSet(
+                    name='Bellossom', species='Bellossom', abilities=('Chlorophyll',), pkTypes=('Grass',),
+                    sets=(), baseStats=(75, 80, 85, 90, 100, 50), genders=('M', 'F')
+                )
+            if 'Jumpluff':
+                root.pokesets['Jumpluff'] = pokemon_ddl.PokemonSet(
+                    name='Jumpluff', species='Jumpluff', abilities=('Chlorophyll', 'Leaf Guard'),
+                    pkTypes=('Grass', 'Flying'),
+                    sets=(), baseStats=(75, 55, 70, 55, 85, 110), genders=('M', 'F')
+                )
+            if 'Sunflora':
+                root.pokesets['Sunflora'] = pokemon_ddl.PokemonSet(
+                    name='Sunflora', species='Sunflora', abilities=('Chlorophyll', 'Solar Power'), pkTypes=('Grass',),
+                    sets=(), baseStats=(75, 75, 55, 105, 85, 30), genders=('M', 'F')
+                )
+            if 'Celebi':
+                root.pokesets['Celebi'] = pokemon_ddl.PokemonSet(
+                    name='Celebi', species='Celebi', abilities=('Natural Cure',), pkTypes=('Psychic', 'Grass'),
+                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                )
+            if 'Sceptile':
+                root.pokesets['Sceptile'] = pokemon_ddl.PokemonSet(
+                    name='Sceptile', species='Sceptile', abilities=('Overgrow',), pkTypes=('Grass',),
+                    sets=(), baseStats=(70, 85, 65, 105, 85, 120), genders=('M', 'F')
+                )
+            if 'Ludicolo':
+                root.pokesets['Ludicolo'] = pokemon_ddl.PokemonSet(
+                    name='Ludicolo', species='Ludicolo', abilities=('Swift Swim', 'Rain Dish'),
+                    pkTypes=('Water', 'Grass'),
+                    sets=(), baseStats=(80, 70, 70, 90, 100, 70), genders=('M', 'F')
+                )
+            if 'Tropius':
+                root.pokesets['Tropius'] = pokemon_ddl.PokemonSet(
+                    name='Tropius', species='Tropius', abilities=('Chlorophyll', 'Solar Power'),
+                    pkTypes=('Grass', 'Flying'),
+                    sets=(), baseStats=(99, 68, 83, 72, 87, 51), genders=('M', 'F')
+                )
+            if 'Cherrim':
+                root.pokesets['Cherrim'] = pokemon_ddl.PokemonSet(
+                    name='Cherrim', species='Cherrim', abilities=('Flower Gift',), pkTypes=('Grass',),
+                    sets=(), baseStats=(70, 60, 70, 87, 78, 85), genders=('M', 'F')
+                )
+            if 'Carnivine':
+                root.pokesets['Carnivine'] = pokemon_ddl.PokemonSet(
+                    name='Carnivine', species='Carnivine', abilities=('Levitate',), pkTypes=('Grass',),
+                    sets=(), baseStats=(74, 100, 72, 90, 72, 46), genders=('M', 'F')
+                )
+            if 'Tangrowth':
+                root.pokesets['Tangrowth'] = pokemon_ddl.PokemonSet(
+                    name='Tangrowth', species='Tangrowth', abilities=('Chlorophyll', 'Leaf Guard'), pkTypes=('Grass',),
+                    sets=(), baseStats=(100, 100, 125, 110, 50, 50), genders=('M', 'F')
+                )
+            if 'Leafeon':
+                root.pokesets['Leafeon'] = pokemon_ddl.PokemonSet(
+                    name='Leafeon', species='Leafeon', abilities=('Leaf Guard',), pkTypes=('Grass',),
+                    sets=(), baseStats=(65, 110, 130, 60, 65, 95), genders=('M', 'F')
+                )
+            if 'Shaymin':
+                root.pokesets['Shaymin'] = pokemon_ddl.PokemonSet(
+                    name='Shaymin', species='Shaymin', abilities=('Natural Cure',), pkTypes=('Grass',),
+                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                )
+            if 'Arceus-Grass':
+                root.pokesets['Arceus-Grass'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Grass', species='Arceus', abilities=('Multitype',), pkTypes=('Grass',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Psychic type pokemon
+        if 'Psychic':
+            if 'Alakazam':
+                root.pokesets['Alakazam'] = pokemon_ddl.PokemonSet(
+                    name='Alakazam', species='Alakazam', abilities=('Synchronize', 'Inner Focus'), pkTypes=('Psychic',),
+                    sets=(), baseStats=(55, 50, 45, 135, 85, 120), genders=('M', 'F')
+                )
+            if 'Slowbro':
+                root.pokesets['Slowbro'] = pokemon_ddl.PokemonSet(
+                    name='Slowbro', species='Slowbro', abilities=('Oblivious', 'Own Tempo'),
+                    pkTypes=('Water', 'Psychic'),
+                    sets=(), baseStats=(95, 75, 110, 100, 80, 30), genders=('M', 'F')
+                )
+            if 'Hypno':
+                root.pokesets['Hypno'] = pokemon_ddl.PokemonSet(
+                    name='Hypno', species='Hypno', abilities=('Insomnia', 'Forewarn'), pkTypes=('Psychic',),
+                    sets=(), baseStats=(85, 73, 70, 73, 115, 67), genders=('M', 'F')
+                )
+            if 'Starmie':
+                root.pokesets['Starmie'] = pokemon_ddl.PokemonSet(
+                    name='Starmie', species='Starmie', abilities=('Illuminate', 'Natural Cure'),
+                    pkTypes=('Water', 'Psychic'),
+                    sets=(), baseStats=(60, 75, 85, 100, 85, 115), genders=('',)
+                )
+            if 'Mr. Mime':
+                root.pokesets['Mr. Mime'] = pokemon_ddl.PokemonSet(
+                    name='Mr. Mime', species='Mr. Mime', abilities=('Soundproof', 'Filter'), pkTypes=('Psychic',),
+                    sets=(), baseStats=(40, 45, 65, 100, 120, 90), genders=('M', 'F')
+                )
+            if 'Mewtwo':
+                root.pokesets['Mewtwo'] = pokemon_ddl.PokemonSet(
+                    name='Mewtwo', species='Mewtwo', abilities=('Pressure',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(106, 110, 90, 154, 90, 130), genders=('',)
+                )
+            if 'Mew':
+                root.pokesets['Mew'] = pokemon_ddl.PokemonSet(
+                    name='Mew', species='Mew', abilities=('Synchronize',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                )
+            if 'Xatu':
+                root.pokesets['Xatu'] = pokemon_ddl.PokemonSet(
+                    name='Xatu', species='Xatu', abilities=('Synchronize', 'Early Bird'), pkTypes=('Psychic', 'Flying'),
+                    sets=(), baseStats=(65, 75, 70, 95, 70, 95), genders=('M', 'F')
+                )
+            if 'Espeon':
+                root.pokesets['Espeon'] = pokemon_ddl.PokemonSet(
+                    name='Espeon', species='Espeon', abilities=('Synchronize',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(65, 65, 60, 130, 95, 110), genders=('M', 'F')
+                )
+            if 'Slowking':
+                root.pokesets['Slowking'] = pokemon_ddl.PokemonSet(
+                    name='Slowking', species='Slowking', abilities=('Oblivious', 'Own Tempo'),
+                    pkTypes=('Water', 'Psychic'),
+                    sets=(), baseStats=(95, 75, 80, 100, 110, 30), genders=('M', 'F')
+                )
+            if 'Unown':
+                root.pokesets['Unown'] = pokemon_ddl.PokemonSet(
+                    name='Unown', species='Unown', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(48, 72, 48, 72, 48, 48), genders=('',)
+                )
+            if 'Wobbuffet':
+                root.pokesets['Wobbuffet'] = pokemon_ddl.PokemonSet(
+                    name='Wobbuffet', species='Wobbuffet', abilities=('Shadow Tag',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(190, 33, 58, 33, 58, 33), genders=('M', 'F')
+                )
+            if 'Girafarig':
+                root.pokesets['Girafarig'] = pokemon_ddl.PokemonSet(
+                    name='Girafarig', species='Girafarig', abilities=('Inner Focus', 'Early Bird'),
+                    pkTypes=('Normal', 'Psychic'),
+                    sets=(), baseStats=(70, 80, 65, 90, 65, 85), genders=('M', 'F')
+                )
+            if 'Lugia':
+                root.pokesets['Lugia'] = pokemon_ddl.PokemonSet(
+                    name='Lugia', species='Lugia', abilities=('Pressure',), pkTypes=('Psychic', 'Flying'),
+                    sets=(), baseStats=(106, 90, 130, 90, 154, 110), genders=('',)
+                )
+            if 'Gardevoir':
+                root.pokesets['Gardevoir'] = pokemon_ddl.PokemonSet(
+                    name='Gardevoir', species='Gardevoir', abilities=('Synchronize', 'Trace'), pkTypes=('Psychic',),
+                    sets=(), baseStats=(68, 65, 65, 125, 115, 80), genders=('M', 'F')
+                )
+            if 'Grumpig':
+                root.pokesets['Grumpig'] = pokemon_ddl.PokemonSet(
+                    name='Grumpig', species='Grumpig', abilities=('Thick Fat', 'Own Tempo'), pkTypes=('Psychic',),
+                    sets=(), baseStats=(80, 45, 65, 90, 110, 80), genders=('M', 'F')
+                )
+            if 'Chimecho':
+                root.pokesets['Chimecho'] = pokemon_ddl.PokemonSet(
+                    name='Chimecho', species='Chimecho', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(65, 50, 70, 95, 80, 65), genders=('M', 'F')
+                )
+            if 'Deoxys':
+                root.pokesets['Deoxys'] = pokemon_ddl.PokemonSet(
+                    name='Deoxys', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(50, 150, 50, 150, 50, 150), genders=('',)
+                )
+            if 'Deoxys-Attack':
+                root.pokesets['Deoxys-Attack'] = pokemon_ddl.PokemonSet(
+                    name='Deoxys-Attack', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(50, 180, 20, 180, 20, 150), genders=('',)
+                )
+            if 'Deoxys-Defense':
+                root.pokesets['Deoxys-Defense'] = pokemon_ddl.PokemonSet(
+                    name='Deoxys-Defense', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(50, 70, 160, 70, 160, 90), genders=('',)
+                )
+            if 'Deoxys-Speed':
+                root.pokesets['Deoxys-Speed'] = pokemon_ddl.PokemonSet(
+                    name='Deoxys-Speed', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(50, 95, 90, 95, 90, 180), genders=('',)
+                )
+            if 'Uxie':
+                root.pokesets['Uxie'] = pokemon_ddl.PokemonSet(
+                    name='Uxie', species='Uxie', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(75, 75, 130, 75, 130, 95), genders=('',)
+                )
+            if 'Mesprit':
+                root.pokesets['Mesprit'] = pokemon_ddl.PokemonSet(
+                    name='Mesprit', species='Mesprit', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(80, 105, 105, 105, 105, 80), genders=('',)
+                )
+            if 'Azelf':
+                root.pokesets['Azelf'] = pokemon_ddl.PokemonSet(
+                    name='Azelf', species='Azelf', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(75, 125, 70, 125, 70, 115), genders=('',)
+                )
+            if 'Cresselia':
+                root.pokesets['Cresselia'] = pokemon_ddl.PokemonSet(
+                    name='Cresselia', species='Cresselia', abilities=('Levitate',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(120, 70, 120, 75, 130, 85), genders=('F',)
+                )
+            if 'Arceus-Psychic':
+                root.pokesets['Arceus-Psychic'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Psychic', species='Arceus', abilities=('Multitype',), pkTypes=('Psychic',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Flying type pokemon
+        if 'Flying':
+            if 'Pidgeot':
+                root.pokesets['Pidgeot'] = pokemon_ddl.PokemonSet(
+                    name='Pidgeot', species='Pidgeot', abilities=('Keen Eye', 'Tangled Feet'),
+                    pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(83, 80, 75, 70, 70, 91), genders=('M', 'F')
+                )
+            if 'Fearow':
+                root.pokesets['Fearow'] = pokemon_ddl.PokemonSet(
+                    name='Fearow', species='Fearow', abilities=('Keen Eye',), pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(65, 90, 65, 61, 61, 100), genders=('M', 'F')
+                )
+            if "Farfetch'd":
+                root.pokesets["Farfetch'd"] = pokemon_ddl.PokemonSet(
+                    name="Farfetch'd", species="Farfetch'd", abilities=('Keen Eye', 'Inner Focus'),
+                    pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(52, 65, 55, 58, 62, 60), genders=('M', 'F')
+                )
+            if 'Dodrio':
+                root.pokesets['Dodrio'] = pokemon_ddl.PokemonSet(
+                    name='Dodrio', species='Dodrio', abilities=('Run Away', 'Early Bird'), pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(60, 110, 70, 60, 60, 100), genders=('M', 'F')
+                )
+            if 'Gyarados':
+                root.pokesets['Gyarados'] = pokemon_ddl.PokemonSet(
+                    name='Gyarados', species='Gyarados', abilities=('Intimidate',), pkTypes=('Water', 'Flying'),
+                    sets=(), baseStats=(95, 125, 79, 60, 100, 81), genders=('M', 'F')
+                )
+            if 'Noctowl':
+                root.pokesets['Noctowl'] = pokemon_ddl.PokemonSet(
+                    name='Noctowl', species='Noctowl', abilities=('Insomnia', 'Keen Eye'), pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(100, 50, 50, 76, 96, 70), genders=('M', 'F')
+                )
+            if 'Mantine':
+                root.pokesets['Mantine'] = pokemon_ddl.PokemonSet(
+                    name='Mantine', species='Mantine', abilities=('Swift Swim', 'Water Absorb'),
+                    pkTypes=('Water', 'Flying'),
+                    sets=(), baseStats=(65, 40, 70, 80, 140, 70), genders=('M', 'F')
+                )
+            if 'Swellow':
+                root.pokesets['Swellow'] = pokemon_ddl.PokemonSet(
+                    name='Swellow', species='Swellow', abilities=('Guts',), pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(60, 85, 60, 50, 50, 125), genders=('M', 'F')
+                )
+            if 'Pelipper':
+                root.pokesets['Pelipper'] = pokemon_ddl.PokemonSet(
+                    name='Pelipper', species='Pelipper', abilities=('Keen Eye',), pkTypes=('Water', 'Flying'),
+                    sets=(), baseStats=(60, 50, 100, 85, 70, 65), genders=('M', 'F')
+                )
+            if 'Altaria':
+                root.pokesets['Altaria'] = pokemon_ddl.PokemonSet(
+                    name='Altaria', species='Altaria', abilities=('Natural Cure',), pkTypes=('Dragon', 'Flying'),
+                    sets=(), baseStats=(75, 70, 90, 70, 105, 80), genders=('M', 'F')
+                )
+            if 'Staraptor':
+                root.pokesets['Staraptor'] = pokemon_ddl.PokemonSet(
+                    name='Staraptor', species='Staraptor', abilities=('Intimidate',), pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(85, 120, 70, 50, 50, 100), genders=('M', 'F')
+                )
+            if 'Chatot':
+                root.pokesets['Chatot'] = pokemon_ddl.PokemonSet(
+                    name='Chatot', species='Chatot', abilities=('Keen Eye', 'Tangled Feet'),
+                    pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(76, 65, 45, 92, 42, 91), genders=('M', 'F')
+                )
+            if 'Togekiss':
+                root.pokesets['Togekiss'] = pokemon_ddl.PokemonSet(
+                    name='Togekiss', species='Togekiss', abilities=('Hustle', 'Serene Grace'),
+                    pkTypes=('Normal', 'Flying'),
+                    sets=(), baseStats=(85, 50, 95, 120, 115, 80), genders=('M', 'F')
+                )
+            if 'Arceus-Flying':
+                root.pokesets['Arceus-Flying'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Flying', species='Arceus', abilities=('Multitype',), pkTypes=('Flying',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Normal type pokemon
+        if 'Normal':
+            if 'Raticate':
+                root.pokesets['Raticate'] = pokemon_ddl.PokemonSet(
+                    name='Raticate', species='Raticate', abilities=('Run Away', 'Guts'), pkTypes=('Normal',),
+                    sets=(), baseStats=(55, 81, 60, 50, 70, 97), genders=('M', 'F')
+                )
+            if 'Clefable':
+                root.pokesets['Clefable'] = pokemon_ddl.PokemonSet(
+                    name='Clefable', species='Clefable', abilities=('Cute Charm', 'Magic Guard'), pkTypes=('Normal',),
+                    sets=(), baseStats=(95, 70, 73, 85, 90, 60), genders=('M', 'F')
+                )
+            if 'Wigglytuff':
+                root.pokesets['Wigglytuff'] = pokemon_ddl.PokemonSet(
+                    name='Wigglytuff', species='Wigglytuff', abilities=('Cute Charm', 'Competitive'),
+                    pkTypes=('Normal',),
+                    sets=(), baseStats=(140, 70, 45, 75, 50, 45), genders=('M', 'F')
+                )
+            if 'Persian':
+                root.pokesets['Persian'] = pokemon_ddl.PokemonSet(
+                    name='Persian', species='Persian', abilities=('Limber', 'Technician'), pkTypes=('Normal',),
+                    sets=(), baseStats=(65, 70, 60, 65, 65, 115), genders=('M', 'F')
+                )
+            if 'Kangaskhan':
+                root.pokesets['Kangaskhan'] = pokemon_ddl.PokemonSet(
+                    name='Kangaskhan', species='Kangaskhan', abilities=('Early Bird', 'Scrappy'), pkTypes=('Normal',),
+                    sets=(), baseStats=(105, 95, 80, 40, 80, 90), genders=('F',)
+                )
+            if 'Ditto':
+                root.pokesets['Ditto'] = pokemon_ddl.PokemonSet(
+                    name='Ditto', species='Ditto', abilities=('Limber',), pkTypes=('Normal',),
+                    sets=(), baseStats=(48, 48, 48, 48, 48, 48), genders=('',)
+                )
+            if 'Tauros':
+                root.pokesets['Tauros'] = pokemon_ddl.PokemonSet(
+                    name='Tauros', species='Tauros', abilities=('Intimidate', 'Anger Point'), pkTypes=('Normal',),
+                    sets=(), baseStats=(75, 100, 95, 40, 70, 110), genders=('M',)
+                )
+            if 'Snorlax':
+                root.pokesets['Snorlax'] = pokemon_ddl.PokemonSet(
+                    name='Snorlax', species='Snorlax', abilities=('Immunity', 'Thick Fat'), pkTypes=('Normal',),
+                    sets=(), baseStats=(160, 110, 65, 65, 110, 30), genders=('M', 'F')
+                )
+            if 'Furret':
+                root.pokesets['Furret'] = pokemon_ddl.PokemonSet(
+                    name='Furret', species='Furret', abilities=('Run Away', 'Keen Eye'), pkTypes=('Normal',),
+                    sets=(), baseStats=(85, 76, 64, 45, 55, 90), genders=('M', 'F')
+                )
+            if 'Dunsparce':
+                root.pokesets['Dunsparce'] = pokemon_ddl.PokemonSet(
+                    name='Dunsparce', species='Dunsparce', abilities=('Serene Grace', 'Run Away'), pkTypes=('Normal',),
+                    sets=(), baseStats=(100, 70, 70, 65, 65, 45), genders=('M', 'F')
+                )
+            if 'Granbull':
+                root.pokesets['Granbull'] = pokemon_ddl.PokemonSet(
+                    name='Granbull', species='Granbull', abilities=('Intimidate', 'Quick Feet'), pkTypes=('Normal',),
+                    sets=(), baseStats=(90, 120, 75, 60, 60, 45), genders=('M', 'F')
+                )
+            if 'Ursaring':
+                root.pokesets['Ursaring'] = pokemon_ddl.PokemonSet(
+                    name='Ursaring', species='Ursaring', abilities=('Guts', 'Quick Feet'), pkTypes=('Normal',),
+                    sets=(), baseStats=(90, 130, 75, 75, 75, 55), genders=('M', 'F')
+                )
+            if 'Porygon2':
+                root.pokesets['Porygon2'] = pokemon_ddl.PokemonSet(
+                    name='Porygon2', species='Porygon2', abilities=('Trace', 'Download'), pkTypes=('Normal',),
+                    sets=(), baseStats=(85, 80, 90, 105, 95, 60), genders=('',)
+                )
+            if 'Stantler':
+                root.pokesets['Stantler'] = pokemon_ddl.PokemonSet(
+                    name='Stantler', species='Stantler', abilities=('Intimidate', 'Frisk'), pkTypes=('Normal',),
+                    sets=(), baseStats=(73, 95, 62, 85, 65, 85), genders=('M', 'F')
+                )
+            if 'Smeargle':
+                root.pokesets['Smeargle'] = pokemon_ddl.PokemonSet(
+                    name='Smeargle', species='Smeargle', abilities=('Own Tempo', 'Technician'), pkTypes=('Normal',),
+                    sets=(), baseStats=(55, 20, 35, 20, 45, 75), genders=('M', 'F')
+                )
+            if 'Miltank':
+                root.pokesets['Miltank'] = pokemon_ddl.PokemonSet(
+                    name='Miltank', species='Miltank', abilities=('Thick Fat', 'Scrappy'), pkTypes=('Normal',),
+                    sets=(), baseStats=(95, 80, 105, 40, 70, 100), genders=('F',)
+                )
+            if 'Blissey':
+                root.pokesets['Blissey'] = pokemon_ddl.PokemonSet(
+                    name='Blissey', species='Blissey', abilities=('Natural Cure', 'Serene Grace'), pkTypes=('Normal',),
+                    sets=(), baseStats=(255, 10, 10, 75, 135, 55), genders=('F',)
+                )
+            if 'Linoone':
+                root.pokesets['Linoone'] = pokemon_ddl.PokemonSet(
+                    name='Linoone', species='Linoone', abilities=('Pickup', 'Gluttony'), pkTypes=('Normal',),
+                    sets=(), baseStats=(78, 70, 61, 50, 61, 100), genders=('M', 'F')
+                )
+            if 'Slaking':
+                root.pokesets['Slaking'] = pokemon_ddl.PokemonSet(
+                    name='Slaking', species='Slaking', abilities=('Truant',), pkTypes=('Normal',),
+                    sets=(), baseStats=(150, 160, 100, 95, 65, 100), genders=('M', 'F')
+                )
+            if 'Exploud':
+                root.pokesets['Exploud'] = pokemon_ddl.PokemonSet(
+                    name='Exploud', species='Exploud', abilities=('Soundproof',), pkTypes=('Normal',),
+                    sets=(), baseStats=(104, 91, 63, 91, 63, 68), genders=('M', 'F')
+                )
+            if 'Delcatty':
+                root.pokesets['Delcatty'] = pokemon_ddl.PokemonSet(
+                    name='Delcatty', species='Delcatty', abilities=('Cute Charm', 'Normalize'), pkTypes=('Normal',),
+                    sets=(), baseStats=(70, 65, 65, 55, 55, 70), genders=('M', 'F')
+                )
+            if 'Spinda':
+                root.pokesets['Spinda'] = pokemon_ddl.PokemonSet(
+                    name='Spinda', species='Spinda', abilities=('Own Tempo', 'Tangled Feet'), pkTypes=('Normal',),
+                    sets=(), baseStats=(60, 60, 60, 60, 60, 60), genders=('M', 'F')
+                )
+            if 'Zangoose':
+                root.pokesets['Zangoose'] = pokemon_ddl.PokemonSet(
+                    name='Zangoose', species='Zangoose', abilities=('Immunity',), pkTypes=('Normal',),
+                    sets=(), baseStats=(73, 115, 60, 60, 60, 90), genders=('M', 'F')
+                )
+            if 'Kecleon':
+                root.pokesets['Kecleon'] = pokemon_ddl.PokemonSet(
+                    name='Kecleon', species='Kecleon', abilities=('Color Change',), pkTypes=('Normal',),
+                    sets=(), baseStats=(60, 90, 70, 60, 120, 40), genders=('M', 'F')
+                )
+            if 'Bibarel':
+                root.pokesets['Bibarel'] = pokemon_ddl.PokemonSet(
+                    name='Bibarel', species='Bibarel', abilities=('Simple', 'Unaware'), pkTypes=('Normal', 'Water'),
+                    sets=(), baseStats=(79, 85, 60, 55, 60, 71), genders=('M', 'F')
+                )
+            if 'Ambipom':
+                root.pokesets['Ambipom'] = pokemon_ddl.PokemonSet(
+                    name='Ambipom', species='Ambipom', abilities=('Technician', 'Pickup'), pkTypes=('Normal',),
+                    sets=(), baseStats=(75, 100, 66, 60, 66, 115), genders=('M', 'F')
+                )
+            if 'Lopunny':
+                root.pokesets['Lopunny'] = pokemon_ddl.PokemonSet(
+                    name='Lopunny', species='Lopunny', abilities=('Cute Charm', 'Klutz'), pkTypes=('Normal',),
+                    sets=(), baseStats=(65, 76, 84, 54, 96, 105), genders=('M', 'F')
+                )
+            if 'Purugly':
+                root.pokesets['Purugly'] = pokemon_ddl.PokemonSet(
+                    name='Purugly', species='Purugly', abilities=('Thick Fat', 'Own Tempo'), pkTypes=('Normal',),
+                    sets=(), baseStats=(71, 82, 64, 64, 59, 112), genders=('M', 'F')
+                )
+            if 'Lickilicky':
+                root.pokesets['Lickilicky'] = pokemon_ddl.PokemonSet(
+                    name='Lickilicky', species='Lickilicky', abilities=('Own Tempo', 'Oblivious'), pkTypes=('Normal',),
+                    sets=(), baseStats=(110, 85, 95, 80, 95, 50), genders=('M', 'F')
+                )
+            if 'Porygon-Z':
+                root.pokesets['Porygon-Z'] = pokemon_ddl.PokemonSet(
+                    name='Porygon-Z', species='Porygon-Z', abilities=('Adaptability', 'Download'), pkTypes=('Normal',),
+                    sets=(), baseStats=(85, 80, 70, 135, 75, 90), genders=('',)
+                )
+            if 'Regigigas':
+                root.pokesets['Regigigas'] = pokemon_ddl.PokemonSet(
+                    name='Regigigas', species='Regigigas', abilities=('Slow Start',), pkTypes=('Normal',),
+                    sets=(), baseStats=(110, 160, 110, 80, 110, 100), genders=('',)
+                )
+            if 'Arceus':
+                root.pokesets['Arceus'] = pokemon_ddl.PokemonSet(
+                    name='Arceus', species='Arceus', abilities=('Multitype',), pkTypes=('Normal',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                )
+
+        # Water type pokemon
+        if 'Water':
+            if 'Blastoise':
+                root.pokesets['Blastoise'] = pokemon_ddl.PokemonSet(
+                    name='Blastoise', species='Blastoise', abilities=('Torrent',), pkTypes=('Water',),
+                    sets=(), baseStats=(79, 83, 100, 85, 105, 78), genders=('M', 'F')
+                )
+            if 'Golduck':
+                root.pokesets['Golduck'] = pokemon_ddl.PokemonSet(
+                    name='Golduck', species='Golduck', abilities=('Damp', 'Cloud Nine'), pkTypes=('Water',),
+                    sets=(), baseStats=(80, 82, 78, 95, 80, 85), genders=('M', 'F')
+                )
+            if 'Kingler':
+                root.pokesets['Kingler'] = pokemon_ddl.PokemonSet(
+                    name='Kingler', species='Kingler', abilities=('Hyper Cutter', 'Shell Armor'), pkTypes=('Water',),
+                    sets=(), baseStats=(55, 130, 115, 50, 50, 75), genders=('M', 'F')
+                )
+            if 'Seaking':
+                root.pokesets['Seaking'] = pokemon_ddl.PokemonSet(
+                    name='Seaking', species='Seaking', abilities=('Swift Swim', 'Water Veil'), pkTypes=('Water',),
+                    sets=(), baseStats=(80, 92, 65, 65, 80, 68), genders=('M', 'F')
+                )
+            if 'Vaporeon':
+                root.pokesets['Vaporeon'] = pokemon_ddl.PokemonSet(
+                    name='Vaporeon', species='Vaporeon', abilities=('Water Absorb',), pkTypes=('Water',),
+                    sets=(), baseStats=(130, 65, 60, 110, 95, 65), genders=('M', 'F')
+                )
+            if 'Feraligatr':
+                root.pokesets['Feraligatr'] = pokemon_ddl.PokemonSet(
+                    name='Feraligatr', species='Feraligatr', abilities=('Torrent',), pkTypes=('Water',),
+                    sets=(), baseStats=(85, 105, 100, 79, 83, 78), genders=('M', 'F')
+                )
+            if 'Azumarill':
+                root.pokesets['Azumarill'] = pokemon_ddl.PokemonSet(
+                    name='Azumarill', species='Azumarill', abilities=('Thick Fat', 'Huge Power'), pkTypes=('Water',),
+                    sets=(), baseStats=(100, 50, 80, 50, 80, 50), genders=('M', 'F')
+                )
+            if 'Politoed':
+                root.pokesets['Politoed'] = pokemon_ddl.PokemonSet(
+                    name='Politoed', species='Politoed', abilities=('Water Absorb', 'Damp'), pkTypes=('Water',),
+                    sets=(), baseStats=(90, 75, 75, 90, 100, 70), genders=('M', 'F')
+                )
+            if 'Qwilfish':
+                root.pokesets['Qwilfish'] = pokemon_ddl.PokemonSet(
+                    name='Qwilfish', species='Qwilfish', abilities=('Poison Point', 'Swift Swim'),
+                    pkTypes=('Water', 'Poison'),
+                    sets=(), baseStats=(65, 95, 75, 55, 55, 85), genders=('M', 'F')
+                )
+            if 'Octillery':
+                root.pokesets['Octillery'] = pokemon_ddl.PokemonSet(
+                    name='Octillery', species='Octillery', abilities=('Suction Cups', 'Sniper'), pkTypes=('Water',),
+                    sets=(), baseStats=(75, 105, 75, 105, 75, 45), genders=('M', 'F')
+                )
+            if 'Suicune':
+                root.pokesets['Suicune'] = pokemon_ddl.PokemonSet(
+                    name='Suicune', species='Suicune', abilities=('Pressure',), pkTypes=('Water',),
+                    sets=(), baseStats=(100, 75, 115, 90, 115, 85), genders=('',)
+                )
+            if 'Wailord':
+                root.pokesets['Wailord'] = pokemon_ddl.PokemonSet(
+                    name='Wailord', species='Wailord', abilities=('Water Veil', 'Oblivious'), pkTypes=('Water',),
+                    sets=(), baseStats=(170, 90, 45, 90, 45, 60), genders=('M', 'F')
+                )
+            if 'Milotic':
+                root.pokesets['Milotic'] = pokemon_ddl.PokemonSet(
+                    name='Milotic', species='Milotic', abilities=('Marvel Scale',), pkTypes=('Water',),
+                    sets=(), baseStats=(95, 60, 79, 100, 125, 81), genders=('M', 'F')
+                )
+            if 'Huntail':
+                root.pokesets['Huntail'] = pokemon_ddl.PokemonSet(
+                    name='Huntail', species='Huntail', abilities=('Swift Swim',), pkTypes=('Water',),
+                    sets=(), baseStats=(55, 104, 105, 94, 75, 52), genders=('M', 'F')
+                )
+            if 'Gorebyss':
+                root.pokesets['Gorebyss'] = pokemon_ddl.PokemonSet(
+                    name='Gorebyss', species='Gorebyss', abilities=('Swift Swim',), pkTypes=('Water',),
+                    sets=(), baseStats=(55, 84, 105, 114, 75, 52), genders=('M', 'F')
+                )
+            if 'Luvdisc':
+                root.pokesets['Luvdisc'] = pokemon_ddl.PokemonSet(
+                    name='Luvdisc', species='Luvdisc', abilities=('Swift Swim',), pkTypes=('Water',),
+                    sets=(), baseStats=(43, 30, 55, 40, 65, 97), genders=('M', 'F')
+                )
+            if 'Kyogre':
+                root.pokesets['Kyogre'] = pokemon_ddl.PokemonSet(
+                    name='Kyogre', species='Kyogre', abilities=('Drizzle',), pkTypes=('Water',),
+                    sets=(), baseStats=(100, 100, 90, 150, 140, 90), genders=('',)
+                )
+            if 'Floatzel':
+                root.pokesets['Floatzel'] = pokemon_ddl.PokemonSet(
+                    name='Floatzel', species='Floatzel', abilities=('Swift Swim',), pkTypes=('Water',),
+                    sets=(), baseStats=(85, 105, 55, 85, 50, 115), genders=('M', 'F')
+                )
+            if 'Lumineon':
+                root.pokesets['Lumineon'] = pokemon_ddl.PokemonSet(
+                    name='Lumineon', species='Lumineon', abilities=('Swift Swim', 'Storm Drain'), pkTypes=('Water',),
+                    sets=(), baseStats=(69, 69, 76, 69, 86, 91), genders=('M', 'F')
+                )
+            if 'Phione':
+                root.pokesets['Phione'] = pokemon_ddl.PokemonSet(
+                    name='Phione', species='Phione', abilities=('Hydration',), pkTypes=('Water',),
+                    sets=(), baseStats=(80, 80, 80, 80, 80, 80), genders=('',)
+                )
+            if 'Manaphy':
+                root.pokesets['Manaphy'] = pokemon_ddl.PokemonSet(
+                    name='Manaphy', species='Manaphy', abilities=('Hydration',), pkTypes=('Water',),
+                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                )
+            if 'Arceus-Water':
+                root.pokesets['Arceus-Water'] = pokemon_ddl.PokemonSet(
+                    name='Arceus-Water', species='Arceus', abilities=('Multitype',), pkTypes=('Water',),
+                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
                 )
 
     if 'Pokemon Probabilities':
@@ -445,10 +2067,9 @@ def runDML():
             'Heatran': 1.6, 'Arceus-Fire': 0.015,
 
             # Ghost
-            'Gengar': 2.0, 'Shedinja': 1.3, 'Banette': 1.1, 'Drifblim': 1.5, 'Mismagius': 1.0, 'Dusknoir': 2.0,
+            'Gengar': 2.0, 'Shedinja': 1.8, 'Banette': 1.1, 'Drifblim': 1.5, 'Mismagius': 1.0, 'Dusknoir': 2.0,
             'Rotom': 0.25,
             'Rotom-Fan': 0.6, 'Rotom-Frost': 0.6, 'Rotom-Heat': 0.6, 'Rotom-Mow': 0.6, 'Rotom-Wash': 0.6,
-            # Forms weighted individually
             'Arceus-Ghost': 0.015,
 
             # Steel
@@ -459,10 +2080,10 @@ def runDML():
             'Bronzong': 2.0, 'Magnezone': 2.0, 'Probopass': 1.2, 'Arceus-Steel': 0.015,
 
             # Electric
-            'Raichu': 2.0, 'Electrode': 2.0, 'Jolteon': 2.0, 'Zapdos': 2.0, 'Lanturn': 1.5, 'Ampharos': 2.0,
+            'Pikachu': 1.0, 'Raichu': 2.0, 'Electrode': 2.0, 'Jolteon': 2.0, 'Zapdos': 2.0, 'Lanturn': 1.5, 'Ampharos': 2.0,
             'Raikou': 1.5,
             'Manectric': 2.0,
-            'Plusle': 0.25, 'Minun': 0.25,  # Set with total value of 1 -> 0.5 each
+            'Plusle': 0.25, 'Minun': 0.25,
             'Luxray': 2.0, 'Pachirisu': 1.0, 'Electivire': 2.0, 'Arceus-Electric': 0.015,
 
             # Rock
@@ -482,14 +2103,14 @@ def runDML():
             'Sandslash': 2.0, 'Dugtrio': 1.5, 'Marowak': 2.0, 'Quagsire': 2.0, 'Donphan': 2.0, 'Swampert': 2.0,
             'Whiscash': 1.5,
             'Claydol': 2.0, 'Groudon': 0.2, 'Torterra': 2.0,
-            'Wormadam-Sandy': 0.2,  # Detrimental -> 0.1
+            'Wormadam-Sandy': 0.2,
             'Gastrodon': 1.0, 'Gastrodon-East': 1.0,  # Set value 2 -> 1 each
             'Garchomp': 2.0, 'Hippowdon': 2.2, 'Gliscor': 2.0, 'Arceus-Ground': 0.015,
 
             # Bug
             'Butterfree': 1.0, 'Parasect': 0.5, 'Pinsir': 2.0, 'Ledian': 0.1, 'Beautifly': 1.0, 'Masquerain': 1.0,
             'Ninjask': 2.0, 'Volbeat': 0.5, 'Illumise': 0.5, 'Kricketune': 0.5,
-            'Wormadam': 0.2,  # Base form of detrimental set -> 0.1
+            'Wormadam': 0.2,
             'Mothim': 0.4, 'Vespiquen': 2.0, 'Yanmega': 2.0, 'Arceus-Bug': 0.02,
 
             # Grass
@@ -531,6 +2152,7 @@ def runDML():
             'Arceus-Water': 0.015,
         }
         pokemon_to_types_map = {
+            'Pikachu': ['Electric'],
             'Quagsire': ['Water', 'Ground'], 'Tangrowth': ['Grass'], 'Wailord': ['Water'],
             'Sharpedo': ['Water', 'Dark'], 'Drapion': ['Dark', 'Poison'], 'Rampardos': ['Rock'],
             'Venusaur': ['Grass', 'Poison'], 'Charizard': ['Fire', 'Flying'], 'Blastoise': ['Water'],
@@ -631,12 +2253,12 @@ def runDML():
             'Arceus-Psychic': ['Psychic'], 'Arceus-Ice': ['Ice'], 'Arceus-Dragon': ['Dragon'], 'Arceus-Dark': ['Dark']
         }
 
-        TYPE_NAMES = ['Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric', 'Rock', 'Poison',
+        type_names = ['Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric', 'Rock', 'Poison',
                       'Ground',
                       'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water']
-        smoothing = 0.675
+        smoothing = 0.67
 
-        raw_type_totals = {name: 0.0 for name in TYPE_NAMES}
+        raw_type_totals = {name: 0.0 for name in type_names}
         for pokemon, weight in pokemon_weights.items():
             num_types = len(pokemon_to_types_map[pokemon])
             for p_type in pokemon_to_types_map[pokemon]:
@@ -664,6 +2286,7 @@ def runDML():
         poke_value = list(pokemon_scaled_weights.values())
         root.pokeprobability['pokemon'] = (poke_key, poke_value)
         root.pokeprobability['pokemon_to_types_map'] = pokemon_to_types_map
+        root.pokeprobability['type_names'] = type_names
 
     if 'Physical Moves':
         # Normal-type moves
@@ -1049,7 +2672,7 @@ def runDML():
         root.moves['Disable'] = pokemon_ddl.Move('Disable', 0, 0.8, 'Stat', 'Normal')
         root.moves['Double Team'] = pokemon_ddl.Move('Double Team', 0, 1.0, 'Stat', 'Normal')
         root.moves['Encore'] = pokemon_ddl.Move('Encore', 0, 1.0, 'Stat', 'Normal')
-        root.moves['Endure'] = pokemon_ddl.Move('Endure', 0, 1.0, 'Stat', 'Normal', (('Reversal', 0.3), ('Flail', 0.3)))
+        root.moves['Endure'] = pokemon_ddl.Move('Endure', 0, 1.0, 'Stat', 'Normal')
         root.moves['Flash'] = pokemon_ddl.Move('Flash', 0, 1.0, 'Stat', 'Normal')
         root.moves['Focus Energy'] = pokemon_ddl.Move('Focus Energy', 0, 1.0, 'Stat', 'Normal')
         root.moves['Follow Me'] = pokemon_ddl.Move('Follow Me', 0, 1.0, 'Stat', 'Normal')
@@ -1095,7 +2718,7 @@ def runDML():
         root.moves['Smokescreen'] = pokemon_ddl.Move('Smokescreen', 0, 1.0, 'Stat', 'Normal')
         root.moves['Softboiled'] = pokemon_ddl.Move('Softboiled', 0, 1.0, 'Stat', 'Normal')
         root.moves['Splash'] = pokemon_ddl.Move('Splash', 0, 1.0, 'Stat', 'Normal')
-        root.moves['Stockpile'] = pokemon_ddl.Move('Stockpile', 0, 1.0, 'Stat', 'Normal', (('Spit Up', .5), ('Swallow', .5)))
+        root.moves['Stockpile'] = pokemon_ddl.Move('Stockpile', 0, 1.0, 'Stat', 'Normal')
         root.moves['Substitute'] = pokemon_ddl.Move('Substitute', 0, 1.0, 'Stat', 'Normal')
         root.moves['Supersonic'] = pokemon_ddl.Move('Supersonic', 0, 0.55, 'Stat', 'Normal')
         root.moves['Swagger'] = pokemon_ddl.Move('Swagger', 0, 0.9, 'Stat', 'Normal')
@@ -1163,7 +2786,7 @@ def runDML():
 
         # Water-type moves
         root.moves['Aqua Ring'] = pokemon_ddl.Move('Aqua Ring', 0, 1.0, 'Stat', 'Water')
-        root.moves['Rain Dance'] = pokemon_ddl.Move('Rain Dance', 0, 1.0, 'Stat', 'Water', (('Thunder', 0.3), ('Weather Ball', 0.2)))
+        root.moves['Rain Dance'] = pokemon_ddl.Move('Rain Dance', 0, 1.0, 'Stat', 'Water')
         root.moves['Water Sport'] = pokemon_ddl.Move('Water Sport', 0, 1.0, 'Stat', 'Water')
         root.moves['Withdraw'] = pokemon_ddl.Move('Withdraw', 0, 1.0, 'Stat', 'Water')
 
@@ -1214,7 +2837,7 @@ def runDML():
         root.moves['Dragon Dance'] = pokemon_ddl.Move('Dragon Dance', 0, 1.0, 'Stat', 'Dragon')
 
         # Ice-type moves
-        root.moves['Hail'] = pokemon_ddl.Move('Hail', 0, 1.0, 'Stat', 'Ice', (('Blizzard', 0.3), ('Weather Ball', 0.2)))
+        root.moves['Hail'] = pokemon_ddl.Move('Hail', 0, 1.0, 'Stat', 'Ice')
         root.moves['Haze'] = pokemon_ddl.Move('Haze', 0, 1.0, 'Stat', 'Ice')
         root.moves['Mist'] = pokemon_ddl.Move('Mist', 0, 1.0, 'Stat', 'Ice')
 
@@ -1233,11 +2856,11 @@ def runDML():
         root.moves['Stealth Rock'] = pokemon_ddl.Move('Stealth Rock', 0, 1.0, 'Stat', 'Rock')
 
         # Fire-type moves
-        root.moves['Sunny Day'] = pokemon_ddl.Move('Sunny Day', 0, 1.0, 'Stat', 'Fire', (('SolarBeam', 0.1), ('Weather Ball', 0.2)))
+        root.moves['Sunny Day'] = pokemon_ddl.Move('Sunny Day', 0, 1.0, 'Stat', 'Fire')
         root.moves['Will-o-wisp'] = pokemon_ddl.Move('Will-o-wisp', 0, 0.75, 'Stat', 'Fire')
     transaction.commit()
 
-    print(root.pokesets['Venusaur'].toString())
+    print(root.pokesets['Dragonite'].toString())
 
 
 if __name__ == '__main__':

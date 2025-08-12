@@ -9,42 +9,13 @@ class Move(persistent.Persistent):
     """
     holds data about a move for reference when needed
     """
-    def __init__(self, name: str, power: int, accuracy: float, category: str, moveType: str,
-                 dependents: Tuple[Tuple[str, float], ...] = None):
+    def __init__(self, name: str, power: int, accuracy: float, category: str, moveType: str):
         self.name = name
         self.power = power
         self.accuracy = accuracy
         self.category = category
         self.moveType = moveType
-        self.dependents = dependents
 
-    def getDependentMoves(self, root, checked: Set[str] = None) -> List:
-        """
-        gets all moves that require the parent. For example, swallow should not be run without the move stockpile.
-        Each dependent has a probability associated with it ranging from 0-1, swallow has a 100% chance to add stockpile to the list, but
-        rest has a 30% chance to add sleep talk and a 10% chance to add snore
-
-        :param root: database connection
-        :param checked: set containing all already checked moves
-        :return:
-        """
-        if not self.dependents:
-            return []
-
-        if checked is None:
-            checked = set()
-
-        newMoves = []
-        for move_name, probability in self.dependents:
-            if move_name in checked:
-                continue
-            if random.random() < probability:
-                checked.add(move_name)
-                newMoves.append(move_name)
-                grandChild = root.moves[move_name]
-                newMoves.extend(grandChild.getDependentMoves(root, checked))
-
-        return newMoves
 
     def toString(self) -> str:
         """
@@ -66,7 +37,7 @@ class MoveSet(persistent.Persistent):
     MoveSet is a possible moveset for a Pokemon. It involves a list of starting points and connections between them
     which represent synergies between moves. a Pokemon can have multiple movesets
     """
-    def __init__(self, starting: Tuple[str, ...], childrenMatrix: dict[str, List[str]]):
+    def __init__(self, starting: list[str], childrenMatrix: dict[str, List[str]]):
         """
         :param starting: tuple of starting nodes
         :param childrenMatrix: dictionary where the key is a move and the value is a list of moves that synergize with the key
@@ -119,13 +90,12 @@ IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {
 {attacks}'''
 
 class PokemonSet(persistent.Persistent):
-    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], legalMoves: Set, baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...]):
+    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...]):
         self.name = name
         self.species = species
         self.abilities = abilities
         self.pkTypes = pkTypes
         self.sets = sets
-        self.legalMoves = legalMoves
         self.baseStats = baseStats
         self.hpIV = 31
         self.attIV = 31
@@ -136,10 +106,49 @@ class PokemonSet(persistent.Persistent):
         self.nature = 'Bashful'
         self.gender = random.choice(genders)
         self.indiv = PokemonIndiv
+        self.moves = []
         pass
 
-    def chooseMovesAndIV(self) -> List:
-        return []
+    def chooseMoves(self) -> List:
+        this_set = random.choice(self.sets)
+        node_stack = []
+        chosen_moves, seen_moves = [], set()
+        chosen_moves.append(random.choice(this_set.starting))
+        seen_moves.add(chosen_moves[0])
+        node_stack.append(chosen_moves[0])
+        hidden_powers = {'Hidden Power [Dragon]', 'Hidden Power [Ice]', 'Hidden Power [Fighting]',
+                         'Hidden Power [Dark]', 'Hidden Power [Fire]',
+                         'Hidden Power [Ghost]', 'Hidden Power [Steel]', 'Hidden Power [Electric]',
+                         'Hidden Power [Rock]', 'Hidden Power [Poison]',
+                         'Hidden Power [Ground]', 'Hidden Power [Bug]', 'Hidden Power [Grass]',
+                         'Hidden Power [Psychic]', 'Hidden Power [Flying]',
+                         'Hidden Power [Normal]', 'Hidden Power [Water]'}
+
+        while len(chosen_moves) < 4:
+            if not node_stack:
+                break
+            choose_from = this_set.childrenMatrix.get(node_stack[-1], []).copy()
+            is_choose_from_empty = not choose_from
+            node_under_consideration = ''
+
+            while choose_from:
+                node_under_consideration = random.choice(choose_from)
+                choose_from.remove(node_under_consideration)
+                if node_under_consideration in seen_moves:
+                    is_choose_from_empty = not choose_from
+                elif node_under_consideration in hidden_powers:
+                    seen_moves = seen_moves.union(hidden_powers)
+                else:
+                    break
+
+            if is_choose_from_empty:
+                node_stack.pop(-1)
+                continue
+            chosen_moves.append(node_under_consideration)
+            seen_moves.add(node_under_consideration)
+            node_stack.append(node_under_consideration)
+
+        return chosen_moves
 
     def chooseItem(self) -> str:
         return ''
@@ -150,10 +159,11 @@ class PokemonSet(persistent.Persistent):
     def chooseNature(self) -> str:
         return ''
 
-    def buildSet(self) -> PokemonIndiv:
+    def buildSet(self) -> type[PokemonIndiv]:
         self.indiv.name = self.name
         self.indiv.gender = self.gender
         self.indiv.shiny = random.choices(['Yes', 'No'], [1, 15])[0]
+        self.moves = self.chooseMoves()
         return self.indiv
 
     def toString(self) -> str:
