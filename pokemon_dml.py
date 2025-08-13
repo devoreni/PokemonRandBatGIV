@@ -934,55 +934,253 @@ def runDML():
                 root.pokesets['Hitmontop'] = pokemon_ddl.PokemonSet(
                     name='Hitmontop', species='Hitmontop', abilities=('Intimidate', 'Technician'),
                     pkTypes=('Fighting',),
-                    sets=(), baseStats=(50, 95, 95, 35, 110, 70), genders=('M',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Detect', 'Toxic'],
+                            {
+                                'Detect': ['Fake Out', 'Sucker Punch', 'Feint', 'Agility', 'Close Combat', 'Gyro Ball', 'Thief'],
+                                'Toxic': ['Fake Out', 'Sucker Punch', 'Feint', 'Bulk Up', 'Triple Kick', 'Quick Attack']
+                            }
+                        ),
+                    ), baseStats=(50, 95, 95, 35, 110, 70), genders=('M',), images=('237.gif', '237.png', '237 (1).png')
                 )
             if 'Blaziken':
                 root.pokesets['Blaziken'] = pokemon_ddl.PokemonSet(
                     name='Blaziken', species='Blaziken', abilities=('Blaze',), pkTypes=('Fire', 'Fighting'),
-                    sets=(), baseStats=(80, 120, 70, 110, 70, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Endure'],
+                            {
+                                'Protect': ['Sunny Day', 'Superpower', 'Swords Dance', 'Agility'],
+                                'Agility': ['Fire Blast', 'Baton Pass'],
+                                'Sunny Day': ['Solar Beam', 'Blast Burn', 'Focus Blast'],
+                                'Superpower': ['Fire Blast', 'Flare Blitz', 'Blast Burn'],
+                                'Fire Blast': ['Hidden Power [Grass]', 'Hidden Power [Electric]', 'Vacuum Wave', 'Stone Edge', 'Hidden Power [Ice]'],
+                                'Flare Blitz': ['Hidden Power [Grass]', 'Hidden Power [Electric]', 'Vacuum Wave', 'Stone Edge'],
+                                'Blast Burn': ['Hidden Power [Grass]', 'Hidden Power [Electric]', 'Vacuum Wave', 'Stone Edge'],
+                                'Swords Dance': ['Low Kick', 'Quick Attack', 'Brave Bird', 'Baton Pass'],
+                                'Endure': ['Reversal'],
+                                'Reversal': ['Blaze Kick'],
+                                'Blaze Kick': ['Aerial Ace', 'Shadow Claw', 'Thunder Punch', 'Superpower', 'Night Slash']
+                            }
+                        ),
+                    ), baseStats=(80, 120, 70, 110, 70, 80), genders=('M', 'F'), images=('257.gif', '257-m.png', '257-m (1).png')
                 )
             if 'Breloom':
                 root.pokesets['Breloom'] = pokemon_ddl.PokemonSet(
                     name='Breloom', species='Breloom', abilities=('Effect Spore', 'Poison Heal'),
                     pkTypes=('Grass', 'Fighting'),
-                    sets=(), baseStats=(60, 130, 80, 60, 60, 70), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Drain Punch', 'Spore', 'Seed Bomb', 'Swords Dance', 'Facade'],
+                                'Drain Punch': ['Giga Drain', 'Leech Seed', 'Synthesis', 'Spore', 'Facade'],
+                                'Seed Bomb': ['Sky Uppercut', 'Rock Slide', 'Counter', 'Thunder Punch', 'Facade'],
+                                'Spore': ['Facade', 'Sky Uppercut', 'Thunder Punch', 'Stone Edge', 'Focus Punch', 'Superpower', 'Force Palm', 'Facade'],
+                                'Swords Dance': ['Force Palm', 'Facade', 'Mach Punch', 'Substitute', 'Seed Bomb', 'Iron Tail']
+                            }
+                        ),
+                    ), baseStats=(60, 130, 80, 60, 60, 70), genders=('M', 'F'), images=('286.gif', '286.png', '286 (1).png')
                 )
             if 'Hariyama':
                 root.pokesets['Hariyama'] = pokemon_ddl.PokemonSet(
                     name='Hariyama', species='Hariyama', abilities=('Thick Fat', 'Guts'), pkTypes=('Fighting',),
-                    sets=(), baseStats=(144, 120, 60, 40, 60, 50), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Detect', 'Detect', 'Detect', 'Whirlwind'],
+                            {
+                                'Detect': ['Belly Drum', 'Fake Out', 'Substitute', 'Cross Chop', 'Facade'],
+                                'Belly Drum': ['Rock Slide'],
+                                'Rock Slide': ['Cross Chop'],
+                                'Whirlwind': ['Rest'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Force Palm', 'Cross Chop'],
+                                'Substitute': ['Focus Punch'],
+                                'Focus Punch': ['Payback', 'Facade'],
+                                'Payback': ['Ice Punch', 'Stone Edge', 'Facade'],
+                                'Cross Chop': ['Payback', 'Bullet Punch', 'Poison Jab', 'Stone Edge', 'Earthquake', 'Facade']
+                            }
+                        ),
+                    ), baseStats=(144, 120, 60, 40, 60, 50), genders=('M', 'F'), images=('297.gif', '297.png', '297 (1).png')
                 )
             if 'Medicham':
                 root.pokesets['Medicham'] = pokemon_ddl.PokemonSet(
                     name='Medicham', species='Medicham', abilities=('Pure Power',), pkTypes=('Fighting', 'Psychic'),
-                    sets=(), baseStats=(60, 60, 75, 60, 75, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Detect'],
+                            {
+                                'Detect': ['High Jump Kick', 'Fake Out', 'Drain Punch'],
+                                'High Jump Kick': ['Ice Punch', 'Psyco Cut', 'Zen Headbutt'],
+                                'Ice Punch': ['Zen Headbutt', 'Fake Out', 'Bullet Punch'],
+                                'Zen Headbutt': ['Thunder Punch', 'Fake Out', 'Bullet Punch'],
+                                'Psyco Cut': ['Trick', 'Reflect'],
+                                'Drain Punch': ['Recover', 'Psyco Cut']
+                            }
+                        ),
+                    ), baseStats=(60, 60, 75, 60, 75, 80), genders=('M', 'F'), images=('308.gif', '308-m.png', '308-m (1).png')
                 )
             if 'Infernape':
                 root.pokesets['Infernape'] = pokemon_ddl.PokemonSet(
                     name='Infernape', species='Infernape', abilities=('Blaze',), pkTypes=('Fire', 'Fighting'),
-                    sets=(), baseStats=(76, 104, 71, 104, 71, 108), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                        ['Protect', 'Protect', 'Nasty Plot'],
+                        {
+                            'Protect': ['U-turn', 'Fire Blast', 'Overheat', 'Close Combat', 'Hidden Power [Ice]', 'Mach Punch', 'Slack Off', 'Flare Blitz', 'Taunt', 'Blaze Kick', 'Blast Burn', 'Stone Edge', 'Gunk Shot', 'Shadow Claw', 'Thunder Punch', 'Earthquake'],
+                            'Nasty Plot': ['Grass Knot', 'Hidden Power [Ice]'],
+                            'Grass Knot': ['Vacuum Wave', 'Close Combat'],
+                            'Hidden Power [Ice]': ['Vacuum Wave', 'Close Combat'],
+                            'Vacuum Wave': ['Protect'],
+                            'Close Combat': ['Protect']
+                        }
+                    ),
+                    ), baseStats=(76, 104, 71, 104, 71, 108), genders=('M', 'F'), images=('392.gif', '392.png', '392 (1).png')
                 )
             if 'Lucario':
                 root.pokesets['Lucario'] = pokemon_ddl.PokemonSet(
                     name='Lucario', species='Lucario', abilities=('Steadfast', 'Inner Focus'),
                     pkTypes=('Fighting', 'Steel'),
-                    sets=(), baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Aura Sphere'],
+                            {
+                                'Aura Sphere': ['Protect'],
+                                'Protect': ['Focus Blast', 'Aura Sphere', 'Bone Rush', 'Calm Mind', 'Close Combat', 'Crunch', 'Dark Pulse', 'Dig', 'Dragon Pulse', 'Double Team', 'Earthquake', 'Extreme Speed', 'Flash Cannon', 'Focus Blast', 'Ice Punch', 'Iron Tail', 'Poison Jab', 'Psychic', 'Shadow Claw', 'Shadow Ball', 'Sky Uppercut', 'Stone Edge', 'Water Pulse', 'Zen Headbutt']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Follow Me'],
+                            {
+                                'Protect': ['Swords Dance', 'Agility'],
+                                'Swords Dance': ['Extreme Speed', 'Close Combat', 'Bullet Punch', 'Crunch', 'Ice Punch', 'Copycat'],
+                                'Agility': ['Close Combat', 'Bullet Punch', 'Crunch', 'Ice Punch'],
+                                'Follow Me': ['Helping Hand', 'Magnet Rise', 'Me First'],
+                                'Helping Hand': ['Extreme Speed'],
+                                'Magnet Rise': ['Extreme Speed'],
+                                'Me First': ['Force Palm'],
+                                'Force Palm': ['Protect'],
+                                'Extreme Speed': ['Protect']
+                            }
+                        )
+                    ), baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F'), images=('448.gif', '448.png', '448 (1).png')
                 )
             if 'Toxicroak':
                 root.pokesets['Toxicroak'] = pokemon_ddl.PokemonSet(
                     name='Toxicroak', species='Toxicroak', abilities=('Anticipation', 'Dry Skin'),
                     pkTypes=('Poison', 'Fighting'),
-                    sets=(), baseStats=(83, 106, 65, 86, 65, 85), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Swords Dance', 'Nasty Plot', 'Knock Off'],
+                                'Knock Off': ['Gunk Shot', 'Cross Chop', 'Stone Edge', 'Gunk Shot', 'Rain Dance', 'Gunk Shot'],
+                                'Swords Dance': ['Low Kick', 'Cross Chop', 'Sucker Punch'],
+                                'Low Kick': ['Sucker Punch'],
+                                'Sucker Punch': ['Ice Punch', 'Taunt'],
+                                'Cross Chop': ['Sucker Punch'],
+                                'Nasty Plot': ['Vacuum Wave', 'Sludge Bomb'],
+                                'Vacuum Wave': ['Sludge Bomb', 'Dark Pulse'],
+                                'Sludge Bomb': ['Dark Pulse', 'Focus Blast']
+                            }
+                        ),
+                    ), baseStats=(83, 106, 65, 86, 65, 85), genders=('M', 'F'), images=('454.gif', '454-m.png', '454-m (1).png')
                 )
             if 'Gallade':
                 root.pokesets['Gallade'] = pokemon_ddl.PokemonSet(
                     name='Gallade', species='Gallade', abilities=('Steadfast',), pkTypes=('Psychic', 'Fighting'),
-                    sets=(), baseStats=(68, 125, 65, 65, 115, 80), genders=('M',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Thunder Wave', 'Confuse Ray', 'Will-O-Wisp'],
+                                'Thunder Wave': ['Taunt', 'Close Combat'],
+                                'Taunt': ['Ice Punch', 'Destiny Bond'],
+                                'Close Combat': ['Destiny Bond'],
+                                'Confuse Ray': ['Taunt', 'Close Combat'],
+                                'Will-O-Wisp': ['Taunt', 'Close Combat']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Psyco Cut', 'Night Slash', 'X-Scissor', 'Leaf Blade', 'Aerial Ace', 'Close Combat']
+                            }
+                        )
+                    ), baseStats=(68, 125, 65, 65, 115, 80), genders=('M',), images=('475.gif', '475.png', '475 (1).png')
                 )
             if 'Arceus-Fighting':
                 root.pokesets['Arceus-Fighting'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Fighting', species='Arceus', abilities=('Multitype',), pkTypes=('Fighting',),
-                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgment'],
+
+                                # Judgment is the central hub for a chaotic web of possibilities.
+                                'Judgment': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgment'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgment'],
+                            {
+                                'Judgment': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
+                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fighting.png', 'arceus-fighting (1).png')
                 )
 
         # Dark type pokemon
