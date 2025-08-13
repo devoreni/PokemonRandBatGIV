@@ -189,7 +189,7 @@ pokemon_to_types_map = {
 
 TYPE_NAMES = ['Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric', 'Rock', 'Poison', 'Ground',
               'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water']
-smoothing = 0.675
+smoothing = 1.5
 
 raw_type_totals = {name: 0.0 for name in TYPE_NAMES}
 for pokemon, weight in pokemon_weights.items():

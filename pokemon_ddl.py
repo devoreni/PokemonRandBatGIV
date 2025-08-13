@@ -90,7 +90,7 @@ IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {
 {attacks}'''
 
 class PokemonSet(persistent.Persistent):
-    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...]):
+    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png')):
         self.name = name
         self.species = species
         self.abilities = abilities
@@ -107,6 +107,7 @@ class PokemonSet(persistent.Persistent):
         self.gender = random.choice(genders)
         self.indiv = PokemonIndiv
         self.moves = []
+        self.images = images
         pass
 
     def chooseMoves(self) -> List:

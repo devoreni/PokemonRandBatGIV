@@ -63,15 +63,15 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    pk2 = root.pokesets['Dewgong']
-    pk3 = root.pokesets['Dewgong']
-    pk4 = root.pokesets['Dewgong']
-    pk5 = root.pokesets['Dewgong']
-    pk1 = root.pokesets['Dewgong']
-    pk6 = root.pokesets['Dewgong']
-    pk7 = root.pokesets['Dewgong']
-    pk8 = root.pokesets['Dewgong']
-    pk9 = root.pokesets['Dewgong']
-    pk10 = root.pokesets['Dewgong']
+    pk1 = root.pokesets['Heracross']
+    pk2 = root.pokesets['Heracross']
+    pk3 = root.pokesets['Heracross']
+    pk4 = root.pokesets['Heracross']
+    pk5 = root.pokesets['Heracross']
+    pk6 = root.pokesets['Heracross']
+    pk7 = root.pokesets['Heracross']
+    pk8 = root.pokesets['Heracross']
+    pk9 = root.pokesets['Heracross']
+    pk0 = root.pokesets['Heracross']
 
-    pprint.pprint(createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk10]))
+    pprint.pprint(createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0]))
