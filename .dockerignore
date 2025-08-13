@@ -1,0 +1,16 @@
+# Ignore the virtual environment
+.venv/
+venv/
+
+# Ignore Python cache files
+__pychache__/
+*.pyc
+
+# Ignore Git directory
+.git/
+
+# Ignore the local database file
+*.fs
+*.fs.index
+*.fs.lock
+*.fs.tmp

@@ -104,7 +104,7 @@ class PokemonSet(persistent.Persistent):
         self.spDefIV = 31
         self.spdIV = 31
         self.nature = 'Bashful'
-        self.gender = genders
+        self.genders = genders
         self.indiv = PokemonIndiv
         self.moves = []
         self.images = images
@@ -161,13 +161,19 @@ class PokemonSet(persistent.Persistent):
         return ''
 
     def choosePokeball(self) -> str:
-        return f"{random.choice(['cherish', 'dive', 'dusk', 'fast', 'friend', 'great', 'heal', 'heavy', 'level', 'love', 'lure', 'luxury', 'master',
-                                 'moon', 'nest', 'net', 'park', 'poke', 'premier', 'quick', 'repeat', 'safari', 'sport', 'timer', 'ultra'])}.png"
+        pokeball_options = (
+            'cherish', 'dive', 'dusk', 'fast', 'friend', 'great', 'heal', 'heavy',
+            'level', 'love', 'lure', 'luxury', 'master', 'moon', 'nest', 'net',
+            'park', 'poke', 'premier', 'quick', 'repeat', 'safari', 'sport',
+            'timer', 'ultra'
+        )
+        chosen_ball = random.choice(pokeball_options)
+        return f"{chosen_ball}.png"
 
     def buildSet(self) -> type[PokemonIndiv]:
         self.indiv.name = self.name
-        self.indiv.gender = random.choice(self.gender)
-        self.indiv.ability = random.choice(self.ability)
+        self.indiv.gender = random.choice(self.genders)
+        self.indiv.ability = random.choice(self.abilities)
         self.indiv.shiny = random.choices(['Yes', 'No'], [1, 15])[0],
         self.indiv.pokeball = self.choosePokeball()
         self.moves = self.chooseMoves()

@@ -58,7 +58,7 @@ def createIndivPokemon(team: list) -> list:
 
 
 if __name__ == '__main__':
-    storage = ZODB.FileStorage.FileStorage('PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage('/data/PokeData.fs')
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
