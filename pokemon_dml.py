@@ -1187,40 +1187,134 @@ def runDML():
             if 'Umbreon':
                 root.pokesets['Umbreon'] = pokemon_ddl.PokemonSet(
                     name='Umbreon', species='Umbreon', abilities=('Synchronize',), pkTypes=('Dark',),
-                    sets=(), baseStats=(95, 65, 110, 60, 130, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Moonlight'],
+                            {
+                                'Protect': ['Curse', 'Confuse Ray', 'Fake Tears', 'Last Resort', 'Mean Look', 'Wish'],
+                                'Curse': ['Baton Pass'],
+                                'Baton Pass': ['Payback', 'Wish'],
+                                'Payback': ['Last Resort'],
+                                'Last Resort': ['Dark Pulse'],
+                                'Wish': ['Baton Pass'],
+                                'Fake Tears': ['Dark Pulse'],
+                                'Moonlight': ['Curse', 'Confuse Ray', 'Fake Tears', 'Last Resort', 'Mean Look', 'Nightmare', 'Swagger'],
+                                'Nightmare': ['Dream Eater'],
+                                'Mean Look': ['Toxic'],
+                                'Swagger': ['Psych Up'],
+                                'Psych Up': ['Faint Attack', 'Payback']
+                            }
+                        ),
+                    ), baseStats=(95, 65, 110, 60, 130, 65), genders=('M', 'F'), images=('197.gif', '197.png', '197 (1).png')
                 )
             if 'Houndoom':
                 root.pokesets['Houndoom'] = pokemon_ddl.PokemonSet(
                     name='Houndoom', species='Houndoom', abilities=('Early Bird', 'Flash Fire'),
                     pkTypes=('Dark', 'Fire'),
-                    sets=(), baseStats=(75, 90, 50, 110, 80, 95), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Nasty Plot', 'Sucker Punch', 'Punishment'],
+                                'Nasty Plot': ['Dark Pulse'],
+                                'Dark Pulse': ['Overheat', 'Fire Blast', 'Flamethrower', 'Hidden Power [Grass]'],
+                                'Sucker Punch': ['Overheat', 'Pursuit', 'Beat Up', 'Toxic'],
+                                'Punishment': ['Fire Blast', 'Flamethrower', 'Sunny Day', 'Sludge Bomb', 'Will-O-Wisp'],
+                                'Sunny Day': ['Solar Beam']
+                            }
+                        ),
+                    ), baseStats=(75, 90, 50, 110, 80, 95), genders=('M', 'F'), images=('229.gif', '229-m.png', '229-m (1).png')
                 )
             if 'Tyranitar':
                 root.pokesets['Tyranitar'] = pokemon_ddl.PokemonSet(
                     name='Tyranitar', species='Tyranitar', abilities=('Sand Stream',), pkTypes=('Rock', 'Dark'),
-                    sets=(), baseStats=(100, 134, 110, 95, 100, 61), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Crunch', 'Fling', 'Curse', 'Ice Beam', 'Pursuit', 'Dragon Dance', 'Stealth Rock'],
+                                'Curse': ['Payback', 'Avalanche'],
+                                'Payback': ['Avalanche', 'Rock Slide', 'Stone Edge'],
+                                'Avalanche': ['Payback', 'Rock Slide', 'Stone Edge'],
+                                'Pursuit': ['Rock Slide', 'Stone Edge', 'Superpower', 'Low Kick', 'Crunch'],
+                                'Crunch': ['Ice Fang', 'Fire Fang', 'Thunder Fang', 'Aerial Ace'],
+                                'Dragon Dance': ['Superpower', 'Dragon Claw', 'Shadow Claw', 'Aqua Tail', 'Stone Edge', 'Crunch', 'Earthquake', 'Shock Wave', 'Dynamic Punch'],
+                                'Ice Beam': ['Flamethrower', 'Focus Blast', 'Blizzard', 'Outrage', 'Roar', 'Thunderbolt', 'Surf'],
+                                'Fling': ['Thrash']
+                            }
+                        ),
+                    ), baseStats=(100, 134, 110, 95, 100, 61), genders=('M', 'F'), images=('248.gif', '248.png', '248 (1).png')
                 )
             if 'Mightyena':
                 root.pokesets['Mightyena'] = pokemon_ddl.PokemonSet(
                     name='Mightyena', species='Mightyena', abilities=('Intimidate', 'Quick Feet'),
                     pkTypes=('Dark',),
-                    sets=(), baseStats=(70, 90, 70, 60, 60, 70), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Crunch', 'Sucker Punch', 'Taunt'],
+                                'Crunch': ['Poison Fang', 'Thunder Fang', 'Ice Fang', 'Fire Fang', 'Super Fang'],
+                                'Sucker Punch': ['Facade', 'Taunt'],
+                                'Taunt': ['Uproar', 'Swagger', 'Substitute', 'Crunch', 'Sucker Punch', 'Embargo']
+                            }
+                        ),
+                    ), baseStats=(70, 90, 70, 60, 60, 70), genders=('M', 'F'), images=('262.gif', '262.png', '262 (1).png')
                 )
             if 'Shiftry':
                 root.pokesets['Shiftry'] = pokemon_ddl.PokemonSet(
                     name='Shiftry', species='Shiftry', abilities=('Chlorophyll', 'Early Bird'),
                     pkTypes=('Grass', 'Dark'),
-                    sets=(), baseStats=(90, 100, 60, 90, 60, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Nasty Plot', 'Sunny Day', 'Fake Out', 'Swords Dance'],
+                                'Sunny Day': ['Nasty Plot'],
+                                'Nasty Plot': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
+                                'Fake Out': ['Faint Attack', 'Explosion', 'Sucker Punch', 'X-Scissor'],
+                                'Swords Dance': ['Seed Bomb', 'Sucker Punch']
+                            }
+                        ),
+                    ), baseStats=(90, 100, 60, 90, 60, 80), genders=('M', 'F'), images=('275.gif', '275-m.png', '275-m (1).png')
                 )
             if 'Sableye':
                 root.pokesets['Sableye'] = pokemon_ddl.PokemonSet(
                     name='Sableye', species='Sableye', abilities=('Keen Eye', 'Stall'), pkTypes=('Dark', 'Ghost'),
-                    sets=(), baseStats=(50, 75, 75, 65, 65, 50), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Recover', 'Protect', 'Gravity', 'Pain Split'],
+                            {
+                                'Recover': ['Will-O-Wisp', 'Toxic'],
+                                'Protect': ['Will-O-Wisp', 'Toxic'],
+                                'Will-O-Wisp': ['Seismic Toss', 'Night Shade'],
+                                'Toxic': ['Seismic Toss', 'Night Shade'],
+                                'Swismic Toss': ['Taunt', 'Knock Off'],
+                                'Night Shade': ['Taunt', 'Knock Off'],
+                                'Gravity': ['Protect', 'Recover', 'Helping Hand', 'Icy Wind'],
+                                'Pain Split': ['Will-O-Wisp', 'Toxic', 'Recover']
+                            }
+                        ),
+                    ), baseStats=(50, 75, 75, 65, 65, 50), genders=('M', 'F'), images=('302.gif', '302.png', '302 (1).png')
                 )
             if 'Sharpedo':
                 root.pokesets['Sharpedo'] = pokemon_ddl.PokemonSet(
                     name='Sharpedo', species='Sharpedo', abilities=('Rough Skin',), pkTypes=('Water', 'Dark'),
-                    sets=(), baseStats=(70, 120, 40, 95, 40, 95), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Dive'],
+                        {
+                            'Protect': ['Hydro Pump', 'Crunch', 'Night Slash'],
+                            'Hydro Pump': ['Dark Pulse', 'Ice Beam', 'Aqua Jet', 'Hidden Power [Grass]', 'Ancient Power'],
+                            'Crunch': ['Waterfall', 'Taunt', 'Aqua Jet', 'Substitute'],
+                            'Taunt': ['Earthquake', 'Ice Fang'],
+                            'Substitute': ['Zen Headbutt'],
+                            'Dive': ['Crunch', 'Double-Edge', 'Night Slash'],
+                            'Night Slash': ['Focus Energy'],
+                            'Focus Energy': ['Waterfall', 'Earthquake', 'Ice Fang', 'Zen Headbutt']
+                            }
+                        ),
+                    ), baseStats=(70, 120, 40, 95, 40, 95), genders=('M', 'F'), images=('319.gif', '319.png', '319 (1).png')
                 )
             if 'Cacturne':
                 root.pokesets['Cacturne'] = pokemon_ddl.PokemonSet(
