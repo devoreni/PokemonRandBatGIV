@@ -122,65 +122,64 @@ def runDML():
                     ),), baseStats=(80, 80, 90, 110, 130, 110), genders=('F',), images=('380.gif', '380.png', '380 (1).png')
                 )
             if 'Latios':
-                if 'Latios':
-                    root.pokesets['Latios'] = pokemon_ddl.PokemonSet(
-                        name='Latios', species='Latios', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
-                        sets=(
-                            pokemon_ddl.MoveSet(
-                                ['Protect'],
-                                {
-                                    # --- MAIN BRANCHING POINT ---
-                                    'Protect': ['Calm Mind', 'Luster Purge', 'Draco Meteor', 'Light Screen',
-                                                'Dragon Dance', 'Trick'],
+                root.pokesets['Latios'] = pokemon_ddl.PokemonSet(
+                    name='Latios', species='Latios', abilities=('Levitate',), pkTypes=('Dragon', 'Psychic'),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                # --- MAIN BRANCHING POINT ---
+                                'Protect': ['Calm Mind', 'Luster Purge', 'Draco Meteor', 'Light Screen',
+                                            'Dragon Dance', 'Trick'],
 
-                                    # --- 1. Calm Mind Setup Sweeper Path ---
-                                    'Calm Mind': ['Luster Purge', 'Dragon Pulse', 'Recover', 'Surf', 'Thunderbolt',
-                                                  'Shadow Ball'],
-                                    'Recover': ['Calm Mind', 'Luster Purge', 'Dragon Pulse', 'Light Screen', 'Reflect'],
+                                # --- 1. Calm Mind Setup Sweeper Path ---
+                                'Calm Mind': ['Luster Purge', 'Dragon Pulse', 'Recover', 'Surf', 'Thunderbolt',
+                                              'Shadow Ball'],
+                                'Recover': ['Calm Mind', 'Luster Purge', 'Dragon Pulse', 'Light Screen', 'Reflect'],
 
-                                    # --- 2. All-Out Attacker Paths (Special) ---
-                                    'Luster Purge': ['Dragon Pulse', 'Ice Beam', 'Thunderbolt', 'Surf', 'Shadow Ball',
-                                                     'Energy Ball', 'Recover'],
-                                    'Draco Meteor': ['Surf', 'Thunder', 'Hidden Power [Fire]', 'Shadow Ball', 'Trick',
-                                                     'Psychic'],  # Psychic is rare here
-                                    'Dragon Pulse': ['Luster Purge', 'Surf', 'Thunderbolt', 'Grass Knot', 'Ice Beam',
-                                                     'Recover'],
+                                # --- 2. All-Out Attacker Paths (Special) ---
+                                'Luster Purge': ['Dragon Pulse', 'Ice Beam', 'Thunderbolt', 'Surf', 'Shadow Ball',
+                                                 'Energy Ball', 'Recover'],
+                                'Draco Meteor': ['Surf', 'Thunder', 'Hidden Power [Fire]', 'Shadow Ball', 'Trick',
+                                                 'Psychic'],  # Psychic is rare here
+                                'Dragon Pulse': ['Luster Purge', 'Surf', 'Thunderbolt', 'Grass Knot', 'Ice Beam',
+                                                 'Recover'],
 
-                                    # Coverage moves branching and looping
-                                    'Surf': ['Thunderbolt', 'Ice Beam', 'Hidden Power [Fire]', 'Grass Knot'],
-                                    'Thunderbolt': ['Ice Beam', 'Surf', 'Hidden Power [Fire]', 'Grass Knot',
-                                                    'Charge Beam'],
-                                    'Ice Beam': ['Thunderbolt', 'Shadow Ball', 'Energy Ball'],
-                                    'Shadow Ball': ['Hidden Power [Fire]', 'Luster Purge', 'Psychic'],
-                                    'Energy Ball': ['Hidden Power [Fire]', 'Shadow Ball'],
-                                    'Grass Knot': ['Ice Beam', 'Hidden Power [Fire]'],
-                                    'Charge Beam': ['Luster Purge', 'Dragon Pulse'],  # Alternative boosting move
+                                # Coverage moves branching and looping
+                                'Surf': ['Thunderbolt', 'Ice Beam', 'Hidden Power [Fire]', 'Grass Knot'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Hidden Power [Fire]', 'Grass Knot',
+                                                'Charge Beam'],
+                                'Ice Beam': ['Thunderbolt', 'Shadow Ball', 'Energy Ball'],
+                                'Shadow Ball': ['Hidden Power [Fire]', 'Luster Purge', 'Psychic'],
+                                'Energy Ball': ['Hidden Power [Fire]', 'Shadow Ball'],
+                                'Grass Knot': ['Ice Beam', 'Hidden Power [Fire]'],
+                                'Charge Beam': ['Luster Purge', 'Dragon Pulse'],  # Alternative boosting move
 
-                                    # --- 3. Support & Disruption Paths ---
-                                    'Light Screen': ['Reflect', 'Recover', 'Dragon Pulse', 'Luster Purge'],
-                                    'Reflect': ['Light Screen', 'Recover', 'Memento', 'Dragon Claw'],
-                                    # Memento is a final option
-                                    'Memento': [],  # Terminal move, forces backtracking
-                                    'Trick': ['Draco Meteor', 'Surf', 'Thunderbolt', 'Ice Beam'],
-                                    # For Choice item sets
+                                # --- 3. Support & Disruption Paths ---
+                                'Light Screen': ['Reflect', 'Recover', 'Dragon Pulse', 'Luster Purge'],
+                                'Reflect': ['Light Screen', 'Recover', 'Memento', 'Dragon Claw'],
+                                # Memento is a final option
+                                'Memento': [],  # Terminal move, forces backtracking
+                                'Trick': ['Draco Meteor', 'Surf', 'Thunderbolt', 'Ice Beam'],
+                                # For Choice item sets
 
-                                    # --- 4. Physical Attacker Gimmick Path ---
-                                    'Dragon Dance': ['Dragon Claw', 'Earthquake', 'Shadow Claw', 'Zen Headbutt',
-                                                     'Recover', 'Roost'],
-                                    'Dragon Claw': ['Earthquake', 'Zen Headbutt', 'Waterfall'],
-                                    'Earthquake': ['Dragon Claw', 'Shadow Claw', 'Steel Wing'],
+                                # --- 4. Physical Attacker Gimmick Path ---
+                                'Dragon Dance': ['Dragon Claw', 'Earthquake', 'Shadow Claw', 'Zen Headbutt',
+                                                 'Recover', 'Roost'],
+                                'Dragon Claw': ['Earthquake', 'Zen Headbutt', 'Waterfall'],
+                                'Earthquake': ['Dragon Claw', 'Shadow Claw', 'Steel Wing'],
 
-                                    # --- 5. Niche Weather Paths ---
-                                    'Rain Dance': ['Thunder', 'Surf', 'Dragon Pulse'],
-                                    'Sunny Day': ['Solar Beam', 'Psychic'],
-                                    'Thunder': ['Surf', 'Rain Dance', 'Dragon Pulse'],
-                                    'Solar Beam': ['Sunny Day', 'Psychic'],
-                                }
-                            ),
+                                # --- 5. Niche Weather Paths ---
+                                'Rain Dance': ['Thunder', 'Surf', 'Dragon Pulse'],
+                                'Sunny Day': ['Solar Beam', 'Psychic'],
+                                'Thunder': ['Surf', 'Rain Dance', 'Dragon Pulse'],
+                                'Solar Beam': ['Sunny Day', 'Psychic'],
+                            }
                         ),
-                        baseStats=(80, 90, 80, 130, 110, 110),
-                        genders=('M',), images=('381.gif', '381.png', '381 (1).png')
-                    )
+                    ),
+                    baseStats=(80, 90, 80, 130, 110, 110),
+                    genders=('M',), images=('381.gif', '381.png', '381 (1).png')
+                )
             if 'Rayquaza':
                 root.pokesets['Rayquaza'] = pokemon_ddl.PokemonSet(
                     name='Rayquaza', species='Rayquaza', abilities=('Air Lock',), pkTypes=('Dragon', 'Flying'),
