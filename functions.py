@@ -63,24 +63,23 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    _, before = getPokemonTeam(8, root)
+    '''_, before = getPokemonTeam(8, root)
     team = createIndivPokemon(before)
     for pk in team:
+        print(pk.toString())'''
+
+    pk1 = root.pokesets['Arceus-Dark']
+    pk2 = root.pokesets['Arceus-Dark']
+    pk3 = root.pokesets['Arceus-Dark']
+    pk4 = root.pokesets['Arceus-Dark']
+    pk5 = root.pokesets['Arceus-Dark']
+    pk6 = root.pokesets['Arceus-Dark']
+    pk7 = root.pokesets['Arceus-Dark']
+    pk8 = root.pokesets['Arceus-Dark']
+    pk9 = root.pokesets['Arceus-Dark']
+    pk0 = root.pokesets['Arceus-Dark']
+
+    my_mons = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0])
+
+    for pk in my_mons:
         print(pk.toString())
-
-"""
-    pk1 = root.pokesets['Sharpedo']
-    pk2 = root.pokesets['Sharpedo']
-    pk3 = root.pokesets['Sharpedo']
-    pk4 = root.pokesets['Sharpedo']
-    pk5 = root.pokesets['Sharpedo']
-    pk6 = root.pokesets['Sharpedo']
-    pk7 = root.pokesets['Sharpedo']
-    pk8 = root.pokesets['Sharpedo']
-    pk9 = root.pokesets['Sharpedo']
-    pk0 = root.pokesets['Sharpedo']
-
-    pprint.pprint(createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0]))
-
-    print(len(root.pokesets.items()))
-"""

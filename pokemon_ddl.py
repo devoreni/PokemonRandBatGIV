@@ -86,14 +86,18 @@ Ability: {self.ability}
 Level: {self.level}
 Shiny: {self.shiny}
 {self.nature} Nature
-IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {self.spdIV} SpD / {self.speIV} / Spe
+IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {self.spdIV} SpD / {self.speIV} Spe
 {attacks}'''
 
 class PokemonSet(persistent.Persistent):
-    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png')):
+    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png'), ability_weights = None):
         self.name = name
         self.species = species
         self.abilities = abilities
+        if not ability_weights:
+            self.ability_weights = [1 for ability in self.abilities]
+        else:
+            self.ability_weights = ability_weights
         self.pkTypes = pkTypes
         self.sets = sets
         self.baseStats = baseStats
@@ -173,7 +177,7 @@ class PokemonSet(persistent.Persistent):
         new_guy = PokemonIndiv()
         new_guy.name = self.name
         new_guy.gender = random.choice(self.genders)
-        new_guy.ability = random.choice(self.abilities)
+        new_guy.ability = random.choices(self.abilities, self.ability_weights)[0]
         new_guy.shiny = random.choices(['Yes', 'No'], [1, 15])[0]
         new_guy.pokeball = self.choosePokeball()
         try:
