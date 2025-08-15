@@ -74,7 +74,7 @@ class PokemonIndiv:
         self.spaIV = 31
         self.spdIV = 31
         self.speIV = 31
-        self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'Solarbeam']
+        self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'SolarBeam']
 
 
     def toString(self):
@@ -109,7 +109,6 @@ class PokemonSet(persistent.Persistent):
         self.spdIV = 31
         self.nature = 'Bashful'
         self.genders = genders
-        self.moves = []
         self.images = images
         pass
 
@@ -163,6 +162,57 @@ class PokemonSet(persistent.Persistent):
     def chooseNature(self) -> str:
         return ''
 
+    def chooseIV(self, attacks, root = None) -> (int, int, int, int, int, int):
+        hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
+        attacks_set = set(attacks)
+        if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set:
+            spe = 0
+        has_phys_att = False
+        if root == None:
+            storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+            db = ZODB.DB(storage)
+            connection = db.open()
+            root = connection.root
+        for attack in attacks:
+            if root.moves[attack].category == 'Phys':
+                has_phys_att = True
+        if not has_phys_att:
+            att = 0
+        if 'Hidden Power [Fire]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 31, 30, 31, 30
+        elif 'Hidden Power [Ice]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 30, 31, 31, 31
+        elif 'Hidden Power [Grass]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 31, 30, 31, 31
+        elif 'Hidden Power [Ground]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 31, 30, 30, 31
+        elif 'Hidden Power [Fighting]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 31, 30, 30, 30
+        elif 'Hidden Power [Water]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 30, 30, 31, 31
+        elif 'Hidden Power [Electric]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 31, 30, 31, 31
+        elif 'Hidden Power [Poison]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 30, 30, 30, 31
+        elif 'Hidden Power [Flying]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 30, 30, 30, 30, 30, 31
+        elif 'Hidden Power [Psychic]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 31, 31, 31, 30
+        elif 'Hidden Power [Bug]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 30, 31, 30, 31
+        elif 'Hidden Power [Rock]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 30, 31, 30, 30
+        elif 'Hidden Power [Ghost]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 30, 31, 30, 31
+        elif 'Hidden Power [Dragon]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 30, 31, 31, 31, 31
+        elif 'Hidden Power [Dark]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
+        elif 'Hidden Power [Steel]' in attacks_set:
+            hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 30, 31
+
+        return hp, att, phd, spa, spd, spe
+
     def choosePokeball(self) -> str:
         pokeball_options = (
             'cherish', 'dive', 'dusk', 'fast', 'friend', 'great', 'heal', 'heavy',
@@ -173,7 +223,7 @@ class PokemonSet(persistent.Persistent):
         chosen_ball = random.choice(pokeball_options)
         return f"{chosen_ball}.png"
 
-    def buildSet(self) -> PokemonIndiv:
+    def buildSet(self, root = None) -> PokemonIndiv:
         new_guy = PokemonIndiv()
         new_guy.name = self.name
         new_guy.gender = random.choice(self.genders)
@@ -184,6 +234,7 @@ class PokemonSet(persistent.Persistent):
             new_guy.moves = self.chooseMoves()
         except:
             pass
+        new_guy.hpIV, new_guy.atkIV, new_guy.defIV, new_guy.spaIV, new_guy.spdIV, new_guy.speIV = self.chooseIV(new_guy.moves, root)
         return new_guy
 
     def toString(self) -> str:

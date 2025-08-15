@@ -83,7 +83,7 @@ def getFullPokemon_corrected(num: int, root) -> Tuple[list, list]:
 
 
 if __name__ == '__main__':
-    storage = ZODB.FileStorage.FileStorage('/data/PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage('../data/PokeData.fs')
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root

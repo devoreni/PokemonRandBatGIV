@@ -48,10 +48,10 @@ def getPokemonTeam(num: int, root = None) -> Tuple[list, list]:
             break
     return chosen_names, chosen_objects
 
-def createIndivPokemon(team: list) -> list:
+def createIndivPokemon(team: list, root = None) -> list:
     created_indivs = []
     for pk_set in team:
-        created_pokemon = pk_set.buildSet()
+        created_pokemon = pk_set.buildSet(root)
         created_indivs.append(created_pokemon)
     return created_indivs
 
@@ -63,23 +63,21 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    '''_, before = getPokemonTeam(8, root)
-    team = createIndivPokemon(before)
+    _, before = getPokemonTeam(8, root)
+    team = createIndivPokemon(before, root)
+    '''
+    pk1 = root.pokesets['Arceus-Fire']
+    pk2 = root.pokesets['Arceus-Fire']
+    pk3 = root.pokesets['Arceus-Fire']
+    pk4 = root.pokesets['Arceus-Fire']
+    pk5 = root.pokesets['Arceus-Fire']
+    pk6 = root.pokesets['Arceus-Fire']
+    pk7 = root.pokesets['Arceus-Fire']
+    pk8 = root.pokesets['Arceus-Fire']
+    pk9 = root.pokesets['Arceus-Fire']
+    pk0 = root.pokesets['Arceus-Fire']
+
+    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0])
+    '''
     for pk in team:
-        print(pk.toString())'''
-
-    pk1 = root.pokesets['Arceus-Dark']
-    pk2 = root.pokesets['Arceus-Dark']
-    pk3 = root.pokesets['Arceus-Dark']
-    pk4 = root.pokesets['Arceus-Dark']
-    pk5 = root.pokesets['Arceus-Dark']
-    pk6 = root.pokesets['Arceus-Dark']
-    pk7 = root.pokesets['Arceus-Dark']
-    pk8 = root.pokesets['Arceus-Dark']
-    pk9 = root.pokesets['Arceus-Dark']
-    pk0 = root.pokesets['Arceus-Dark']
-
-    my_mons = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0])
-
-    for pk in my_mons:
         print(pk.toString())

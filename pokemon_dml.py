@@ -55,11 +55,11 @@ def runDML():
                             ['Protect'],
                             {
                                 'Protect': ['Rain Dance', 'Hydro Pump', 'Muddy Water', 'Draco Meteor', 'Dragon Pulse', 'Outrage'],
-                                'Hydro Pump': ['Rain Dance', 'Signal Beam', 'SmokeScreen', 'Swift'],
+                                'Hydro Pump': ['Rain Dance', 'Signal Beam', 'Smokescreen', 'Swift'],
                                 'Muddy Water': ['Rain Dance', 'Dragon Pulse', 'Yawn', 'Hidden Power [Electric]'],
                                 'Draco Meteor': ['Rain Dance', 'Outrage', 'Ice Beam', 'Muddy Water'],
                                 'Dragon Pulse': ['Rain Dance', 'Brine', 'Hidden Power [Electric]'],
-                                'Outrage': ['Waterfall', 'Iron Head', 'Double Edge', 'Headbutt'],
+                                'Outrage': ['Waterfall', 'Iron Head', 'Double-Edge', 'Headbutt'],
                                 'Waterfall': ['Rain Dance', 'Dragon Dance'],
                                 'Iron Head': ['Dragon Dance', 'Substitute'],
                                 'Dragon Dance': ['Waterfall']
@@ -75,9 +75,9 @@ def runDML():
                         {
                             'Protect': ['Earthquake', 'Dragon Claw', 'Roost', 'Draco Meteor'],
                             'Earthquake': ['Bug Bite', 'U-turn', 'Outrage', 'Stone Edge', 'Crunch'],
-                            'Dragon Claw': ['Bug Bite', 'U-turn', 'Sandstorm', 'Thunderpunch', 'Dig'],
-                            'Roost': ['Sandstorm', 'Thunderpunch', 'Stone Edge', 'Giga Drain'],
-                            'Draco Meteor': ['Fire Blast', 'Earthpower', 'Gust', 'Ominous Wind'],
+                            'Dragon Claw': ['Bug Bite', 'U-turn', 'Sandstorm', 'Thunder Punch', 'Dig'],
+                            'Roost': ['Sandstorm', 'Thunder Punch', 'Stone Edge', 'Giga Drain'],
+                            'Draco Meteor': ['Fire Blast', 'Earth Power', 'Gust', 'Ominous Wind'],
                             'Fire Blast': ['Earthquake', 'Fissure', 'Hyper Beam', 'Solar Beam'],
                             'U-turn': ['Fire Punch', 'Dig', 'Toxic', 'Swagger', 'Tailwind', 'Sunny Day', 'Steel Wing']
                         }
@@ -426,14 +426,14 @@ def runDML():
                 root.pokesets['Arceus-Dragon'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Dragon', species='Arceus', abilities=('Multitype',), pkTypes=('Dragon',),
                     sets=(
-                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Judgment'],
+                                'Protect': ['Judgement'],
 
-                                # Judgment is the central hub for a chaotic web of possibilities.
-                                'Judgment': [
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
                                     'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
                                     'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
                                     'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
@@ -445,25 +445,25 @@ def runDML():
                                 'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
                                                  'Ice Beam', 'Calm Mind'],
                                 'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
-                                            'Swords Dance', 'Judgment'],
-                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
                                 'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
-                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgement',
                                                   'Recover'],
                                 'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
-                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
-                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
                                 'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
-                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
                             }
                         ),
 
-                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
                         pokemon_ddl.MoveSet(
-                            ['Judgment'],
+                            ['Judgement'],
                             {
-                                'Judgment': [
+                                'Judgement': [
                                     'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
                                     'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
                                     'Shadow Claw', 'Will-O-Wisp', 'Recover'
@@ -475,12 +475,12 @@ def runDML():
                                               'Swords Dance'],
                                 'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
                                                  'Calm Mind'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
-                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
-                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
                                 'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
                                 'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
-                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
                             }
                         ),
 
@@ -612,7 +612,7 @@ def runDML():
                                 'Protect': ['Rapid Spin', 'Present'],
                                 'Rapid Spin': ['Sky Attack', 'Substitute'],
                                 'Substitute': ['Focus Punch'],
-                                'Present': ['Rapid Spin', 'Pluck', 'Mud Slap', 'Icy Wind']
+                                'Present': ['Rapid Spin', 'Pluck', 'Mud-Slap', 'Icy Wind']
                             }
                         ),
                     ), baseStats=(45, 55, 45, 65, 45, 75), genders=('M', 'F'), images=('225.gif', '225.png', '225 (1).png')
@@ -649,7 +649,7 @@ def runDML():
                                 'Toxic': ['Surf', 'Super Fang', 'Aqua Ring', 'Aurora Beam'],
                                 'Super Fang': ['Body Slam', 'Blizzard'],
                                 'Blizzard': ['Hail'],
-                                'Curse': ['Earthquake', 'Body Slam', 'Sleep Talk', 'Crunch', 'Block', 'Double Edge', 'Encore', 'Rock Slide'],
+                                'Curse': ['Earthquake', 'Body Slam', 'Sleep Talk', 'Crunch', 'Block', 'Double-Edge', 'Encore', 'Rock Slide'],
                                 'Sleep Talk': ['Rest']
                             }
                         ),
@@ -662,7 +662,7 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect', 'Rest', 'Lock-on'],
                             {
-                                'Protect': ['Ancientpower', 'Icy Wind', 'Thunder Wave', 'Toxic', 'Seismic Toss', 'Hyper Beam'],
+                                'Protect': ['Ancient Power', 'Icy Wind', 'Thunder Wave', 'Toxic', 'Seismic Toss', 'Hyper Beam'],
                                 'Rest': ['Charge Beam', 'Amnesia', 'Sleep Talk'],
                                 'Lock-on': ['Zap Cannon'],
                                 'Zap Cannon': ['Blizzard', 'Explosion', 'Focus Blast']
@@ -731,9 +731,9 @@ def runDML():
                             {
                                 'Protect': ['Curse', 'Knock Off', 'Substitute', 'Earthquake', 'Dig'],
                                 'Curse': ['Ice Shard', 'Avalanche'],
-                                'Ice Shard': ['Earthquake', 'Stone Edge', 'Rock Slide', 'Super Power'],
+                                'Ice Shard': ['Earthquake', 'Stone Edge', 'Rock Slide', 'Superpower'],
                                 'Avalanche': ['Earthquake', 'Stone Edge', 'Peck'],
-                                'Knock Off': ['Earthquake', 'Rock Slide', 'Scary Face', 'Roar', 'Substitute', 'Ancient Power', 'Super Power'],
+                                'Knock Off': ['Earthquake', 'Rock Slide', 'Scary Face', 'Roar', 'Substitute', 'Ancient Power', 'Superpower'],
                                 'Substitute': ['Ice Shard'],
                                 'Earthquake': ['Peck', 'Giga Impact', 'Stealth Rock', 'Swagger']
                             }
@@ -759,14 +759,14 @@ def runDML():
                 root.pokesets['Arceus-Ice'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Ice', species='Arceus', abilities=('Multitype',), pkTypes=('Ice',),
                     sets=(
-                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Judgment'],
+                                'Protect': ['Judgement'],
 
-                                # Judgment is the central hub for a chaotic web of possibilities.
-                                'Judgment': [
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
                                     'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
                                     'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
                                     'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
@@ -778,25 +778,25 @@ def runDML():
                                 'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
                                                  'Ice Beam', 'Calm Mind'],
                                 'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
-                                            'Swords Dance', 'Judgment'],
-                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
                                 'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
-                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgement',
                                                   'Recover'],
                                 'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
-                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
-                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
                                 'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
-                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
                             }
                         ),
 
-                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
                         pokemon_ddl.MoveSet(
-                            ['Judgment'],
+                            ['Judgement'],
                             {
-                                'Judgment': [
+                                'Judgement': [
                                     'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
                                     'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
                                     'Shadow Claw', 'Will-O-Wisp', 'Recover'
@@ -808,12 +808,12 @@ def runDML():
                                               'Swords Dance'],
                                 'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
                                                  'Calm Mind'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
-                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
-                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
                                 'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
                                 'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
-                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
                             }
                         ),
 
@@ -904,7 +904,7 @@ def runDML():
                             ['Protect'],
                             {
                                 'Protect': ['Rapid Spin', 'Mach Punch', 'Fake Out', 'Sky Uppercut'],
-                                'Rapid Spin': ['Drain Punch', 'Ice Punch', 'Bulk Up', 'Thunder Punch', 'Fire Punch', 'Bullet Punch', 'Fling', 'Mega Punch', 'Metranome'],
+                                'Rapid Spin': ['Drain Punch', 'Ice Punch', 'Bulk Up', 'Thunder Punch', 'Fire Punch', 'Bullet Punch', 'Fling', 'Mega Punch', 'Metronome'],
                                 'Mach Punch': ['Drain Punch', 'Ice Punch', 'Bulk Up', 'Thunder Punch', 'Fire Punch', 'Bullet Punch', 'Focus Punch', 'Helping Hand']
                             }
                         ),
@@ -1011,11 +1011,11 @@ def runDML():
                             ['Detect'],
                             {
                                 'Detect': ['High Jump Kick', 'Fake Out', 'Drain Punch'],
-                                'High Jump Kick': ['Ice Punch', 'Psyco Cut', 'Zen Headbutt'],
+                                'High Jump Kick': ['Ice Punch', 'Psycho Cut', 'Zen Headbutt'],
                                 'Ice Punch': ['Zen Headbutt', 'Fake Out', 'Bullet Punch'],
                                 'Zen Headbutt': ['Thunder Punch', 'Fake Out', 'Bullet Punch'],
-                                'Psyco Cut': ['Trick', 'Reflect'],
-                                'Drain Punch': ['Recover', 'Psyco Cut']
+                                'Psycho Cut': ['Trick', 'Reflect'],
+                                'Drain Punch': ['Recover', 'Psycho Cut']
                             }
                         ),
                     ), baseStats=(60, 60, 75, 60, 75, 80), genders=('M', 'F'), images=('308.gif', '308-m.png', '308-m (1).png')
@@ -1104,7 +1104,7 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Psyco Cut', 'Night Slash', 'X-Scissor', 'Leaf Blade', 'Aerial Ace', 'Close Combat']
+                                'Protect': ['Psycho Cut', 'Night Slash', 'X-Scissor', 'Leaf Blade', 'Aerial Ace', 'Close Combat']
                             }
                         )
                     ), baseStats=(68, 125, 65, 65, 115, 80), genders=('M',), images=('475.gif', '475.png', '475 (1).png')
@@ -1113,14 +1113,14 @@ def runDML():
                 root.pokesets['Arceus-Fighting'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Fighting', species='Arceus', abilities=('Multitype',), pkTypes=('Fighting',),
                     sets=(
-                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Judgment'],
+                                'Protect': ['Judgement'],
 
-                                # Judgment is the central hub for a chaotic web of possibilities.
-                                'Judgment': [
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
                                     'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
                                     'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
                                     'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
@@ -1132,25 +1132,25 @@ def runDML():
                                 'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
                                                  'Ice Beam', 'Calm Mind'],
                                 'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
-                                            'Swords Dance', 'Judgment'],
-                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
                                 'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
-                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgement',
                                                   'Recover'],
                                 'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
-                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
-                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
                                 'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
-                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
                             }
                         ),
 
-                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
                         pokemon_ddl.MoveSet(
-                            ['Judgment'],
+                            ['Judgement'],
                             {
-                                'Judgment': [
+                                'Judgement': [
                                     'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
                                     'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
                                     'Shadow Claw', 'Will-O-Wisp', 'Recover'
@@ -1162,12 +1162,12 @@ def runDML():
                                               'Swords Dance'],
                                 'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
                                                  'Calm Mind'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
-                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
-                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
                                 'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
                                 'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
-                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
                             }
                         ),
 
@@ -1271,7 +1271,11 @@ def runDML():
                             {
                                 'Protect': ['Nasty Plot', 'Sunny Day', 'Fake Out', 'Swords Dance'],
                                 'Sunny Day': ['Nasty Plot'],
-                                'Nasty Plot': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
+                                'Nasty Plot': ['Leaf Storm', 'Dark Pulse', 'Energy Ball', 'Focus Blast'],
+                                'Leaf Storm': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
+                                'Dark Pulse': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
+                                'Energy Ball': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
+                                'Focus Blast': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
                                 'Fake Out': ['Faint Attack', 'Explosion', 'Sucker Punch', 'X-Scissor'],
                                 'Swords Dance': ['Seed Bomb', 'Sucker Punch']
                             }
@@ -1289,7 +1293,7 @@ def runDML():
                                 'Protect': ['Will-O-Wisp', 'Toxic'],
                                 'Will-O-Wisp': ['Seismic Toss', 'Night Shade'],
                                 'Toxic': ['Seismic Toss', 'Night Shade'],
-                                'Swismic Toss': ['Taunt', 'Knock Off'],
+                                'Seismic Toss': ['Taunt', 'Knock Off'],
                                 'Night Shade': ['Taunt', 'Knock Off'],
                                 'Gravity': ['Protect', 'Recover', 'Helping Hand', 'Icy Wind'],
                                 'Pain Split': ['Will-O-Wisp', 'Toxic', 'Recover']
@@ -1455,14 +1459,14 @@ def runDML():
                 root.pokesets['Arceus-Dark'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Dark', species='Arceus', abilities=('Multitype',), pkTypes=('Dark',),
                     sets=(
-                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgment, then maximum variance.
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Judgment'],
+                                'Protect': ['Judgement'],
 
-                                # Judgment is the central hub for a chaotic web of possibilities.
-                                'Judgment': [
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
                                     'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
                                     'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
                                     'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
@@ -1474,25 +1478,25 @@ def runDML():
                                 'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
                                                  'Ice Beam', 'Calm Mind'],
                                 'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
-                                            'Swords Dance', 'Judgment'],
-                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgment'],
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
                                 'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
-                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgment',
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgement',
                                                   'Recover'],
                                 'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
-                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgment', 'Calm Mind', 'Swords Dance'],
-                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgment', 'Calm Mind', 'Swords Dance'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
                                 'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
-                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgment'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgment'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
                             }
                         ),
 
-                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgment into chaos.
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
                         pokemon_ddl.MoveSet(
-                            ['Judgment'],
+                            ['Judgement'],
                             {
-                                'Judgment': [
+                                'Judgement': [
                                     'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
                                     'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
                                     'Shadow Claw', 'Will-O-Wisp', 'Recover'
@@ -1504,12 +1508,12 @@ def runDML():
                                               'Swords Dance'],
                                 'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
                                                  'Calm Mind'],
-                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgment'],
-                                'Trick Room': ['Judgment', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
-                                'Extreme Speed': ['Judgment', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
                                 'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
                                 'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
-                                'Recover': ['Judgment', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
                             }
                         ),
 
@@ -1529,79 +1533,320 @@ def runDML():
             if 'Charizard':
                 root.pokesets['Charizard'] = pokemon_ddl.PokemonSet(
                     name='Charizard', species='Charizard', abilities=('Blaze',), pkTypes=('Fire', 'Flying'),
-                    sets=(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Roost', 'Substitute'],
+                            {
+                                'Protect': ['Air Slash', 'Focus Blast'],
+                                'Air Slash': ['Fire Blast', 'Blast Burn', 'Hidden Power [Grass]'],
+                                'Roost': ['Ancient Power', 'Air Slash', 'Flamethrower'],
+                                'Substitute': ['Air Slash', 'Swords Dance', 'Sunny Day'],
+                                'Swords Dance': ['Earthquake', 'Flare Blitz'],
+                                'Flare Blitz': ['Thunder Punch'],
+                                'Sunny Day': ['Solar Beam', 'Flamethrower']
+                            }
+                        ),
+                    ), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F'), images=('006.gif', '006.png', '006 (1).png')
                 )
             if 'Ninetales':
                 root.pokesets['Ninetales'] = pokemon_ddl.PokemonSet(
                     name='Ninetales', species='Ninetales', abilities=('Flash Fire',), pkTypes=('Fire',),
-                    sets=(), baseStats=(73, 76, 75, 81, 100, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Energy Ball', 'Pain Split', 'Confuse Ray', 'Sunny Day'],
+                                'Pain Split': ['Fire Blast', 'Overheat'],
+                                'Fire Blast': ['Will-O-Wisp'],
+                                'Overheat': ['Will-O-Wisp'],
+                                'Energy Ball': ['Fire Blast', 'Overheat', 'Hypnosis', 'Hidden Power [Rock]', 'Nasty Plot'],
+                                'Hidden Power [Rock]': ['Extrasensory'],
+                                'Nasty Plot': ['Hidden Power [Rock]', 'Fire Blast', 'Flamethrower'],
+                                'Sunny Day': ['Solar Beam', 'Energy Ball'],
+                                'Solar Beam': ['Fire Blast', 'Overheat', 'Hidden Power [Rock]'],
+                                'Confuse Ray': ['Pain Split']
+                            }
+                        ),
+                    ), baseStats=(73, 76, 75, 81, 100, 100), genders=('M', 'F'), images=('038.gif', '038.png', '038 (1).png')
                 )
             if 'Arcanine':
                 root.pokesets['Arcanine'] = pokemon_ddl.PokemonSet(
                     name='Arcanine', species='Arcanine', abilities=('Intimidate', 'Flash Fire'), pkTypes=('Fire',),
-                    sets=(), baseStats=(90, 110, 80, 100, 80, 95), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Morning Sun'],
+                            {
+                                'Protect': ['Extreme Speed'],
+                                'Morning Sun': ['Sunny Day'],
+                                'Sunny Day': ['Flare Blitz', 'Solar Beam'],
+                                'Flare Blitz': ['Extreme Speed', 'Thunder Fang', 'Hidden Power [Grass]'],
+                                'Solar Beam': ['Fire Blast', 'Flamethrower', 'Dragon Pulse'],
+                                'Extreme Speed': ['Flare Blitz', 'Toxic', 'Will-O-Wisp'],
+                                'Toxic': ['Flare Blitz', 'Rest'],
+                                'Will-O-Wisp': ['Roar', 'Flare Blitz']
+                            }
+                        ),
+                    ), baseStats=(90, 110, 80, 100, 80, 95), genders=('M', 'F'), ability_weights=(0.8, 0.2), images=('059.gif', '059.png', '059 (1).png')
                 )
             if 'Rapidash':
                 root.pokesets['Rapidash'] = pokemon_ddl.PokemonSet(
-                    name='Rapidash', species='Rapidash', abilities=('Run Away', 'Flash Fire'), pkTypes=('Fire',),
-                    sets=(), baseStats=(65, 100, 70, 80, 80, 105), genders=('M', 'F')
+                    name='Rapidash', species='Rapidash', abilities=('Flash Fire',), pkTypes=('Fire',),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Substitute', 'Protect'],
+                            {
+                                'Protect': ['Megahorn', 'Bounce'],
+                                'Megahorn': ['Horn Drill', 'Hypnosis', 'Flare Blitz', 'Iron Tail', 'Double-Edge'],
+                                'Substitute': ['Baton Pass'],
+                                'Baton Pass': ['Agility'],
+                                'Agility': ['Flare Blitz'],
+                                'Bounce': ['Double Kick', 'Megahorn', 'Stomp', 'Quick Attack']
+                            }
+                        ),
+                    ), baseStats=(65, 100, 70, 80, 80, 105), genders=('M', 'F'), images=('078.gif', '078.png', '078 (1).png')
                 )
             if 'Flareon':
                 root.pokesets['Flareon'] = pokemon_ddl.PokemonSet(
                     name='Flareon', species='Flareon', abilities=('Flash Fire',), pkTypes=('Fire',),
-                    sets=(), baseStats=(65, 130, 60, 95, 110, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Wish', 'Superpower', 'Last Resort'],
+                                'Wish': ['Toxic'],
+                                'Toxic': ['Flamethrower', 'Lava Plume'],
+                                'Superpower': ['Return'],
+                                'Return': ['Fire Blast', 'Hidden Power [Grass]'],
+                                'Last Resort': ['Curse', 'Fire Fang', 'Bite'],
+                                'Curse': ['Quick Attack']
+                            }
+                        ),
+                    ), baseStats=(65, 130, 60, 95, 110, 65), genders=('M', 'F'), images=('136.gif', '136.png', '136 (1).png')
                 )
             if 'Moltres':
                 root.pokesets['Moltres'] = pokemon_ddl.PokemonSet(
                     name='Moltres', species='Moltres', abilities=('Pressure',), pkTypes=('Fire', 'Flying'),
-                    sets=(), baseStats=(90, 100, 90, 125, 85, 90), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Roost', 'Sunny Day'],
+                            {
+                                'Roost': ['Ancient Power', 'Fire Blast', 'Flamethrower', 'Air Slash'],
+                                'Protect': ['Sky Attack', 'Steel Wing', 'U-turn', 'Fire Blast'],
+                                'Fire Blast': ['Hidden Power [Grass]', 'Hidden Power [Ice]'],
+                                'Sunny Day': ['Morning Sun', 'Flamethrower', 'Solar Beam']
+                            }
+                        ),
+                    ), baseStats=(90, 100, 90, 125, 85, 90), genders=('',), images=('146.gif', '146.png', '146 (1).png')
                 )
             if 'Typhlosion':
                 root.pokesets['Typhlosion'] = pokemon_ddl.PokemonSet(
                     name='Typhlosion', species='Typhlosion', abilities=('Blaze',), pkTypes=('Fire',),
-                    sets=(), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Eruption', 'Shadow Claw'],
+                                'Eruption': ['Focus Blast'],
+                                'Focus Blast': ['Flamethrower', 'Fire Blast', 'Hidden Power [Grass]', 'Hidden Power [Rock]'],
+                                'Shadow Claw': ['Blast Burn', 'Earthquake', 'Aerial Ace', 'Overheat', 'Solar Beam', 'Focus Blast']
+                            }
+                        ),
+                    ), baseStats=(78, 84, 78, 109, 85, 100), genders=('M', 'F'), images=('157.gif', '157.png', '157 (1).png')
                 )
             if 'Magcargo':
                 root.pokesets['Magcargo'] = pokemon_ddl.PokemonSet(
                     name='Magcargo', species='Magcargo', abilities=('Magma Armor', 'Flame Body'),
                     pkTypes=('Fire', 'Rock'),
-                    sets=(), baseStats=(50, 50, 120, 80, 80, 30), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock'],
+                                'Stealth Rock': ['Lava Plume', 'Recover', 'Memento'],
+                                'Recover': ['Toxic'],
+                                'Memento': ['Will-O-Wisp', 'Gyro Ball', 'Explosion']
+                            }
+                        ),
+                    ), baseStats=(50, 50, 120, 80, 80, 30), genders=('M', 'F'), images=('219.gif', '219.png', '219 (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Entei':
                 root.pokesets['Entei'] = pokemon_ddl.PokemonSet(
                     name='Entei', species='Entei', abilities=('Pressure',), pkTypes=('Fire',),
-                    sets=(), baseStats=(115, 115, 85, 90, 75, 100), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Extreme Speed', 'Eruption', 'Reflect'],
+                                'Extreme Speed': ['Stone Edge', 'Flare Blitz', 'Crush Claw'],
+                                'Eruption': ['Calm Mind', 'Hidden Power [Grass]', 'Extrasensory', 'Shadow Ball'],
+                                'Reflect': ['Rain Dance', 'Sandstorm'],
+                                'Rain Dance': ['Toxic', 'Will-O-Wisp'],
+                                'Sandstorm': ['Toxic', 'Will-O-Wisp', 'Flamethrower', 'Lava Plume']
+                            }
+                        ),
+                    ), baseStats=(115, 115, 85, 90, 75, 100), genders=('',), images=('244.gif', '244.png', '244 (1).png')
                 )
             if 'Ho-oh':
                 root.pokesets['Ho-oh'] = pokemon_ddl.PokemonSet(
                     name='Ho-oh', species='Ho-oh', abilities=('Pressure',), pkTypes=('Fire', 'Flying'),
-                    sets=(), baseStats=(106, 130, 90, 110, 154, 90), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(['Sacred Fire'],
+                        {
+                            'Sacred Fire': ['Whirlwind', 'Safeguard', 'Recover', 'Natural Gift', 'Punishment', 'Sky Attack', 'Weather Ball', 'Earthquake', 'Frustration',
+                                            'Rain Dance', 'Sandstorm', 'Secret Power', 'Steel Wing', 'Giga Impact', 'Thunder Wave', 'Pluck', 'Brave Bird', 'Fly', 'Rock Smash',
+                                            'Zen Headbutt', 'Gust', 'Swift', 'Ancient Power', 'Future Sight', 'Calm Mind', 'Roar', 'Hyper Beam', 'Light Screen', 'Giga Drain', 'Thunderbolt', 'Thunder',
+                                            'Psychic', 'Shadow Ball', 'Double Team', 'Reflect', 'Charge Beam', 'Endure', 'Flash', 'Dream Eater', 'Defog', 'Ominous Wind',
+                                            'Snore', 'Earth Power', 'Heat Wave', 'Iron Head', 'Signal Beam', 'Twister', 'Hidden Power [Dragon]', 'Hidden Power [Fighting]', 'Tailwind',
+                                            'Sky Attack', 'Sky Attack', 'Sky Attack', 'Protect', 'Recover', 'Recover']
+                        }),
+
+                    ), baseStats=(106, 130, 90, 110, 154, 90), genders=('',), images=('250.gif', '250.png', '250 (1).png')
                 )
             if 'Camerupt':
                 root.pokesets['Camerupt'] = pokemon_ddl.PokemonSet(
                     name='Camerupt', species='Camerupt', abilities=('Magma Armor', 'Solid Rock'),
                     pkTypes=('Fire', 'Ground'),
-                    sets=(), baseStats=(70, 100, 70, 105, 75, 40), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock', 'Eruption'],
+                                'Stealth Rock': ['Lava Plume', 'Explosion', 'Earthquake'],
+                                'Eruption': ['Earthquake', 'Earth Power', 'Stockpile', 'Rock Polish'],
+                                'Earthquake': ['Flash Cannon', 'Rollout', 'Yawn', 'Stone Edge', 'Rock Slide'],
+                                'Stockpile': ['Swallow', 'Spit Up'],
+                                'Earth Power': ['Flash Cannon', 'Rollout', 'Yawn', 'Stone Edge', 'Rock Slide'],
+                                'Rock Polish': ['Earthquake', 'Earth Power']
+                            }
+                        ),
+                    ), baseStats=(70, 100, 70, 105, 75, 40), genders=('M', 'F'), images=('323.gif', '323-m.png', '323-m (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Torkoal':
                 root.pokesets['Torkoal'] = pokemon_ddl.PokemonSet(
                     name='Torkoal', species='Torkoal', abilities=('White Smoke',), pkTypes=('Fire',),
-                    sets=(), baseStats=(70, 85, 140, 85, 70, 20), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Curse', 'Stealth Rock'],
+                                'Stealth Rock': ['Lava Plume', 'Flamethrower', 'Yawn'],
+                                'Lava Plume': ['Rapid Spin', 'Explosion'],
+                                'Flamethrower': ['Rapid Spin', 'Toxic', 'Explosion'],
+                                'Yawn': ['Rapid Spin', 'Explosion'],
+                                'Curse': ['Gyro Ball', 'Body Slam']
+                            }
+                        ),
+                    ), baseStats=(70, 85, 140, 85, 70, 20), genders=('M', 'F'), images=('324.gif', '324.png', '324 (1).png')
                 )
             if 'Magmortar':
                 root.pokesets['Magmortar'] = pokemon_ddl.PokemonSet(
                     name='Magmortar', species='Magmortar', abilities=('Flame Body',), pkTypes=('Fire',),
-                    sets=(), baseStats=(75, 95, 67, 125, 95, 83), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Fire Blast', 'Follow Me'],
+                                'Fire Blast': ['Thunderbolt'],
+                                'Thunderbolt': ['Hidden Power [Grass]'],
+                                'Hidden Power [Grass]': ['Flamethrower', 'Focus Blast', 'Overheat'],
+                                'Follow Me': ['Heat Wave', 'Smog', 'Rock Tomb']
+                            }
+                        ),
+                    ), baseStats=(75, 95, 67, 125, 95, 83), genders=('M', 'F'), images=('467.gif', '467.png', '467 (1).png')
                 )
             if 'Heatran':
                 root.pokesets['Heatran'] = pokemon_ddl.PokemonSet(
                     name='Heatran', species='Heatran', abilities=('Flash Fire',), pkTypes=('Fire', 'Steel'),
-                    sets=(), baseStats=(91, 90, 106, 130, 106, 77), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Magma Storm', 'Eruption'],
+                                'Magma Storm': ['Toxic', 'Stealth Rock', 'Will-O-Wisp', 'Substitute'],
+                                'Toxic': ['Explosion', 'Dragon Pulse', 'Hidden Power [Grass]', 'Taunt', 'Earth Power'],
+                                'Will-O-Wisp': ['Explosion', 'Dragon Pulse', 'Hidden Power [Grass]', 'Taunt', 'Earth Power'],
+                                'Stealth Rock': ['Explosion', 'Dragon Pulse', 'Hidden Power [Grass]', 'Taunt', 'Earth Power', 'Roar'],
+                                'Substitute': ['Toxic', 'Torment'],
+                                'Earth Power': ['Hidden Power [Ice]', 'Hidden Power [Electric]', 'Stealth Rock', 'Explosion', 'Flamethrower', 'Fire Blast'],
+                                'Torment': ['Roar', 'Lava Plume', 'Bug Bite'],
+                                'Eruption': ['Dragon Pulse', 'Dark Pulse', 'Earth Power', 'Flash Cannon', 'Uproar']
+                             }
+                        ),
+                    ), baseStats=(91, 90, 106, 130, 106, 77), genders=('M', 'F'), images=('485.gif', '485.png', '485 (1).png')
                 )
             if 'Arceus-Fire':
                 root.pokesets['Arceus-Fire'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Fire', species='Arceus', abilities=('Multitype',), pkTypes=('Fire',),
-                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgement'],
+
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
+                                'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat', 'Judgement',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgement'],
+                            {
+                                'Judgement': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp', 'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fire.png', 'arceus-fire (1).png')
                 )
 
         # Ghost type pokemon
@@ -3034,13 +3279,13 @@ def runDML():
         root.moves['Crush Claw'] = pokemon_ddl.Move('Crush Claw', 75, .95, 'Phys', 'Normal')
         root.moves['Crush Grip'] = pokemon_ddl.Move('Crush Grip', 0, 1.0, 'Phys', 'Normal')
         root.moves['Cut'] = pokemon_ddl.Move('Cut', 50, 0.95, 'Phys', 'Normal')
-        root.moves['Double-edge'] = pokemon_ddl.Move('Double-edge', 120, 1.0, 'Phys', 'Normal')
+        root.moves['Double-Edge'] = pokemon_ddl.Move('Double-Edge', 120, 1.0, 'Phys', 'Normal')
         root.moves['Double Hit'] = pokemon_ddl.Move('Double Hit', 35, 0.9, 'Phys', 'Normal')
-        root.moves['Doubleslap'] = pokemon_ddl.Move('Doubleslap', 15, 0.85, 'Phys', 'Normal')
+        root.moves['Double Slap'] = pokemon_ddl.Move('Double Slap', 15, 0.85, 'Phys', 'Normal')
         root.moves['Egg Bomb'] = pokemon_ddl.Move('Egg Bomb', 100, 0.75, 'Phys', 'Normal')
         root.moves['Endeavor'] = pokemon_ddl.Move('Endeavor', 0, 1.0, 'Phys', 'Normal')
         root.moves['Explosion'] = pokemon_ddl.Move('Explosion', 250, 1.0, 'Phys', 'Normal')
-        root.moves['ExtremeSpeed'] = pokemon_ddl.Move('ExtremeSpeed', 80, 1.0, 'Phys', 'Normal')
+        root.moves['Extreme Speed'] = pokemon_ddl.Move('Extreme Speed', 80, 1.0, 'Phys', 'Normal')
         root.moves['Facade'] = pokemon_ddl.Move('Facade', 70, 1.0, 'Phys', 'Normal')
         root.moves['Fake Out'] = pokemon_ddl.Move('Fake Out', 40, 1.0, 'Phys', 'Normal')
         root.moves['False Swipe'] = pokemon_ddl.Move('False Swipe', 40, 1.0, 'Phys', 'Normal')
@@ -3072,7 +3317,7 @@ def runDML():
         root.moves['Skull Bash'] = pokemon_ddl.Move('Skull Bash', 100, 1.0, 'Phys', 'Normal')
         root.moves['Slam'] = pokemon_ddl.Move('Slam', 80, 0.75, 'Phys', 'Normal')
         root.moves['Slash'] = pokemon_ddl.Move('Slash', 70, 1.0, 'Phys', 'Normal')
-        root.moves['Smellingsalt'] = pokemon_ddl.Move('Smellingsalt', 60, 1, 'Phys', 'Normal')
+        root.moves['Smelling Salts'] = pokemon_ddl.Move('Smelling Salts', 60, 1, 'Phys', 'Normal')
         root.moves['Spike Cannon'] = pokemon_ddl.Move('Spike Cannon', 20, 1.0, 'Phys', 'Normal')
         root.moves['Stomp'] = pokemon_ddl.Move('Stomp', 65, 1.0, 'Phys', 'Normal')
         root.moves['Strength'] = pokemon_ddl.Move('Strength', 80, 1.0, 'Phys', 'Normal')
@@ -3092,11 +3337,11 @@ def runDML():
         root.moves['Cross Chop'] = pokemon_ddl.Move('Cross Chop', 100, 0.8, 'Phys', 'Fighting')
         root.moves['Double Kick'] = pokemon_ddl.Move('Double Kick', 30, 1.0, 'Phys', 'Fighting')
         root.moves['Drain Punch'] = pokemon_ddl.Move('Drain Punch', 60, 1.0, 'Phys', 'Fighting')
-        root.moves['DynamicPunch'] = pokemon_ddl.Move('DynamicPunch', 100, 0.5, 'Phys', 'Fighting')
+        root.moves['Dynamic Punch'] = pokemon_ddl.Move('Dynamic Punch', 100, 0.5, 'Phys', 'Fighting')
         root.moves['Focus Punch'] = pokemon_ddl.Move('Focus Punch', 150, 1.0, 'Phys', 'Fighting')
         root.moves['Force Palm'] = pokemon_ddl.Move('Force Palm', 60, 1.0, 'Phys', 'Fighting')
         root.moves['Hammer Arm'] = pokemon_ddl.Move('Hammer Arm', 100, 0.9, 'Phys', 'Fighting')
-        root.moves['Hi Jump Kick'] = pokemon_ddl.Move('Hi Jump Kick', 100, 0.9, 'Phys', 'Fighting')
+        root.moves['High Jump Kick'] = pokemon_ddl.Move('High Jump Kick', 100, 0.9, 'Phys', 'Fighting')
         root.moves['Jump Kick'] = pokemon_ddl.Move('Jump Kick', 85, 0.95, 'Phys', 'Fighting')
         root.moves['Karate Chop'] = pokemon_ddl.Move('Karate Chop', 50, 1.0, 'Phys', 'Fighting')
         root.moves['Low Kick'] = pokemon_ddl.Move('Low Kick', 0, 1.0, 'Phys', 'Fighting')
@@ -3111,7 +3356,7 @@ def runDML():
         root.moves['Superpower'] = pokemon_ddl.Move('Superpower', 120, 1.0, 'Phys', 'Fighting')
         root.moves['Triple Kick'] = pokemon_ddl.Move('Triple Kick', 10, 0.9, 'Phys', 'Fighting')
         root.moves['Vital Throw'] = pokemon_ddl.Move('Vital Throw', 70, 1.0, 'Phys', 'Fighting')
-        root.moves['Wake-up Slap'] = pokemon_ddl.Move('Wake-up Slap', 60, 1.0, 'Phys', 'Fighting')
+        root.moves['Wake-Up Slap'] = pokemon_ddl.Move('Wake-up Slap', 60, 1.0, 'Phys', 'Fighting')
 
         # Flying-type moves
         root.moves['Aerial Ace'] = pokemon_ddl.Move('Aerial Ace', 60, 1.0, 'Phys', 'Flying')
@@ -3211,7 +3456,7 @@ def runDML():
         # Electric-type moves
         root.moves['Spark'] = pokemon_ddl.Move('Spark', 65, 1.0, 'Phys', 'Electric')
         root.moves['Thunder Fang'] = pokemon_ddl.Move('Thunder Fang', 65, 0.95, 'Phys', 'Electric')
-        root.moves['ThunderPunch'] = pokemon_ddl.Move('ThunderPunch', 75, 1.0, 'Phys', 'Electric')
+        root.moves['Thunder Punch'] = pokemon_ddl.Move('ThunderPunch', 75, 1.0, 'Phys', 'Electric')
         root.moves['Volt Tackle'] = pokemon_ddl.Move('Volt Tackle', 120, 1.0, 'Phys', 'Electric')
 
         # Psychic-type moves
@@ -3249,6 +3494,24 @@ def runDML():
         root.moves['Thief'] = pokemon_ddl.Move('Thief', 40, 1.0, 'Phys', 'Dark')
 
     if 'Special Moves':
+        # Hidden Powers
+        root.moves['Hidden Power [Fire]'] = pokemon_ddl.Move('Hidden Power [Fire]', 0, 1.0, 'Spec', 'Normal')
+        root.moves['Hidden Power [Ice]'] = pokemon_ddl.Move('Hidden Power [Ice]', 0, 1.0, 'Spec', 'Ice')
+        root.moves['Hidden Power [Grass]'] = pokemon_ddl.Move('Hidden Power [Grass]', 0, 1.0, 'Spec', 'Grass')
+        root.moves['Hidden Power [Ground]'] = pokemon_ddl.Move('Hidden Power [Ground]', 0, 1.0, 'Spec', 'Ground')
+        root.moves['Hidden Power [Fighting]'] = pokemon_ddl.Move('Hidden Power [Fighting]', 0, 1.0, 'Spec', 'Fighting')
+        root.moves['Hidden Power [Water]'] = pokemon_ddl.Move('Hidden Power [Water]', 0, 1.0, 'Spec', 'Water')
+        root.moves['Hidden Power [Electric]'] = pokemon_ddl.Move('Hidden Power [Electric]', 0, 1.0, 'Spec', 'Electric')
+        root.moves['Hidden Power [Poison]'] = pokemon_ddl.Move('Hidden Power [Poison]', 0, 1.0, 'Spec', 'Poison')
+        root.moves['Hidden Power [Flying]'] = pokemon_ddl.Move('Hidden Power [Flying]', 0, 1.0, 'Spec', 'Flying')
+        root.moves['Hidden Power [Psychic]'] = pokemon_ddl.Move('Hidden Power [Psychic]', 0, 1.0, 'Spec', 'Psychic')
+        root.moves['Hidden Power [Bug]'] = pokemon_ddl.Move('Hidden Power [Bug]', 0, 1.0, 'Spec', 'Bug')
+        root.moves['Hidden Power [Rock]'] = pokemon_ddl.Move('Hidden Power [Rock]', 0, 1.0, 'Spec', 'Rock')
+        root.moves['Hidden Power [Ghost]'] = pokemon_ddl.Move('Hidden Power [Ghost]', 0, 1.0, 'Spec', 'Ghost')
+        root.moves['Hidden Power [Dragon]'] = pokemon_ddl.Move('Hidden Power [Dragon]', 0, 1.0, 'Spec', 'Dragon')
+        root.moves['Hidden Power [Dark]'] = pokemon_ddl.Move('Hidden Power [Dark]', 0, 1.0, 'Spec', 'Dark')
+        root.moves['Hidden Power [Steel]'] = pokemon_ddl.Move('Hidden Power [Steel]', 0, 1.0, 'Spec', 'Steel')
+
         # Grass-type moves
         root.moves['Absorb'] = pokemon_ddl.Move('Absorb', 20, 1.0, 'Spec', 'Grass')
         root.moves['Energy Ball'] = pokemon_ddl.Move('Energy Ball', 80, 1.0, 'Spec', 'Grass')
@@ -3260,7 +3523,7 @@ def runDML():
         root.moves['Mega Drain'] = pokemon_ddl.Move('Mega Drain', 40, 1.0, 'Spec', 'Grass')
         root.moves['Petal Dance'] = pokemon_ddl.Move('Petal Dance', 90, 1.0, 'Spec', 'Grass')
         root.moves['Seed Flare'] = pokemon_ddl.Move('Seed Flare', 120, 0.85, 'Spec', 'Grass')
-        root.moves['SolarBeam'] = pokemon_ddl.Move('SolarBeam', 120, 1.0, 'Spec', 'Grass')
+        root.moves['Solar Beam'] = pokemon_ddl.Move('SolarBeam', 120, 1.0, 'Spec', 'Grass')
 
         # Poison-type moves
         root.moves['Acid'] = pokemon_ddl.Move('Acid', 40, 1.0, 'Spec', 'Poison')
@@ -3277,7 +3540,7 @@ def runDML():
         root.moves['Razor Wind'] = pokemon_ddl.Move('Razor Wind', 80, 1.0, 'Spec', 'Flying')
 
         # Rock-type moves
-        root.moves['AncientPower'] = pokemon_ddl.Move('AncientPower', 60, 1.0, 'Spec', 'Rock')
+        root.moves['Ancient Power'] = pokemon_ddl.Move('AncientPower', 60, 1.0, 'Spec', 'Rock')
         root.moves['Power Gem'] = pokemon_ddl.Move('Power Gem', 70, 1.0, 'Spec', 'Rock')
 
         # Fighting-type moves
@@ -3346,7 +3609,7 @@ def runDML():
         root.moves['Draco Meteor'] = pokemon_ddl.Move('Draco Meteor', 140, 0.9, 'Spec', 'Dragon')
         root.moves['Dragon Pulse'] = pokemon_ddl.Move('Dragon Pulse', 90, 1.0, 'Spec', 'Dragon')
         root.moves['Dragon Rage'] = pokemon_ddl.Move('Dragon Rage', 0, 1.0, 'Spec', 'Dragon')
-        root.moves['Dragonbreath'] = pokemon_ddl.Move('Dragonbreath', 60, 1.0, 'Spec', 'Dragon')
+        root.moves['Dragon Breath'] = pokemon_ddl.Move('Dragonbreath', 60, 1.0, 'Spec', 'Dragon')
         root.moves['Roar of Time'] = pokemon_ddl.Move('Roar of Time', 150, 0.9, 'Spec', 'Dragon')
         root.moves['Spacial Rend'] = pokemon_ddl.Move('Spacial Rend', 100, 0.95, 'Spec', 'Dragon')
         root.moves['Twister'] = pokemon_ddl.Move('Twister', 40, 1.0, 'Spec', 'Dragon')
@@ -3355,7 +3618,7 @@ def runDML():
         root.moves['Earth Power'] = pokemon_ddl.Move('Earth Power', 90, 1.0, 'Spec', 'Ground')
         root.moves['Mud Bomb'] = pokemon_ddl.Move('Mud Bomb', 65, 0.85, 'Spec', 'Ground')
         root.moves['Mud Shot'] = pokemon_ddl.Move('Mud Shot', 55, 0.95, 'Spec', 'Ground')
-        root.moves['Mud-slap'] = pokemon_ddl.Move('Mud-slap', 20, 1.0, 'Spec', 'Ground')
+        root.moves['Mud-Slap'] = pokemon_ddl.Move('Mud-slap', 20, 1.0, 'Spec', 'Ground')
 
         # Fire-type moves
         root.moves['Blast Burn'] = pokemon_ddl.Move('Blast Burn', 150, 0.9, 'Spec', 'Fire')
@@ -3375,10 +3638,9 @@ def runDML():
         root.moves['Shadow Ball'] = pokemon_ddl.Move('Shadow Ball', 80, 1.0, 'Spec', 'Ghost')
 
         # Normal-type moves
-        root.moves['Hidden Power'] = pokemon_ddl.Move('Hidden Power', 0, 1.0, 'Spec', 'Normal')
         root.moves['Hyper Beam'] = pokemon_ddl.Move('Hyper Beam', 150, 0.9, 'Spec', 'Normal')
         root.moves['Hyper Voice'] = pokemon_ddl.Move('Hyper Voice', 90, 1.0, 'Spec', 'Normal')
-        root.moves['Judgment'] = pokemon_ddl.Move('Judgment', 100, 1.0, 'Spec', 'Normal')
+        root.moves['Judgement'] = pokemon_ddl.Move('Judgement', 100, 1.0, 'Spec', 'Normal')
         root.moves['Snore'] = pokemon_ddl.Move('Snore', 40, 1.0, 'Spec', 'Normal')
         root.moves['SonicBoom'] = pokemon_ddl.Move('SonicBoom', 0, 0.9, 'Spec', 'Normal')
         root.moves['Spit Up'] = pokemon_ddl.Move('Spit Up', 0, 1.0, 'Spec', 'Normal')
@@ -3592,7 +3854,7 @@ def runDML():
 
         # Fire-type moves
         root.moves['Sunny Day'] = pokemon_ddl.Move('Sunny Day', 0, 1.0, 'Stat', 'Fire')
-        root.moves['Will-o-wisp'] = pokemon_ddl.Move('Will-o-wisp', 0, 0.75, 'Stat', 'Fire')
+        root.moves['Will-O-Wisp'] = pokemon_ddl.Move('Will-o-wisp', 0, 0.75, 'Stat', 'Fire')
     transaction.commit()
 
     print(root.pokesets['Dragonite'].toString())
