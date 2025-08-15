@@ -22,14 +22,8 @@ class Move(persistent.Persistent):
         toString function, provides information about the move object
         :return:
         """
-        hasDependents = ''
-        if self.dependents:
-            hasDependents += ', Dependent Moves: ['
-            for child, probability in self.dependents:
-                hasDependents += f'{child}, '
-            hasDependents = f'{hasDependents[:-2]}]'
 
-        return f'{self.name}: {self.power} Att., {self.accuracy * 100}% accurate, {self.category}, {self.moveType}{hasDependents}'
+        return f'{self.name}: {self.power} Att., {self.accuracy * 100}% accurate, {self.category}, {self.moveType}'
 
 
 class MoveSet(persistent.Persistent):
@@ -75,6 +69,7 @@ class PokemonIndiv:
         self.spdIV = 31
         self.speIV = 31
         self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'SolarBeam']
+        self.EVs = '252 HP / 252 SpA'
 
 
     def toString(self):
@@ -86,6 +81,7 @@ Ability: {self.ability}
 Level: {self.level}
 Shiny: {self.shiny}
 {self.nature} Nature
+EVs: {self.EVs}
 IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {self.spdIV} SpD / {self.speIV} Spe
 {attacks}'''
 
@@ -101,13 +97,6 @@ class PokemonSet(persistent.Persistent):
         self.pkTypes = pkTypes
         self.sets = sets
         self.baseStats = baseStats
-        self.hpIV = 31
-        self.attIV = 31
-        self.defIV = 31
-        self.spAttIV = 31
-        self.spDefIV = 31
-        self.spdIV = 31
-        self.nature = 'Bashful'
         self.genders = genders
         self.images = images
         pass
@@ -156,19 +145,72 @@ class PokemonSet(persistent.Persistent):
     def chooseItem(self) -> str:
         return ''
 
-    def chooseEV(self) -> Tuple[str, str, str]:
-        return ('', '', '')
+    def chooseEVs(self, detail, base, root=None) -> PokemonIndiv:
+        if root is None:
+            storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+            db = ZODB.DB(storage)
+            connection = db.open()
+            root = connection.root
+
+        points = {'HP': 0.0, 'Atk': 0.0, 'Def': 0.0, 'SpA': 0.0, 'SpD': 0.0, 'Spe': 0.0}
+
+        points['HP'] += (80 / base[0]) * (base[2] / 10 + base[4] / 10)
+        points['Atk'] += base[1] / 10
+        points['Def'] += base[2] / 10
+        points['SpA'] += base[3] / 10
+        points['SpD'] += base[4] / 10
+        points['Spe'] += base[5] / 6.5
+
+        for attack in detail.moves:
+            move_data = root.moves[attack]
+            if move_data.category == 'Phys':
+                points['Atk'] += min(3.0, move_data.power / 40)
+                points['Spe'] += min(2.0, move_data.power / 80)
+            elif move_data.category == 'Spec':
+                points['SpA'] += min(3.0, move_data.power / 40)
+                points['Spe'] += min(2.0, move_data.power / 80)
+            elif move_data.category == 'Stat' and move_data.name != 'Protect':
+                points['HP'] += 2
+                points['Spe'] += 1
+                points['Def'] += 2
+                points['SpD'] += 2
+
+        if 'Trick Room' in detail.moves or 'Gyro Ball' in detail.moves:
+            points['Spe'] = 0
+
+        if 'Destiny Bond' in detail.moves:
+            points['HP'] -= 5
+            points['Def'] -= 5
+            points['SpD'] -= 5
+            points['Spe'] += 3
+
+        if detail.ability == 'Huge Power' or detail.ability == 'Pure Power':
+            points['Atk'] = points['Atk'] + 8.0
+
+
+        sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
+        top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
+        stat_order = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
+
+        ordered_top_two = sorted(top_two_names, key=lambda stat: stat_order.index(stat))
+
+        high_stat_1 = ordered_top_two[0]
+        high_stat_2 = ordered_top_two[1]
+        detail.EVs = f'252 {high_stat_1} / 252 {high_stat_2}'
+
+        return detail
+
 
     def chooseNature(self) -> str:
         return ''
 
-    def chooseIV(self, attacks, root = None) -> (int, int, int, int, int, int):
+    def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):
         hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
         attacks_set = set(attacks)
         if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set:
             spe = 0
         has_phys_att = False
-        if root == None:
+        if root is None:
             storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
             db = ZODB.DB(storage)
             connection = db.open()
@@ -232,9 +274,10 @@ class PokemonSet(persistent.Persistent):
         new_guy.pokeball = self.choosePokeball()
         try:
             new_guy.moves = self.chooseMoves()
-        except:
+        except Exception as e:
             pass
         new_guy.hpIV, new_guy.atkIV, new_guy.defIV, new_guy.spaIV, new_guy.spdIV, new_guy.speIV = self.chooseIV(new_guy.moves, root)
+        self.chooseEVs(new_guy, self.baseStats, root)
         return new_guy
 
     def toString(self) -> str:

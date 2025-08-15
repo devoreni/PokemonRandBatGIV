@@ -66,18 +66,17 @@ if __name__ == '__main__':
     _, before = getPokemonTeam(8, root)
     team = createIndivPokemon(before, root)
     '''
-    pk1 = root.pokesets['Arceus-Fire']
-    pk2 = root.pokesets['Arceus-Fire']
-    pk3 = root.pokesets['Arceus-Fire']
-    pk4 = root.pokesets['Arceus-Fire']
-    pk5 = root.pokesets['Arceus-Fire']
-    pk6 = root.pokesets['Arceus-Fire']
-    pk7 = root.pokesets['Arceus-Fire']
-    pk8 = root.pokesets['Arceus-Fire']
-    pk9 = root.pokesets['Arceus-Fire']
-    pk0 = root.pokesets['Arceus-Fire']
-
-    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0])
+    pk1 = root.pokesets['Drifblim']
+    pk2 = root.pokesets['Drifblim']
+    pk3 = root.pokesets['Drifblim']
+    pk4 = root.pokesets['Drifblim']
+    pk5 = root.pokesets['Drifblim']
+    pk6 = root.pokesets['Drifblim']
+    pk7 = root.pokesets['Drifblim']
+    pk8 = root.pokesets['Drifblim']
+    pk9 = root.pokesets['Drifblim']
+    pk0 = root.pokesets['Drifblim']
+    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
     '''
     for pk in team:
         print(pk.toString())

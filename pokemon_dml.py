@@ -1383,9 +1383,10 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Roost', 'Brave Bird', 'Heat Wave', 'Drill Peck', 'Haze', 'Mirror Move'],
+                                'Protect': ['Roost', 'Brave Bird', 'Heat Wave', 'Drill Peck', 'Haze', 'Mirror Move', 'Air Cutter'],
                                 'Brave Bird': ['Sucker Punch', 'Night Slash', 'Dark Pulse'],
-                                'Heat Wave': ['Air Cutter', 'Calm Mind']
+                                'Heat Wave': ['Air Cutter', 'Calm Mind'],
+                                'Roost': ['Air Cutter']
                             }
                         ),
                     ), baseStats=(100, 125, 52, 105, 52, 71), genders=('M', 'F'), images=('430.gif', '430.png', '430 (1).png'), ability_weights=(0.2, 0.8)
@@ -1854,28 +1855,98 @@ def runDML():
             if 'Gengar':
                 root.pokesets['Gengar'] = pokemon_ddl.PokemonSet(
                     name='Gengar', species='Gengar', abilities=('Levitate',), pkTypes=('Ghost', 'Poison'),
-                    sets=(), baseStats=(60, 65, 60, 130, 75, 110), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Protect', 'Substitute'],
+                            {
+                                'Protect': ['Encore', 'Shadow Ball'],
+                                'Encore': ['Disable'],
+                                'Disable': ['Shadow Ball', 'Sludge Bomb'],
+                                'Shadow Ball': ['Focus Blast', 'Thunderbolt', 'Confuse Ray', 'Destiny Bond'],
+                                'Focus Blast': ['Taunt', 'Will-O-Wisp', 'Explosion'],
+                                'Substitute': ['Pain Split', 'Trick'],
+                                'Pain Split': ['Shadow Ball', 'Hypnosis'],
+                                'Thunderbolt': ['Taunt', 'Hidden Power [Fire]', 'Explosion'],
+                                'Confuse Ray': ['Icy Wind', 'Knock Off', 'Metronome'],
+                                'Hypnosis': ['Dream Eater']
+                            }
+                        ),
+                    ), baseStats=(60, 65, 60, 130, 75, 110), genders=('M', 'F'), images=('094.gif', '094.png', '094 (1).png')
                 )
             if 'Shedinja':
                 root.pokesets['Shedinja'] = pokemon_ddl.PokemonSet(
                     name='Shedinja', species='Shedinja', abilities=('Wonder Guard',), pkTypes=('Bug', 'Ghost'),
-                    sets=(), baseStats=(1, 90, 45, 30, 30, 40), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Swords Dance'],
+                            {
+                                'Protect': ['Swords Dance'],
+                                'Swords Dance': ['Shadow Sneak', 'Sucker Punch'],
+                                'Shadow Sneak': ['X-Scissor'],
+                                'Sucker Punch': ['X-Scissor', 'Shadow Sneak'],
+                                'X-Scissor': ['Aerial Ace', 'Will-O-Wisp', 'Dig', 'Metal Claw', 'Mimic']
+                            }
+                        ),
+                    ), baseStats=(1, 90, 45, 30, 30, 40), genders=('',), images=('292.gif', '292.png', '292 (1).png')
                 )
             if 'Banette':
                 root.pokesets['Banette'] = pokemon_ddl.PokemonSet(
                     name='Banette', species='Banette', abilities=('Insomnia', 'Frisk'), pkTypes=('Ghost',),
-                    sets=(), baseStats=(64, 115, 65, 83, 63, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Trick Room'],
+                                'Trick Room': ['Shadow Claw', 'Destiny Bond'],
+                                'Shadow Claw': ['Hidden Power [Fighting]', 'Sucker Punch', 'Shadow Sneak', 'Thunder Wave', 'Destiny Bond'],
+                                'Destiny Bond': ['Taunt', 'Trick']
+                            }
+                        ),
+                    ), baseStats=(64, 115, 65, 83, 63, 65), genders=('M', 'F'), images=('354.gif', '354.png', '354 (1).png')
                 )
             if 'Drifblim':
                 root.pokesets['Drifblim'] = pokemon_ddl.PokemonSet(
                     name='Drifblim', species='Drifblim', abilities=('Aftermath', 'Unburden'),
                     pkTypes=('Ghost', 'Flying'),
-                    sets=(), baseStats=(150, 80, 44, 90, 54, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Trick', 'Hypnosis', 'Calm Mind', 'Rain Dance', 'Stockpile'],
+                                'Trick': ['Shadow Ball'],
+                                'Shadow Ball': ['Thunderbolt', 'Hidden Power [Fighting]', 'Explosion'],
+                                'Rain Dance': ['Thunder', 'Weather Ball'],
+                                'Thunder': ['Explosion', 'Shadow Ball'],
+                                'Weather Ball': ['Explosion', 'Shadow Ball'],
+                                'Calm Mind': ['Shadow Ball'],
+                                'Hypnosis': ['Shadow Ball'],
+                                'Stockpile': ['Baton Pass'],
+                                'Baton Pass': ['Shadow Ball', 'Swallow']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Substitute'],
+                            {
+                                'Substitute': ['Calm Mind', 'Stockpile'],
+                                'Calm Mind': ['Baton Pass'],
+                                'Stockpile': ['Baton Pass'],
+                                'Baton Pass': ['Shadow Ball', 'Hypnosis', 'Recycle', 'Explosion']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                        ['Rest'],
+                            {
+                                'Rest': ['Calm Mind'],
+                                'Calm Mind': ['Shadow Ball'],
+                                'Shadow Ball': ['Baton Pass', 'Thunderbolt', 'Hidden Power [Fighting]']
+                            }
+                    )
+                    ), baseStats=(150, 80, 44, 90, 54, 80), genders=('M', 'F'), images=('426.gif', '426.png', '426 (1).png')
                 )
             if 'Mismagius':
                 root.pokesets['Mismagius'] = pokemon_ddl.PokemonSet(
                     name='Mismagius', species='Mismagius', abilities=('Levitate',), pkTypes=('Ghost',),
-                    sets=(), baseStats=(60, 60, 60, 105, 105, 105), genders=('M', 'F')
+                    sets=(), baseStats=(60, 60, 60, 105, 105, 105), genders=('M', 'F'), images=('429.gif', '429.png', '429 (1).png')
                 )
             if 'Dusknoir':
                 root.pokesets['Dusknoir'] = pokemon_ddl.PokemonSet(
