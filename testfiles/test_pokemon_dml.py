@@ -5,14 +5,17 @@ import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pokemon_ddl
 
-def get_PokemonSets_from_db():
+def get_all_pokemon_names_from_db():
     storage = ZODB.FileStorage.FileStorage('../data/PokeData.fs')
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
     pokemon = list(root.pokesets.keys())
+    moves = list(root.moves.keys())
     connection.close()
-    return pokemon
+    return pokemon, moves
+
+ALL_POKEMON_NAMES, ALL_MOVE_NAMES = get_all_pokemon_names_from_db()
 
 @pytest.fixture(scope='module')
 def db_root():
@@ -24,7 +27,7 @@ def db_root():
     connection.close()
 
 
-@pytest.mark.parametrize("name", get_PokemonSets_from_db())
+@pytest.mark.parametrize("name", ALL_POKEMON_NAMES)
 def test_PokemonSet_object_MoveSets(name, db_root):
     pk_set = db_root.pokesets[name]
     assert isinstance(pk_set, pokemon_ddl.PokemonSet), f"Object for '{name}' is not a valid PokemonSet."
@@ -60,3 +63,33 @@ def test_PokemonSet_object_MoveSets(name, db_root):
                 assert child_move in master_move_list, \
                     f"Validation failed for Pokémon '{name}' in MoveSet #{i + 1}:\n" \
                     f"  > Child move '{child_move}' (linked from parent '{parent_move}') does not exist in the master moves database."
+
+@pytest.mark.parametrize('name', ALL_POKEMON_NAMES)
+def test_PokemonSet_object_Images(name, db_root):
+    pk = db_root.pokesets[name]
+    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[0]}'), \
+        f'For {name}: {pk.images[0]} does not exist in assets'
+    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[1]}'), \
+        f'For {name}: {pk.images[1]} does not exist in assets'
+    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[2]}'), \
+        f'For {name}: {pk.images[2]} does not exist in assets'
+
+@pytest.mark.parametrize('name', ALL_POKEMON_NAMES)
+def test_PokemonSet_object_Abilities(name, db_root):
+    pk = db_root.pokesets[name]
+    assert len(pk.abilities) == len(pk.ability_weights)
+
+@pytest.mark.parametrize('move', ALL_MOVE_NAMES)
+def test_Move_object_attributes(move, db_root):
+    mv = db_root.moves[move]
+    assert type(mv.power) is int
+    assert 0 <= mv.accuracy <= 1
+    assert mv.category in {'Phys', 'Spec', 'Stat'}
+    assert mv.moveType in {'Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric',
+              'Rock', 'Poison', 'Ground',
+              'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water'}
+    assert mv.name == move
+
+@pytest.mark.parametrize('name', ALL_POKEMON_NAMES)
+def test_pokemon_has_type_map(name, db_root):
+    assert name in set(db_root.pokeprobability['pokemon_to_types_map'].keys())

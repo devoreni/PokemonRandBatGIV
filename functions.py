@@ -63,20 +63,21 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    _, before = getPokemonTeam(8, root)
+    '''_, before = getPokemonTeam(8, root)
     team = createIndivPokemon(before, root)
     '''
-    pk1 = root.pokesets['Drifblim']
-    pk2 = root.pokesets['Drifblim']
-    pk3 = root.pokesets['Drifblim']
-    pk4 = root.pokesets['Drifblim']
-    pk5 = root.pokesets['Drifblim']
-    pk6 = root.pokesets['Drifblim']
-    pk7 = root.pokesets['Drifblim']
-    pk8 = root.pokesets['Drifblim']
-    pk9 = root.pokesets['Drifblim']
-    pk0 = root.pokesets['Drifblim']
+
+    pk1 = root.pokesets['Aggron']
+    pk2 = root.pokesets['Aggron']
+    pk3 = root.pokesets['Aggron']
+    pk4 = root.pokesets['Aggron']
+    pk5 = root.pokesets['Aggron']
+    pk6 = root.pokesets['Aggron']
+    pk7 = root.pokesets['Aggron']
+    pk8 = root.pokesets['Aggron']
+    pk9 = root.pokesets['Aggron']
+    pk0 = root.pokesets['Aggron']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
-    '''
+
     for pk in team:
         print(pk.toString())

@@ -130,6 +130,7 @@ class PokemonSet(persistent.Persistent):
                     is_choose_from_empty = not choose_from
                 elif node_under_consideration in hidden_powers:
                     seen_moves = seen_moves.union(hidden_powers)
+                    break
                 else:
                     break
 
@@ -145,7 +146,7 @@ class PokemonSet(persistent.Persistent):
     def chooseItem(self) -> str:
         return ''
 
-    def chooseEVs(self, detail, base, root=None) -> PokemonIndiv:
+    def chooseEVsAndNature(self, detail, base, root=None) -> PokemonIndiv:
         if root is None:
             storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
             db = ZODB.DB(storage)
@@ -154,29 +155,40 @@ class PokemonSet(persistent.Persistent):
 
         points = {'HP': 0.0, 'Atk': 0.0, 'Def': 0.0, 'SpA': 0.0, 'SpD': 0.0, 'Spe': 0.0}
 
-        points['HP'] += (80 / base[0]) * (base[2] / 10 + base[4] / 10)
+        points['HP'] += (90 / base[0]) * (base[2] / 13 + base[4] / 13)
         points['Atk'] += base[1] / 10
         points['Def'] += base[2] / 10
         points['SpA'] += base[3] / 10
         points['SpD'] += base[4] / 10
         points['Spe'] += base[5] / 6.5
-
+        phys, spec = 0, 0
         for attack in detail.moves:
             move_data = root.moves[attack]
             if move_data.category == 'Phys':
-                points['Atk'] += min(3.0, move_data.power / 40)
-                points['Spe'] += min(2.0, move_data.power / 80)
+                points['Atk'] += min(3.2, move_data.power / 32)
+                points['Spe'] += min(2.0, move_data.power / 64)
+                points['Def'] += 0.2
+                points['SpD'] += 0.2
+                phys += 1
             elif move_data.category == 'Spec':
-                points['SpA'] += min(3.0, move_data.power / 40)
-                points['Spe'] += min(2.0, move_data.power / 80)
+                points['SpA'] += min(3.2, move_data.power / 32)
+                points['Spe'] += min(2.0, move_data.power / 64)
+                points['Def'] += 0.2
+                points['SpD'] += 0.2
+                spec += 1
             elif move_data.category == 'Stat' and move_data.name != 'Protect':
-                points['HP'] += 2
+                points['HP'] += 0.5
                 points['Spe'] += 1
-                points['Def'] += 2
-                points['SpD'] += 2
+                points['Def'] += 2.1
+                points['SpD'] += 2.1
+
+        if phys == 0:
+            points['Atk'] = -1
+        if spec == 0:
+            points['SpA'] = 0
 
         if 'Trick Room' in detail.moves or 'Gyro Ball' in detail.moves:
-            points['Spe'] = 0
+            points['Spe'] = -10
 
         if 'Destiny Bond' in detail.moves:
             points['HP'] -= 5
@@ -198,11 +210,25 @@ class PokemonSet(persistent.Persistent):
         high_stat_2 = ordered_top_two[1]
         detail.EVs = f'252 {high_stat_1} / 252 {high_stat_2}'
 
+        if sorted_stats[0][0] != 'HP':
+            plus = sorted_stats[0][0]
+        else:
+            plus = sorted_stats[1][0]
+        if sorted_stats[5][0] != 'HP':
+            minus = sorted_stats[5][0]
+        else:
+            minus = sorted_stats[4][0]
+        nature_list = {
+            'Atk': {'Def': 'Lonely', 'SpA': 'Adamant', 'SpD': 'Naughty', 'Spe': 'Brave'},
+            'Def': {'Atk': 'Bold', 'SpA': 'Impish', 'SpD': 'Lax', 'Spe': 'Relaxed'},
+            'SpA': {'Atk': 'Modest', 'Def': 'Mild', 'SpD': 'Rash', 'Spe': 'Quiet'},
+            'SpD': {'Atk': 'Calm', 'Def': 'Gentle', 'SpA': 'Careful', 'Spe': 'Sassy'},
+            'Spe': {'Atk': 'Timid', 'Def': 'Hasty', 'SpA': 'Jolly', 'SpD': 'Naive'}
+        }
+
+        detail.nature = nature_list[plus][minus]
+
         return detail
-
-
-    def chooseNature(self) -> str:
-        return ''
 
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):
         hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
@@ -277,7 +303,7 @@ class PokemonSet(persistent.Persistent):
         except Exception as e:
             pass
         new_guy.hpIV, new_guy.atkIV, new_guy.defIV, new_guy.spaIV, new_guy.spdIV, new_guy.speIV = self.chooseIV(new_guy.moves, root)
-        self.chooseEVs(new_guy, self.baseStats, root)
+        self.chooseEVsAndNature(new_guy, self.baseStats, root)
         return new_guy
 
     def toString(self) -> str:
