@@ -6,7 +6,7 @@ import pprint
 
 def getPokemonTeam(num: int, root = None) -> Tuple[list, list]:
     if not root:
-        storage = ZODB.FileStorage.FileStorage('PokeData.fs')
+        storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
         db = ZODB.DB(storage)
         connection = db.open()
         root = connection.root

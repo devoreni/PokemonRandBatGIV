@@ -2242,7 +2242,7 @@ def runDML():
             if 'Metagross':
                 root.pokesets['Metagross'] = pokemon_ddl.PokemonSet(
                     name='Metagross', species='Metagross', abilities=('Clear Body',), pkTypes=('Steel', 'Psychic'),
-                    sets=(), baseStats=(80, 135, 130, 95, 90, 70), genders=('',)
+                    sets=(), baseStats=(80, 135, 130, 95, 90, 70), genders=('',), images=('376.png', '376.png', '376 (1).png')
                 )
             if 'Registeel':
                 root.pokesets['Registeel'] = pokemon_ddl.PokemonSet(
