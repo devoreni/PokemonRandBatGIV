@@ -166,13 +166,13 @@ class PokemonSet(persistent.Persistent):
             move_data = root.moves[attack]
             if move_data.category == 'Phys':
                 points['Atk'] += min(3.2, move_data.power / 32)
-                points['Spe'] += min(2.0, move_data.power / 64)
+                points['Spe'] += min(2.0, move_data.power / 60)
                 points['Def'] += 0.2
                 points['SpD'] += 0.2
                 phys += 1
             elif move_data.category == 'Spec':
                 points['SpA'] += min(3.2, move_data.power / 32)
-                points['Spe'] += min(2.0, move_data.power / 64)
+                points['Spe'] += min(2.0, move_data.power / 60)
                 points['Def'] += 0.2
                 points['SpD'] += 0.2
                 spec += 1
@@ -187,8 +187,18 @@ class PokemonSet(persistent.Persistent):
         if spec == 0:
             points['SpA'] = 0
 
+        if phys > 0 and spec > 0 and self.baseStats[5] < 60:
+            points['Spe'] -= 10
+        if self.baseStats[5] <= 40:
+            points['Spe'] -= 10
+
         if 'Trick Room' in detail.moves or 'Gyro Ball' in detail.moves:
             points['Spe'] = -10
+
+        if 'Perish Song' in detail.moves:
+            points['HP'] += 6
+            points['Def'] += 5
+            points['SpD'] += 5
 
         if 'Destiny Bond' in detail.moves:
             points['HP'] -= 5
@@ -233,7 +243,7 @@ class PokemonSet(persistent.Persistent):
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):
         hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
         attacks_set = set(attacks)
-        if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set:
+        if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set or self.baseStats[5] < 40:
             spe = 0
         has_phys_att = False
         if root is None:
