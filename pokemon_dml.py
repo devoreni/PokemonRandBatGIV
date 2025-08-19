@@ -1973,7 +1973,7 @@ def runDML():
                                 'Protect': ['Shadow Punch'],
                                 'Shadow Punch': ['Imprison'],
                                 'Imprison': ['Fling', 'Earthquake', 'Fire Punch', 'Ice Punch'],
-                                'Pain Split': ['Confuse Ray', 'Curse'],
+                                'Pain Split': ['Confuse Ray', 'Curse', 'Shadow Sneak'],
                                 'Substitute': ['Trick Room'],
                                 'Trick Room': ['Fling'],
                                 'Fling': ['Trick Room', 'Attract', 'Brick Break', 'Rock Slide'],
@@ -2487,17 +2487,46 @@ def runDML():
             if 'Pikachu':
                 root.pokesets['Pikachu'] = pokemon_ddl.PokemonSet(
                     name='Pikachu', species='Pikachu', abilities=('Static',), pkTypes=('Electric',),
-                    sets=(), baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Surf'],
+                                'Surf': ['Volt Tackle'],
+                                'Volt Tackle': ['Fake Out', 'Endeavor', 'Quick Attack', 'Iron Tail']
+                            }
+                        ),
+                    ), baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F'), images=('025.gif', '025-m.png', '025-m (1).png')
                 )
             if 'Raichu':
                 root.pokesets['Raichu'] = pokemon_ddl.PokemonSet(
                     name='Raichu', species='Raichu', abilities=('Static',), pkTypes=('Electric',),
-                    sets=(), baseStats=(60, 90, 55, 90, 80, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Fake Out', 'Nasty Plot'],
+                                'Fake Out': ['Endeavor', 'Encore', 'Volt Tackle'],
+                                'Endeavor': ['Quick Attack'],
+                                'Encore': ['Volt Tackle', 'Grass Knot'],
+                                'Volt Tackle': ['Focus Blast'],
+                                'Nasty Plot': ['Focus Blast', 'Discharge', 'Volt Tackle', 'Grass Knot', 'Swift']
+                            }
+                        ),
+                    ), baseStats=(60, 90, 55, 90, 80, 100), genders=('M', 'F'), images=('026.gif', '026-m.png', '026-m (1).png')
                 )
             if 'Electrode':
                 root.pokesets['Electrode'] = pokemon_ddl.PokemonSet(
                     name='Electrode', species='Electrode', abilities=('Soundproof', 'Static'), pkTypes=('Electric',),
-                    sets=(), baseStats=(60, 50, 70, 80, 80, 140), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Light Screen', 'Reflect', 'Taunt', 'Thunder', 'Explosion'],
+                                'Thunder': ['Rain Dance']
+                            }
+                        ),
+                    ), baseStats=(60, 50, 70, 80, 80, 140), genders=('',), images=('101.gif', '101.png', '101 (1).png')
                 )
             if 'Jolteon':
                 root.pokesets['Jolteon'] = pokemon_ddl.PokemonSet(
@@ -3973,22 +4002,22 @@ def runDML():
 
     if 'Special Moves':
         # Hidden Powers
-        root.moves['Hidden Power [Fire]'] = pokemon_ddl.Move('Hidden Power [Fire]', 0, 1.0, 'Spec', 'Normal')
-        root.moves['Hidden Power [Ice]'] = pokemon_ddl.Move('Hidden Power [Ice]', 0, 1.0, 'Spec', 'Ice')
-        root.moves['Hidden Power [Grass]'] = pokemon_ddl.Move('Hidden Power [Grass]', 0, 1.0, 'Spec', 'Grass')
-        root.moves['Hidden Power [Ground]'] = pokemon_ddl.Move('Hidden Power [Ground]', 0, 1.0, 'Spec', 'Ground')
-        root.moves['Hidden Power [Fighting]'] = pokemon_ddl.Move('Hidden Power [Fighting]', 0, 1.0, 'Spec', 'Fighting')
-        root.moves['Hidden Power [Water]'] = pokemon_ddl.Move('Hidden Power [Water]', 0, 1.0, 'Spec', 'Water')
-        root.moves['Hidden Power [Electric]'] = pokemon_ddl.Move('Hidden Power [Electric]', 0, 1.0, 'Spec', 'Electric')
-        root.moves['Hidden Power [Poison]'] = pokemon_ddl.Move('Hidden Power [Poison]', 0, 1.0, 'Spec', 'Poison')
-        root.moves['Hidden Power [Flying]'] = pokemon_ddl.Move('Hidden Power [Flying]', 0, 1.0, 'Spec', 'Flying')
-        root.moves['Hidden Power [Psychic]'] = pokemon_ddl.Move('Hidden Power [Psychic]', 0, 1.0, 'Spec', 'Psychic')
-        root.moves['Hidden Power [Bug]'] = pokemon_ddl.Move('Hidden Power [Bug]', 0, 1.0, 'Spec', 'Bug')
-        root.moves['Hidden Power [Rock]'] = pokemon_ddl.Move('Hidden Power [Rock]', 0, 1.0, 'Spec', 'Rock')
-        root.moves['Hidden Power [Ghost]'] = pokemon_ddl.Move('Hidden Power [Ghost]', 0, 1.0, 'Spec', 'Ghost')
-        root.moves['Hidden Power [Dragon]'] = pokemon_ddl.Move('Hidden Power [Dragon]', 0, 1.0, 'Spec', 'Dragon')
-        root.moves['Hidden Power [Dark]'] = pokemon_ddl.Move('Hidden Power [Dark]', 0, 1.0, 'Spec', 'Dark')
-        root.moves['Hidden Power [Steel]'] = pokemon_ddl.Move('Hidden Power [Steel]', 0, 1.0, 'Spec', 'Steel')
+        root.moves['Hidden Power [Fire]'] = pokemon_ddl.Move('Hidden Power [Fire]', 60, 1.0, 'Spec', 'Normal')
+        root.moves['Hidden Power [Ice]'] = pokemon_ddl.Move('Hidden Power [Ice]', 60, 1.0, 'Spec', 'Ice')
+        root.moves['Hidden Power [Grass]'] = pokemon_ddl.Move('Hidden Power [Grass]', 60, 1.0, 'Spec', 'Grass')
+        root.moves['Hidden Power [Ground]'] = pokemon_ddl.Move('Hidden Power [Ground]', 60, 1.0, 'Spec', 'Ground')
+        root.moves['Hidden Power [Fighting]'] = pokemon_ddl.Move('Hidden Power [Fighting]', 60, 1.0, 'Spec', 'Fighting')
+        root.moves['Hidden Power [Water]'] = pokemon_ddl.Move('Hidden Power [Water]', 60, 1.0, 'Spec', 'Water')
+        root.moves['Hidden Power [Electric]'] = pokemon_ddl.Move('Hidden Power [Electric]', 60, 1.0, 'Spec', 'Electric')
+        root.moves['Hidden Power [Poison]'] = pokemon_ddl.Move('Hidden Power [Poison]', 60, 1.0, 'Spec', 'Poison')
+        root.moves['Hidden Power [Flying]'] = pokemon_ddl.Move('Hidden Power [Flying]', 60, 1.0, 'Spec', 'Flying')
+        root.moves['Hidden Power [Psychic]'] = pokemon_ddl.Move('Hidden Power [Psychic]', 60, 1.0, 'Spec', 'Psychic')
+        root.moves['Hidden Power [Bug]'] = pokemon_ddl.Move('Hidden Power [Bug]', 60, 1.0, 'Spec', 'Bug')
+        root.moves['Hidden Power [Rock]'] = pokemon_ddl.Move('Hidden Power [Rock]', 60, 1.0, 'Spec', 'Rock')
+        root.moves['Hidden Power [Ghost]'] = pokemon_ddl.Move('Hidden Power [Ghost]', 60, 1.0, 'Spec', 'Ghost')
+        root.moves['Hidden Power [Dragon]'] = pokemon_ddl.Move('Hidden Power [Dragon]', 60, 1.0, 'Spec', 'Dragon')
+        root.moves['Hidden Power [Dark]'] = pokemon_ddl.Move('Hidden Power [Dark]', 60, 1.0, 'Spec', 'Dark')
+        root.moves['Hidden Power [Steel]'] = pokemon_ddl.Move('Hidden Power [Steel]', 60, 1.0, 'Spec', 'Steel')
 
         # Grass-type moves
         root.moves['Absorb'] = pokemon_ddl.Move('Absorb', 20, 1.0, 'Spec', 'Grass')

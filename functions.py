@@ -63,20 +63,20 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    '''_, before = getPokemonTeam(8, root)
+    '''_, before = getPokemonTeam(30, root)
     team = createIndivPokemon(before, root)
     '''
 
-    pk1 = root.pokesets['Arceus-Ghost']
-    pk2 = root.pokesets['Arceus-Ghost']
-    pk3 = root.pokesets['Arceus-Ghost']
-    pk4 = root.pokesets['Arceus-Ghost']
-    pk5 = root.pokesets['Arceus-Ghost']
-    pk6 = root.pokesets['Arceus-Ghost']
-    pk7 = root.pokesets['Arceus-Ghost']
-    pk8 = root.pokesets['Arceus-Ghost']
-    pk9 = root.pokesets['Arceus-Ghost']
-    pk0 = root.pokesets['Arceus-Ghost']
+    pk1 = root.pokesets['Electrode']
+    pk2 = root.pokesets['Electrode']
+    pk3 = root.pokesets['Electrode']
+    pk4 = root.pokesets['Electrode']
+    pk5 = root.pokesets['Electrode']
+    pk6 = root.pokesets['Electrode']
+    pk7 = root.pokesets['Electrode']
+    pk8 = root.pokesets['Electrode']
+    pk9 = root.pokesets['Electrode']
+    pk0 = root.pokesets['Electrode']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
 
     for pk in team:
