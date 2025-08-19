@@ -2232,10 +2232,11 @@ def runDML():
                     name='Aggron', species='Aggron', abilities=('Sturdy', 'Rock Head'), pkTypes=('Steel', 'Rock'),
                     sets=(
                         pokemon_ddl.MoveSet(
-                            ['Protect'],
+                            ['Protect', 'Head Smash'],
                             {
-                                'Protect': ['Double-Edge', 'Iron Head', 'Substitute', 'Iron Tail', 'Dragon Claw', 'Rock Slide', 'Dynamic Punch', 'Fire Punch', 'Sandstorm', 'Shock Wave', 'Dragon Rush', 'Avalanche', 'Metal Burst'],
-                                'Substitute': ['Focus Punch']
+                                'Protect': ['Head Smash','Double-Edge', 'Iron Head', 'Substitute', 'Iron Tail', 'Dragon Claw', 'Rock Slide', 'Dynamic Punch', 'Fire Punch', 'Sandstorm', 'Shock Wave', 'Dragon Rush', 'Avalanche', 'Metal Burst'],
+                                'Substitute': ['Focus Punch'],
+                                'Head Smash': ['Protect']
                             }
                         ),
                     ), baseStats=(70, 110, 180, 60, 60, 50), genders=('M', 'F'), images=('306.gif', '306.png', '306 (1).png')
