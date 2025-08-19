@@ -597,7 +597,8 @@ def runDML():
                             {
                                 'Protect': ['Mind Reader', 'U-turn'],
                                 'U-turn': ['Toxic', 'Ice Beam', 'Roar', 'Mind Reader'],
-                                'Mind Reader': ['Sheer Cold', 'Roost']
+                                'Mind Reader': ['Sheer Cold', 'Roost'],
+                                'Sheer Cold': ['Mind Reader']
                             }
                         )
                     ), baseStats=(90, 85, 100, 95, 125, 85), genders=('',), images=('144.gif', '144.png', '144 (1).png')
@@ -2531,16 +2532,39 @@ def runDML():
             if 'Jolteon':
                 root.pokesets['Jolteon'] = pokemon_ddl.PokemonSet(
                     name='Jolteon', species='Jolteon', abilities=('Volt Absorb',), pkTypes=('Electric',),
-                    sets=(), baseStats=(65, 65, 60, 110, 95, 130), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Thunderbolt'],
+                            {
+                                'Protect': ['Helping Hand', 'Mud-Slap', 'Thunderbolt', 'Fake Tears'],
+                                'Mud-Slap': ['Light Screen', 'Thunderbolt'],
+                                'Helping Hand': ['Light Screen', 'Thunderbolt'],
+                                'Thunderbolt': ['Charge Beam', 'Discharge', 'Hidden Power [Ice]', 'Hidden Power [Water]', 'Hyper Beam', 'Hidden Power [Grass]', 'Shadow Ball', 'Shock Wave', 'Signal Beam', 'Swift', 'Trump Card', 'Yawn', 'Rain Dance', 'Thunder']
+                            }
+                        ),
+                    ), baseStats=(65, 65, 60, 110, 95, 130), genders=('M', 'F'), images=('135.gif', '135.png', '135 (1).png')
                 )
             if 'Zapdos':
                 root.pokesets['Zapdos'] = pokemon_ddl.PokemonSet(
                     name='Zapdos', species='Zapdos', abilities=('Pressure',), pkTypes=('Electric', 'Flying'),
-                    sets=(), baseStats=(90, 90, 85, 125, 90, 100), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Substitute', 'Discharge'],
+                                'Substitute': ['Hidden Power [Flying]', 'Toxic', 'Roar', 'Heat Wave', 'Steel Wing'],
+                                'Discharge': ['Hidden Power [Flying]', 'Drill Peck', 'Agility', 'Sky Attack'],
+                                'Agility': ['Baton Pass'],
+                                'Hidden Power [Flying]': ['Heat Wave', 'Ancient Power', 'Double Team'],
+                                'Drill Peck': ['Extra Sensory', 'Light Screen', 'Ominous Wind'],
+                                'Sky Attack': ['Tailwind', 'Sunny Day', 'Twister', 'Steel Wing']
+                            }
+                        ),
+                    ), baseStats=(90, 90, 85, 125, 90, 100), genders=('',), images=('145.gif', '145.png', '145 (1).png')
                 )
             if 'Lanturn':
                 root.pokesets['Lanturn'] = pokemon_ddl.PokemonSet(
-                    name='Lanturn', species='Lanturn', abilities=('Volt Absorb', 'Illuminate'),
+                    name='Lanturn', species='Lanturn', abilities=('Volt Absorb',),
                     pkTypes=('Water', 'Electric'),
                     sets=(), baseStats=(125, 58, 58, 76, 76, 67), genders=('M', 'F')
                 )

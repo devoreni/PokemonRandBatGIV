@@ -223,7 +223,7 @@ class PokemonSet(persistent.Persistent):
             points['SpD'] += 3
         if {'Rock Polish', 'Agility', 'Dragon Dance'}.intersection(attacks):
             points['Spe'] += 3
-        if {'Curse', 'Recover', 'Sheer Cold', 'Fissure', 'Guillotine', 'Horn Drill'}.intersection(attacks):
+        if {'Curse', 'Recover', 'Sheer Cold', 'Fissure', 'Guillotine', 'Horn Drill', 'Substitute'}.intersection(attacks):
             points['HP'] += 3
 
 
