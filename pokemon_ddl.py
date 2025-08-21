@@ -154,33 +154,96 @@ class PokemonSet(persistent.Persistent):
             root = connection.root
 
         # usually between 5 and 15
-        points = {'HP': self.baseStats[0] / 10,
-                  'Atk': self.baseStats[1] / 10,
-                  'Def': self.baseStats[2] / 10,
-                  'SpA': self.baseStats[3] / 10,
-                  'SpD': self.baseStats[4] / 10,
-                  'Spe': self.baseStats[5] / 10}
+        points = {'HP': self.baseStats[0] / 10.0 + self.baseStats[2] / 100.0 + self.baseStats[4] / 100.0,
+                  'Atk': self.baseStats[1] / 10.0,
+                  'Def': self.baseStats[2] / 10.0,
+                  'SpA': self.baseStats[3] / 10.0,
+                  'SpD': self.baseStats[4] / 10.0,
+                  'Spe': self.baseStats[5] / 6.5}
 
         # look at moves
         phys, spec, stat = 0, 0, 0
         for move in detail.moves:
-            if (root.moves[move] == 'Phys'
+            if (root.moves[move].category == 'Phys'
                     or move in {'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
                                                       'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
                                                       'Work Up'})\
-                    and move not in {'Bide', 'Counter', 'Endeavor', 'Metal Burst', 'Seismic Toss', 'Super Fang'}:
+                    and move not in {'Bide', 'Counter', 'Endeavor', 'Metal Burst', 'Seismic Toss', 'Super Fang',
+                                     'Explosion', 'Selfdestruct', 'Fissure', 'Guillotine', 'Horn Drill'}:
                 phys += 1
-            if (root.moves[move] == 'Spec'
+                points['Atk'] += min(3, root.moves[move].power / 35)
+
+            if (root.moves[move].category == 'Spec'
                     or move in {'Calm Mind', 'Growth', 'Nasty Plot', 'Shell Smash', 'Tail Glow',
                                                       'Work Up'})\
-                    and move not in {'Dragon Rage', 'Mirror Coat', 'Night Shade', 'Sonic Boom', 'Psywave'}:
+                    and move not in {'Dragon Rage', 'Mirror Coat', 'Night Shade', 'Sonic Boom', 'Psywave', 'Sheer Cold'}:
                 spec += 1
-            if root.moves[move] == 'Stat' and move not in {'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
+                points['SpA'] += min(3, root.moves[move].power / 35)
+            if root.moves[move].category == 'Stat' and move not in {'Protect', 'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
                                                       'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
                                                       'Work Up', 'Calm Mind', 'Nasty Plot', 'Tail Glow'}:
                 stat += 1
+                points['HP'] += 1
+                points['Def'] += 1
+                points['SpD'] += 1
+                points['Spe'] += 1
+            if move in {'Avalanche', 'Counter', 'Mirror Coat', 'Payback', 'Roar', 'Whirlwind'}:
+                points['HP'] += 3
+                points['Spe'] -= 1
+            if move in {'Perish Song', 'Horn Drill', 'Fissure', 'Guillotine', 'Sheer Cold', 'Recover', 'Roost',
+                        'Moonlight', 'Morning Sun', 'Substitute', 'Wish', 'Ingrain', 'Heal Order', 'Milk Drink',
+                        'Rest', 'Slack Off', 'Soft-Boiled', 'Synthesis'}:
+                points['HP'] += 3
+                points['Def'] += 3
+                points['SpD'] += 3
+        # End Loop
+
+        if (self.baseStats[2] + self.baseStats[4]) - (self.baseStats[0] * 2) > 60:
+            points['HP'] += ((self.baseStats[2] + self.baseStats[4]) - (self.baseStats[0] * 2)) / 10
+
+        points['HP'] += stat
+        moves_as_set = set(detail.moves)
+
+        points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
+        points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
+        points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
 
 
+        if points['Atk'] >= max(points['HP'], points['Def'], points['SpD'], points['Spe'])\
+                and points['SpA'] >= max(points['HP'], points['Def'], points['SpD'], points['Spe']):
+            if self.baseStats[5] <= 70:
+                points['Spe'] = 0
+            else:
+                if points['Atk'] <= points['SpA']:
+                    points['Atk'] = max(points['HP'], points['Def'], points['SpD'], points['Spe']) - 1
+                else:
+                    points['SpA'] = max(points['HP'], points['Def'], points['SpD'], points['Spe']) - 1
+                if max(points['Atk'], points['SpA']) - points['Spe'] < 3.3:
+                    points['Spe'] += 3.3
+
+
+
+
+
+
+
+
+
+
+
+
+        if phys == 0 or (phys == 1 and 'Fake Out' in moves_as_set):
+            points['Atk'] = -1
+        if spec == 0:
+            points['SpA'] = 0
+        if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
+            points['Spe'] = -100
+
+        # --- TEMPORARY DEBUG PRINT ---
+        import pprint
+        print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
+        pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
+        # -----------------------------
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
@@ -209,6 +272,10 @@ class PokemonSet(persistent.Persistent):
         }
 
         detail.nature = nature_list[plus][minus]
+
+        # ---------------- More Debug -------
+        print(detail.toString())
+        # -----------------End Debug --------
         return detail
 
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):

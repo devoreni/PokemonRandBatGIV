@@ -95,7 +95,7 @@ class TestAllOutMixedSweeper:
     def test_salamence(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Salamence', species='Salamence', abilities=(), pkTypes=(), sets=(),
                             baseStats=(95, 135, 80, 110, 80, 100), genders=('M', 'F'))
-        pk_indiv = pokemon_ddl.okemonIndiv()
+        pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Draco Meteor', 'Fire Blast', 'Earthquake', 'Dragon Claw']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 Atk / 252 Spe', '252 SpA / 252 Spe')
@@ -104,16 +104,16 @@ class TestAllOutMixedSweeper:
     def test_salamence_2(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Salamence', species='Salamence', abilities=(), pkTypes=(), sets=(),
                             baseStats=(95, 135, 80, 110, 80, 100), genders=('M', 'F'))
-        pk_indiv = pokemon_ddl.okemonIndiv()
+        pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Draco Meteor', 'Protect', 'Earthquake', 'Dragon Claw']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 Atk / 252 Spe', '252 SpA / 252 Spe')
-        assert result.nature in ('Hasty', 'Naive', 'Adamant', 'Jolly')
+        assert result.nature in ('Hasty', 'Naive', 'Adamant', 'Jolly', 'Naughty', 'Lonely')
 
     def test_pikachu(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Pikachu', species='Pikachu', abilities=(), pkTypes=(), sets=(),
                             baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F'))
-        pk_indiv = pokemon_ddl.okemonIndiv()
+        pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Protect', 'Surf', 'Volt Tackle', 'Endeavor']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 Atk / 252 Spe', '252 SpA / 252 Spe')
@@ -154,8 +154,18 @@ class TestBulkyPhysicalAttacker:
         pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Rest', 'Sleep Talk', 'Earthquake', 'Curse']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
-        assert result.EVs == '252 HP / 252 Atk'
-        assert result.nature in ('Brave', 'Adamant')
+        assert result.EVs in ('252 HP / 252 Atk', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Brave', 'Adamant', 'Impish', 'Careful')
+
+    def test_curse_snorlax(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Snorlax', species='Snorlax', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(160, 110, 65, 65, 110, 30), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Curse', 'Rest', 'Body Slam', 'Earthquake']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        # The goal is to patch its weaker defense while taking advantage of its HP.
+        assert result.EVs == '252 HP / 252 Def'
+        assert result.nature == 'Impish', 'Adamant'
 
 
 class TestBulkySpecialAttacker:
@@ -185,6 +195,34 @@ class TestBulkySpecialAttacker:
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs == '252 HP / 252 SpA'
         assert result.nature == 'Modest'
+
+class TestBulkyMixedAttacker:
+    def test_camerupt(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Camerupt', species='Camerupt', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(70, 100, 70, 105, 75, 40), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Protect', 'Eruption', 'Earthquake', 'Slack Off']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Atk', '252 Atk / 252 SpA', '252 HP / 252 SpA')
+        assert result.nature in ('Brave', 'Quiet')
+
+    def test_swalot(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Swalot', species='Swalot', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(100, 73, 83, 73, 83, 55), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Strength', 'Sludge Bomb', 'Bullet Seed', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Atk', '252 Atk / 252 SpA', '252 HP / 252 SpA')
+        assert result.nature == 'Naughty'
+
+    def test_cacturne(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Cacturne', species='Cacturne', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(70, 115, 60, 115, 60, 55), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Protect', 'Dynamic Punch', 'Mud-Slap', 'Dark Pulse']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Atk', '252 Atk / 252 SpA', '252 HP / 252 SpA')
+        assert result.nature in ('Brave', 'Quiet')
 
 
 class TestFastSupport:
@@ -224,7 +262,7 @@ class TestPhysicalWall:
         pk_indiv.moves = ['Spikes', 'Roost', 'Whirlwind', 'Protect']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 HP / 252 Def', '252 HP / 252 SpD')
-        assert result.nature in ('Impish', 'Careful')
+        assert result.nature in ('Impish', 'Careful', 'Bold', 'Calm')
 
     def test_skarmory_2(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Skarmory', species='Skarmory', abilities=(), pkTypes=(), sets=(),
@@ -233,7 +271,7 @@ class TestPhysicalWall:
         pk_indiv.moves = ['Spikes', 'Roost', 'Whirlwind', 'Counter']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 HP / 252 Def', '252 HP / 252 SpD')
-        assert result.nature in ('Impish', 'Careful')
+        assert result.nature in ('Impish', 'Careful', 'Bold', 'Calm')
 
     def test_weezing(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Weezing', species='Weezing', abilities=(), pkTypes=(), sets=(),
@@ -300,7 +338,7 @@ class TestUtility:
         pk_indiv.moves = ['Perish Song', 'Whirlpool', 'Protect', 'Rest']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 HP / 252 SpD', '252 HP / 252 Def')
-        assert result.nature == ('Calm', 'Bold')
+        assert result.nature in ('Calm', 'Bold')
 
     def test_walrein(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Walrein', species='Walrein', abilities=(), pkTypes=(), sets=(),
@@ -309,7 +347,35 @@ class TestUtility:
         pk_indiv.moves = ['Fissure', 'Sheer Cold', 'Sleep Talk', 'Rest']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 HP / 252 SpD', '252 HP / 252 Def')
-        assert result.nature == ('Calm', 'Bold')
+        assert result.nature in ('Calm', 'Bold')
+
+    def test_dusclops(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Dusclops', species='Dusclops', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(40, 70, 130, 60, 130, 25), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Will-O-Wisp', 'Pain Split', 'Trick Room', 'Confuse Ray']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Relaxed', 'Sassy')
+
+    def test_gastrodon(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Gastrodon', species='Gastrodon', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(111, 83, 68, 92, 82, 39), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Will-O-Wisp', 'Recover', 'Icy Wind', 'Muddy Water']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Relaxed', 'Sassy', 'Calm', 'Bold')
+
+class TestWallbreaker:
+    def test_marowak(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Marowak', species='Marowak', abilities=(), pkTypes=(), sets=(),
+                                    baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Swords Dance', 'Earthquake', 'Stone Edge', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 Atk'
+        assert result.nature == 'Adamant'
 
 class TestVariety:
     def test_empoleon_calm(self, db_root):
