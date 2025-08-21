@@ -153,91 +153,40 @@ class PokemonSet(persistent.Persistent):
             connection = db.open()
             root = connection.root
 
-        points = {'HP': 0.0, 'Atk': 0.0, 'Def': 0.0, 'SpA': 0.0, 'SpD': 0.0, 'Spe': 0.0}
+        # usually between 5 and 15
+        points = {'HP': self.baseStats[0] / 10,
+                  'Atk': self.baseStats[1] / 10,
+                  'Def': self.baseStats[2] / 10,
+                  'SpA': self.baseStats[3] / 10,
+                  'SpD': self.baseStats[4] / 10,
+                  'Spe': self.baseStats[5] / 10}
 
-        points['HP'] += (100 / base[0]) * (base[2] / 13 + base[4] / 13)
-        points['Atk'] += base[1] / 10
-        points['Def'] += base[2] / 10
-        points['SpA'] += base[3] / 10
-        points['SpD'] += base[4] / 10
-        points['Spe'] += base[5] / 6.5
-        phys, spec = 0, 0
-        for attack in detail.moves:
-            move_data = root.moves[attack]
-            if move_data.category == 'Phys' and attack not in {'Seismic Toss', 'Counter', 'Metal Burst', 'Fissure',
-                                                                 'Guillotine', 'Horn Drill', 'Super Fang', 'Endeavor', 'Bide'}:
-                points['Atk'] += min(3.2, move_data.power / 32) if 200 > move_data.power > 10 else 1
-                points['Spe'] += min(2.0, move_data.power / 60)
+        # look at moves
+        phys, spec, stat = 0, 0, 0
+        for move in detail.moves:
+            if (root.moves[move] == 'Phys'
+                    or move in {'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
+                                                      'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
+                                                      'Work Up'})\
+                    and move not in {'Bide', 'Counter', 'Endeavor', 'Metal Burst', 'Seismic Toss', 'Super Fang'}:
                 phys += 1
-            elif move_data.category == 'Spec' and attack not in {'Night Shade', 'Mirror Coat', 'Dragon Rage', 'Sonic Boom', 'Sheer Cold'}:
-                points['SpA'] += min(3.2, move_data.power / 32) if move_data.power > 10 else 1
-                points['Spe'] += min(2.0, move_data.power / 60)
+            if (root.moves[move] == 'Spec'
+                    or move in {'Calm Mind', 'Growth', 'Nasty Plot', 'Shell Smash', 'Tail Glow',
+                                                      'Work Up'})\
+                    and move not in {'Dragon Rage', 'Mirror Coat', 'Night Shade', 'Sonic Boom', 'Psywave'}:
                 spec += 1
-            elif move_data.category == 'Stat' and move_data.name != 'Protect':
-                points['HP'] += 0.5
-                points['Spe'] += 1
-                points['Def'] += 2.1
-                points['SpD'] += 2.1
+            if root.moves[move] == 'Stat' and move not in {'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
+                                                      'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
+                                                      'Work Up', 'Calm Mind', 'Nasty Plot', 'Tail Glow'}:
+                stat += 1
 
-            if move_data.power < 40:
-                points['Def'] += 1
-                points['SpD'] += 1
-                points['HP'] += 0.5
-
-        if phys == 0:
-            points['Atk'] = -1
-        else:
-            points['Atk'] += 3 * phys
-            points['Spe'] += 0.6 * phys
-        if spec == 0:
-            points['SpA'] = 0
-        else:
-            points['SpA'] += 3 * spec
-            points['Spe'] += 0.6 * spec
-
-        if phys > 0 and spec > 0 and self.baseStats[5] < 60:
-            points['Spe'] -= 10
-        if self.baseStats[5] <= 40:
-            points['Spe'] -= 10
-
-        attacks = set(detail.moves)
-        if 'Endeavor' in attacks:
-            points['HP'] -= 10
-            points['Spe'] += 3
-        if 'Perish Song' in attacks:
-            points['HP'] += 6
-            points['Def'] += 5
-            points['SpD'] += 5
-        if 'Destiny Bond' in attacks:
-            points['HP'] -= 5
-            points['Def'] -= 5
-            points['SpD'] -= 5
-            points['Spe'] += 3
-        if {'Swords Dance', 'Dragon Dance', 'Howl', 'Bulk Up', 'Curse'}.intersection(attacks):
-            points['Atk'] += 3
-        if {'Calm Mind', 'Nasty Plot', 'Tail Glow'}.intersection(attacks):
-            points['SpA'] += 3
-        if {'Iron Defense', 'Bulk Up', 'Curse', 'Cosmic Power', 'Sheer Cold', 'Fissure', 'Guillotine', 'Horn Drill'}.intersection(attacks):
-            points['Def'] += 3
-        if {'Calm Mind', 'Amnesia', 'Cosmic Power', 'Sheer Cold', 'Fissure', 'Guillotine', 'Horn Drill'}.intersection(attacks):
-            points['SpD'] += 3
-        if {'Rock Polish', 'Agility', 'Dragon Dance'}.intersection(attacks):
-            points['Spe'] += 3
-        if {'Curse', 'Recover', 'Sheer Cold', 'Fissure', 'Guillotine', 'Horn Drill', 'Substitute'}.intersection(attacks):
-            points['HP'] += 3
-
-
-        if 'Trick Room' in attacks or 'Gyro Ball' in attacks:
-            points['Spe'] = -10
-        if detail.ability == 'Huge Power' or detail.ability == 'Pure Power':
-            points['Atk'] = points['Atk'] + 8.0
 
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
         stat_order = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
 
-        ordered_top_two = sorted(top_two_names, key=lambda stat: stat_order.index(stat))
+        ordered_top_two = sorted(top_two_names, key=lambda high_stat: stat_order.index(high_stat))
 
         high_stat_1 = ordered_top_two[0]
         high_stat_2 = ordered_top_two[1]
@@ -260,7 +209,6 @@ class PokemonSet(persistent.Persistent):
         }
 
         detail.nature = nature_list[plus][minus]
-
         return detail
 
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):

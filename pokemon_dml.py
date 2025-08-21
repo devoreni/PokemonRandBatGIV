@@ -2356,7 +2356,7 @@ def runDML():
                                 'Toxic': ['Gyro Ball', 'Mirror Shot']
                             }
                         ),
-                    ), baseStats=(60, 79, 105, 59, 85, 36), genders=('F',), images=('413.gif', '413-s.png', 'q413-s (1).png')
+                    ), baseStats=(60, 79, 105, 59, 85, 36), genders=('F',), images=('413.gif', '413-s.png', '413-s (1).png')
                 )
             if 'Bronzong':
                 root.pokesets['Bronzong'] = pokemon_ddl.PokemonSet(
@@ -2557,7 +2557,7 @@ def runDML():
                                 'Discharge': ['Hidden Power [Flying]', 'Drill Peck', 'Agility', 'Sky Attack'],
                                 'Agility': ['Baton Pass'],
                                 'Hidden Power [Flying]': ['Heat Wave', 'Ancient Power', 'Double Team'],
-                                'Drill Peck': ['Extra Sensory', 'Light Screen', 'Ominous Wind'],
+                                'Drill Peck': ['Extrasensory', 'Light Screen', 'Ominous Wind'],
                                 'Sky Attack': ['Tailwind', 'Sunny Day', 'Twister', 'Steel Wing']
                             }
                         ),
@@ -2567,7 +2567,21 @@ def runDML():
                 root.pokesets['Lanturn'] = pokemon_ddl.PokemonSet(
                     name='Lanturn', species='Lanturn', abilities=('Volt Absorb',),
                     pkTypes=('Water', 'Electric'),
-                    sets=(), baseStats=(125, 58, 58, 76, 76, 67), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Substitute', 'Rest'],
+                            {
+                                'Protect': ['Agility', 'Surf'],
+                                'Surf': ['Discharge'],
+                                'Discharge': ['Surf', 'Bounce', 'Charge Beam', 'Spark', 'Stockpile', 'Water Pulse'],
+                                'Agility': ['Surf'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Surf'],
+                                'Substitute': ['Heal Bell', 'Surf'],
+                                'Heal Bell': ['Charge Beam']
+                            }
+                        ),
+                    ), baseStats=(125, 58, 58, 76, 76, 67), genders=('M', 'F'), images=('171.gif', '171.png', '171 (1).png')
                 )
             if 'Ampharos':
                 root.pokesets['Ampharos'] = pokemon_ddl.PokemonSet(
