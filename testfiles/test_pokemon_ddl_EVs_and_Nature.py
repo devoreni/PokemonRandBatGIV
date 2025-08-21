@@ -377,6 +377,34 @@ class TestWallbreaker:
         assert result.EVs == '252 HP / 252 Atk'
         assert result.nature == 'Adamant'
 
+class TestEdgeCases:
+    def test_belly_drum_linoone(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Linoone', species='Linoone', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(78, 70, 61, 50, 61, 100), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Belly Drum', 'Extreme Speed', 'Shadow Claw', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 Atk / 252 Spe'
+        assert result.nature == 'Jolly'
+
+    def test_counter_forretress(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Forretress', species='Forretress', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(75, 90, 140, 60, 60, 40), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Spikes', 'Stealth Rock', 'Counter', 'Payback']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 Def'
+        assert result.nature == 'Impish'
+
+    def test_explosion_gengar(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Gengar', species='Gengar', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(60, 65, 60, 130, 75, 110), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Shadow Ball', 'Focus Blast', 'Thunderbolt', 'Explosion']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 SpA / 252 Spe'
+        assert result.nature in ('Timid', 'Modest')
+
 class TestVariety:
     def test_empoleon_calm(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Empoleon', species='Empoleon', abilities=(), pkTypes=(), sets=(),
