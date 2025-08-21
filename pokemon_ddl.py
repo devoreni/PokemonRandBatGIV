@@ -246,6 +246,15 @@ class PokemonSet(persistent.Persistent):
             points['Def'] = points['SpD']
             points['SpD'] = temp + 0.01
 
+        if points['Def'] <= min(points['Atk'], points['HP'], points['SpA'], points['SpD'], points['Spe'])\
+                and (points['HP'] > max(points['Atk'], points['Def'], points['SpA'], points['SpD'], points['Spe'])
+                or points['SpD'] > max(points['Atk'], points['Def'], points['SpA'], points['HP'], points['Spe'])):
+            points['Spe'] = 0
+        elif points['SpD'] <= min(points['Atk'], points['HP'], points['SpA'], points['Def'], points['Spe'])\
+                and (points['HP'] > max(points['Atk'], points['Def'], points['SpA'], points['SpD'], points['Spe'])
+                or points['Def'] > max(points['Atk'], points['SpD'], points['SpA'], points['HP'], points['Spe'])):
+            points['Spe'] = 0
+
         if phys == 0 or (phys == 1 and 'Fake Out' in moves_as_set):
             points['Atk'] = -1
         if spec == 0:

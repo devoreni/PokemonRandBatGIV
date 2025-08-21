@@ -177,6 +177,15 @@ class TestBulkySpecialAttacker:
         assert result.EVs in ('252 HP / 252 SpA', '252 HP / 252 Def', '252 HP / 252 SpD')
         assert result.nature in ('Modest', 'Calm', 'Bold')
 
+    def test_lanturn_2(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Lanturn', species='Lanturn', abilities=(), pkTypes=(), sets=(),
+                            baseStats=(125, 58, 58, 76, 76, 67), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Surf', 'Discharge', 'Bounce', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 SpA', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Sassy', 'Relaxed', 'Quiet')
+
     def test_magnezone(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Magnezone', species='Magnezone', abilities=(), pkTypes=(), sets=(),
                             baseStats=(70, 70, 115, 130, 90, 60), genders=('M', 'F'))
@@ -212,7 +221,7 @@ class TestBulkyMixedAttacker:
         pk_indiv.moves = ['Strength', 'Sludge Bomb', 'Bullet Seed', 'Protect']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs in ('252 HP / 252 Atk', '252 Atk / 252 SpA', '252 HP / 252 SpA')
-        assert result.nature == 'Naughty'
+        assert result.nature in ('Brave', 'Quiet')
 
     def test_cacturne(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Cacturne', species='Cacturne', abilities=(), pkTypes=(), sets=(),

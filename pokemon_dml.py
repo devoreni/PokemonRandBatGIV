@@ -2586,7 +2586,20 @@ def runDML():
             if 'Ampharos':
                 root.pokesets['Ampharos'] = pokemon_ddl.PokemonSet(
                     name='Ampharos', species='Ampharos', abilities=('Static',), pkTypes=('Electric',),
-                    sets=(), baseStats=(90, 75, 75, 115, 90, 55), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Reflect', 'Light Screen', 'Focus Blast', 'Power Gem'],
+                                'Reflect': ['Heal Bell'],
+                                'Light Screen': ['Heal Bell'],
+                                'Heal Bell': ['Discharge', 'Thunderbolt', 'Thunder', 'Hidden Power [Ice]', 'Hidden Power [Grass]'],
+                                'Focus Blast': ['Discharge', 'Thunderbolt', 'Hidden Power [Ice]', 'Hidden Power [Grass]', 'Substitute', 'Signal Beam'],
+                                'Substitute': ['Focus Punch'],
+                                'Power Gem': ['Hidden Power [Water]', 'Safeguard', 'Rain Dance', 'Thunder']
+                            }
+                        ),
+                    ), baseStats=(90, 75, 75, 115, 90, 55), genders=('M', 'F'), images=('181.gif', '181.png', '181 (1).png')
                 )
             if 'Raikou':
                 root.pokesets['Raikou'] = pokemon_ddl.PokemonSet(
