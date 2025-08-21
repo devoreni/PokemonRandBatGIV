@@ -163,7 +163,6 @@ class TestBulkyPhysicalAttacker:
         pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Curse', 'Rest', 'Body Slam', 'Earthquake']
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
-        # The goal is to patch its weaker defense while taking advantage of its HP.
         assert result.EVs == '252 HP / 252 Def'
         assert result.nature == 'Impish', 'Adamant'
 
@@ -404,6 +403,34 @@ class TestEdgeCases:
         result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
         assert result.EVs == '252 SpA / 252 Spe'
         assert result.nature in ('Timid', 'Modest')
+
+class TestChallenge:
+    def test_seismic_toss_chansey(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Chansey', species='Chansey', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(250, 5, 5, 35, 105, 50), genders=('F',))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Seismic Toss', 'Toxic', 'Soft-Boiled', 'Aromatherapy']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 Def'
+        assert result.nature == 'Bold'
+
+    def test_swords_dance_lucario(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Lucario', species='Lucario', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Swords Dance', 'Extreme Speed', 'Copycat', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 Atk'
+        assert result.nature == 'Adamant'
+
+    def test_willowisp_dusknoir(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Dusknoir', species='Dusknoir', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(45, 100, 135, 65, 135, 45), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Will-O-Wisp', 'Pain Split', 'Shadow Sneak', 'Ice Punch']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 SpD'
+        assert result.nature == 'Careful'
 
 class TestVariety:
     def test_empoleon_calm(self, db_root):

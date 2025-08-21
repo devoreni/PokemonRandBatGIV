@@ -208,6 +208,15 @@ class PokemonSet(persistent.Persistent):
         points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
         points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
 
+        if phys + spec == len(moves_as_set.intersection({'Fake Out', 'Extreme Speed', 'Feint', 'Aqua Jet', 'Bide', 'Bullet Punch',
+                                                     'Ice Shard', 'Mach Punch', 'Quick Attack', 'Shadow Sneak',
+                                                     'Sucker Punch', 'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
+                                                      'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
+                                                      'Work Up', 'Calm Mind', 'Nasty Plot', 'Tail Glow'})):
+            points['Spe'] -= 3
+            points['HP'] += 2
+            points['Def'] += 2
+            points['SpD'] += 2
 
         if points['Atk'] >= max(points['HP'], points['Def'], points['SpD'], points['Spe'])\
                 and points['SpA'] >= max(points['HP'], points['Def'], points['SpD'], points['Spe']):
@@ -221,16 +230,21 @@ class PokemonSet(persistent.Persistent):
                 if max(points['Atk'], points['SpA']) - points['Spe'] < 3.3:
                     points['Spe'] += 3.3
 
+        if points['HP'] - max(points['Atk'], points['Def'], points['SpA'], points['SpD'], points['Spe']) > 5\
+                and self.baseStats[0] - min(self.baseStats[2], self.baseStats[4]) > 80:
+            if points['Def'] < points['SpD']:
+                points['Def'] = points['HP']
+            else:
+                points['SpD'] = points['HP']
 
-
-
-
-
-
-
-
-
-
+        if points['Def'] >= max(points['Atk'], points['SpA'], points['SpD'], points['Spe'])\
+                and moves_as_set.intersection({'Will-O-Wisp', 'Tri-Attack', 'Sacred Fire', 'Lava Plume', 'Heat Wave',
+                                               'Flare Blitz', 'Flamethrower', 'Flame Wheel', 'Fire Punch', 'Fire Fang',
+                                               'Fire Blast', 'Ember', 'Blaze Kick'})\
+                and abs(self.baseStats[2] - self.baseStats[4]) < 30:
+            temp = points['Def']
+            points['Def'] = points['SpD']
+            points['SpD'] = temp + 0.01
 
         if phys == 0 or (phys == 1 and 'Fake Out' in moves_as_set):
             points['Atk'] = -1
@@ -239,11 +253,11 @@ class PokemonSet(persistent.Persistent):
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
             points['Spe'] = -100
 
-        # --- TEMPORARY DEBUG PRINT ---
+        '''# --- TEMPORARY DEBUG PRINT ---
         import pprint
         print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
         pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
-        # -----------------------------
+        # -----------------------------'''
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
@@ -273,9 +287,9 @@ class PokemonSet(persistent.Persistent):
 
         detail.nature = nature_list[plus][minus]
 
-        # ---------------- More Debug -------
+        '''# ---------------- More Debug -------
         print(detail.toString())
-        # -----------------End Debug --------
+        # -----------------End Debug --------'''
         return detail
 
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):

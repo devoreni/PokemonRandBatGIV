@@ -4259,7 +4259,7 @@ def runDML():
         root.moves['Slack Off'] = pokemon_ddl.Move('Slack Off', 0, 1.0, 'Stat', 'Normal')
         root.moves['Sleep Talk'] = pokemon_ddl.Move('Sleep Talk', 0, 1.0, 'Stat', 'Normal')
         root.moves['Smokescreen'] = pokemon_ddl.Move('Smokescreen', 0, 1.0, 'Stat', 'Normal')
-        root.moves['Softboiled'] = pokemon_ddl.Move('Softboiled', 0, 1.0, 'Stat', 'Normal')
+        root.moves['Soft-Boiled'] = pokemon_ddl.Move('Soft-Boiled', 0, 1.0, 'Stat', 'Normal')
         root.moves['Splash'] = pokemon_ddl.Move('Splash', 0, 1.0, 'Stat', 'Normal')
         root.moves['Stockpile'] = pokemon_ddl.Move('Stockpile', 0, 1.0, 'Stat', 'Normal')
         root.moves['Substitute'] = pokemon_ddl.Move('Substitute', 0, 1.0, 'Stat', 'Normal')
