@@ -2860,37 +2860,122 @@ def runDML():
                 root.pokesets['Aerodactyl'] = pokemon_ddl.PokemonSet(
                     name='Aerodactyl', species='Aerodactyl', abilities=('Rock Head', 'Pressure'),
                     pkTypes=('Rock', 'Flying'),
-                    sets=(), baseStats=(80, 105, 65, 60, 75, 130), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Substitute'],
+                            {
+                                'Substitute': ['Roost'],
+                                'Roost': ['Taunt', 'Stealth Rock', 'Dragon Claw', 'Torment'],
+                                'Protect': ['Taunt', 'Torment', 'Earthquake', 'Stone Edge', 'Rock Slide'],
+                                'Earthquake': ['Aerial Ace', 'Crunch', 'Defog', 'Dragon Claw', 'Fire Fang'],
+                                'Stone Edge': ['Dragon Claw', 'Sky Attack', 'Ice Fang', 'Earthquake'],
+                                'Rock Slide': ['Dragon Claw', 'Steel Wing', 'Sandstorm'],
+                                'Dragon Claw': ['Earthquake', 'Rock Smash', 'Stone Edge', 'Rock Tomb', 'Sandstorm',
+                                                'Rock Slide', 'Swagger'],
+                                'Taunt': ['Earthquake', 'Rockslide', 'Dragon Claw'],
+                                'Torment': ['Earthquake', 'Stone Edge', 'Dragon Claw', 'Steel Wing'],
+                                'Stealth Rock': ['Steel Wing', 'Aerial Ace', 'Dragon Claw', 'Ice Fang', 'Bite', 'Crunch']
+                            }
+                        ),
+                          ), baseStats=(80, 105, 65, 60, 75, 130), genders=('M', 'F'), images=('142.gif', '142.png', '142 (1).png')
                 )
             if 'Sudowoodo':
                 root.pokesets['Sudowoodo'] = pokemon_ddl.PokemonSet(
                     name='Sudowoodo', species='Sudowoodo', abilities=('Sturdy', 'Rock Head'), pkTypes=('Rock',),
-                    sets=(), baseStats=(70, 100, 115, 30, 65, 30), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Wood Hammer', 'Mimic', 'Rock Polish', 'Seismic Toss'],
+                                'Wood Hammer': ['Double-Edge'],
+                                'Double-Edge': ['Counter', 'Explosion', 'Stealth Rock', 'Dynamic Punch', 'Earthquake'],
+                                'Mimic': ['Ice Punch'],
+                                'Ice Punch': ['Wood Hammer', 'Double-Edge'],
+                                'Rock Polish': ['Wood Hammer'],
+                                'Seismic Toss': ['Toxic', 'Sand Tomb', 'Explosion']
+                            }
+                        ),
+                    ), baseStats=(70, 100, 115, 30, 65, 30), genders=('M', 'F'), images=('185.gif', '185-m.png', '185-m (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Shuckle':
                 root.pokesets['Shuckle'] = pokemon_ddl.PokemonSet(
                     name='Shuckle', species='Shuckle', abilities=('Sturdy', 'Gluttony'), pkTypes=('Bug', 'Rock'),
-                    sets=(), baseStats=(20, 10, 230, 10, 230, 5), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Knock Off', 'Rest', 'Power Trick', 'Power Trick'],
+                            {
+                                'Protect': ['Toxic'],
+                                'Knock Off': ['Toxic'],
+                                'Rest': ['Toxic', 'Protect'],
+                                'Toxic': ['Encore', 'String Shot', 'Helping Hand'],
+                                'Encore': ['Rest'],
+                                'Power Trick': ['Gyro Ball'],
+                                'Gyro Ball': ['Stone Edge', 'Rock Slide', 'Bug Bite'],
+                                'Stone Edge': ['Protect'],
+                                'Rock Slide': ['Protect'],
+                                'Bug Bite': ['Protect']
+                            }
+                        ),
+                    ), baseStats=(20, 10, 230, 10, 230, 5), genders=('M', 'F'), images=('213.gif', '213.png', '213 (1).png')
                 )
             if 'Corsola':
                 root.pokesets['Corsola'] = pokemon_ddl.PokemonSet(
                     name='Corsola', species='Corsola', abilities=('Hustle', 'Natural Cure'), pkTypes=('Water', 'Rock'),
-                    sets=(), baseStats=(55, 55, 85, 65, 85, 35), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Amnesia', 'Barrier', 'Confuse Ray', 'Mirror Coat'],
+                                'Amnesia': ['Toxic', 'Body Slam'],
+                                'Barrier': ['Toxic', 'Body Slam'],
+                                'Confuse Ray': ['Body Slam', 'Icy Wind'],
+                                'Toxic': ['Recover', 'Ingrain', 'Aqua Ring', 'Recover', 'Recover'],
+                                'Body Slam': ['Recover', 'Ingrain', 'Aqua Ring', 'Recover', 'Recover'],
+                                'Mirror Coat': ['Recover', 'Ingrain', 'Aqua Ring', 'Recover', 'Recover']
+                            }
+                        ),
+                    ), baseStats=(55, 55, 85, 65, 85, 35), genders=('M', 'F'), images=('222.gif', '222.png', '222 (1).png'),
+                    ability_weights=(0.1, 0.9)
                 )
             if 'Lunatone':
                 root.pokesets['Lunatone'] = pokemon_ddl.PokemonSet(
                     name='Lunatone', species='Lunatone', abilities=('Levitate',), pkTypes=('Rock', 'Psychic'),
-                    sets=(), baseStats=(70, 55, 65, 95, 85, 70), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Baton Pass'],
+                            {
+                                'Protect': ['Trick Room'],
+                                'Baton Pass': ['Psychic'],
+                                'Psychic': ['Calm Mind', 'Substitute', 'Rock Polish'],
+                                'Trick Room': ['Earth Power', 'Gyro Ball', 'Helping Hand', 'Heal Block', 'Gravity', 'Gravity', 'Gravity'],
+                                'Earth Power': ['Shadow Ball', 'Grass Knot', 'Psychic', 'Explosion'],
+                                'Gyro Ball': ['Shadow Ball', 'Grass Knot', 'Psychic', 'Explosion'],
+                                'Gravity': ['Hypnosis']
+                            }
+                        ),
+                          ), baseStats=(70, 55, 65, 95, 85, 70), genders=('',), images=('337.gif', '337.png', '337 (1).png')
                 )
             if 'Solrock':
                 root.pokesets['Solrock'] = pokemon_ddl.PokemonSet(
                     name='Solrock', species='Solrock', abilities=('Levitate',), pkTypes=('Rock', 'Psychic'),
-                    sets=(), baseStats=(70, 95, 85, 55, 65, 70), genders=('',)
+                    sets=(
+                       pokemon_ddl.MoveSet(
+                       ['Protect'],
+                           {
+                               'Protect': ['Trick Room', 'Sunny Day', 'Rock Slide'],
+                               'Trick Room': ['Will-O-Wisp'],
+                               'Will-O-Wisp': ['Explosion', 'Embargo', 'Helping Hand', 'Pain Split'],
+                               'Sunny Day': ['Solar Beam', 'Zen Headbutt'],
+                               'Rock Slide': ['Zen Headbutt', 'Explosion', 'Iron Head', 'Body Slam']
+                           }
+                    ),
+                    ), baseStats=(70, 95, 85, 55, 65, 70), genders=('',), images=('338.gif', '338.png', '338 (1).png')
                 )
             if 'Cradily':
                 root.pokesets['Cradily'] = pokemon_ddl.PokemonSet(
                     name='Cradily', species='Cradily', abilities=('Suction Cups',), pkTypes=('Rock', 'Grass'),
-                    sets=(), baseStats=(86, 81, 97, 81, 107, 43), genders=('M', 'F')
+                    sets=(), baseStats=(86, 81, 97, 81, 107, 43), genders=('M', 'F'), images=('346.gif', '346.png', '346 (1).png')
                 )
             if 'Armaldo':
                 root.pokesets['Armaldo'] = pokemon_ddl.PokemonSet(

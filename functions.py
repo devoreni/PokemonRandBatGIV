@@ -67,16 +67,16 @@ if __name__ == '__main__':
     team = createIndivPokemon(before, root)
     '''
 
-    pk1 = root.pokesets['Kabutops']
-    pk2 = root.pokesets['Kabutops']
-    pk3 = root.pokesets['Kabutops']
-    pk4 = root.pokesets['Kabutops']
-    pk5 = root.pokesets['Kabutops']
-    pk6 = root.pokesets['Kabutops']
-    pk7 = root.pokesets['Kabutops']
-    pk8 = root.pokesets['Kabutops']
-    pk9 = root.pokesets['Kabutops']
-    pk0 = root.pokesets['Kabutops']
+    pk1 = root.pokesets['Solrock']
+    pk2 = root.pokesets['Solrock']
+    pk3 = root.pokesets['Solrock']
+    pk4 = root.pokesets['Solrock']
+    pk5 = root.pokesets['Solrock']
+    pk6 = root.pokesets['Solrock']
+    pk7 = root.pokesets['Solrock']
+    pk8 = root.pokesets['Solrock']
+    pk9 = root.pokesets['Solrock']
+    pk0 = root.pokesets['Solrock']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
 
     for pk in team:

@@ -146,7 +146,7 @@ class PokemonSet(persistent.Persistent):
     def chooseItem(self) -> str:
         return ''
 
-    def chooseEVsAndNature(self, detail, base, root=None) -> PokemonIndiv:
+    def chooseEVsAndNature(self, detail, root=None) -> PokemonIndiv:
         if root is None:
             storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
             db = ZODB.DB(storage)
@@ -308,7 +308,9 @@ class PokemonSet(persistent.Persistent):
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):
         hp, att, phd, spa, spd, spe = 31, 31, 31, 31, 31, 31
         attacks_set = set(attacks)
-        if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set or self.baseStats[5] < 40:
+        if 'Gyro Ball' in attacks_set or 'Trick Room' in attacks_set\
+                or (self.baseStats[5] < 40
+                and len(set(attacks).intersection({'Rock Polish', 'Agility', 'Dragon Dance', 'Shell Smash', 'Acupressure',})) == 0):
             spe = 0
         has_phys_att = False
         if root is None:
@@ -378,7 +380,7 @@ class PokemonSet(persistent.Persistent):
         except Exception as e:
             pass
         new_guy.hpIV, new_guy.atkIV, new_guy.defIV, new_guy.spaIV, new_guy.spdIV, new_guy.speIV = self.chooseIV(new_guy.moves, root)
-        self.chooseEVsAndNature(new_guy, self.baseStats, root)
+        self.chooseEVsAndNature(new_guy, root)
         return new_guy
 
     def toString(self) -> str:
