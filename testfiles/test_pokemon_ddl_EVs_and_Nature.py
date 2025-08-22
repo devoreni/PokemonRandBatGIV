@@ -299,6 +299,24 @@ class TestPhysicalWall:
         assert result.EVs == '252 HP / 252 Def'
         assert result.nature == 'Impish'
 
+    def test_omastar(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Omastar', species='Omastar', abilities=(), pkTypes=(), sets=(),
+                            baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Surf', 'Stealth Rock', 'Ice Beam', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs == '252 HP / 252 SpA'
+        assert result.nature == 'Modest'
+
+class TestDualWall:
+    def test_shuckle(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Shuckle', species='Shuckle', abilities=(), pkTypes=(), sets=(),
+                            baseStats=(20, 10, 230, 10, 230, 5), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Toxic', 'Encore', 'Rest', 'Knock Off']
+        result = pk_set.chooseEVsAndNature(pk_indiv, pk_set.baseStats, db_root)
+        assert result.EVs in ('252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Bold', 'Calm', 'Impish', 'Careful', 'Sassy', 'Relaxed')
 
 class TestSpecialWall:
     def test_blissey(self, db_root):

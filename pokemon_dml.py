@@ -2799,13 +2799,38 @@ def runDML():
             if 'Golem':
                 root.pokesets['Golem'] = pokemon_ddl.PokemonSet(
                     name='Golem', species='Golem', abilities=('Rock Head', 'Sturdy'), pkTypes=('Rock', 'Ground'),
-                    sets=(), baseStats=(80, 110, 130, 55, 65, 45), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Substitute'],
+                            {
+                                'Protect': ['Gyro Ball', 'Stealth Rock'],
+                                'Gyro Ball': ['Fling'],
+                                'Fling': ['Hammer Arm'],
+                                'Stealth Rock': ['Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Rock Blast', 'Explosion', 'Sucker Punch', 'Rock Slide'],
+                                'Substitute': ['Earthquake', 'Double-Edge'],
+                                'Double-Edge': ['Earthquake', 'Block', 'Dynamic Punch']
+                            }
+                        ),
+                    ), baseStats=(80, 110, 130, 55, 65, 45), genders=('M', 'F'), images=('076.gif', '076.png', '076 (1).png')
                 )
             if 'Omastar':
                 root.pokesets['Omastar'] = pokemon_ddl.PokemonSet(
                     name='Omastar', species='Omastar', abilities=('Swift Swim', 'Shell Armor'),
                     pkTypes=('Rock', 'Water'),
-                    sets=(), baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock', 'Spikes', 'Rain Dance', 'Hydro Pump', 'Hidden Power [Rock]'],
+                                'Stealth Rock': ['Spikes', 'Ice Beam', 'Earth Power', 'Surf', 'Hydro Pump'],
+                                'Spikes': ['Surf', 'Hydro Pump', 'Stealth Rock'],
+                                'Surf': ['Hidden Power [Grass]', 'Earth Power', 'Ice Beam', 'Hidden Power [Rock]'],
+                                'Hydro Pump': ['Hidden Power [Grass]', 'Earth Power', 'Ice Beam', 'Hidden Power [Rock]'],
+                                'Rain Dance': ['Surf', 'Hydro Pump']
+                            }
+                        ),
+                          ), baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F'), images=('139.gif', '139.png', '139 (1).png')
                 )
             if 'Kabutops':
                 root.pokesets['Kabutops'] = pokemon_ddl.PokemonSet(

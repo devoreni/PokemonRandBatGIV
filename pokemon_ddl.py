@@ -255,6 +255,10 @@ class PokemonSet(persistent.Persistent):
                 or points['Def'] > max(points['Atk'], points['SpD'], points['SpA'], points['HP'], points['Spe'])):
             points['Spe'] = 0
 
+        if (points['Def'] < points['HP'] + 3 or points['SpD'] < points['HP'] + 3)\
+                    and (4 <= len([i for i in points.values() if i < points['Def']]) or 4 <= len([i for i in points.values() if i < points['SpD']])):
+            points['HP'] += 3
+
         if phys == 0 or (phys == 1 and 'Fake Out' in moves_as_set):
             points['Atk'] = -1
         if spec == 0:
@@ -262,11 +266,11 @@ class PokemonSet(persistent.Persistent):
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
             points['Spe'] = -100
 
-        '''# --- TEMPORARY DEBUG PRINT ---
+        # --- TEMPORARY DEBUG PRINT ---
         import pprint
         print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
         pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
-        # -----------------------------'''
+        # -----------------------------
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
