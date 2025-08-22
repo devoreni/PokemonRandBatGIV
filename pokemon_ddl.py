@@ -70,7 +70,12 @@ class PokemonIndiv:
         self.speIV = 31
         self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'SolarBeam']
         self.EVs = '252 HP / 252 SpA'
-
+        self.hpStat = 100
+        self.atkStat = 100
+        self.defStat = 100
+        self.spaStat = 100
+        self.spdStat = 100
+        self.speStat = 100
 
     def toString(self):
         attacks = ''
