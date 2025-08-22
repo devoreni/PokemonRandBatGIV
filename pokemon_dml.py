@@ -2830,13 +2830,31 @@ def runDML():
                                 'Rain Dance': ['Surf', 'Hydro Pump']
                             }
                         ),
-                          ), baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F'), images=('139.gif', '139.png', '139 (1).png')
+                          ), baseStats=(70, 60, 125, 115, 70, 55), genders=('M', 'F'), images=('139.gif', '139.png', '139 (1).png'),
+                    ability_weights=(0.8, 0.2)
                 )
             if 'Kabutops':
                 root.pokesets['Kabutops'] = pokemon_ddl.PokemonSet(
                     name='Kabutops', species='Kabutops', abilities=('Swift Swim', 'Battle Armor'),
                     pkTypes=('Rock', 'Water'),
-                    sets=(), baseStats=(60, 115, 105, 65, 70, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rain Dance', 'Stealth Rock', 'Rapid Spin', 'Knock Off'],
+                                'Rain Dance': ['Waterfall', 'Aqua Tail'],
+                                'Waterfall': ['Stone Edge', 'Rock Slide'],
+                                'Aqua Tail': ['Stone Edge', 'Rock Slide'],
+                                'Stone Edge': ['Aqua Jet', 'Return', 'Swords Dance', 'Night Slash'],
+                                'Rock Slide': ['Aqua Jet', 'Swords Dance', 'Rapid Spin', 'Confuse Ray'],
+                                'Stealth Rock': ['Stone Edge', 'Rapid Spin', 'Superpower'],
+                                'Rapid Spin': ['Waterfall', 'Aqua Tail', 'Aqua Jet'],
+                                'Knock Off': ['Swords Dance'],
+                                'Swords Dance': ['Waterfall', 'Stone Edge', 'Rock Slide', 'Aqua Tail']
+                            }
+                        ),
+                    ), baseStats=(60, 115, 105, 65, 70, 80), genders=('M', 'F'), images=('141.gif', '141.png', '141 (1).png'),
+                    ability_weights=(0.7, 0.3)
                 )
             if 'Aerodactyl':
                 root.pokesets['Aerodactyl'] = pokemon_ddl.PokemonSet(

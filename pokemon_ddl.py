@@ -266,11 +266,11 @@ class PokemonSet(persistent.Persistent):
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
             points['Spe'] = -100
 
-        # --- TEMPORARY DEBUG PRINT ---
+        '''# --- TEMPORARY DEBUG PRINT ---
         import pprint
         print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
         pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
-        # -----------------------------
+        # -----------------------------'''
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
