@@ -11,4 +11,5 @@ To run with docker:
     "docker run <volume name>:/data <image name> python <script>"
 
 WIP: There is no main function yet. Pokemon sets are still being constructed.
-Current sets progress: 102/292 Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel
+Current sets progress: 117/292 
+Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric
