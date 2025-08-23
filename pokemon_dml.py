@@ -2386,7 +2386,7 @@ def runDML():
                             {
                                 'Protect': ['Hidden Power [Fire]'],
                                 'Hidden Power [Fire]': ['Thunder', 'Thunderbolt'],
-                                'Thunder': ['Thunderbolt', 'Mirror Move', 'Light Screen', 'Reflect'],
+                                'Thunder': ['Thunderbolt', 'Mirror Coat', 'Light Screen', 'Reflect'],
                                 'Thunderbolt': ['Thunder', 'Flash Cannon', 'Explosion', 'Magnet Rise', 'Zap Cannon']
                             }
                         ),

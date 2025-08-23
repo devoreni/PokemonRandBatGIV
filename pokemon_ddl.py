@@ -81,7 +81,7 @@ class PokemonIndiv:
         attacks = ''
         for move in self.moves:
             attacks += f'- {move}\n'
-        return f'''{self.name} {self.gender} @ {self.item}
+        return f'''{self.name} ({self.gender}) @ {self.item}
 Ability: {self.ability}
 Level: {self.level}
 Shiny: {self.shiny}
