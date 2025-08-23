@@ -5,8 +5,10 @@ import pytest
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import pokemon_ddl
 
+DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data', 'PokeData.fs'))
+
 def get_all_pokemon_names_from_db():
-    storage = ZODB.FileStorage.FileStorage('../data/PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage(DB_PATH)
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
@@ -19,7 +21,7 @@ ALL_POKEMON_NAMES, ALL_MOVE_NAMES = get_all_pokemon_names_from_db()
 
 @pytest.fixture(scope='module')
 def db_root():
-    storage = ZODB.FileStorage.FileStorage('../data/PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage(DB_PATH)
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
@@ -67,11 +69,12 @@ def test_PokemonSet_object_MoveSets(name, db_root):
 @pytest.mark.parametrize('name', ALL_POKEMON_NAMES)
 def test_PokemonSet_object_Images(name, db_root):
     pk = db_root.pokesets[name]
-    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[0]}'), \
+    assets = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'assets', 'PokemonSprites'))
+    assert os.path.exists(f'{assets}/{pk.images[0]}'), \
         f'For {name}: {pk.images[0]} does not exist in assets'
-    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[1]}'), \
+    assert os.path.exists(f'{assets}/{pk.images[1]}'), \
         f'For {name}: {pk.images[1]} does not exist in assets'
-    assert os.path.exists(f'../assets/PokemonSprites/{pk.images[2]}'), \
+    assert os.path.exists(f'{assets}/{pk.images[2]}'), \
         f'For {name}: {pk.images[2]} does not exist in assets'
 
 @pytest.mark.parametrize('name', ALL_POKEMON_NAMES)

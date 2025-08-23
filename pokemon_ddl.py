@@ -81,7 +81,7 @@ class PokemonIndiv:
         attacks = ''
         for move in self.moves:
             attacks += f'- {move}\n'
-        return f'''{self.name} ({self.gender}) @ {self.item}
+        return f'''{self.name} {self.gender} @ {self.item}
 Ability: {self.ability}
 Level: {self.level}
 Shiny: {self.shiny}
@@ -376,7 +376,9 @@ class PokemonSet(persistent.Persistent):
     def buildSet(self, root = None) -> PokemonIndiv:
         new_guy = PokemonIndiv()
         new_guy.name = self.name
-        new_guy.gender = random.choice(self.genders)
+        g = random.choice(self.genders)
+        g = f'({g})' if g else g
+        new_guy.gender = g
         new_guy.ability = random.choices(self.abilities, self.ability_weights)[0]
         new_guy.shiny = random.choices(['Yes', 'No'], [1, 15])[0]
         new_guy.pokeball = self.choosePokeball()

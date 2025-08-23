@@ -2615,7 +2615,7 @@ def runDML():
                                                   'Thunder Fang', 'Weather Ball', 'Aura Sphere'],
                                 'Aura Sphere': ['Rain Dance', 'Reflect', 'Charge Beam', 'Discharge', 'Extrasensory',
                                                 'Extreme Speed', 'Hidden Power [Ice]', 'Hyper Beam', 'Shadow Ball', 'Shock Wave',
-                                                'Signal Beam', 'Sleep Talk', 'Swift', 'Thunderbolt', 'Thunder', 'Thunder Shock',
+                                                'Signal Beam', 'Sleep Talk', 'Swift', 'Thunderbolt', 'Thunder', 'Thundershock',
                                                 'Thunder Wave', 'Weather Ball', 'Zap Cannon'],
                                 'Rain Dance': ['Thunder']
                             }
@@ -2872,7 +2872,7 @@ def runDML():
                                 'Rock Slide': ['Dragon Claw', 'Steel Wing', 'Sandstorm'],
                                 'Dragon Claw': ['Earthquake', 'Rock Smash', 'Stone Edge', 'Rock Tomb', 'Sandstorm',
                                                 'Rock Slide', 'Swagger'],
-                                'Taunt': ['Earthquake', 'Rockslide', 'Dragon Claw'],
+                                'Taunt': ['Earthquake', 'Rock Slide', 'Dragon Claw'],
                                 'Torment': ['Earthquake', 'Stone Edge', 'Dragon Claw', 'Steel Wing'],
                                 'Stealth Rock': ['Steel Wing', 'Aerial Ace', 'Dragon Claw', 'Ice Fang', 'Bite', 'Crunch']
                             }
