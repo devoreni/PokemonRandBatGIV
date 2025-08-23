@@ -304,6 +304,24 @@ class PokemonSet(persistent.Persistent):
         }
 
         detail.nature = nature_list[plus][minus]
+        detail.hpStat = int((2 * self.baseStats[0] + detail.hpIV + (
+            252 if sorted_stats[0][0] == 'HP' or sorted_stats[1][0] == 'HP' else 0) / 4) * detail.level / 100 + detail.level + 10)
+        detail.atkStat = int(((2 * self.baseStats[1] + detail.atkIV + (
+            252 if sorted_stats[0][0] == 'Atk' or sorted_stats[1][0] == 'Atk' else 0) / 4) * detail.level / 100 + 5) * (
+                                1.1 if plus == "Atk" else 0.9 if minus == "Atk" else 1))
+        detail.defStat = int(((2 * self.baseStats[2] + detail.defIV + (
+            252 if sorted_stats[0][0] == 'Def' or sorted_stats[1][0] == 'Def' else 0) / 4) * detail.level / 100 + 5) * (
+                                 1.1 if plus == "Def" else 0.9 if minus == "Def" else 1))
+        detail.spaStat = int(((2 * self.baseStats[3] + detail.spaIV + (
+            252 if sorted_stats[0][0] == 'SpA' or sorted_stats[1][0] == 'SpA' else 0) / 4) * detail.level / 100 + 5) * (
+                                 1.1 if plus == "SpA" else 0.9 if minus == "SpA" else 1))
+        detail.spdStat = int(((2 * self.baseStats[4] + detail.spdIV + (
+            252 if sorted_stats[0][0] == 'SpD' or sorted_stats[1][0] == 'SpD' else 0) / 4) * detail.level / 100 + 5) * (
+                                 1.1 if plus == "SpD" else 0.9 if minus == "SpD" else 1))
+        detail.speStat = int(((2 * self.baseStats[5] + detail.speIV + (
+            252 if sorted_stats[0][0] == 'Spe' or sorted_stats[1][0] == 'Spe' else 0) / 4) * detail.level / 100 + 5) * (
+                                 1.1 if plus == "Spe" else 0.9 if minus == "Spe" else 1))
+
 
         '''# ---------------- More Debug -------
         print(detail.toString())
