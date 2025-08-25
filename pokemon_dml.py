@@ -361,7 +361,7 @@ def runDML():
                         )
                     ),
                     baseStats=(90, 120, 100, 150, 120, 100),
-                    genders=('',), images=('384.gif', '384.png', '384 (1).png')
+                    genders=('',), images=('484.gif', '484.png', '484 (1).png')
                 )
             if 'Giratina':
                 root.pokesets['Giratina'] = pokemon_ddl.PokemonSet(
@@ -3045,7 +3045,7 @@ def runDML():
                                 'Earthquake': ['Skull Bash', 'Head Smash']
                             }
                         ),
-                    ), baseStats=(100, 90, 130, 45, 65, 55), genders=('M', 'F'), images=('369.gif', '369.png', '369 (1).png')
+                    ), baseStats=(100, 90, 130, 45, 65, 55), genders=('M', 'F'), images=('369.gif', '369-m.png', '369-m (1).png')
                 )
             if 'Regirock':
                 root.pokesets['Regirock'] = pokemon_ddl.PokemonSet(
@@ -3187,23 +3187,77 @@ def runDML():
             if 'Venusaur':
                 root.pokesets['Venusaur'] = pokemon_ddl.PokemonSet(
                     name='Venusaur', species='Venusaur', abilities=('Overgrow',), pkTypes=('Grass', 'Poison'),
-                    sets=(), baseStats=(80, 82, 83, 100, 100, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Leaf Storm', 'Swords Dance', 'Sunny Day', 'Frenzy Plant', 'Leech Seed'],
+                                'Leaf Storm': ['Sludge Bomb'],
+                                'Sludge Bomb': ['Sleep Powder', 'Hidden Power [Ice]', 'Roar', 'Synthesis'],
+                                'Swords Dance': ['Power Whip'],
+                                'Power Whip': ['Earthquake', 'Sleep Powder', 'Return'],
+                                'Sunny Day': ['Solar Beam', 'Synthesis'],
+                                'Frenzy Plant': ['Earthquake', 'Knock Off', 'Outrage', 'Sludge Bomb', 'Sleep Powder'],
+                                'Leech Seed': ['Giga Drain', 'Ingrain']
+                            }
+                        ),
+                    ), baseStats=(80, 82, 83, 100, 100, 80), genders=('M', 'F'), images=('003.gif', '003-m.png', '003-m (1).png')
                 )
             if 'Beedrill':
                 root.pokesets['Beedrill'] = pokemon_ddl.PokemonSet(
                     name='Beedrill', species='Beedrill', abilities=('Swarm',), pkTypes=('Bug', 'Poison'),
-                    sets=(), baseStats=(65, 80, 40, 45, 80, 75), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['U-turn', 'Baton Pass', 'Swords Dance', 'Endeavor'],
+                                'U-turn': ['Pursuit', 'Toxic Spikes'],
+                                'Baton Pass': ['X-Scissor'],
+                                'X-Scissor': ['Agility', 'Swords Dance', 'Substitute'],
+                                'Swords Dance': ['X-Scissor', 'Poison Jab', 'Brick Break'],
+                                'Endeavor': ['Toxic Spikes'],
+                                'Toxic Spikes': ['U-turn']
+                            }
+                        ),
+                    ), baseStats=(65, 80, 40, 45, 80, 75), genders=('M', 'F'), images=('015.gif', '015.png', '015 (1).png')
                 )
             if 'Arbok':
                 root.pokesets['Arbok'] = pokemon_ddl.PokemonSet(
                     name='Arbok', species='Arbok', abilities=('Intimidate', 'Shed Skin'), pkTypes=('Poison',),
-                    sets=(), baseStats=(60, 85, 69, 65, 79, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Glare', 'Switcheroo'],
+                                'Glare': ['Gunk Shot', 'Poison Jab', 'Poison Tail'],
+                                'Gunk Shot': ['Seed Bomb', 'Crunch', 'Earthquake', 'Aqua Tail', 'Iron Tail', 'Payback'],
+                                'Poison Jab': ['Seed Bomb', 'Crunch', 'Earthquake', 'Fire Fang'],
+                                'Switcheroo': ['Gunk Shot', 'Poison Jab', 'Poison Fang'],
+                                'Poison Fang': ['Seed Bomb', 'Crunch', 'Earthquake', 'Aqua Tail', 'Iron Tail', 'Leer'],
+                                'Poison Tail': ['Seed Bomb', 'Crunch', 'Earthquake', 'Fire Fang', 'Rain Dance', 'Ice Fang']
+                            }
+                        ),
+                    ), baseStats=(60, 85, 69, 65, 79, 80), genders=('M', 'F'), images=('024.gif', '024.png', '024 (1).png')
                 )
             if 'Nidoqueen':
                 root.pokesets['Nidoqueen'] = pokemon_ddl.PokemonSet(
                     name='Nidoqueen', species='Nidoqueen', abilities=('Poison Point', 'Rivalry'),
                     pkTypes=('Poison', 'Ground'),
-                    sets=(), baseStats=(90, 82, 87, 75, 85, 76), genders=('F',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Earth Power', 'Stealth Rock', 'Toxic Spikes', 'Aqua Tail', 'Poison Fang'],
+                                'Earth Power': ['Ice Beam'],
+                                'Ice Beam': ['Stealth Rock', 'Toxic Spikes'],
+                                'Stealth Rock': ['Roar'],
+                                'Toxic Spikes': ['Roar'],
+                                'Aqua Tail': ['Counter', 'Poison Fang', 'Aerial Ace', 'Helping Hand', 'Toxic Spikes'],
+                                'Roar': ['Earthquake', 'Earth Power', 'Toxic Spikes', 'Stealth Rock', 'Earthquake', 'Earth Power'],
+                                'Poison Fang': ['Earthquake', 'Outrage', 'Mega Kick', 'Icy Wind', 'Sandstorm', 'Surf', 'Stealth Rock']
+                            }
+                        ),
+                    ), baseStats=(90, 82, 87, 75, 85, 76), genders=('F',), images=('031.gif', '031.png', '031 (1).png')
                 )
             if 'Nidoking':
                 root.pokesets['Nidoking'] = pokemon_ddl.PokemonSet(
@@ -4506,7 +4560,7 @@ def runDML():
 
     if 'Special Moves':
         # Hidden Powers
-        root.moves['Hidden Power [Fire]'] = pokemon_ddl.Move('Hidden Power [Fire]', 60, 1.0, 'Spec', 'Normal')
+        root.moves['Hidden Power [Fire]'] = pokemon_ddl.Move('Hidden Power [Fire]', 60, 1.0, 'Spec', 'Fire')
         root.moves['Hidden Power [Ice]'] = pokemon_ddl.Move('Hidden Power [Ice]', 60, 1.0, 'Spec', 'Ice')
         root.moves['Hidden Power [Grass]'] = pokemon_ddl.Move('Hidden Power [Grass]', 60, 1.0, 'Spec', 'Grass')
         root.moves['Hidden Power [Ground]'] = pokemon_ddl.Move('Hidden Power [Ground]', 60, 1.0, 'Spec', 'Ground')

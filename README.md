@@ -12,4 +12,4 @@ To run with docker:
 
 WIP: app.py is the main function and runs the gui. Pokemon sets are still being constructed.
 Current sets progress: 133/292 
-Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric
+Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric, Rock
