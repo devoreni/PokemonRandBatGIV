@@ -164,14 +164,14 @@ class PokemonSet(persistent.Persistent):
                   'Def': self.baseStats[2] / 10.0,
                   'SpA': self.baseStats[3] / 10.0,
                   'SpD': self.baseStats[4] / 10.0,
-                  'Spe': self.baseStats[5] / min((0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0)}
+                  'Spe': max(self.baseStats[5] / (0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0)}
 
         if self.baseStats[0] + self.baseStats[2] >= 240:
-            points['HP'] += 5
-            points['Def'] += 5
+            points['HP'] += 6
+            points['Def'] += 6
         if self.baseStats[0] + self.baseStats[4] >= 240:
-            points['HP'] += 5
-            points['SpD'] += 5
+            points['HP'] += 6
+            points['SpD'] += 6
 
         # look at moves
         phys, spec, stat = 0, 0, 0
@@ -184,6 +184,7 @@ class PokemonSet(persistent.Persistent):
                                      'Explosion', 'Selfdestruct', 'Fissure', 'Guillotine', 'Horn Drill'}:
                 phys += 1
                 points['Atk'] += min(3, root.moves[move].power / 35)
+                points['Spe'] += 0.5
 
             if (root.moves[move].category == 'Spec'
                     or move in {'Calm Mind', 'Growth', 'Nasty Plot', 'Shell Smash', 'Tail Glow',
@@ -191,6 +192,7 @@ class PokemonSet(persistent.Persistent):
                     and move not in {'Dragon Rage', 'Mirror Coat', 'Night Shade', 'Sonic Boom', 'Psywave', 'Sheer Cold'}:
                 spec += 1
                 points['SpA'] += min(3, root.moves[move].power / 35)
+                points['Spe'] += 0.5
             if root.moves[move].category == 'Stat' and move not in {'Protect', 'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
                                                       'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
                                                       'Work Up', 'Calm Mind', 'Nasty Plot', 'Tail Glow'}:
@@ -216,9 +218,9 @@ class PokemonSet(persistent.Persistent):
         points['HP'] += stat
         moves_as_set = set(detail.moves)
 
-        points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
-        points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
-        points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind'}))
+        points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
+        points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
+        points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
 
         if phys + spec == len(moves_as_set.intersection({'Fake Out', 'Extreme Speed', 'Feint', 'Aqua Jet', 'Bide', 'Bullet Punch',
                                                      'Ice Shard', 'Mach Punch', 'Quick Attack', 'Shadow Sneak',
@@ -275,6 +277,8 @@ class PokemonSet(persistent.Persistent):
             points['Atk'] = -1
         elif phys == len({"Swords Dance", "Extreme Speed"}.intersection(moves_as_set)):
             points['Spe'] -= 10
+            points['Atk'] += 3
+            points['HP'] += 3
         if spec == 0:
             points['SpA'] = 0
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):

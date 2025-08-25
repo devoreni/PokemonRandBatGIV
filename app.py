@@ -54,14 +54,12 @@ class PokemonGeneratorApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Pokémon Generator")
-        # FIX: Adjusted window height to be smaller
         self.setGeometry(100, 100, 700, 400)
         self.setFixedSize(700, 400)
 
         self.team: List[pokemon_ddl.PokemonIndiv] = []
         self.pokemon_sets: List[pokemon_ddl.PokemonSet] = []
         self.current_pokemon_index = -1
-        # FIX: Add an attribute to hold the active QMovie object
         self.active_movie = None
 
         self.init_ui()
@@ -175,7 +173,7 @@ class PokemonGeneratorApp(QMainWindow):
             }
             # Set alignment and size policies
             widgets['type'].setFixedSize(32, 15)
-            widgets['cat'].setFixedSize(20, 20)
+            widgets['cat'].setFixedSize(32, 15)
             widgets['name'].setWordWrap(True)
             widgets['name'].setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
 
@@ -210,7 +208,6 @@ class PokemonGeneratorApp(QMainWindow):
         if num >= 1:
             self.clear_display()
 
-            # FIX: Correctly handle the return values from getPokemonTeam
             # It returns (list_of_names, list_of_PokemonSet_objects)
             _, pokemon_set_objects = functions.getPokemonTeam(num, DB_ROOT)
 
@@ -268,7 +265,6 @@ class PokemonGeneratorApp(QMainWindow):
             icon_label = container.findChild(QLabel)
             if i == index:
                 try:
-                    # FIX: Assign the QMovie to the instance attribute to keep it alive
                     self.active_movie = QMovie(ASSET_PATHS['sprites'].format(pokemon_set.images[0]))
                     icon_label.setMovie(self.active_movie)
                     self.active_movie.start()
@@ -328,7 +324,7 @@ class PokemonGeneratorApp(QMainWindow):
                     cat_path = ASSET_PATHS['categories'].format('special')
                 else:
                     cat_path = ASSET_PATHS['categories'].format('status')
-                widgets['cat'].setPixmap(QPixmap(cat_path).scaled(QSize(20, 20)))
+                widgets['cat'].setPixmap(QPixmap(cat_path).scaled(QSize(32, 15)))
                 widgets['cat'].setToolTip(move_obj.category)
 
         # Stats Tab

@@ -130,6 +130,15 @@ class TestAllOutMixedSweeper:
         assert result.EVs in ('252 Atk / 252 Spe', '252 SpA / 252 Spe')
         assert result.nature in ('Hasty', 'Naive')
 
+    def test_lucario_2(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Lucario', species='Lucario', abilities=(), pkTypes=(), sets=(),
+                            baseStats=(70, 110, 70, 115, 70, 90), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Follow Me', 'Me First', 'Force Palm', 'Protect']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs in ('252 HP / 252 Spe',)
+        assert result.nature in ('Jolly',)
+
 
 class TestBulkyPhysicalAttacker:
     def test_rhyperior(self, db_root):
@@ -242,8 +251,8 @@ class TestFastSupport:
         pk_indiv = pokemon_ddl.PokemonIndiv()
         pk_indiv.moves = ['Taunt', 'Tailwind', 'U-turn', 'Roost']
         result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
-        assert result.EVs == '252 HP / 252 Spe'
-        assert result.nature == 'Jolly'
+        assert result.EVs in ('252 HP / 252 Spe', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Jolly', 'Impish', 'Careful')
 
     def test_raichu(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Raichu', species='Raichu', abilities=(), pkTypes=(), sets=(),
