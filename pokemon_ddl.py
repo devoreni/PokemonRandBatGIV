@@ -151,7 +151,7 @@ class PokemonSet(persistent.Persistent):
     def chooseItem(self) -> str:
         return ''
 
-    def chooseEVsAndNature(self, detail, root=None) -> PokemonIndiv:
+    def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
         if root is None:
             storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
             db = ZODB.DB(storage)
@@ -164,7 +164,14 @@ class PokemonSet(persistent.Persistent):
                   'Def': self.baseStats[2] / 10.0,
                   'SpA': self.baseStats[3] / 10.0,
                   'SpD': self.baseStats[4] / 10.0,
-                  'Spe': self.baseStats[5] / 6.5}
+                  'Spe': self.baseStats[5] / min((0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0)}
+
+        if self.baseStats[0] + self.baseStats[2] >= 240:
+            points['HP'] += 5
+            points['Def'] += 5
+        if self.baseStats[0] + self.baseStats[4] >= 240:
+            points['HP'] += 5
+            points['SpD'] += 5
 
         # look at moves
         phys, spec, stat = 0, 0, 0
@@ -264,18 +271,16 @@ class PokemonSet(persistent.Persistent):
                     and (4 <= len([i for i in points.values() if i < points['Def']]) or 4 <= len([i for i in points.values() if i < points['SpD']])):
             points['HP'] += 3
 
-        if phys == 0 or (phys == 1 and 'Fake Out' in moves_as_set):
+        if phys == 0 or (phys == 1 and {'Fake Out', 'Aqua Jet', 'Quick Attack', 'Mach Punch', 'Ice Shard', 'Bullet Punch'}.intersection(moves_as_set)):
             points['Atk'] = -1
+        elif phys == len({"Swords Dance", "Extreme Speed"}.intersection(moves_as_set)):
+            points['Spe'] -= 10
         if spec == 0:
             points['SpA'] = 0
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
             points['Spe'] = -100
 
-        '''# --- TEMPORARY DEBUG PRINT ---
-        import pprint
-        print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
-        pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
-        # -----------------------------'''
+
 
         sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
         top_two_names = [sorted_stats[0][0], sorted_stats[1][0]]
@@ -323,9 +328,14 @@ class PokemonSet(persistent.Persistent):
                                  1.1 if plus == "Spe" else 0.9 if minus == "Spe" else 1))
 
 
-        '''# ---------------- More Debug -------
-        print(detail.toString())
-        # -----------------End Debug --------'''
+        # ---------------- Debug -------
+        if debug:
+            print(detail.toString())
+            import pprint
+            print(f"\n--- DEBUG: {self.name} | Moves: {detail.moves} ---")
+            pprint.pprint(sorted(points.items(), key=lambda item: item[1], reverse=True))
+            # -----------------End Debug --------
+
         return detail
 
     def chooseIV(self, attacks: list, root = None) -> (int, int, int, int, int, int):
