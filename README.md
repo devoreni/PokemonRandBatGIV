@@ -11,5 +11,5 @@ To run with docker:
     "docker run <volume name>:/data <image name> python <script>"
 
 WIP: app.py is the main function and runs the gui. Pokemon sets are still being constructed.
-Current sets progress: 117/292 
+Current sets progress: 133/292 
 Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric

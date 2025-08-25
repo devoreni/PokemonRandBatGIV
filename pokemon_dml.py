@@ -2975,39 +2975,211 @@ def runDML():
             if 'Cradily':
                 root.pokesets['Cradily'] = pokemon_ddl.PokemonSet(
                     name='Cradily', species='Cradily', abilities=('Suction Cups',), pkTypes=('Rock', 'Grass'),
-                    sets=(), baseStats=(86, 81, 97, 81, 107, 43), genders=('M', 'F'), images=('346.gif', '346.png', '346 (1).png')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock', 'Seed Bomb', 'Giga Drain'],
+                                'Stealth Rock': ['Toxic'],
+                                'Seed Bomb': ['Toxic', 'Rock Slide'],
+                                'Toxic': ['Recover'],
+                                'Rock Slide': ['Recover'],
+                                'Giga Drain': ['Ancient Power'],
+                                'Ancient Power': ['Earth Power', 'Recover', 'Sludge Bomb', 'Wring Out']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Rest'],
+                            {
+                                'Rest': ['Sleep Talk', 'Seed Bomb'],
+                                'Sleep Talk': ['Curse', 'Rock Slide'],
+                                'Curse': ['Rock Slide'],
+                                'Seed Bomb': ['Curse']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Recover'],
+                            {
+                                'Recover': ['Stockpile'],
+                                'Swords Dance': ['Rock Slide'],
+                                'Stockpile': ['Toxic'],
+                                'Toxic': ['Rock Slide', 'Earthquake'],
+                                'Rock Slide': ['Seed Bomb', 'Body Slam', 'Stockpile']
+                            }
+                        )
+                    ), baseStats=(86, 81, 97, 81, 107, 43), genders=('M', 'F'), images=('346.gif', '346.png', '346 (1).png')
                 )
             if 'Armaldo':
                 root.pokesets['Armaldo'] = pokemon_ddl.PokemonSet(
                     name='Armaldo', species='Armaldo', abilities=('Battle Armor',), pkTypes=('Rock', 'Bug'),
-                    sets=(), baseStats=(75, 125, 100, 70, 80, 45), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Swords Dance', 'Rock Polish', 'Rock Blast'],
+                                'Rock Polish': ['Stone Edge', 'X-Scissor'],
+                                'Swords Dance': ['Stone Edge', 'X-Scissor'],
+                                'Stone Edge': ['X-Scissor', 'Aqua Tail', 'Earthquake', 'Superpower'],
+                                'X-Scissor': ['Stone Edge', 'Rock Slide', 'Aqua Tail', 'Earthquake', 'Superpower'],
+                                'Rock Blast': ['Stealth Rock', 'Rapid Spin', 'Knock Off', 'Toxic']
+                            }
+                        ),
+                    ), baseStats=(75, 125, 100, 70, 80, 45), genders=('M', 'F'), images=('348.gif', '348.png', '348 (1).png')
                 )
             if 'Relicanth':
                 root.pokesets['Relicanth'] = pokemon_ddl.PokemonSet(
                     name='Relicanth', species='Relicanth', abilities=('Swift Swim', 'Rock Head'),
                     pkTypes=('Water', 'Rock'),
-                    sets=(), baseStats=(100, 90, 130, 45, 65, 55), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Head Smash', 'Rock Polish', 'Rain Dance'],
+                                'Head Smash': ['Double-Edge'],
+                                'Double-Edge': ['Waterfall', 'Aqua Tail'],
+                                'Rock Polish': ['Waterfall', 'Aqua Tail'],
+                                'Waterfall': ['Head Smash'],
+                                'Aqua Tail': ['Head Smash'],
+                                'Rain Dance': ['Waterfall', 'Aqua Tail', 'Stone Edge', 'Earthquake'],
+                                'Stone Edge': ['Skull Bash'],
+                                'Earthquake': ['Skull Bash', 'Head Smash']
+                            }
+                        ),
+                    ), baseStats=(100, 90, 130, 45, 65, 55), genders=('M', 'F'), images=('369.gif', '369.png', '369 (1).png')
                 )
             if 'Regirock':
                 root.pokesets['Regirock'] = pokemon_ddl.PokemonSet(
                     name='Regirock', species='Regirock', abilities=('Clear Body',), pkTypes=('Rock',),
-                    sets=(), baseStats=(80, 100, 200, 50, 100, 50), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Stealth Rock', 'Rest', 'Protect'],
+                            {
+                                'Stealth Rock': ['Stone Edge'],
+                                'Stone Edge': ['Explosion'],
+                                'Explosion': ['Thunder Wave', 'Earthquake', 'Toxic'],
+                                'Rest': ['Rock Slide'],
+                                'Rock Slide': ['Curse'],
+                                'Curse': ['Earthquake', 'Sleep Talk'],
+                                'Protect': ['Rock Polish', 'Ice Punch'],
+                                'Rock Polish': ['Ice Punch'],
+                                'Ice Punch': ['Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Rock Slide']
+                            }
+                        ),
+                    ), baseStats=(80, 100, 200, 50, 100, 50), genders=('',), images=('377.gif', '377.png', '377 (1).png')
                 )
             if 'Rampardos':
                 root.pokesets['Rampardos'] = pokemon_ddl.PokemonSet(
                     name='Rampardos', species='Rampardos', abilities=('Mold Breaker',), pkTypes=('Rock',),
-                    sets=(), baseStats=(97, 165, 60, 65, 50, 58), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stone Edge', 'Rock Slide', 'Head Smash', 'Rock Polish', 'Avalanche'],
+                                'Stone Edge': ['Earthquake', 'Fire Punch', 'Zen Headbutt', 'Fling', 'Outrage'],
+                                'Head Smash': ['Earthquake', 'Fire Punch', 'Zen Headbutt', 'Ice Beam', 'Iron Head'],
+                                'Rock Slide': ['Earthquake', 'Fire Punch', 'Zen Headbutt', 'Substitute', 'Hammer Arm', 'Pursuit'],
+                                'Rock Polish': ['Rock Slide'],
+                                'Avalanche': ['Payback'],
+                                'Payback': ['Stone Edge', 'Rock Slide', 'Head Smash', 'Earthquake', 'Iron Head', 'Fire Punch',
+                                            'Outrage', 'Superpower', 'Zen Headbutt', 'Zen Headbutt', 'Whirlpool']
+                            }
+                        ),
+                    ), baseStats=(97, 165, 60, 65, 50, 58), genders=('M', 'F'), images=('409.gif', '409.png', '409 (1).png')
                 )
             if 'Rhyperior':
                 root.pokesets['Rhyperior'] = pokemon_ddl.PokemonSet(
                     name='Rhyperior', species='Rhyperior', abilities=('Lightning Rod', 'Solid Rock'),
                     pkTypes=('Rock', 'Ground'),
-                    sets=(), baseStats=(115, 140, 130, 55, 55, 40), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rock Wrecker', 'Rock Slide', 'Rock Polish'],
+                                'Rock Slide': ['Swords Dance'],
+                                'Swords Dance': ['Earthquake'],
+                                'Rock Wrecker': ['Megahorn'],
+                                'Megahorn': ['Earthquake', 'Ice Punch', 'Aqua Tail', 'Brick Break', 'Crunch', 'Dragon Rush'],
+                                'Rock Polish': ['Outrage', 'Shadow Claw', 'Earthquake', 'Rock Slide', 'Stone Edge', 'Thunder Punch', 'Fire Punch', 'Rock Wrecker', 'Megahorn',
+                                                'Ice Punch', 'Ice Fang', 'Iron Head', 'Iron Tail', 'Magnitude', 'Horn Drill', 'Dragon Rush',
+                                                'Poison Jab', 'Rollout']
+                            }
+                        ),
+                    ), baseStats=(115, 140, 130, 55, 55, 40), genders=('M', 'F'), images=('464.gif', '464-m.png', '464-m (1).png')
                 )
             if 'Arceus-Rock':
                 root.pokesets['Arceus-Rock'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Rock', species='Arceus', abilities=('Multitype',), pkTypes=('Rock',),
-                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgement'],
+
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
+                                'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat',
+                                                  'Judgement',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgement'],
+                            {
+                                'Judgement': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp',
+                                                  'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-rock.png', 'arceus-rock (1).png')
                 )
 
         # Poison type pokemon
