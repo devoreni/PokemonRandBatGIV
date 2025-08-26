@@ -138,7 +138,7 @@ class PokemonGeneratorApp(QMainWindow):
         # --- Bottom Section (Controls) ---
         control_layout = QHBoxLayout()
         create_label = QLabel("Create:")
-        self.num_input = QLineEdit("5")
+        self.num_input = QLineEdit("6")
         # FIX: Removed the upper limit on the validator
         self.num_input.setValidator(QIntValidator(1, 999))
         self.num_input.setFixedWidth(30)

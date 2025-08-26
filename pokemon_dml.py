@@ -3263,39 +3263,137 @@ def runDML():
                 root.pokesets['Nidoking'] = pokemon_ddl.PokemonSet(
                     name='Nidoking', species='Nidoking', abilities=('Poison Point', 'Rivalry'),
                     pkTypes=('Poison', 'Ground'),
-                    sets=(), baseStats=(81, 92, 77, 85, 75, 85), genders=('M',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock', 'Megahorn'],
+                                'Stealth Rock': ['Taunt'],
+                                'Taunt': ['Earth Power', 'Ice Beam', 'Toxic Spikes'],
+                                'Megahorn': ['Earthquake', 'Outrage', 'Sucker Punch', 'Head Smash', 'Helping Hand']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Thunderbolt', 'Thunder', 'Earthquake', 'Earth Power'],
+                                'Thunderbolt': ['Blizzard', 'Ice Beam'],
+                                'Thunder': ['Blizzard', 'Ice Beam'],
+                                'Blizzard': ['Superpower', 'Shadow Ball', 'Taunt'],
+                                'Earthquake': ['Megahorn', 'Ice Beam', 'Blizzard'],
+                                'Earth Power': ['Ice Beam', 'Blizzard', 'Dragon Pulse', 'Toxic Spikes']
+                            }
+                        )
+                    ), baseStats=(81, 92, 77, 85, 75, 85), genders=('M',), images=('034.gif', '034.png', '034 (1).png')
                 )
             if 'Vileplume':
                 root.pokesets['Vileplume'] = pokemon_ddl.PokemonSet(
                     name='Vileplume', species='Vileplume', abilities=('Chlorophyll',), pkTypes=('Grass', 'Poison'),
-                    sets=(), baseStats=(75, 80, 85, 100, 90, 50), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Sunny Day', 'Sleep Powder', 'Aromatherapy', 'Giga Drain'],
+                                'Sunny Day': ['Solar Beam'],
+                                'Solar Beam': ['Sludge Bomb'],
+                                'Sleep Powder': ['Energy Ball', 'Sludge Bomb'],
+                                'Energy Ball': ['Moonlight'],
+                                'Sludge Bomb': ['Moonlight'],
+                                'Aromatherapy': ['Leech Seed', 'Sleep Powder'],
+                                'Leech Seed': ['Energy Ball', 'Sludge Bomb'],
+                                'Giga Drain': ['Drain Punch'],
+                                'Drain Punch': ['Leech Seed', 'Ingrain', 'Toxic', 'Teeter Dance']
+                            }
+                        ),
+                    ), baseStats=(75, 80, 85, 100, 90, 50), genders=('M', 'F'), images=('045.gif', '045-m.png', '045-m (1).png')
                 )
             if 'Venomoth':
                 root.pokesets['Venomoth'] = pokemon_ddl.PokemonSet(
                     name='Venomoth', species='Venomoth', abilities=('Shield Dust', 'Tinted Lens'),
                     pkTypes=('Bug', 'Poison'),
-                    sets=(), baseStats=(70, 65, 60, 90, 75, 90), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Bug Buzz', 'Toxic Spikes', 'Stun Spore'],
+                                'Bug Buzz': ['Psychic'],
+                                'Psychic': ['Roost', 'Sleep Powder', 'U-turn'],
+                                'Toxic Spikes': ['Bug Buzz'],
+                                'Stun Spore': ['Sleep Powder', 'Bug Buzz', 'Twister']
+                            }
+                        ),
+                    ), baseStats=(70, 65, 60, 90, 75, 90), genders=('M', 'F'), images=('049.gif', '049.png', '049 (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Victreebel':
                 root.pokesets['Victreebel'] = pokemon_ddl.PokemonSet(
                     name='Victreebel', species='Victreebel', abilities=('Chlorophyll',), pkTypes=('Grass', 'Poison'),
-                    sets=(), baseStats=(80, 105, 65, 100, 60, 70), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Sunny Day', 'Leaf Storm', 'Swords Dance'],
+                                'Sunny Day': ['Solar Beam'],
+                                'Solar Beam': ['Weather Ball'],
+                                'Weather Ball': ['Sludge Bomb', 'Hidden Power [Rock]', 'Sleep Powder'],
+                                'Leaf Storm': ['Sludge Bomb', 'Weather Ball'],
+                                'Sludge Bomb': ['Morning Sun', 'Sucker Punch'],
+                                'Swords Dance': ['Leaf Blade'],
+                                'Leaf Blade': ['Sucker Punch', 'Return'],
+                                'Sucker Punch': ['Sleep Powder', 'Return', 'Secret Power'],
+                                'Return': ['Leaf Blade', 'Razor Leaf']
+                            }
+                        ),
+                    ), baseStats=(80, 105, 65, 100, 60, 70), genders=('M', 'F'), images=('071.gif', '071.png', '071 (1).png')
                 )
             if 'Tentacruel':
                 root.pokesets['Tentacruel'] = pokemon_ddl.PokemonSet(
                     name='Tentacruel', species='Tentacruel', abilities=('Clear Body', 'Liquid Ooze'),
                     pkTypes=('Water', 'Poison'),
-                    sets=(), baseStats=(80, 70, 65, 80, 120, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Toxic Spikes'],
+                                'Toxic Spikes': ['Rapid Spin', 'Icy Wind', 'Ice Beam'],
+                                'Icy Wind': ['Hydro Pump', 'Surf', 'Hidden Power [Fire]'],
+                                'Ice Beam': ['Hydro Pump', 'Surf', 'Hidden Power [Fire]'],
+                                'Rapid Spin': ['Knock Off', 'Sludge Bomb', 'Surf']
+                            }
+                        ),
+                    ), baseStats=(80, 70, 65, 80, 120, 100), genders=('M', 'F'), images=('073.gif', '073.png', '073 (1).png')
                 )
             if 'Muk':
                 root.pokesets['Muk'] = pokemon_ddl.PokemonSet(
-                    name='Muk', species='Muk', abilities=('Stench', 'Sticky Hold'), pkTypes=('Poison',),
-                    sets=(), baseStats=(105, 105, 75, 65, 100, 50), genders=('M', 'F')
+                    name='Muk', species='Muk', abilities=('Sticky Hold',), pkTypes=('Poison',),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Curse', 'Poison Jab', 'Gunk Shot'],
+                                'Curse': ['Poison Jab'],
+                                'Poison Jab': ['Shadow Sneak', 'Explosion', 'Thunder Punch', 'Ice Punch'],
+                                'Gunk Shot': ['Focus Punch', 'Brick Break'],
+                                'Focus Punch': ['Ice Punch', 'Explosion'],
+                                'Brick Break': ['Ice Punch', 'Shadow Sneak', 'Payback']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Rest', 'Pain Split'],
+                            {
+                                'Rest': ['Curse'],
+                                'Curse': ['Payback', 'Shadow Sneak', 'Gunk Shot'],
+                                'Pain Split': ['Brick Break', 'Poison Jab', 'Gunk Shot'],
+                                'Poison Jab': ['Explosion', 'Rock Slide'],
+                                'Gunk Shot': ['Shadow Punch']
+                            }
+                        )
+                    ), baseStats=(105, 105, 75, 65, 100, 50), genders=('M', 'F'), images=('089.gif', '089.png', '089 (1).png')
                 )
             if 'Weezing':
                 root.pokesets['Weezing'] = pokemon_ddl.PokemonSet(
                     name='Weezing', species='Weezing', abilities=('Levitate',), pkTypes=('Poison',),
-                    sets=(), baseStats=(65, 90, 120, 85, 70, 60), genders=('M', 'F')
+                    sets=(), baseStats=(65, 90, 120, 85, 70, 60), genders=('M', 'F'), images=('110.gif', '110.png', '110 (1).png')
                 )
             if 'Ariados':
                 root.pokesets['Ariados'] = pokemon_ddl.PokemonSet(
