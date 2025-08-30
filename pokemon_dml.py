@@ -3393,22 +3393,70 @@ def runDML():
             if 'Weezing':
                 root.pokesets['Weezing'] = pokemon_ddl.PokemonSet(
                     name='Weezing', species='Weezing', abilities=('Levitate',), pkTypes=('Poison',),
-                    sets=(), baseStats=(65, 90, 120, 85, 70, 60), genders=('M', 'F'), images=('110.gif', '110.png', '110 (1).png')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Double Hit', 'Will-O-Wisp', 'Sludge Bomb'],
+                                'Double Hit': ['Payback', 'Will-O-Wisp', 'Assurance'],
+                                'Will-O-Wisp': ['Explosion', 'Haze', 'Thunderbolt', 'Flamethrower', 'Sludge Bomb', 'Psywave'],
+                                'Payback': ['Will-O-Wisp', 'Explosion', 'Rollout'],
+                                'Assurance': ['Will-O-Wisp', 'Taunt', 'Toxic', 'Pain Split'],
+                                'Sludge Bomb': ['Psywave', 'Shadow Ball', 'Haze', 'Will-O-Wisp', 'Thunderbolt']
+                            }
+                        ),
+                    ), baseStats=(65, 90, 120, 85, 70, 60), genders=('M', 'F'), images=('110.gif', '110.png', '110 (1).png')
                 )
             if 'Ariados':
                 root.pokesets['Ariados'] = pokemon_ddl.PokemonSet(
                     name='Ariados', species='Ariados', abilities=('Swarm', 'Insomnia'), pkTypes=('Bug', 'Poison'),
-                    sets=(), baseStats=(70, 90, 70, 60, 60, 40), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Spider Web', 'Toxic Spikes'],
+                                'Spider Web': ['Baton Pass'],
+                                'Baton Pass': ['Agility', 'Bug Bite', 'Toxic Spikes'],
+                                'Toxic Spikes': ['Sucker Punch', 'Shadow Sneak', 'Night Shade'],
+                                'Sucker Punch': ['Poison Jab', 'Bug Bite'],
+                                'Shadow Sneak': ['Poison Jab', 'Bug Bite'],
+                                'Night Shade': ['Swagger']
+                            }
+                        ),
+                    ), baseStats=(70, 90, 70, 60, 60, 40), genders=('M', 'F'), images=('168.gif', '168.png', '168 (1).png')
                 )
             if 'Crobat':
                 root.pokesets['Crobat'] = pokemon_ddl.PokemonSet(
                     name='Crobat', species='Crobat', abilities=('Inner Focus',), pkTypes=('Poison', 'Flying'),
-                    sets=(), baseStats=(85, 90, 80, 70, 80, 130), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Taunt', 'Cross Poison', 'Hypnosis'],
+                                'Taunt': ['Brave Bird', 'Roost', 'Hypnosis'],
+                                'Brave Bird': ['Roost', 'U-turn'],
+                                'Roost': ['Super Fang', 'Toxic', 'Brave Bird'],
+                                'Cross Poison': ['X-Scissor'],
+                                'X-Scissor': ['Brave Bird', 'Steel Wing', 'Brave Bird'],
+                                'Hypnosis': ['Heat Wave', 'Sludge Bomb', 'Air Slash', 'Dark Pulse']
+                            }
+                        ),
+                    ), baseStats=(85, 90, 80, 70, 80, 130), genders=('M', 'F'), images=('169.gif', '169.png', '169 (1).png')
                 )
             if 'Dustox':
                 root.pokesets['Dustox'] = pokemon_ddl.PokemonSet(
                     name='Dustox', species='Dustox', abilities=('Shield Dust',), pkTypes=('Bug', 'Poison'),
-                    sets=(), baseStats=(60, 50, 70, 50, 90, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Ominous Wind', 'Light Screen', 'Silver Wind'],
+                                'Ominous Wind': ['Whirlwind', 'Sludge Bomb', 'Bug Buzz', 'Roost', 'Bug Buzz', 'Hyper Beam'],
+                                'Light Screen': ['Whirlwind', 'Sludge Bomb', 'Thief', 'Bug Buzz', 'Air Cutter'],
+                                'Silver Wind': ['Ominous Wind']
+                            }
+                        ),
+                    ), baseStats=(60, 50, 70, 50, 90, 65), genders=('M', 'F'), images=('269.gif', '269-m.png', '269-m (1).png')
                 )
             if 'Swalot':
                 root.pokesets['Swalot'] = pokemon_ddl.PokemonSet(
