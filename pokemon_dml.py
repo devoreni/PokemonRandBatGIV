@@ -3654,28 +3654,138 @@ def runDML():
                 root.pokesets['Quagsire'] = pokemon_ddl.PokemonSet(
                     name='Quagsire', species='Quagsire', abilities=('Damp', 'Water Absorb'),
                     pkTypes=('Water', 'Ground'),
-                    sets=(), baseStats=(95, 85, 85, 65, 65, 35), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Recover'],
+                            {
+                                'Protect': ['Earthquake', 'Yawn'],
+                                'Recover': ['Encore', 'Yawn', 'Toxic'],
+                                'Yawn': ['Earthquake', 'Aqua Tail', 'Stone Edge'],
+                                'Earthquake': ['Counter', 'Brick Break', 'Dynamic Punch'],
+                                'Counter': ['Stone Edge', 'Aqua Tail', 'Haze', 'Icy Wind', 'Waterfall'],
+                                'Brick Break': ['Stone Edge', 'Aqua Tail', 'Haze', 'Icy Wind', 'Waterfall'],
+                                'Dynamic Punch': ['Stone Edge', 'Aqua Tail', 'Haze', 'Icy Wind', 'Waterfall']
+
+                            }
+                        ),
+                    ), baseStats=(95, 85, 85, 65, 65, 35), genders=('M', 'F'), images=('195.gif', '195-m.png', '195-m (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Donphan':
                 root.pokesets['Donphan'] = pokemon_ddl.PokemonSet(
                     name='Donphan', species='Donphan', abilities=('Sturdy',), pkTypes=('Ground',),
-                    sets=(), baseStats=(90, 120, 120, 60, 60, 50), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Earthquake'],
+                                'Earthquake': ['Rock Slide', 'Assurance', 'Superpower', 'Gyro Ball'],
+                                'Rock Slide': ['Seed Bomb', 'Poison Jab', 'Fissure', 'Counter', 'Sandstorm'],
+                                'Assurance': ['Rapid Spin', 'Stealth Rock', 'Ice Shard', 'Head Smash'],
+                                'Gyro Ball': ['Thunder Fang', 'Fire Fang', 'Ice Shard'],
+                                'Superpower': ['Gunk Shot', 'Giga Impact', 'Head Smash', 'Ice Shard', 'Last Resort']
+                            }
+                        ),
+                    ), baseStats=(90, 120, 120, 60, 60, 50), genders=('M', 'F'), images=('232.gif', '232-m.png', '232-m (1).png')
                 )
             if 'Swampert':
                 root.pokesets['Swampert'] = pokemon_ddl.PokemonSet(
                     name='Swampert', species='Swampert', abilities=('Torrent',), pkTypes=('Water', 'Ground'),
-                    sets=(), baseStats=(100, 110, 90, 85, 90, 60), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock'],
+                                'Stealth Rock': ['Ice Beam', 'Roar', 'Hydro Pump', 'Earthquake'],
+                                'Ice Beam': ['Earthquake'],
+                                'Roar': ['Earthquake'],
+                                'Hydro Pump': ['Ice Beam', 'Earth Power'],
+                                'Earthquake': ['Waterfall', 'Ice Punch']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Earthquake'],
+                                'Earthquake': ['Waterfall', 'Ice Beam'],
+                                'Waterfall': ['Stone Edge', 'Superpower', 'Ice Punch'],
+                                'Ice Beam': ['Hydro Pump', 'Focus Punch']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Hydro Pump'],
+                                'Hydro Pump': ['Earth Power'],
+                                'Earth Power': ['Ice Beam', 'Hidden Power [Grass]', 'Hidden Power [Electric]', 'Sleep Talk']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Rest'],
+                            {
+                                'Rest': ['Curse'],
+                                'Curse': ['Earthquake', 'Waterfall', 'Aqua Tail', 'Counter', 'Mirror Coat'],
+                                'Earthquake': ['Ice Punch', 'Waterfall', 'Sleep Talk'],
+                                'Waterfall': ['Ice Punch', 'Sleep Talk'],
+                                'Aqua Tail': ['Ice Punch', 'Sleep Talk', 'Outrage']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Ancient Power', 'Yawn', 'Earthquake'],
+                                'Ancient Power': ['Hydro Pump', 'Hydro Cannon', 'Surf', 'Muddy Water'],
+                                'Hydro Pump': ['Ice Beam', 'Focus Blast', 'Earth Power'],
+                                'Hydro Cannon': ['Ice Beam', 'Focus Blast', 'Earth Power'],
+                                'Surf': ['Ice Beam', 'Focus Blast', 'Earth Power'],
+                                'Muddy Water': ['Ice Beam', 'Focus Blast', 'Earth Power'],
+                                'Yawn': ['Bite', 'Outrage', 'Earthquake', 'Aqua Tail', 'Hammer Arm', 'Iron Tail'],
+                                'Earthquake': ['Curse', 'Avalanche']
+                            }
+                        )
+                    ), baseStats=(100, 110, 90, 85, 90, 60), genders=('M', 'F'), images=('260.gif', '260.png', '260 (1).png')
                 )
             if 'Whiscash':
                 root.pokesets['Whiscash'] = pokemon_ddl.PokemonSet(
                     name='Whiscash', species='Whiscash', abilities=('Oblivious', 'Anticipation'),
                     pkTypes=('Water', 'Ground'),
-                    sets=(), baseStats=(110, 78, 73, 76, 71, 60), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Dragon Dance', 'Icy Wind'],
+                                'Dragon Dance': ['Waterfall', 'Aqua Tail', 'Zen Headbutt', 'Spark'],
+                                'Waterfall': ['Earthquake', 'Stone Edge', 'Bounce'],
+                                'Aqua Tail': ['Earthquake', 'Stone Edge', 'Bounce'],
+                                'Zen Headbutt': ['Earthquake', 'Stone Edge', 'Bounce'],
+                                'Icy Wind': ['Attract', 'Double Team', 'Rock Slide'],
+                                'Attract': ['Fissure', 'Stone Edge', 'Surf', 'Thrash', 'Rock Slide'],
+                                'Double Team': ['Fissure', 'Stone Edge', 'Surf', 'Thrash', 'Rock Slide'],
+                                'Rock Slide': ['Earthquake', 'Fissure', 'Earth Power', 'Blizzard']
+                            }
+                        ),
+                    ), baseStats=(110, 78, 73, 76, 71, 60), genders=('M', 'F'), images=('340.gif', '340.png', '340 (1).png')
                 )
             if 'Claydol':
                 root.pokesets['Claydol'] = pokemon_ddl.PokemonSet(
                     name='Claydol', species='Claydol', abilities=('Levitate',), pkTypes=('Ground', 'Psychic'),
-                    sets=(), baseStats=(60, 70, 105, 70, 120, 75), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Protect', 'Protect', 'Rest', 'Protect'],
+                            {
+                                'Protect': ['Trick', 'Trick Room', 'Charge Beam', 'Rapid Spin', 'Stealth Rock', 'Reflect', 'Light Screen', 'Stealth Rock', 'Ancient Power'],
+                                'Trick': ['Stealth Rock', 'Rapid Spin', 'Trick Room'],
+                                'Stealth Rock': ['Earth Power', 'Explosion', 'Trick Room'],
+                                'Rapid Spin': ['Earth Power', 'Explosion'],
+                                'Trick Room': ['Grass Knot', 'Zen Headbutt', 'Earthquake', 'Light Screen', 'Reflect', 'Psychic', 'Explosion', 'Earth Power', 'Stone Edge'],
+                                'Charge Beam': ['Earth Power', 'Ice Beam', 'Shadow Ball', 'Ancient Power', 'Psychic', 'Trick Room'],
+                                'Rest': ['Cosmic Power', 'Sleep Talk', 'Toxic'],
+                                'Ancient Power': ['Solar Beam', 'Rain Dance'],
+                                'Solar Beam': ['Sunny Day'],
+                                'Rain Dance': ['Psychic']
+                            }
+                        ),
+                    ), baseStats=(60, 70, 105, 70, 120, 75), genders=('',), images=('344.gif', '344.png', '344 (1).png')
                 )
             if 'Groudon':
                 root.pokesets['Groudon'] = pokemon_ddl.PokemonSet(
