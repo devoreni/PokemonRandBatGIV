@@ -5208,7 +5208,7 @@ def runDML():
 
         # Ground-type moves
         root.moves['Mud Sport'] = pokemon_ddl.Move('Mud Sport', 0, 1.0, 'Stat', 'Ground')
-        root.moves['Sand-attack'] = pokemon_ddl.Move('Sand-attack', 0, 1.0, 'Stat', 'Ground')
+        root.moves['Sand Attack'] = pokemon_ddl.Move('Sand Attack', 0, 1.0, 'Stat', 'Ground')
         root.moves['Spikes'] = pokemon_ddl.Move('Spikes', 0, 1.0, 'Stat', 'Ground')
 
         # Rock-type moves
