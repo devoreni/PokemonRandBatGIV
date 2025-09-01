@@ -3461,23 +3461,132 @@ def runDML():
             if 'Swalot':
                 root.pokesets['Swalot'] = pokemon_ddl.PokemonSet(
                     name='Swalot', species='Swalot', abilities=('Liquid Ooze', 'Sticky Hold'), pkTypes=('Poison',),
-                    sets=(), baseStats=(100, 73, 83, 73, 83, 55), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Gastro Acid', 'Yawn', 'Stockpile'],
+                                'Gastro Acid': ['Encore'],
+                                'Yawn': ['Encore'],
+                                'Encore': ['Pain Split', 'Ice Beam', 'Sludge Bomb'],
+                                'Stockpile': ['Wring Out', 'Earthquake', 'Spit Up'],
+                                'Wring Out': ['Rest'],
+                                'Earthquake': ['Seed Bomb', 'Rest'],
+                                'Spit Up': ['Swallow', 'Gastro Acid']
+                            }
+                        ),
+                    ), baseStats=(100, 73, 83, 73, 83, 55), genders=('M', 'F'), images=('317.gif', '317-m.png', '317-m (1).png')
                 )
             if 'Seviper':
                 root.pokesets['Seviper'] = pokemon_ddl.PokemonSet(
                     name='Seviper', species='Seviper', abilities=('Shed Skin',), pkTypes=('Poison',),
-                    sets=(), baseStats=(73, 100, 60, 100, 60, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Poison Jab', 'Poison Fang', 'Dark Pulse'],
+                                'Dark Pulse': ['Flamethrower', 'Sludge Bomb'],
+                                'Poison Jab': ['Sucker Punch', 'Earthquake', 'Aqua Tail', 'X-Scissor'],
+                                'Poison Fang': ['Crunch', 'Aqua Tail'],
+                                'Crunch': ['Switcheroo', 'Earthquake'],
+                                'Aqua Tail': ['Assurance', 'Iron Tail']
+                            }
+                        ),
+                    ), baseStats=(73, 100, 60, 100, 60, 65), genders=('M', 'F'), images=('336.gif', '336.png', '336 (1).png')
                 )
             if 'Roserade':
                 root.pokesets['Roserade'] = pokemon_ddl.PokemonSet(
                     name='Roserade', species='Roserade', abilities=('Natural Cure', 'Poison Point'),
                     pkTypes=('Grass', 'Poison'),
-                    sets=(), baseStats=(60, 70, 55, 125, 105, 90), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Leaf Storm', 'Spikes', 'Toxic Spikes'],
+                                'Spikes': ['Grass Knot', 'Energy Ball', 'Sludge Bomb'],
+                                'Grass Knot': ['Hidden Power [Fire]', 'Hidden Power [Ice]', 'Stun Spore', 'Toxic Spikes', 'Sleep Talk'],
+                                'Energy Ball': ['Hidden Power [Fire]', 'Hidden Power [Ice]', 'Stun Spore', 'Toxic Spikes', 'Sleep Talk'],
+                                'Sludge Bomb': ['Hidden Power [Fire]', 'Hidden Power [Ice]', 'Stun Spore', 'Toxic Spikes', 'Sleep Talk'],
+                                'Toxic Spikes': ['Sleep Powder'],
+                                'Sleep Powder': ['Leaf Storm', 'Hidden Power [Ground]', 'Hidden Power [Ice]', 'Hidden Power [Fire]'],
+                                'Leaf Storm': ['Sleep Powder', 'Hidden Power [Fire]', 'Hidden Power [Ice]', 'Sludge Bomb', 'Toxic Spikes']
+                            }
+                        ),
+                    ), baseStats=(60, 70, 55, 125, 105, 90), genders=('M', 'F'), images=('407.gif', '407-m.png', '407-m (1).png')
                 )
             if 'Arceus-Poison':
                 root.pokesets['Arceus-Poison'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Poison', species='Arceus', abilities=('Multitype',), pkTypes=('Poison',),
-                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgement'],
+
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
+                                'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat',
+                                                  'Judgement',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgement'],
+                            {
+                                'Judgement': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp',
+                                                  'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-poison.png', 'arceus-poison (1).png')
                 )
 
         # Ground type pokemon
