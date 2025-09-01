@@ -3594,17 +3594,61 @@ def runDML():
             if 'Sandslash':
                 root.pokesets['Sandslash'] = pokemon_ddl.PokemonSet(
                     name='Sandslash', species='Sandslash', abilities=('Sand Veil',), pkTypes=('Ground',),
-                    sets=(), baseStats=(75, 100, 110, 45, 55, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Dig', 'Rapid Spin', 'Swords Dance'],
+                                'Rapid Spin': ['Stealth Rock', 'Toxic'],
+                                'Stealth Rock': ['Shadow Claw', 'Stone Edge', 'Earthquake', 'Aerial Ace'],
+                                'Toxic': ['Shadow Claw', 'Stone Edge', 'Earthquake', 'Aerial Ace'],
+                                'Dig': ['Metal Claw', 'Poison Jab', 'Aerial Ace', 'Shadow Claw', 'X-Scissor'],
+                                'Swords Dance': ['Earthquake'],
+                                'Earthquake': ['Night Slash', 'Stone Edge']
+                            }
+                        ),
+                    ), baseStats=(75, 100, 110, 45, 55, 65), genders=('M', 'F'), images=('028.gif', '028.png', '028 (1).png')
                 )
             if 'Dugtrio':
                 root.pokesets['Dugtrio'] = pokemon_ddl.PokemonSet(
                     name='Dugtrio', species='Dugtrio', abilities=('Sand Veil', 'Arena Trap'), pkTypes=('Ground',),
-                    sets=(), baseStats=(35, 80, 50, 50, 70, 120), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Earthquake', 'Rock Slide', 'Beat Up', 'Fissure'],
+                                'Earthquake': ['Sucker Punch', 'Night Slash', 'Rock Slide'],
+                                'Rock Slide': ['Sucker Punch', 'Night Slash', 'Earthquake'],
+                                'Sucker Punch': ['Substitute', 'Pursuit', 'Aerial Ace'],
+                                'Night Slash': ['Substitute', 'Pursuit'],
+                                'Beat Up': ['Sandstorm', 'Sunny Day'],
+                                'Sandstorm': ['Earthquake'],
+                                'Sunny Day': ['Earthquake'],
+                                'Fissure': ['Substitute'],
+                                'Substitute': ['Sand Attack']
+                            }
+                        ),
+                    ), baseStats=(35, 80, 50, 50, 70, 120), genders=('M', 'F'), images=('051.gif', '051.png', '051 (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Marowak':
                 root.pokesets['Marowak'] = pokemon_ddl.PokemonSet(
                     name='Marowak', species='Marowak', abilities=('Rock Head', 'Lightning Rod'), pkTypes=('Ground',),
-                    sets=(), baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Swords Dance', 'Double-Edge', 'Fling'],
+                                'Swords Dance': ['Earthquake', 'Bonemerang', 'Bone Rush', 'Bone Club'],
+                                'Earthquake': ['Stone Edge', 'Thunder Punch', 'Double-Edge'],
+                                'Bonemerang': ['Stone Edge', 'Thunder Punch', 'Double-Edge'],
+                                'Bone Rush': ['Stone Edge', 'Thunder Punch', 'Double-Edge'],
+                                'Bone Club': ['Stone Edge', 'Thunder Punch', 'Double-Edge'],
+                                'Double-Edge': ['Fire Punch', 'Thunder Punch', 'Earthquake'],
+                                'Fling': ['Iron Head', 'Outrage', 'Skull Bash', 'Stealth Rock']
+                            }
+                        ),
+                    ), baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F'), images=('105.gif', '105.png', '105 (1).png')
                 )
             if 'Quagsire':
                 root.pokesets['Quagsire'] = pokemon_ddl.PokemonSet(
