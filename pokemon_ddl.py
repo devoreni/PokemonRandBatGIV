@@ -218,9 +218,9 @@ class PokemonSet(persistent.Persistent):
         points['HP'] += stat
         moves_as_set = set(detail.moves)
 
-        points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
-        points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
-        points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me'}))
+        points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me', 'Mud Shot'}))
+        points['Def'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me', 'Mud Shot'}))
+        points['SpD'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me', 'Mud Shot'}))
 
         if phys + spec == len(moves_as_set.intersection({'Fake Out', 'Extreme Speed', 'Feint', 'Aqua Jet', 'Bide', 'Bullet Punch',
                                                      'Ice Shard', 'Mach Punch', 'Quick Attack', 'Shadow Sneak',
