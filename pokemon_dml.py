@@ -5225,7 +5225,7 @@ def runDML():
         root.moves['Beat Up'] = pokemon_ddl.Move('Beat Up', 10, 1.0, 'Phys', 'Dark')
         root.moves['Bite'] = pokemon_ddl.Move('Bite', 60, 1.0, 'Phys', 'Dark')
         root.moves['Crunch'] = pokemon_ddl.Move('Crunch', 80, 1.0, 'Phys', 'Dark')
-        root.moves['Faint Attack'] = pokemon_ddl.Move('Faint Attack', 60, 1.0, 'Phys', 'Dark')
+        root.moves['Feint Attack'] = pokemon_ddl.Move('Feint Attack', 60, 1.0, 'Phys', 'Dark')
         root.moves['Feint'] = pokemon_ddl.Move('Feint', 50, 1.0, 'Phys', 'Dark')
         root.moves['Fling'] = pokemon_ddl.Move('Fling', 0, 1.0, 'Phys', 'Dark')
         root.moves['Knock Off'] = pokemon_ddl.Move('Knock Off', 20, 1.0, 'Phys', 'Dark')
