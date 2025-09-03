@@ -470,6 +470,42 @@ class TestChallenge:
         assert result.EVs == '252 HP / 252 SpD'
         assert result.nature == 'Careful'
 
+    def test_ninjask(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Ninjask', species='Ninjask', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(61, 90, 45, 50, 50, 160), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Protect', 'Substitute', 'Baton Pass', 'Swords Dance']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs in ('252 HP / 252 SpD', '252 HP / 252 Def')
+        assert result.nature in ('Calm', 'Bold')
+
+    def test_ninjask_2(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Ninjask', species='Ninjask', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(61, 90, 45, 50, 50, 160), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Dig', 'Substitute', 'Baton Pass', 'Swords Dance']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs in ('252 HP / 252 Atk', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Adamant', 'Careful', 'Impish')
+
+    def test_mothim(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Mothim', species='Mothim', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(70, 94, 50, 94, 50, 66), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Protect', 'Skill Swap', 'Safeguard', 'U-turn']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs in ('252 HP / 252 Atk', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Adamant', 'Careful', 'Impish')
+
+    def test_vespiquen(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Vespiquen', species='Vespiquen', abilities=(), pkTypes=(), sets=(),
+                                        baseStats=(70, 80, 102, 80, 102, 40), genders=('M', 'F'))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Protect', 'Defend Order', 'Attack Order', 'Air Cutter']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs in ('252 HP / 252 Atk', '252 HP / 252 Def', '252 HP / 252 SpD')
+        assert result.nature in ('Brave', 'Sassy', 'Relaxed')
+
 class TestVariety:
     def test_empoleon_calm(self, db_root):
         pk_set = pokemon_ddl.PokemonSet(name='Empoleon', species='Empoleon', abilities=(), pkTypes=(), sets=(),

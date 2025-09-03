@@ -164,7 +164,7 @@ class PokemonSet(persistent.Persistent):
                   'Def': self.baseStats[2] / 10.0,
                   'SpA': self.baseStats[3] / 10.0,
                   'SpD': self.baseStats[4] / 10.0,
-                  'Spe': max(self.baseStats[5] / (0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0)}
+                  'Spe': max(self.baseStats[5] / (0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0) if 45 <= self.baseStats[5] <= 135 else 2}
 
         if self.baseStats[0] + self.baseStats[2] >= 240:
             points['HP'] += 6
@@ -273,14 +273,14 @@ class PokemonSet(persistent.Persistent):
                     and (4 <= len([i for i in points.values() if i < points['Def']]) or 4 <= len([i for i in points.values() if i < points['SpD']])):
             points['HP'] += 3
 
-        if phys == 0 or (phys == 1 and {'Fake Out', 'Aqua Jet', 'Quick Attack', 'Mach Punch', 'Ice Shard', 'Bullet Punch'}.intersection(moves_as_set)):
-            points['Atk'] = -1
+        if phys == 0 or (phys == 1 and {'Fake Out', 'Aqua Jet', 'Quick Attack', 'Mach Punch', 'Ice Shard', 'Bullet Punch', 'Swords Dance'}.intersection(moves_as_set)):
+            points['Atk'] = -10
         elif phys == len({"Swords Dance", "Extreme Speed"}.intersection(moves_as_set)):
             points['Spe'] -= 10
             points['Atk'] += 3
             points['HP'] += 3
         if spec == 0:
-            points['SpA'] = 0
+            points['SpA'] = -1
         if set(moves_as_set).intersection({'Trick Room', 'Gyro Ball'}):
             points['Spe'] = -100
 
