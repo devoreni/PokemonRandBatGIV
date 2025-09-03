@@ -68,7 +68,7 @@ class PokemonIndiv:
         self.spaIV = 31
         self.spdIV = 31
         self.speIV = 31
-        self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'SolarBeam']
+        self.moves = ['Protect', 'Sunny Day', 'Synthesis', 'Solar Beam']
         self.EVs = '252 HP / 252 SpA'
         self.hpStat = 100
         self.atkStat = 100

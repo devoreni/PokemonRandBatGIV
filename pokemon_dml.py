@@ -89,7 +89,7 @@ def runDML():
                     sets=(pokemon_ddl.MoveSet(
                         ['Protect'],
                         {'Protect': ['Fire Fang', 'Thunder Fang', 'Crunch', 'Headbutt', 'Hydro Pump', 'Dragon Breath'],
-                         'Fire Fang': ['Scary Face', 'Dragon Claw', 'Double-edge', 'Thunder Fang', 'Dragon Dance'],
+                         'Fire Fang': ['Scary Face', 'Dragon Claw', 'Double-Edge', 'Thunder Fang', 'Dragon Dance'],
                          'Thunder Fang': ['Aerial Ace', 'Fire Fang', 'Zen Headbutt', 'Rain Dance', 'Roar'],
                          'Crunch': ['Brick Break', 'Facade', 'Rest', 'Substitute', 'Earthquake'],
                          'Rest': ['Sleep Talk', 'Snore'],
@@ -97,7 +97,7 @@ def runDML():
                          'Hydro Pump': ['Dragon Pulse', 'Draco Meteor', 'Heat Wave', 'Swift', 'Air Cutter'],
                          'Dragon Breath': ['Flamethrower', 'Fire Blast'],
                          'Flamethrower': ['Hidden Power [Ice]', 'Sunny Day', 'Hidden Power [Bug]'],
-                         'Fire Blast': ['Sunny Day', 'Giga Impact', 'Double Team', 'Mud-slap'],
+                         'Fire Blast': ['Sunny Day', 'Giga Impact', 'Double Team', 'Mud-Slap'],
                          'Dragon Dance': ['Secret Power', 'Shadow Claw', 'Steel Wing', 'Rock Slide']
                          }
                     ),), baseStats=(95, 135, 80, 110, 80, 100), genders=('M', 'F'), images=('373.gif', '373.png', '373 (1).png')
@@ -661,11 +661,11 @@ def runDML():
                     name='Regice', species='Regice', abilities=('Clear Body',), pkTypes=('Ice',),
                     sets=(
                         pokemon_ddl.MoveSet(
-                            ['Protect', 'Rest', 'Lock-on'],
+                            ['Protect', 'Rest', 'Lock-On'],
                             {
                                 'Protect': ['Ancient Power', 'Icy Wind', 'Thunder Wave', 'Toxic', 'Seismic Toss', 'Hyper Beam'],
                                 'Rest': ['Charge Beam', 'Amnesia', 'Sleep Talk'],
-                                'Lock-on': ['Zap Cannon'],
+                                'Lock-On': ['Zap Cannon'],
                                 'Zap Cannon': ['Blizzard', 'Explosion', 'Focus Blast']
                             }
                         ),
@@ -1203,7 +1203,7 @@ def runDML():
                                 'Nightmare': ['Dream Eater'],
                                 'Mean Look': ['Toxic'],
                                 'Swagger': ['Psych Up'],
-                                'Psych Up': ['Faint Attack', 'Payback']
+                                'Psych Up': ['Feint Attack', 'Payback']
                             }
                         ),
                     ), baseStats=(95, 65, 110, 60, 130, 65), genders=('M', 'F'), images=('197.gif', '197.png', '197 (1).png')
@@ -1277,7 +1277,7 @@ def runDML():
                                 'Dark Pulse': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
                                 'Energy Ball': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
                                 'Focus Blast': ['Leaf Storm', 'Dark Pulse', 'Synthesis', 'Energy Ball', 'Focus Blast'],
-                                'Fake Out': ['Faint Attack', 'Explosion', 'Sucker Punch', 'X-Scissor'],
+                                'Fake Out': ['Feint Attack', 'Explosion', 'Sucker Punch', 'X-Scissor'],
                                 'Swords Dance': ['Seed Bomb', 'Sucker Punch']
                             }
                         ),
@@ -5845,6 +5845,9 @@ def runDML():
     transaction.commit()
 
     print(root.pokesets['Dragonite'].toString())
+    connection.close()
+    db.close()
+    storage.close()
 
 
 if __name__ == '__main__':

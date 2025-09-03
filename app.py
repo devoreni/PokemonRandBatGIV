@@ -6,13 +6,22 @@ from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QH
 from PyQt6.QtGui import QPixmap, QMovie, QIntValidator, QFont
 from PyQt6.QtCore import Qt, QSize
 from typing import List
+import os
 
-# Import your existing project files
+# Import project files
 import functions
 import pokemon_ddl
+import pokemon_dml
 
 # --- Database Setup ---
-# It's good practice to open the database once and pass the root around.
+# FIX: Simplified the check to be more robust. Only check for the main data file.
+if not os.path.exists('./data/PokeData.fs'):
+    # Ensure the data directory exists before trying to create a file in it.
+    os.makedirs('./data', exist_ok=True)
+    print("Database not found. Running DML to create and populate it...")
+    pokemon_dml.runDML()
+    print("Database creation complete.")
+
 try:
     STORAGE = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
     DB = ZODB.DB(STORAGE)
@@ -116,6 +125,8 @@ class PokemonGeneratorApp(QMainWindow):
         self.type1_label = QLabel()
         self.type2_label = QLabel()
         types_layout = QHBoxLayout()
+        # FIX: Add a stretch before the widgets to center them
+        types_layout.addStretch()
         types_layout.addWidget(self.type1_label)
         types_layout.addWidget(self.type2_label)
         types_layout.addStretch()
@@ -139,7 +150,6 @@ class PokemonGeneratorApp(QMainWindow):
         control_layout = QHBoxLayout()
         create_label = QLabel("Create:")
         self.num_input = QLineEdit("6")
-        # FIX: Removed the upper limit on the validator
         self.num_input.setValidator(QIntValidator(1, 999))
         self.num_input.setFixedWidth(30)
         self.go_button = QPushButton("Go!")
@@ -204,7 +214,6 @@ class PokemonGeneratorApp(QMainWindow):
         except (ValueError, TypeError):
             num = 0
 
-        # FIX: Changed condition to allow any positive number
         if num >= 1:
             self.clear_display()
 
@@ -328,7 +337,6 @@ class PokemonGeneratorApp(QMainWindow):
                 widgets['cat'].setToolTip(move_obj.category)
 
         # Stats Tab
-        stats = pokemon_set.baseStats
         self.stat_labels["nature"].setText(f"{pokemon.nature} Nature")
         self.stat_labels["hp"].setText(str(pokemon.hpStat))
         self.stat_labels["attack"].setText(str(pokemon.atkStat))
@@ -375,7 +383,7 @@ if __name__ == '__main__':
     window = PokemonGeneratorApp()
     window.show()
     app.exec()
-    # It's important to close the DB connection when the app exits.
+    # Gracefully close the database connection when the app exits
     CONNECTION.close()
     DB.close()
     STORAGE.close()
