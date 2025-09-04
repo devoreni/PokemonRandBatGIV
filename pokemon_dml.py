@@ -4434,7 +4434,24 @@ def runDML():
             if 'Exeggutor':
                 root.pokesets['Exeggutor'] = pokemon_ddl.PokemonSet(
                     name='Exeggutor', species='Exeggutor', abilities=('Chlorophyll',), pkTypes=('Grass', 'Psychic'),
-                    sets=(), baseStats=(95, 95, 85, 125, 65, 55), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Sunny Day', 'Trick Room', 'Leaf Storm'],
+                                'Sunny Day': ['Solar Beam', 'Sleep Powder', 'Synthesis'],
+                                'Synthesis': ['Solar Beam'],
+                                'Solar Beam':['Sleep Powder', 'Psychic', 'Sludge Bomb'],
+                                'Sleep Powder': ['Solar Beam', 'Dream Eater'],
+                                'Leaf Storm': ['Reflect', 'Light Screen', 'Psychic'],
+                                'Reflect': ['Light Screen', 'Explosion', 'Low Kick'],
+                                'Light Screen': ['Reflect', 'Explosion', 'Psychic'],
+                                'Trick Room': ['Sleep Powder', 'Leaf Storm', 'Egg Bomb'],
+                                'Psychic': ['Low Kick', 'Explosion'],
+                                'Egg Bomb': ['Wood Hammer']
+                            }
+                        ),
+                    ), baseStats=(95, 95, 85, 125, 65, 55), genders=('M', 'F'), images=('103.gif', '103.png', '103 (1).png')
                 )
             if 'Meganium':
                 root.pokesets['Meganium'] = pokemon_ddl.PokemonSet(
