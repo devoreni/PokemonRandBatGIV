@@ -14,9 +14,7 @@ import pokemon_ddl
 import pokemon_dml
 
 # --- Database Setup ---
-# FIX: Simplified the check to be more robust. Only check for the main data file.
 if not os.path.exists('./data/PokeData.fs'):
-    # Ensure the data directory exists before trying to create a file in it.
     os.makedirs('./data', exist_ok=True)
     print("Database not found. Running DML to create and populate it...")
     pokemon_dml.runDML()
@@ -39,7 +37,12 @@ ASSET_PATHS = {
     "stats": "./assets/icons/{}.gif",
     "pokeballs": "./assets/pokeballs/{}",
     "sprites": "./assets/PokemonSprites/{}",
-    "shiny_star": "./assets/icons/ShinyVIStar.png"
+    "shiny_star": "./assets/icons/ShinyVIStar.png",
+    "item_icon": "./assets/icons/item.png",
+    # --- FIX START: Add paths for gender icons ---
+    "male_icon": "./assets/icons/male.png",
+    "female_icon": "./assets/icons/female.png"
+    # --- FIX END ---
 }
 
 
@@ -119,23 +122,33 @@ class PokemonGeneratorApp(QMainWindow):
 
         self.name_label = QLabel("Machamp")
         self.name_label.setFont(QFont("Arial", 14, QFont.Weight.Bold))
-        self.item_label = QLabel("@ Life Orb")
+
+        item_layout = QHBoxLayout()
+        self.item_icon_label = QLabel()
+        self.item_name_label = QLabel()
+        item_layout.addStretch()
+        item_layout.addWidget(self.item_icon_label)
+        item_layout.addWidget(self.item_name_label)
+        item_layout.addStretch()
+
         self.ability_label = QLabel("Ability: No Guard")
 
         self.type1_label = QLabel()
         self.type2_label = QLabel()
         types_layout = QHBoxLayout()
-        # FIX: Add a stretch before the widgets to center them
         types_layout.addStretch()
         types_layout.addWidget(self.type1_label)
         types_layout.addWidget(self.type2_label)
         types_layout.addStretch()
 
+        self.gender_label = QLabel()
+
         right_panel_layout.addLayout(sprite_layout)
         right_panel_layout.addWidget(self.name_label, alignment=Qt.AlignmentFlag.AlignCenter)
-        right_panel_layout.addWidget(self.item_label, alignment=Qt.AlignmentFlag.AlignCenter)
+        right_panel_layout.addLayout(item_layout)
         right_panel_layout.addWidget(self.ability_label, alignment=Qt.AlignmentFlag.AlignCenter)
         right_panel_layout.addLayout(types_layout)
+        right_panel_layout.addWidget(self.gender_label, alignment=Qt.AlignmentFlag.AlignCenter)
         right_panel_layout.addStretch()
 
         display_layout.addLayout(left_panel_layout, 1)
@@ -168,7 +181,7 @@ class PokemonGeneratorApp(QMainWindow):
 
     def init_battle_tab(self):
         layout = QGridLayout(self.battle_tab)
-        layout.setColumnStretch(1, 1)  # Allow move name to stretch
+        layout.setColumnStretch(1, 1)
         headers = ["", "Move", "Pow.", "", "Acc."]
         for i, header in enumerate(headers):
             label = QLabel(header)
@@ -181,7 +194,6 @@ class PokemonGeneratorApp(QMainWindow):
                 "type": QLabel(), "name": QLabel(), "power": QLabel(),
                 "cat": QLabel(), "acc": QLabel()
             }
-            # Set alignment and size policies
             widgets['type'].setFixedSize(32, 15)
             widgets['cat'].setFixedSize(32, 15)
             widgets['name'].setWordWrap(True)
@@ -216,59 +228,44 @@ class PokemonGeneratorApp(QMainWindow):
 
         if num >= 1:
             self.clear_display()
-
-            # It returns (list_of_names, list_of_PokemonSet_objects)
             _, pokemon_set_objects = functions.getPokemonTeam(num, DB_ROOT)
 
             if not pokemon_set_objects:
                 print("Generation failed. getPokemonTeam returned an empty list.")
                 return
 
-            # Store the PokemonSet objects correctly
             self.pokemon_sets = pokemon_set_objects
-            # Create the individual Pokemon from the sets
             self.team = functions.createIndivPokemon(self.pokemon_sets, DB_ROOT)
-
             self.update_pokeballs()
 
     def update_pokeballs(self):
-        # Clear old pokeballs and icons
         for i in reversed(range(self.pokeball_layout.count())):
             item = self.pokeball_layout.itemAt(i)
             if item.widget():
                 item.widget().deleteLater()
 
-        # Add new pokeballs
         for i, pk in enumerate(self.team):
             container = QWidget()
             vbox = QVBoxLayout(container)
             vbox.setSpacing(0)
             vbox.setContentsMargins(0, 0, 0, 0)
-
-            # GIF icon placeholder
             icon_label = QLabel()
             icon_label.setFixedSize(40, 30)
             icon_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
             vbox.addWidget(icon_label, alignment=Qt.AlignmentFlag.AlignCenter)
-
-            # Pokeball
             pokeball_label = ClickableLabel(i)
             pixmap = QPixmap(ASSET_PATHS['pokeballs'].format(pk.pokeball))
             pokeball_label.setPixmap(pixmap.scaled(QSize(32, 32), Qt.AspectRatioMode.KeepAspectRatio))
             pokeball_label.connect_signal(self.select_pokemon)
             vbox.addWidget(pokeball_label, alignment=Qt.AlignmentFlag.AlignCenter)
-
             self.pokeball_layout.addWidget(container)
 
     def select_pokemon(self, index):
         if not (0 <= index < len(self.team)):
             return
-
         self.current_pokemon_index = index
         pokemon = self.team[index]
         pokemon_set = self.pokemon_sets[index]
-
-        # Update animated icon above pokeball
         for i in range(self.pokeball_layout.count()):
             container = self.pokeball_layout.itemAt(i).widget()
             icon_label = container.findChild(QLabel)
@@ -281,27 +278,29 @@ class PokemonGeneratorApp(QMainWindow):
                     print(f"Could not load icon GIF: {pokemon_set.images[0]}. Error: {e}")
                     icon_label.setText("?")
             else:
-                # Stop movie and clear non-selected icons
                 if icon_label.movie():
                     icon_label.movie().stop()
                 icon_label.clear()
-
         self.update_display(pokemon, pokemon_set)
 
     def update_display(self, pokemon: pokemon_ddl.PokemonIndiv, pokemon_set: pokemon_ddl.PokemonSet):
-        # --- Right Panel (Info) ---
         is_shiny = pokemon.shiny == 'Yes'
         sprite_path = pokemon_set.images[2] if is_shiny else pokemon_set.images[1]
         self.sprite_label.setPixmap(QPixmap(ASSET_PATHS['sprites'].format(sprite_path)).scaled(
             QSize(128, 128), Qt.AspectRatioMode.KeepAspectRatio
         ))
         self.shiny_star_label.setVisible(is_shiny)
-
         self.name_label.setText(pokemon.name)
-        self.item_label.setText(f"@ {pokemon.item}" if pokemon.item else "No Item")
-        self.ability_label.setText(f"Ability: {pokemon.ability}")
 
-        # Types
+        if pokemon.item:
+            pixmap = QPixmap(ASSET_PATHS['item_icon'])
+            self.item_icon_label.setPixmap(pixmap.scaled(QSize(10, 10), Qt.AspectRatioMode.KeepAspectRatio))
+            self.item_name_label.setText(pokemon.item)
+        else:
+            self.item_icon_label.clear()
+            self.item_name_label.setText("No Item")
+
+        self.ability_label.setText(f"Ability: {pokemon.ability}")
         self.type1_label.setPixmap(QPixmap(ASSET_PATHS['types'].format(pokemon_set.pkTypes[0].lower())))
         if len(pokemon_set.pkTypes) > 1:
             self.type2_label.setPixmap(QPixmap(ASSET_PATHS['types'].format(pokemon_set.pkTypes[1].lower())))
@@ -309,9 +308,15 @@ class PokemonGeneratorApp(QMainWindow):
         else:
             self.type2_label.hide()
 
-        # --- Left Panel (Tabs) ---
-        # Battle Tab
-        for i in range(4):  # Clear previous move info first
+        self.gender_label.clear()  # Clear previous icon first
+        if pokemon.gender == '(M)':
+            pixmap = QPixmap(ASSET_PATHS['male_icon'])
+            self.gender_label.setPixmap(pixmap.scaled(QSize(20, 20), Qt.AspectRatioMode.KeepAspectRatio))
+        elif pokemon.gender == '(F)':
+            pixmap = QPixmap(ASSET_PATHS['female_icon'])
+            self.gender_label.setPixmap(pixmap.scaled(QSize(20, 20), Qt.AspectRatioMode.KeepAspectRatio))
+
+        for i in range(4):
             widgets = self.move_widgets[i]
             for widget in widgets.values():
                 widget.clear()
@@ -325,7 +330,6 @@ class PokemonGeneratorApp(QMainWindow):
                 widgets['name'].setText(move_obj.name)
                 widgets['power'].setText(str(move_obj.power) if move_obj.power > 0 else '—')
                 widgets['acc'].setText(str(int(move_obj.accuracy * 100)) if move_obj.accuracy > 0 else '—')
-
                 cat_path = ""
                 if move_obj.category == 'Phys':
                     cat_path = ASSET_PATHS['categories'].format('physical')
@@ -335,8 +339,6 @@ class PokemonGeneratorApp(QMainWindow):
                     cat_path = ASSET_PATHS['categories'].format('status')
                 widgets['cat'].setPixmap(QPixmap(cat_path).scaled(QSize(32, 15)))
                 widgets['cat'].setToolTip(move_obj.category)
-
-        # Stats Tab
         self.stat_labels["nature"].setText(f"{pokemon.nature} Nature")
         self.stat_labels["hp"].setText(str(pokemon.hpStat))
         self.stat_labels["attack"].setText(str(pokemon.atkStat))
@@ -344,29 +346,23 @@ class PokemonGeneratorApp(QMainWindow):
         self.stat_labels["sp_att"].setText(str(pokemon.spaStat))
         self.stat_labels["sp_def"].setText(str(pokemon.spdStat))
         self.stat_labels["speed"].setText(str(pokemon.speStat))
-
         self.copy_button.setEnabled(True)
 
     def clear_display(self):
-        # Clear right panel
         self.sprite_label.clear()
         self.shiny_star_label.setVisible(False)
         self.name_label.setText("?")
-        self.item_label.setText("")
+        self.item_icon_label.clear()
+        self.item_name_label.clear()
         self.ability_label.setText("Ability: ?")
         self.type1_label.clear()
         self.type2_label.clear()
-
-        # Clear Battle Tab
+        self.gender_label.clear()
         for row in self.move_widgets:
             for widget in row.values():
                 widget.clear()
-
-        # Clear Stats Tab
         for label in self.stat_labels.values():
             label.clear()
-
-        # Disable copy button and reset index
         self.copy_button.setEnabled(False)
         self.current_pokemon_index = -1
 
@@ -383,7 +379,6 @@ if __name__ == '__main__':
     window = PokemonGeneratorApp()
     window.show()
     app.exec()
-    # Gracefully close the database connection when the app exits
     CONNECTION.close()
     DB.close()
     STORAGE.close()
