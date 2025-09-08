@@ -206,7 +206,7 @@ class PokemonSet(persistent.Persistent):
                 points['Spe'] -= 1
             if move in {'Perish Song', 'Horn Drill', 'Fissure', 'Guillotine', 'Sheer Cold', 'Recover', 'Roost',
                         'Moonlight', 'Morning Sun', 'Substitute', 'Wish', 'Ingrain', 'Heal Order', 'Milk Drink',
-                        'Rest', 'Slack Off', 'Soft-Boiled', 'Synthesis'}:
+                        'Slack Off', 'Soft-Boiled', 'Synthesis'}:
                 points['HP'] += 3
                 points['Def'] += 3
                 points['SpD'] += 3
