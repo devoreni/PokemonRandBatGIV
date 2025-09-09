@@ -5185,28 +5185,98 @@ def runDML():
             if 'Unown':
                 root.pokesets['Unown'] = pokemon_ddl.PokemonSet(
                     name='Unown', species='Unown', abilities=('Levitate',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(48, 72, 48, 72, 48, 48), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Hidden Power [Dragon]', 'Hidden Power [Ice]', 'Hidden Power [Fighting]',
+                         'Hidden Power [Dark]', 'Hidden Power [Fire]',
+                         'Hidden Power [Ghost]', 'Hidden Power [Steel]', 'Hidden Power [Electric]',
+                         'Hidden Power [Rock]', 'Hidden Power [Poison]',
+                         'Hidden Power [Ground]', 'Hidden Power [Bug]', 'Hidden Power [Grass]',
+                         'Hidden Power [Psychic]', 'Hidden Power [Flying]', 'Hidden Power [Water]'],
+                            {}
+                        ),
+                    ), baseStats=(48, 72, 48, 72, 48, 48), genders=('',), images=('201.gif', '201.png', '201 (1).png')
                 )
             if 'Wobbuffet':
                 root.pokesets['Wobbuffet'] = pokemon_ddl.PokemonSet(
                     name='Wobbuffet', species='Wobbuffet', abilities=('Shadow Tag',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(190, 33, 58, 33, 58, 33), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Encore'],
+                            {
+                                'Encore': ['Counter'],
+                                'Counter': ['Mirror Coat'],
+                                'Mirror Coat': ['Safeguard', 'Destiny Bond', 'Tickle']
+                            }
+                        ),
+                    ), baseStats=(190, 33, 58, 33, 58, 33), genders=('M', 'F'), images=('202.gif', '202-m.png', '202-m (1).png')
                 )
             if 'Girafarig':
                 root.pokesets['Girafarig'] = pokemon_ddl.PokemonSet(
                     name='Girafarig', species='Girafarig', abilities=('Inner Focus', 'Early Bird'),
                     pkTypes=('Normal', 'Psychic'),
-                    sets=(), baseStats=(70, 80, 65, 90, 65, 85), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Baton Pass', 'Trick', 'Trick Room', 'Psychic', 'Assurance'],
+                                'Baton Pass': ['Calm Mind', 'Agility'],
+                                'Calm Mind': ['Psychic', 'Shadow Ball', 'Thunderbolt'],
+                                'Agility': ['Psychic', 'Shadow Ball', 'Thunderbolt'],
+                                'Trick': ['Psychic'],
+                                'Psychic': ['Thunderbolt', 'Grass Knot'],
+                                'Thunderbolt': ['Sucker Punch', 'Hidden Power [Fighting]', 'Shadow Ball'],
+                                'Assurance': ['Zen Headbutt', 'Thunder Wave', 'Sunny Day', 'Zen Headbutt', 'Thunder Wave']
+                            }
+                        ),
+                    ), baseStats=(70, 80, 65, 90, 65, 85), genders=('M', 'F'), images=('203.gif', '203-m.png', '203-m (1).png')
                 )
             if 'Lugia':
                 root.pokesets['Lugia'] = pokemon_ddl.PokemonSet(
                     name='Lugia', species='Lugia', abilities=('Pressure',), pkTypes=('Psychic', 'Flying'),
-                    sets=(), baseStats=(106, 90, 130, 90, 154, 110), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Aeroblast'],
+                            {
+                                'Aeroblast': ['Roost', 'Calm Mind', 'Trick', 'Dragon Pulse'],
+                                'Roost': ['Whirlwind', 'Ice Beam'],
+                                'Whirlwind': ['Ice Beam', 'Toxic'],
+                                'Calm Mind': ['Earth Power', 'Weather Ball', 'Thunder'],
+                                'Earth Power': ['Roost', 'Ice Beam'],
+                                'Weather Ball': ['Roost'],
+                                'Thunder': ['Roost', 'Ice Beam', 'Hidden Power [Fighting]'],
+                                'Trick': ['Thunder'],
+                                'Ice Beam': ['Toxic', 'Light Screen', 'Reflect', 'Reflect'],
+                                'Dragon Pulse': ['Calm Mind', 'Ancient Power', 'Blizzard', 'Earth Power', 'Extrasensory',
+                                                 'Future Sight', 'Giga Drain', 'Hail', 'Hydro Pump', 'Icy Wind', 'Psycho Boost',
+                                                 'Psychic', 'Rain Dance', 'Shadow Ball', 'Signal Beam', 'Sky Attack', 'Skill Swap',
+                                                 'Thunder Wave', 'Whirlpool']
+                            }
+                        ),
+                    ), baseStats=(106, 90, 130, 90, 154, 110), genders=('',), images=('249.gif', '249.png', '249 (1).png')
                 )
             if 'Gardevoir':
                 root.pokesets['Gardevoir'] = pokemon_ddl.PokemonSet(
                     name='Gardevoir', species='Gardevoir', abilities=('Synchronize', 'Trace'), pkTypes=('Psychic',),
-                    sets=(), baseStats=(68, 65, 65, 125, 115, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Psychic'],
+                                'Psychic': ['Signal Beam', 'Thunderbolt', 'Hidden Power [Ground]', 'Focus Blast', 'Will-O-Wisp', 'Wish', 'Pain Split', 'Reflect', 'Light Screen', 'Icy Wind'],
+                                'Signal Beam': ['Trick', 'Taunt', 'Destiny Bond', 'Encore', 'Calm Mind', 'Will-O-Wisp'],
+                                'Thunderbolt': ['Trick', 'Taunt', 'Destiny Bond', 'Encore', 'Calm Mind', 'Will-O-Wisp'],
+                                'Hidden Power [Ground]': ['Trick', 'Taunt', 'Destiny Bond', 'Encore', 'Calm Mind', 'Will-O-Wisp'],
+                                'Focus Blast': ['Trick', 'Taunt', 'Destiny Bond', 'Encore', 'Calm Mind', 'Will-O-Wisp', 'Shadow Ball'],
+                                'Will-O-Wisp': ['Trick', 'Taunt', 'Destiny Bond', 'Encore', 'Calm Mind', 'Will-O-Wisp'],
+                                'Wish': ['Heal Bell', 'Will-O-Wisp'],
+                                'Pain Split': ['Heal Bell', 'Will-O-Wisp'],
+                                'Reflect': ['Light Screen', 'Memento', 'Taunt', 'Will-O-Wisp'],
+                                'Light Screen': ['Reflect', 'Memento', 'Taunt', 'Will-O-Wisp'],
+                                'Icy Wind': ['Imprison', 'Light Screen', 'Reflect', 'Memento', 'Destiny Bond', 'Shadow Sneak', 'Trick Room']
+                            }
+                        ),
+                    ), baseStats=(68, 65, 65, 125, 115, 80), genders=('M', 'F'), images=('282.gif', '282.png', '282 (1).png')
                 )
             if 'Grumpig':
                 root.pokesets['Grumpig'] = pokemon_ddl.PokemonSet(
