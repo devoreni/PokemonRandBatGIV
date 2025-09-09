@@ -6,6 +6,7 @@ import transaction
 import numpy as np
 import random
 import pprint
+import version_control
 
 
 def runDML():
@@ -13,6 +14,14 @@ def runDML():
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
+
+    current_dml_hash = version_control.get_dml_hash()
+    if not current_dml_hash:
+        connection.close()
+        db.close()
+        storage.close()
+        return
+    root.dml_version = current_dml_hash
 
     if not hasattr(root, 'moves'):
         root.moves = OOBTree()
@@ -4940,7 +4949,7 @@ def runDML():
                                 'Signal Beam': ['Power Gem', 'Ice Beam', 'Psychic', 'Surf', 'Hydro Pump']
                             }
                         ),
-                    ), baseStats=(60, 75, 85, 100, 85, 115), genders=('',)
+                    ), baseStats=(60, 75, 85, 100, 85, 115), genders=('',), images=('121.gif', '121.png', '121 (1).png')
                 )
             if 'Mr. Mime':
                 root.pokesets['Mr. Mime'] = pokemon_ddl.PokemonSet(
@@ -5129,9 +5138,12 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Wish'],
+                                'Protect': ['Wish', 'Psychic', 'Reflect'],
                                 'Wish': ['U-turn'],
-                                'U-turn': ['Psychic', 'Reflect', 'Light Screen']
+                                'U-turn': ['Psychic', 'Reflect', 'Light Screen'],
+                                'Psychic': ['Heat Wave'],
+                                'Heat Wave': ['Trick', 'Roost', 'Hidden Power [Ground]', 'Shadow Ball', 'Calm Mind', 'Haze'],
+                                'Reflect': ['Light Screen', 'Night Shade']
                             }
                         ),
                     ), baseStats=(65, 75, 70, 95, 70, 95), genders=('M', 'F'), images=('178.gif', '178-m.png', '178-m (1).png')
@@ -5139,13 +5151,36 @@ def runDML():
             if 'Espeon':
                 root.pokesets['Espeon'] = pokemon_ddl.PokemonSet(
                     name='Espeon', species='Espeon', abilities=('Synchronize',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(65, 65, 60, 130, 95, 110), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Calm Mind', 'Calm Mind', 'Trick'],
+                                'Calm Mind': ['Baton Pass', 'Psychic'],
+                                'Baton Pass': ['Substitute', 'Psychic'],
+                                'Psychic': ['Hidden Power [Ground]', 'Baton Pass', 'Shadow Ball', 'Signal Beam'],
+                                'Trick': ['Psychic']
+                            }
+                        ),
+                    ), baseStats=(65, 65, 60, 130, 95, 110), genders=('M', 'F'), images=('196.gif', '196.png', '196 (1).png')
                 )
             if 'Slowking':
                 root.pokesets['Slowking'] = pokemon_ddl.PokemonSet(
                     name='Slowking', species='Slowking', abilities=('Oblivious', 'Own Tempo'),
                     pkTypes=('Water', 'Psychic'),
-                    sets=(), baseStats=(95, 75, 80, 100, 110, 30), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Trick Room', 'Nasty Plot', 'Trick Room'],
+                                'Trick Room': ['Calm Mind', 'Surf', 'Slack Off'],
+                                'Calm Mind': ['Surf', 'Psychic', 'Ice Beam'],
+                                'Surf': ['Psychic', 'Ice Beam', 'Slack Off', 'Fire Blast', 'Grass Knot', 'Trick'],
+                                'Slack Off': ['Psychic', 'Flamethrower', 'Grass Knot', 'Focus Blast'],
+                                'Nasty Plot': ['Surf', 'Future Sight']
+                            }
+                        ),
+                    ), baseStats=(95, 75, 80, 100, 110, 30), genders=('M', 'F'), images=('199.gif', '199.png', '199 (1).png')
                 )
             if 'Unown':
                 root.pokesets['Unown'] = pokemon_ddl.PokemonSet(
@@ -6431,6 +6466,9 @@ def runDML():
     connection.close()
     db.close()
     storage.close()
+
+    with open('dml_version.txt', 'w') as f:
+        f.write(current_dml_hash)
 
 
 if __name__ == '__main__':

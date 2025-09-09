@@ -12,13 +12,35 @@ import os
 import functions
 import pokemon_ddl
 import pokemon_dml
+import version_control
 
 # --- Database Setup ---
-if not os.path.exists('./data/PokeData.fs'):
+dml_required = False
+
+db_exists = os.path.exists('./data/PokeData.fs')
+if not db_exists:
+    dml_required = True
+else:
+    try:
+        temp_storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+        temp_db = ZODB.DB(temp_storage)
+        temp_conn = temp_db.open()
+        temp_root = temp_conn.root
+        db_version = getattr(temp_conn.root, 'dml_version', None)
+        temp_conn.close()
+        temp_db.close()
+        temp_storage.close()
+
+        with open('dml_version.txt', 'r') as f:
+            target_version = f.read().strip()
+
+        if db_version != target_version:
+            dml_required = True
+    except (FileNotFoundError, Exception) as e:
+        dml_required = True
+if dml_required:
     os.makedirs('./data', exist_ok=True)
-    print("Database not found. Running DML to create and populate it...")
     pokemon_dml.runDML()
-    print("Database creation complete.")
 
 try:
     STORAGE = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
