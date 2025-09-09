@@ -4831,44 +4831,310 @@ def runDML():
             if 'Alakazam':
                 root.pokesets['Alakazam'] = pokemon_ddl.PokemonSet(
                     name='Alakazam', species='Alakazam', abilities=('Synchronize', 'Inner Focus'), pkTypes=('Psychic',),
-                    sets=(), baseStats=(55, 50, 45, 135, 85, 120), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Protect', 'Substitute'],
+                            {
+                                'Substitute': ['Psychic', 'Psybeam', 'Confusion', 'Psychic', 'Encore'],
+                                'Psybeam': ['Charge Beam', 'Energy Ball', 'Focus Blast', 'Focus Blast', 'Focus Blast',
+                                            'Future Sight', 'Grass Knot', 'Snore', 'Thunder Wave', 'Swagger',
+                                            'Hyper Beam', 'Shadow Ball', 'Shadow Ball', 'Shadow Ball', 'Shock Wave',
+                                            'Signal Beam', 'Signal Beam', 'Signal Beam'],
+                                'Psychic': ['Charge Beam', 'Energy Ball', 'Focus Blast', 'Focus Blast', 'Focus Blast',
+                                            'Future Sight', 'Grass Knot', 'Snore', 'Thunder Wave', 'Swagger',
+                                            'Hyper Beam', 'Shadow Ball', 'Shadow Ball', 'Shadow Ball', 'Shock Wave',
+                                            'Signal Beam', 'Signal Beam', 'Signal Beam'],
+                                'Confusion': ['Charge Beam', 'Energy Ball', 'Focus Blast', 'Focus Blast', 'Focus Blast',
+                                            'Future Sight', 'Grass Knot', 'Snore', 'Thunder Wave', 'Swagger',
+                                            'Hyper Beam', 'Shadow Ball', 'Shadow Ball', 'Shadow Ball', 'Shock Wave',
+                                            'Signal Beam', 'Signal Beam', 'Signal Beam'],
+                                'Protect': ['Light Screen', 'Reflect', 'Taunt', 'Calm Mind', 'Trick', 'Psychic', 'Psychic', 'Gravity'],
+                                'Light Screen': ['Reflect', 'Encore', 'Taunt'],
+                                'Reflect': ['Light Screen', 'Encore', 'Taunt'],
+                                'Encore': ['Psychic'],
+                                'Taunt': ['Psychic'],
+                                'Calm Mind': ['Encore', 'Psychic'],
+                                'Trick': ['Focus Blast', 'Psychic', 'Counter'],
+                                'Focus Blast': ['Signal Beam', 'Grass Knot', 'Psychic'],
+                                'Counter': ['Psychic'],
+                                'Gravity': ['Focus Blast', 'Disable']
+                            }
+                        ),
+                    ), baseStats=(55, 50, 45, 135, 85, 120), genders=('M', 'F'), images=('065.gif', '065-m.png', '065-m (1).png')
                 )
             if 'Slowbro':
                 root.pokesets['Slowbro'] = pokemon_ddl.PokemonSet(
                     name='Slowbro', species='Slowbro', abilities=('Oblivious', 'Own Tempo'),
                     pkTypes=('Water', 'Psychic'),
-                    sets=(), baseStats=(95, 75, 110, 100, 80, 30), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Slack Off', 'Protect', 'Rest'],
+                            {
+                                'Protect': ['Slack Off', 'Trick Room', 'Trick', 'Avalanche'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Calm Mind', 'Psychic'],
+                                'Calm Mind': ['Psychic', 'Surf', 'Water Pulse'],
+                                'Slack Off': ['Trick Room'],
+                                'Trick Room': ['Psychic', 'Grass Knot', 'Slack Off', 'Blizzard', 'Flamethrower', 'Brine',
+                                               'Surf', 'Confusion', 'Flamethrower', 'Flash', 'Grass Knot', 'Ice Beam',
+                                               'Icy Wind', 'Mud-Slap', 'Shadow Ball', 'Signal Beam', 'Thunder Wave'],
+                                'Blizzard': ['Fire Blast', 'Focus Blast'],
+                                'Avalanche': ['Zen Headbutt'],
+                                'Zen Headbutt': ['Earthquake', 'Drain Punch', 'Dynamic Punch', 'Double-Edge', 'Counter',
+                                                 'Brick Break', 'Body Slam', 'Aqua Tail'],
+                                'Trick': ['Seismic Toss', 'Icy Wind', 'Psychic']
+                            }
+                        ),
+                    ), baseStats=(95, 75, 110, 100, 80, 30), genders=('M', 'F'), images=('080.gif', '080.png', '080 (1).png')
                 )
             if 'Hypno':
                 root.pokesets['Hypno'] = pokemon_ddl.PokemonSet(
                     name='Hypno', species='Hypno', abilities=('Insomnia', 'Forewarn'), pkTypes=('Psychic',),
-                    sets=(), baseStats=(85, 73, 70, 73, 115, 67), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Wish', 'Baton Pass'],
+                                'Wish': ['Seismic Toss', 'Psychic'],
+                                'Seismic Toss': ['Thunder Wave', 'Psychic'],
+                                'Psychic': ['Thunder Wave', 'Seismic Toss'],
+                                'Baton Pass': ['Nasty Plot', 'Calm Mind'],
+                                'Nasty Plot': ['Psychic', 'Substitute'],
+                                'Calm Mind': ['Substitute', 'Psychic']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Hypnosis', 'Trick Room', 'Drain Punch', 'Psycho Cut'],
+                                'Hypnosis': ['Dream Eater'],
+                                'Dream Eater': ['Nightmare', 'Drain Punch'],
+                                'Trick Room': ['Fling', 'Hypnosis', 'Shadow Ball'],
+                                'Shadow Ball': ['Psychic', 'Signal Beam', 'Focus Blast'],
+                                'Drain Punch': ['Fire Punch', 'Thunder Punch', 'Fire Punch', 'Focus Punch', 'Mega Punch'],
+                                'Psycho Cut': ['Drain Punch', 'Fire Punch', 'Return', 'Skill Swap', 'Trick Room', 'Fling']
+                            }
+                        )
+                    ), baseStats=(85, 73, 70, 73, 115, 67), genders=('M', 'F'), images=('097.gif', '097-m.png', '097-m (1).png')
                 )
             if 'Starmie':
                 root.pokesets['Starmie'] = pokemon_ddl.PokemonSet(
-                    name='Starmie', species='Starmie', abilities=('Illuminate', 'Natural Cure'),
+                    name='Starmie', species='Starmie', abilities=('Natural Cure',),
                     pkTypes=('Water', 'Psychic'),
-                    sets=(), baseStats=(60, 75, 85, 100, 85, 115), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rapid Spin', 'Ice Beam', 'Blizzard', 'Power Gem', 'Signal Beam'],
+                                'Rapid Spin': ['Recover', 'Surf', 'Hydro Pump'],
+                                'Recover': ['Surf', 'Hydro Pump', 'Thunderbolt', 'Psychic'],
+                                'Surf': ['Thunder Wave', 'Confuse Ray', 'Thunderbolt', 'Psychic'],
+                                'Hydro Pump': ['Signal Beam', 'Thunder Wave', 'Confuse Ray', 'Thunderbolt', 'Psychic'],
+                                'Ice Beam': ['Grass Knot', 'Thunder Wave', 'Thunderbolt', 'Psychic'],
+                                'Thunder Wave': ['Hydro Pump', 'Surf'],
+                                'Thunderbolt': ['Hydro Pump', 'Surf'],
+                                'Grass Knot': ['Hydro Pump', 'Surf'],
+                                'Psychic': ['Rapid Spin', 'Hydro Pump', 'Surf'],
+                                'Blizzard': ['Thunder', 'Hydro Pump', 'Recover'],
+                                'Power Gem': ['Signal Beam', 'Ice Beam', 'Psychic', 'Surf', 'Hydro Pump', 'Rapid Spin'],
+                                'Signal Beam': ['Power Gem', 'Ice Beam', 'Psychic', 'Surf', 'Hydro Pump']
+                            }
+                        ),
+                    ), baseStats=(60, 75, 85, 100, 85, 115), genders=('',)
                 )
             if 'Mr. Mime':
                 root.pokesets['Mr. Mime'] = pokemon_ddl.PokemonSet(
                     name='Mr. Mime', species='Mr. Mime', abilities=('Soundproof', 'Filter'), pkTypes=('Psychic',),
-                    sets=(), baseStats=(40, 45, 65, 100, 120, 90), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Baton Pass', 'Trick', 'Copycat', 'Hypnosis', 'Metronome', 'Trick Room', 'Teeter Dance'],
+                                'Baton Pass': ['Nasty Plot', 'Calm Mind'],
+                                'Nasty Plot': ['Taunt', 'Substitute', 'Encore', 'Psychic', 'Charge Beam'],
+                                'Calm Mind': ['Taunt', 'Substitute', 'Encore', 'Psychic', 'Charge Beam'],
+                                'Trick': ['Psychic'],
+                                'Psychic': ['Thunderbolt', 'Shadow Ball'],
+                                'Thunderbolt': ['Focus Blast', 'Baton Pass', 'Shadow Ball'],
+                                'Copycat': ['Mimic'],
+                                'Mimic': ['Psychic', 'Shadow Ball', 'Light Screen', 'Reflect'],
+                                'Hypnosis': ['Psychic', 'Baton Pass', 'Light Screen', 'Reflect'],
+                                'Light Screen': ['Signal Beam', 'Copycat', 'Mimic', 'Energy Ball'],
+                                'Reflect': ['Light Screen', 'Signal Beam', 'Shadow Ball'],
+                                'Metronome': ['Psychic', 'Copycat', 'Mimic', 'Shadow Ball', 'Solar Beam'],
+                                'Trick Room': ['Psychic'],
+                                'Teeter Dance': ['Psychic', 'Shock Wave']
+                            }
+                        ),
+                    ), baseStats=(40, 45, 65, 100, 120, 90), genders=('M', 'F'), images=('122.gif', '122.png', '122 (1).png')
                 )
             if 'Mewtwo':
                 root.pokesets['Mewtwo'] = pokemon_ddl.PokemonSet(
                     name='Mewtwo', species='Mewtwo', abilities=('Pressure',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(106, 110, 90, 154, 90, 130), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Calm Mind'],
+                            {
+                                'Calm Mind': ['Ice Beam'],
+                                'Ice Beam': ['Aura Sphere', 'Thunder', 'Thunderbolt'],
+                                'Aura Sphere': ['Recover'],
+                                'Thunder': ['Recover'],
+                                'Thunderbolt': ['Recover']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Aura Sphere', 'Self-Destruct'],
+                            {
+                                'Aura Sphere': ['Ice Beam', 'Psychic'],
+                                'Ice Beam': ['Self-Destruct'],
+                                'Self-Destruct': ['Fire Blast', 'Flamethrower', 'Thunder', 'Thunderbolt', 'Grass Knot',
+                                                  'Energy Ball', 'Focus Blast', 'Aerial Ace', 'Aqua Tail', 'Avalanche', 'Blizzard',
+                                                  'Barrier', 'Body Slam', 'Brick Break', 'Charge Beam', 'Confusion', 'Counter',
+                                                  'Disable', 'Double Team', 'Double-Edge', 'Drain Punch', 'Dream Eater', 'Dynamic Punch',
+                                                  'Earthquake', 'Embargo', 'Endure', 'Facade', 'Fire Punch', 'Flash', 'Fling',
+                                                  'Focus Blast', 'Frustration', 'Future Sight', 'Giga Impact', 'Gravity', 'Hail',
+                                                  'Headbutt', 'Hyper Beam', 'Hidden Power [Dark]', 'Ice Punch', 'Icy Wind', 'Iron Tail',
+                                                  'Light Screen', 'Low Kick', 'Magic Coat', 'Me First', 'Mega Kick', 'Mega Punch',
+                                                  'Mist', 'Mud-Slap', 'Nightmare', 'Poison Jab', 'Protect', 'Psycho Cut', 'Psych Up',
+                                                  'Rain Dance', 'Recover', 'Recycle', 'Reflect', 'Rest', 'Return', 'Rock Climb',
+                                                  'Rock Slide', 'Rock Smash', 'Rock Tomb', 'Role Play', 'Safeguard', 'Sandstorm',
+                                                  'Secret Power', 'Shadow Ball', 'Shock Wave', 'Signal Beam', 'Skill Swap', 'Snatch',
+                                                  'Snore', 'Solar Beam', 'Stone Edge', 'Strength', 'Substitute', 'Sunny Day',
+                                                  'Swagger', 'Swift', 'Taunt', 'Thunder Punch', 'Thunder Wave', 'Torment', 'Toxic',
+                                                  'Trick', 'Trick Room', 'Water Pulse', 'Will-O-Wisp', 'Zen Headbutt']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Taunt'],
+                            {
+                                'Taunt': ['Reflect', 'Light Screen', 'Self-Destruct'],
+                                'Self-Destruct': ['Fire Blast', 'Flamethrower', 'Thunder', 'Thunderbolt', 'Grass Knot',
+                                                  'Energy Ball', 'Focus Blast', 'Aerial Ace', 'Aqua Tail', 'Avalanche', 'Blizzard',
+                                                  'Barrier', 'Body Slam', 'Brick Break', 'Charge Beam', 'Confusion', 'Counter',
+                                                  'Disable', 'Double Team', 'Double-Edge', 'Drain Punch', 'Dream Eater', 'Dynamic Punch',
+                                                  'Earthquake', 'Embargo', 'Endure', 'Facade', 'Fire Punch', 'Flash', 'Fling',
+                                                  'Focus Blast', 'Frustration', 'Future Sight', 'Giga Impact', 'Gravity', 'Hail',
+                                                  'Headbutt', 'Hyper Beam', 'Hidden Power [Dark]', 'Ice Punch', 'Icy Wind', 'Iron Tail',
+                                                  'Light Screen', 'Low Kick', 'Magic Coat', 'Me First', 'Mega Kick', 'Mega Punch',
+                                                  'Mist', 'Mud-Slap', 'Nightmare', 'Poison Jab', 'Protect', 'Psycho Cut', 'Psych Up',
+                                                  'Rain Dance', 'Recover', 'Recycle', 'Reflect', 'Rest', 'Return', 'Rock Climb',
+                                                  'Rock Slide', 'Rock Smash', 'Rock Tomb', 'Role Play', 'Safeguard', 'Sandstorm',
+                                                  'Secret Power', 'Shadow Ball', 'Shock Wave', 'Signal Beam', 'Skill Swap', 'Snatch',
+                                                  'Snore', 'Solar Beam', 'Stone Edge', 'Strength', 'Substitute', 'Sunny Day',
+                                                  'Swagger', 'Swift', 'Taunt', 'Thunder Punch', 'Thunder Wave', 'Torment', 'Toxic',
+                                                  'Trick', 'Trick Room', 'Water Pulse', 'Will-O-Wisp', 'Zen Headbutt', 'Psychic',
+                                                  'Ice Beam', 'Aura Sphere']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Will-O-Wisp', 'Thunder Wave'],
+                            {
+                                'Taunt': ['Ice Beam', 'Aura Sphere', 'Light Screen'],
+                                'Will-O-Wisp': ['Recover'],
+                                'Thunder Wave': ['Recover'],
+                                'Recover': ['Taunt']
+                            }
+                        )
+                    ), baseStats=(106, 110, 90, 154, 90, 130), genders=('',), images=('150.gif', '150.png', '150 (1).png')
                 )
             if 'Mew':
                 root.pokesets['Mew'] = pokemon_ddl.PokemonSet(
                     name='Mew', species='Mew', abilities=('Synchronize',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Rock Polish'],
+                            {
+                                'Rock Polish': ['Swords Dance', 'Nasty Plot'],
+                                'Swords Dance': ['Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                                 'Aerial Ace', 'Aqua Tail', 'Avalanche', 'Body Slam', 'Bounce', 'Brick Break',
+                                                 'Bug Bite', 'Bullet Seed', 'Cut', 'Dig', 'Fly', 'Dive', 'Double-Edge', 'Dragon Claw',
+                                                 'Drain Punch', 'Dynamic Punch', 'Earthquake', 'Explosion', 'Facade', 'Fake Out',
+                                                 'Feint Attack', 'Fire Punch', 'Focus Punch', 'Frustration', 'Fury Cutter', 'Gastro Acid',
+                                                 'Gunk Shot', 'Gyro Ball', 'Headbutt', 'Ice Punch', 'Iron Head', 'Iron Tail',
+                                                 'Knock Off', 'Low Kick', 'Mega Kick', 'Mega Punch', 'Outrage', 'Payback', 'Pluck',
+                                                 'Poison Jab', 'Rock Climb', 'Rock Slide', 'Rock Smash', 'Rock Tomb', 'Rollout',
+                                                 'Roost', 'Secret Power', 'Seed Bomb', 'Self-Destruct', 'Shadow Claw', 'Sky Attack',
+                                                 'Steel Wing', 'Stone Edge', 'Strength', 'Sucker Punch', 'Superpower', 'Thief', 'Thunder Punch',
+                                                 'Waterfall', 'X-Scissor', 'Zen Headbutt'],
+                                'Nasty Plot': ['Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass', 'Baton Pass',
+                                               'Air Cutter', 'Ancient Power', 'Aura Sphere', 'Blizzard', 'Brine', 'Charge Beam',
+                                               'Dark Pulse', 'Dragon Pulse', 'Earth Power', 'Dream Eater', 'Energy Ball', 'Fire Blast',
+                                               'Flamethrower', 'Flash Cannon', 'Focus Blast', 'Giga Drain', 'Grass Knot', 'Heat Wave',
+                                               'Hyper Beam', 'Ice Beam', 'Icy Wind', 'Mud-Slap', 'Ominous Wind', 'Overheat',
+                                               'Psychic', 'Shadow Ball', 'Shock Wave', 'Signal Beam', 'Silver Wind', 'Sludge Bomb',
+                                               'Solar Beam', 'Surf', 'Swift', 'Thunder', 'Thunderbolt', 'Twister', 'Uproar',
+                                               'Vacuum Wave', 'Water Pulse', 'Whirlpool', 'Zap Cannon'],
+                                'Baton Pass': ['Taunt', 'Protect']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Stealth Rock'],
+                                'Stealth Rock': ['Taunt', 'U-turn'],
+                                'Taunt': ['Explosion', 'U-turn'],
+                                'U-turn': ['Explosion', 'Taunt']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Trick', 'Hypnosis'],
+                                'Trick': ['Transform'],
+                                'Hypnosis': ['Transform'],
+                                'Transform': ['Light Screen', 'Reflect', 'Explosion', 'Dragon Claw', 'Dragon Pulse']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Soft-Boiled': ['U-turn'],
+                                'Protect': ['Soft-Boiled'],
+                                'U-turn': ['Thunder Wave', 'Hypnosis', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Knock Off', 'Blizzard', 'Defog', 'Swords Dance', 'Super Fang', 'Heal Bell'],
+                                'Knock Off': ['Taunt'],
+                                'Taunt': ['Will-O-Wisp'],
+                                'Blizzard': ['Thunder', 'Fire Blast', 'Outrage', 'Focus Blast'],
+                                'Defog': ['Will-O-Wisp'],
+                                'Will-O-Wisp': ['Roost', 'Super Fang'],
+                                'Swords Dance': ['Sucker Punch', 'Zen Headbutt', 'Drain Punch'],
+                                'Super Fang': ['Brine'],
+                                'Brine': ['Giga Drain', 'Psychic'],
+                                'Heal Bell': ['Taunt', 'U-turn', 'Psychic', 'Ice Beam', 'Light Screen', 'Reflect']
+                            }
+                        )
+                    ), baseStats=(100, 100, 100, 100, 100, 100), genders=('',), images=('151.gif', '151.png', '151 (1).png')
                 )
             if 'Xatu':
                 root.pokesets['Xatu'] = pokemon_ddl.PokemonSet(
                     name='Xatu', species='Xatu', abilities=('Synchronize', 'Early Bird'), pkTypes=('Psychic', 'Flying'),
-                    sets=(), baseStats=(65, 75, 70, 95, 70, 95), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Wish'],
+                                'Wish': ['U-turn'],
+                                'U-turn': ['Psychic', 'Reflect', 'Light Screen']
+                            }
+                        ),
+                    ), baseStats=(65, 75, 70, 95, 70, 95), genders=('M', 'F'), images=('178.gif', '178-m.png', '178-m (1).png')
                 )
             if 'Espeon':
                 root.pokesets['Espeon'] = pokemon_ddl.PokemonSet(
@@ -5617,7 +5883,7 @@ def runDML():
         root.moves['Rock Climb'] = pokemon_ddl.Move('Rock Climb', 90, 0.85, 'Phys', 'Normal')
         root.moves['Scratch'] = pokemon_ddl.Move('Scratch', 40, 1.0, 'Phys', 'Normal')
         root.moves['Secret Power'] = pokemon_ddl.Move('Secret Power', 70, 1.0, 'Phys', 'Normal')
-        root.moves['Selfdestruct'] = pokemon_ddl.Move('Selfdestruct', 200, 1.0, 'Phys', 'Normal')
+        root.moves['Self-Destruct'] = pokemon_ddl.Move('Self-Destruct', 200, 1.0, 'Phys', 'Normal')
         root.moves['Skull Bash'] = pokemon_ddl.Move('Skull Bash', 100, 1.0, 'Phys', 'Normal')
         root.moves['Slam'] = pokemon_ddl.Move('Slam', 80, 0.75, 'Phys', 'Normal')
         root.moves['Slash'] = pokemon_ddl.Move('Slash', 70, 1.0, 'Phys', 'Normal')
