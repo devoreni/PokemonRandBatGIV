@@ -5281,22 +5281,73 @@ def runDML():
             if 'Grumpig':
                 root.pokesets['Grumpig'] = pokemon_ddl.PokemonSet(
                     name='Grumpig', species='Grumpig', abilities=('Thick Fat', 'Own Tempo'), pkTypes=('Psychic',),
-                    sets=(), baseStats=(80, 45, 65, 90, 110, 80), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Heal Bell', 'Trick Room'],
+                                'Heal Bell': ['Thunder Wave', 'Toxic', 'Confuse Ray'],
+                                'Thunder Wave': ['Reflect', 'Magic Coat', 'Psychic'],
+                                'Toxic': ['Reflect', 'Magic Coat', 'Psychic', 'Counter'],
+                                'Trick Room': ['Psychic'],
+                                'Psychic': ['Signal Beam', 'Hidden Power [Fighting]', 'Substitute']
+                            }
+                        ),
+                    ), baseStats=(80, 45, 65, 90, 110, 80), genders=('M', 'F'), images=('326.gif', '326.png', '326 (1).png')
                 )
             if 'Chimecho':
                 root.pokesets['Chimecho'] = pokemon_ddl.PokemonSet(
                     name='Chimecho', species='Chimecho', abilities=('Levitate',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(65, 50, 70, 95, 80, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Psychic'],
+                                'Psychic': ['Heal Bell', 'Wish', 'Recover', 'Hidden Power [Ground]', 'Shadow Ball', 'Icy Wind'],
+                                'Heal Bell': ['Thunder Wave', 'Yawn'],
+                                'Wish': ['Thunder Wave', 'Yawn', 'Heal Bell'],
+                                'Recover': ['Thunder Wave', 'Yawn', 'Heal Bell'],
+                                'Hidden Power [Ground]': ['Recover'],
+                                'Shadow Ball': ['Recover'],
+                                'Icy Wind': ['Knock Off', 'Reflect', 'Light Screen', 'Gravity', 'Helping Hand']
+                            }
+                        ),
+                    ), baseStats=(65, 50, 70, 95, 80, 65), genders=('M', 'F'), images=('358.gif', '358.png', '358 (1).png')
                 )
             if 'Deoxys':
                 root.pokesets['Deoxys'] = pokemon_ddl.PokemonSet(
                     name='Deoxys', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(50, 150, 50, 150, 50, 150), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Shadow Ball', 'Extreme Speed', 'Spikes', 'Stealth Rock', 'Psycho Boost'],
+                                'Psycho Boost': ['Charge Beam', 'Knock Off']
+                            }
+                        ),
+                    ), baseStats=(50, 150, 50, 150, 50, 150), genders=('',), images=('386.gif', '386.png', '386 (1).png')
                 )
             if 'Deoxys-Attack':
                 root.pokesets['Deoxys-Attack'] = pokemon_ddl.PokemonSet(
                     name='Deoxys-Attack', species='Deoxys', abilities=('Pressure',), pkTypes=('Psychic',),
-                    sets=(), baseStats=(50, 180, 20, 180, 20, 150), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Psycho Boost', 'Meteor Mash'],
+                                'Psycho Boost': ['Aerial Ace', 'Body Slam', 'Brick Break', 'Charge Beam', 'Cut', 'Double-Edge',
+                                                 'Drain Punch', 'Dynamic Punch', 'Energy Ball', 'Extreme Speed', 'Fire Punch',
+                                                 'Flash Cannon', 'Focus Blast', 'Focus Punch', 'Giga Impact', 'Grass Knot',
+                                                 'Hyper Beam', 'Ice Beam', 'Ice Punch', 'Icy Wind', 'Knock Off', 'Low Kick', 'Meteor Mash',
+                                                 'Poison Jab', 'Psychic', 'Pursuit', 'Hidden Power [Dark]', 'Rock Slide', 'Shadow Ball',
+                                                 'Signal Beam', 'Solar Beam', 'Superpower', 'Swift', 'Thunder', 'Thunderbolt',
+                                                 'Thunder Punch', 'Zen Headbutt', 'Water Pulse', 'Zap Cannon'],
+                                'Meteor Mash': ['Aerial Ace', 'Brick Break', 'Drain Punch', 'Extreme Speed', 'Fire Punch',
+                                                'Ice Punch', 'Knock Off', 'Psycho Boost', 'Poison Jab', 'Pursuit', 'Rock Slide',
+                                                'Superpower', 'Thunder Punch', 'Zen Headbutt', 'Wrap']
+                            }
+                        ),
+                    ), baseStats=(50, 180, 20, 180, 20, 150), genders=('',), images=('386.gif', '386-a.png', '386-a (1).png')
                 )
             if 'Deoxys-Defense':
                 root.pokesets['Deoxys-Defense'] = pokemon_ddl.PokemonSet(

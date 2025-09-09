@@ -216,6 +216,11 @@ class PokemonSet(persistent.Persistent):
             points['HP'] += ((self.baseStats[2] + self.baseStats[4]) - (self.baseStats[0] * 2)) / 10
 
         points['HP'] += stat
+        if points['HP'] >= 25:
+            points['Def'] += 2
+            points['SpD'] += 2
+        if self.baseStats[5] >= 80:
+            points['Spe'] += phys + spec
         moves_as_set = set(detail.moves)
 
         points['HP'] += len(moves_as_set.intersection({'Stealth Rock', 'Roar', 'Spikes', 'Toxic Spikes', 'Knock Off', 'Icy Wind', 'Follow Me', 'Mud Shot'}))

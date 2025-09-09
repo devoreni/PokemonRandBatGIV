@@ -54,6 +54,15 @@ class TestAllOutPhysicalSweeper:
         assert result.EVs == '252 Atk / 252 Spe'
         assert result.nature in {'Jolly', 'Adamant'}
 
+    def test_deoxys_attack(self, db_root):
+        pk_set = pokemon_ddl.PokemonSet(name='Deoxys-Attack', species='Deoxys-Attack', abilities=(), pkTypes=(), sets=(),
+                            baseStats=(50, 180, 20, 180, 20, 150), genders=('',))
+        pk_indiv = pokemon_ddl.PokemonIndiv()
+        pk_indiv.moves = ['Meteor Mash', 'Protect', 'Fire Punch', 'Poison Jab']
+        result = pk_set.chooseEVsAndNature(pk_indiv, db_root, debug=True)
+        assert result.EVs == '252 Atk / 252 Spe'
+        assert result.nature in {'Jolly', 'Adamant'}
+
 
 class TestAllOutSpecialSweeper:
     def test_gengar(self, db_root):
