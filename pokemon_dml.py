@@ -5873,19 +5873,125 @@ def runDML():
         if 'Normal':
             if 'Raticate':
                 root.pokesets['Raticate'] = pokemon_ddl.PokemonSet(
-                    name='Raticate', species='Raticate', abilities=('Run Away', 'Guts'), pkTypes=('Normal',),
-                    sets=(), baseStats=(55, 81, 60, 50, 70, 97), genders=('M', 'F')
+                    name='Raticate', species='Raticate', abilities=('Guts',), pkTypes=('Normal',),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Facade', 'Super Fang'],
+                                'Facade': ['Sucker Punch', 'Crunch'],
+                                'Sucker Punch': ['U-turn', 'Reversal', 'Swords Dance'],
+                                'Crunch': ['U-turn', 'Reversal', 'Swords Dance'],
+                                'Super Fang': ['Thunder Wave'],
+                                'Thunder Wave': ['U-turn', 'Facade', 'Zen Headbutt', 'Taunt', 'Swagger']
+                            }
+                        ),
+                    ), baseStats=(55, 81, 60, 50, 70, 97), genders=('M', 'F'), images=('020.gif', '020-m.png', '020-m (1).png')
                 )
             if 'Clefable':
                 root.pokesets['Clefable'] = pokemon_ddl.PokemonSet(
                     name='Clefable', species='Clefable', abilities=('Cute Charm', 'Magic Guard'), pkTypes=('Normal',),
-                    sets=(), baseStats=(95, 70, 73, 85, 90, 60), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Ice Beam', 'Encore'],
+                                'Ice Beam': ['Seismic Toss'],
+                                'Encore': ['Seismic Toss'],
+                                'Seismic Toss': ['Soft-Boiled', 'Wish', 'Thunder Wave'],
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Wish'],
+                                'Wish': ['Seismic Toss'],
+                                'Seismic Toss': ['Toxic', 'Heal Bell']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Calm Mind'],
+                                'Calm Mind': ['Thunderbolt', 'Flamethrower'],
+                                'Thunderbolt': ['Ice Beam', 'Soft-Boiled', 'Hyper Beam'],
+                                'Flamethrower': ['Ice Beam', 'Soft-Boiled', 'Psychic']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Double-Edge'],
+                                'Double-Edge': ['Fire Blast', 'Meteor Mash'],
+                                'Fire Blast': ['Grass Knot', 'Meteor Mash'],
+                                'Meteor Mash': ['Soft-Boiled', 'Dynamic Punch', 'Thunder Wave']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Reflect', 'Light Screen'],
+                                'Reflect': ['Light Screen', 'Seismic Toss'],
+                                'Light Screen': ['Reflect', 'Seismic Toss'],
+                                'Seismic Toss': ['Wish', 'Soft-Boiled', 'Encore']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Endeavor'],
+                                'Endeavor': ['Encore'],
+                                'Encore': ['Toxic', 'Thunder Wave']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Knock Off'],
+                                'Knock Off': ['Seismic Toss', 'Soft-Boiled'],
+                                'Seismic Toss': ['Thunder Wave', 'Stealth Rock'],
+                                'Soft-Boiled': ['Thunder Wave', 'Stealth Rock']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Seismic Toss'],
+                                'Seismic Toss': ['Encore', 'Stealth Rock'],
+                                'Encore': ['Thunder Wave', 'Heal Bell', 'Soft-Boiled'],
+                                'Stealth Rock': ['Thunder Wave', 'Heal Bell', 'Soft-Boiled']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Blizzard', 'Fire Blast', 'Focus Blast', 'Thunder']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Zen Headbutt', 'Thunder Punch', 'Strength', 'Rollout', 'Rock Smash',
+                                            'Meteor Mash', 'Knock Off', 'Double-Edge', 'Ice Punch', 'Fire Punch',
+                                            'Dynamic Punch'],
+                                'Rollout': ['Defense Curl']
+                            }
+                        ),
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Icy Wind'],
+                                'Icy Wind': ['Knock Off'],
+                                'Knock Off': ['Trick', 'Thunder Wave', 'Toxic', 'Water Pulse']
+                            }
+                        )
+                    ), baseStats=(95, 70, 73, 85, 90, 60), genders=('M', 'F'), images=('036.gif', '036.png', '036 (1).png')
                 )
             if 'Wigglytuff':
                 root.pokesets['Wigglytuff'] = pokemon_ddl.PokemonSet(
                     name='Wigglytuff', species='Wigglytuff', abilities=('Cute Charm', 'Competitive'),
                     pkTypes=('Normal',),
-                    sets=(), baseStats=(140, 70, 45, 75, 50, 45), genders=('M', 'F')
+                    sets=(), baseStats=(140, 70, 45, 75, 50, 45), genders=('M', 'F'), images=('040.gif', '040.png', '040 (1).png')
                 )
             if 'Persian':
                 root.pokesets['Persian'] = pokemon_ddl.PokemonSet(

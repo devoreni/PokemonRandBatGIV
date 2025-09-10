@@ -67,16 +67,16 @@ if __name__ == '__main__':
     team = createIndivPokemon(before, root)
     '''
 
-    pk1 = root.pokesets['Arceus-Flying']
-    pk2 = root.pokesets['Arceus-Flying']
-    pk3 = root.pokesets['Arceus-Flying']
-    pk4 = root.pokesets['Arceus-Flying']
-    pk5 = root.pokesets['Arceus-Flying']
-    pk6 = root.pokesets['Arceus-Flying']
-    pk7 = root.pokesets['Arceus-Flying']
-    pk8 = root.pokesets['Arceus-Flying']
-    pk9 = root.pokesets['Arceus-Flying']
-    pk0 = root.pokesets['Arceus-Flying']
+    pk1 = root.pokesets['Clefable']
+    pk2 = root.pokesets['Clefable']
+    pk3 = root.pokesets['Clefable']
+    pk4 = root.pokesets['Clefable']
+    pk5 = root.pokesets['Clefable']
+    pk6 = root.pokesets['Clefable']
+    pk7 = root.pokesets['Clefable']
+    pk8 = root.pokesets['Clefable']
+    pk9 = root.pokesets['Clefable']
+    pk0 = root.pokesets['Clefable']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
 
     for pk in team:
