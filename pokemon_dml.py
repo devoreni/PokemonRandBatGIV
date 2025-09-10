@@ -5382,7 +5382,7 @@ def runDML():
                                 'Stealth Rock': ['Extreme Speed', 'Psycho Boost', 'Thunder Wave'],
                                 'Trick': ['Thunder Wave'],
                                 'Thunder Wave': ['Taunt', 'Stealth Rock'],
-                                'Psycho Boost': ['Thunder Bolt', 'Ice Beam', 'Focus Blast', 'Knock Off', 'Shadow Ball',
+                                'Psycho Boost': ['Thunderbolt', 'Ice Beam', 'Focus Blast', 'Knock Off', 'Shadow Ball',
                                                  'Super Power', 'Hidden Power [Fire]', 'Signal Beam', 'Spikes']
                             }
                         ),
