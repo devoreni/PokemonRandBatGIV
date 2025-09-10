@@ -5991,7 +5991,14 @@ def runDML():
                 root.pokesets['Wigglytuff'] = pokemon_ddl.PokemonSet(
                     name='Wigglytuff', species='Wigglytuff', abilities=('Cute Charm', 'Competitive'),
                     pkTypes=('Normal',),
-                    sets=(), baseStats=(140, 70, 45, 75, 50, 45), genders=('M', 'F'), images=('040.gif', '040.png', '040 (1).png')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                "Protect": []
+                            }
+                        ),
+                    ), baseStats=(140, 70, 45, 75, 50, 45), genders=('M', 'F'), images=('040.gif', '040.png', '040 (1).png')
                 )
             if 'Persian':
                 root.pokesets['Persian'] = pokemon_ddl.PokemonSet(
