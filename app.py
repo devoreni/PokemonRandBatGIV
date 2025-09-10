@@ -61,10 +61,8 @@ ASSET_PATHS = {
     "sprites": "./assets/PokemonSprites/{}",
     "shiny_star": "./assets/icons/ShinyVIStar.png",
     "item_icon": "./assets/icons/item.png",
-    # --- FIX START: Add paths for gender icons ---
     "male_icon": "./assets/icons/male.png",
     "female_icon": "./assets/icons/female.png"
-    # --- FIX END ---
 }
 
 
