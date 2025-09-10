@@ -5546,28 +5546,97 @@ def runDML():
                 root.pokesets['Pidgeot'] = pokemon_ddl.PokemonSet(
                     name='Pidgeot', species='Pidgeot', abilities=('Keen Eye', 'Tangled Feet'),
                     pkTypes=('Normal', 'Flying'),
-                    sets=(), baseStats=(83, 80, 75, 70, 70, 91), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Brave Bird', 'Heat Wave', 'Sky Attack'],
+                                'Brave Bird': ['Return', 'Steel Wing'],
+                                'Return': ['U-turn', 'Pursuit', 'Quick Attack'],
+                                'Heat Wave': ['Air Slash', 'Air Cutter'],
+                                'Air Slash': ['Ominous Wind', 'Feather Dance'],
+                                'Air Cutter': ['Air Slash', 'Ominous Wind', 'Mirror Move'],
+                                'Sky Attack': ['Return']
+                            }
+                        ),
+                    ), baseStats=(83, 80, 75, 70, 70, 91), genders=('M', 'F'), images=('018.gif', '018.png', '018 (1).png')
                 )
             if 'Fearow':
                 root.pokesets['Fearow'] = pokemon_ddl.PokemonSet(
                     name='Fearow', species='Fearow', abilities=('Keen Eye',), pkTypes=('Normal', 'Flying'),
-                    sets=(), baseStats=(65, 90, 65, 61, 61, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Drill Peck', 'Sky Attack'],
+                                'Drill Peck': ['Return'],
+                                'Return': ['U-turn', 'Quick Attack', 'Pursuit', 'Feint Attack', 'Mirror Move'],
+                                'Sky Attack': ['Return', 'Steel Wing', 'Thief', 'Whirlwind', 'Return']
+                            }
+                        ),
+                    ), baseStats=(65, 90, 65, 61, 61, 100), genders=('M', 'F'), images=('022.gif', '022.png', '022 (1).png')
                 )
             if "Farfetch'd":
                 root.pokesets["Farfetch'd"] = pokemon_ddl.PokemonSet(
                     name="Farfetch'd", species="Farfetch'd", abilities=('Keen Eye', 'Inner Focus'),
                     pkTypes=('Normal', 'Flying'),
-                    sets=(), baseStats=(52, 65, 55, 58, 62, 60), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Endure', 'Protect'],
+                            {
+                                'Endure': ['Flail'],
+                                'Protect': ['Slash'],
+                                'Slash': ['Night Slash'],
+                                'Night Slash': ['Air Cutter', 'Steel Wing', 'Knock Off'],
+                                'Flail': ['Swords Dance'],
+                                'Swords Dance': ['Double-Edge', 'Aerial Ace', 'Quick Attack', 'Substitute']
+                            }
+                        ),
+                    ), baseStats=(52, 65, 55, 58, 62, 60), genders=('M', 'F'), images=('083.gif', '083.png', '083 (1).png')
                 )
             if 'Dodrio':
                 root.pokesets['Dodrio'] = pokemon_ddl.PokemonSet(
                     name='Dodrio', species='Dodrio', abilities=('Run Away', 'Early Bird'), pkTypes=('Normal', 'Flying'),
-                    sets=(), baseStats=(60, 110, 70, 60, 60, 100), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Brave Bird', 'Acupressure'],
+                                'Brave Bird': ['Roost', 'Return'],
+                                'Roost': ['Return', 'Quick Attack', 'Taunt', 'Toxic', 'Payback'],
+                                'Return': ['Pursuit', 'Payback', 'Quick Attack', 'Toxic'],
+                                'Acupressure': ['Baton Pass', 'Substitute'],
+                                'Baton Pass': ['Roost', 'Brave Bird'],
+                                'Substitute': ['Roost', 'Steel Wing']
+                            }
+                        ),
+                    ), baseStats=(60, 110, 70, 60, 60, 100), genders=('M', 'F'), images=('085.gif', '085-m.png', '085-m (1).png')
                 )
             if 'Gyarados':
                 root.pokesets['Gyarados'] = pokemon_ddl.PokemonSet(
                     name='Gyarados', species='Gyarados', abilities=('Intimidate',), pkTypes=('Water', 'Flying'),
-                    sets=(), baseStats=(95, 125, 79, 60, 100, 81), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Rest', 'Protect', 'Protect'],
+                            {
+                                'Protect': ['Dragon Dance', 'Payback', 'Dragon Dance', 'Payback', 'Hydro Pump'],
+                                'Dragon Dance': ['Waterfall', 'Aqua Tail'],
+                                'Waterfall': ['Ice Fang', 'Outrage', 'Bounce', 'Earthquake', 'Stone Edge', 'Thunder Wave',
+                                              'Taunt'],
+                                'Aqua Tail': ['Ice Fang', 'Outrage', 'Bounce', 'Earthquake', 'Stone Edge', 'Thunder Wave',
+                                              'Taunt'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Roar'],
+                                'Roar': ['Waterfall', 'Aqua Tail'],
+                                'Payback': ['Stone Edge', 'Earthquake', 'Ice Fang', 'Avalanche'],
+                                'Stone Edge': ['Waterfall', 'Aqua Tail'],
+                                'Earthquake': ['Waterfall', 'Aqua Tail'],
+                                'Ice Fang': ['Waterfall', 'Aqua Tail'],
+                                'Avalanche': ['Waterfall', 'Aqua Tail'],
+                                'Hydro Pump': ['Blizzard', 'Fire Blast', 'Dragon Pulse', 'Dark Pulse', 'Hyper Beam', 'Thunder']
+                            }
+                        ),
+                    ), baseStats=(95, 125, 79, 60, 100, 81), genders=('M', 'F'), images=('130.gif', '130-m.png', '130-m (1).png')
                 )
             if 'Noctowl':
                 root.pokesets['Noctowl'] = pokemon_ddl.PokemonSet(
