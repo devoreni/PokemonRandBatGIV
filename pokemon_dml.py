@@ -6312,7 +6312,21 @@ def runDML():
             if 'Blissey':
                 root.pokesets['Blissey'] = pokemon_ddl.PokemonSet(
                     name='Blissey', species='Blissey', abilities=('Natural Cure', 'Serene Grace'), pkTypes=('Normal',),
-                    sets=(), baseStats=(255, 10, 10, 75, 135, 55), genders=('F',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Soft-Boiled', 'Wish'],
+                                'Soft Boiled': ['Hyper Beam', 'Toxic', 'Thunder Wave', 'Wish', 'Shadow Ball'],
+                                'Hyper Beam': ['Shadow Ball', 'Thunderbolt', 'Ice Beam'],
+                                'Toxic': ['Seismic Toss', 'Aromatherapy', 'Stealth Rock', 'Healing Wish', 'Shadow Ball'],
+                                'Thunder Wave': ['Stealth Rock', 'Seismic Toss'],
+                                'Wish': ['Seismic Toss'],
+                                'Seismic Toss': ['Toxic'],
+                                'Shadow Ball': ['Flamethrower', 'Focus Blast']
+                            }
+                        ),
+                    ), baseStats=(255, 10, 10, 75, 135, 55), genders=('F',), images=('242.gif', '242.png', '242 (1).png')
                 )
             if 'Linoone':
                 root.pokesets['Linoone'] = pokemon_ddl.PokemonSet(

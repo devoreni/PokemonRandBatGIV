@@ -67,16 +67,16 @@ if __name__ == '__main__':
     team = createIndivPokemon(before, root)
     '''
 
-    pk1 = root.pokesets['Miltank']
-    pk2 = root.pokesets['Miltank']
-    pk3 = root.pokesets['Miltank']
-    pk4 = root.pokesets['Miltank']
-    pk5 = root.pokesets['Miltank']
-    pk6 = root.pokesets['Miltank']
-    pk7 = root.pokesets['Miltank']
-    pk8 = root.pokesets['Miltank']
-    pk9 = root.pokesets['Miltank']
-    pk0 = root.pokesets['Miltank']
+    pk1 = root.pokesets['Blissey']
+    pk2 = root.pokesets['Blissey']
+    pk3 = root.pokesets['Blissey']
+    pk4 = root.pokesets['Blissey']
+    pk5 = root.pokesets['Blissey']
+    pk6 = root.pokesets['Blissey']
+    pk7 = root.pokesets['Blissey']
+    pk8 = root.pokesets['Blissey']
+    pk9 = root.pokesets['Blissey']
+    pk0 = root.pokesets['Blissey']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
 
     for pk in team:
