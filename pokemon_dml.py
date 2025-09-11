@@ -6317,13 +6317,14 @@ def runDML():
                             ['Protect'],
                             {
                                 'Protect': ['Soft-Boiled', 'Wish'],
-                                'Soft Boiled': ['Hyper Beam', 'Toxic', 'Thunder Wave', 'Wish', 'Shadow Ball'],
-                                'Hyper Beam': ['Shadow Ball', 'Thunderbolt', 'Ice Beam'],
+                                'Soft-Boiled': ['Hyper Beam', 'Toxic', 'Thunder Wave', 'Wish', 'Shadow Ball', 'Helping Hand'],
+                                'Hyper Beam': ['Shadow Ball', 'Thunderbolt', 'Ice Beam', 'Psychic'],
                                 'Toxic': ['Seismic Toss', 'Aromatherapy', 'Stealth Rock', 'Healing Wish', 'Shadow Ball'],
                                 'Thunder Wave': ['Stealth Rock', 'Seismic Toss'],
                                 'Wish': ['Seismic Toss'],
                                 'Seismic Toss': ['Toxic'],
-                                'Shadow Ball': ['Flamethrower', 'Focus Blast']
+                                'Shadow Ball': ['Flamethrower', 'Focus Blast'],
+                                'Helping Hand': ['Icy Wind', 'Healing Wish', 'Psychic']
                             }
                         ),
                     ), baseStats=(255, 10, 10, 75, 135, 55), genders=('F',), images=('242.gif', '242.png', '242 (1).png')
