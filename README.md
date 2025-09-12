@@ -7,6 +7,6 @@ To run with pip installed:
     "python app.py"
 
 WIP: app.py is the main function and runs the gui. Pokemon sets are still being constructed.
-Current sets progress: 238/292 
+Current sets progress: 270/292 
 Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric, Rock, Poison, Ground, Bug,
-Grass, Psychic, Flying
+Grass, Psychic, Flying, Normal
