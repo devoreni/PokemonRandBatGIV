@@ -7037,7 +7037,7 @@ def runDML():
                                                 'Double-Edge', 'Double Team', 'Earthquake', 'Endure', 'Facade', 'Giga Impact',
                                                 'Hail', 'Headbutt', 'Hydro Pump', 'Hyper Beam', 'Ice Beam', 'Icy Wind',
                                                 'Iron Head', 'Mimic', 'Muddy Water', 'Mud-Slap', 'Protect', 'Psych Up',
-                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Romb', 'Safeguard',
+                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Tomb', 'Safeguard',
                                                 'Scary Face', 'Secret Power', 'Sheer Cold', 'Shock Wave', 'Signal Beam',
                                                 'Strength', 'Substitute', 'Surf', 'Swagger', 'Swift', 'Thunder', 'Thunderbolt',
                                                 'Thunder Wave', 'Toxic', 'Uproar', 'Waterfall', 'Water Pulse', 'Water Spout',
@@ -7047,7 +7047,7 @@ def runDML():
                                                 'Double-Edge', 'Double Team', 'Earthquake', 'Endure', 'Facade', 'Giga Impact',
                                                 'Hail', 'Headbutt', 'Hydro Pump', 'Hyper Beam', 'Ice Beam', 'Icy Wind',
                                                 'Iron Head', 'Mimic', 'Muddy Water', 'Mud-Slap', 'Protect', 'Psych Up',
-                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Romb', 'Safeguard',
+                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Tomb', 'Safeguard',
                                                 'Scary Face', 'Secret Power', 'Sheer Cold', 'Shock Wave', 'Signal Beam',
                                                 'Strength', 'Substitute', 'Surf', 'Swagger', 'Swift', 'Thunder', 'Thunderbolt',
                                                 'Thunder Wave', 'Toxic', 'Uproar', 'Waterfall', 'Water Pulse', 'Water Spout',
@@ -7059,27 +7059,145 @@ def runDML():
             if 'Floatzel':
                 root.pokesets['Floatzel'] = pokemon_ddl.PokemonSet(
                     name='Floatzel', species='Floatzel', abilities=('Swift Swim',), pkTypes=('Water',),
-                    sets=(), baseStats=(85, 105, 55, 85, 50, 115), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Waterfall', 'Bulk Up', 'Double Team'],
+                                'Bulk Up': ['Baton Pass'],
+                                'Baton Pass': ['Substitute', 'Waterfall', 'Aqua Tail'],
+                                'Double Team': ['Focus Punch'],
+                                'Focus Punch': ['Waterfall', 'Aqua Tail'],
+                                'Waterfall': ['Ice Punch', 'Blizzard', 'Brick Break', 'Bulk Up', 'Crunch', 'Secret Power', 'Rain Dance',
+                                              'Quick Attack', 'Return', 'Focus Blast']
+                            }
+                        ),
+                    ), baseStats=(85, 105, 55, 85, 50, 115), genders=('M', 'F'), images=('419.gif', '419.png', '419 (1).png')
                 )
             if 'Lumineon':
                 root.pokesets['Lumineon'] = pokemon_ddl.PokemonSet(
                     name='Lumineon', species='Lumineon', abilities=('Swift Swim', 'Storm Drain'), pkTypes=('Water',),
-                    sets=(), baseStats=(69, 69, 76, 69, 86, 91), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rain Dance', 'Safeguard', 'Swagger', 'Tailwind', 'Icy Wind'],
+                                'Rain Dance': ['Surf'],
+                                'Safeguard': ['Surf'],
+                                'Surf': ['Silver Wind', 'Silver Wind', 'U-turn'],
+                                'Swagger': ['Ominous Wind', 'Silver Wind', 'Surf'],
+                                'Tailwind': ['Surf'],
+                                'Icy Wind': ['Surf']
+                            }
+                        ),
+                    ), baseStats=(69, 69, 76, 69, 86, 91), genders=('M', 'F'), images=('457.gif', '457-m.png', '457-m (1).png')
                 )
             if 'Phione':
                 root.pokesets['Phione'] = pokemon_ddl.PokemonSet(
                     name='Phione', species='Phione', abilities=('Hydration',), pkTypes=('Water',),
-                    sets=(), baseStats=(80, 80, 80, 80, 80, 80), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Rest'],
+                            {
+                                'Rest': ['Rain Dance'],
+                                'Rain Dance': ['Waterfall', 'Surf'],
+                                'Waterfall': ['U-turn', 'Secret Power', 'Knock Off', 'Helping Hand'],
+                                'Surf': ['Grass Knot', 'Ice Beam', 'Toxic', 'Knock Off', 'Icy Wind', 'Helping Hand', 'Ancient Power']
+                            }
+                        ),
+                    ), baseStats=(80, 80, 80, 80, 80, 80), genders=('',), images=('489.gif', '489.png', '489 (1).png')
                 )
             if 'Manaphy':
                 root.pokesets['Manaphy'] = pokemon_ddl.PokemonSet(
                     name='Manaphy', species='Manaphy', abilities=('Hydration',), pkTypes=('Water',),
-                    sets=(), baseStats=(100, 100, 100, 100, 100, 100), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Rest'],
+                            {
+                                'Rest': ['Rain Dance'],
+                                'Rain Dance': ['Tail Glow', 'Toxic', 'Calm Mind', 'Bounce', 'Surf'],
+                                'Tail Glow': ['Surf', 'Ice Beam', 'Grass Knot'],
+                                'Toxic': ['Surf', 'Grass Knot', 'Ice Beam', 'Energy Ball'],
+                                'Calm Mind': ['Surf', 'Grass Knot', 'Ice Beam', 'Energy Ball'],
+                                'Bounce': ['Waterfall', 'U-turn'],
+                                'Surf': ['Shadow Ball', 'Signal Beam', 'Energy Ball', 'Psychic']
+                            }
+                        ),
+                    ), baseStats=(100, 100, 100, 100, 100, 100), genders=('',), images=('490.gif', '490.png', '490 (1).png')
                 )
             if 'Arceus-Water':
                 root.pokesets['Arceus-Water'] = pokemon_ddl.PokemonSet(
                     name='Arceus-Water', species='Arceus', abilities=('Multitype',), pkTypes=('Water',),
-                    sets=(), baseStats=(120, 120, 120, 120, 120, 120), genders=('',)
+                    sets=(
+                        # MoveSet 1: "The Chaotic Bulwark". Guaranteed Protect + Judgement, then maximum variance.
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Judgement'],
+
+                                # Judgement is the central hub for a chaotic web of possibilities.
+                                'Judgement': [
+                                    'Calm Mind', 'Swords Dance', 'Recover', 'Cosmic Power', 'Will-O-Wisp',
+                                    'Thunder Wave', 'Extreme Speed', 'Earth Power', 'Ice Beam', 'Thunderbolt',
+                                    'Flamethrower', 'Shadow Claw', 'Gravity', 'Substitute'
+                                ],
+
+                                # Every node below is heavily interconnected to create unpredictable sets.
+                                'Calm Mind': ['Ice Beam', 'Thunderbolt', 'Earthquake', 'Shadow Claw', 'Recover',
+                                              'Swords Dance', 'Will-O-Wisp'],
+                                'Swords Dance': ['Extreme Speed', 'Dragon Claw', 'Shadow Claw', 'Earthquake', 'Surf',
+                                                 'Ice Beam', 'Calm Mind'],
+                                'Recover': ['Calm Mind', 'Will-O-Wisp', 'Ice Beam', 'Flamethrower', 'Substitute',
+                                            'Swords Dance', 'Judgement'],
+                                'Cosmic Power': ['Recover', 'Will-O-Wisp', 'Toxic', 'Flamethrower', 'Judgement'],
+                                'Will-O-Wisp': ['Recover', 'Calm Mind', 'Extreme Speed', 'Dragon Claw'],
+                                'Extreme Speed': ['Swords Dance', 'Shadow Claw', 'Draco Meteor', 'Overheat',
+                                                  'Judgement',
+                                                  'Recover'],
+                                'Earth Power': ['Ice Beam', 'Thunderbolt', 'Calm Mind', 'Swords Dance', 'Dragon Claw'],
+                                'Ice Beam': ['Thunderbolt', 'Earth Power', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Thunderbolt': ['Ice Beam', 'Surf', 'Judgement', 'Calm Mind', 'Swords Dance'],
+                                'Dragon Claw': ['Earthquake', 'Shadow Claw', 'Swords Dance', 'Calm Mind', 'Ice Beam'],
+                                'Substitute': ['Calm Mind', 'Swords Dance', 'Recover', 'Will-O-Wisp', 'Judgement'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Earthquake', 'Judgement'],
+                            }
+                        ),
+
+                        # MoveSet 2: "The Chaotic Gambler". No Protect, starts with Judgement into chaos.
+                        pokemon_ddl.MoveSet(
+                            ['Judgement'],
+                            {
+                                'Judgement': [
+                                    'Extreme Speed', 'Draco Meteor', 'Outrage', 'Calm Mind', 'Swords Dance',
+                                    'Gravity', 'Trick Room', 'Fire Blast', 'Thunder', 'Ice Beam', 'Earthquake',
+                                    'Shadow Claw', 'Will-O-Wisp', 'Recover'
+                                ],
+
+                                'Draco Meteor': ['Extreme Speed', 'Overheat', 'Earthquake', 'Fire Blast', 'Steel Wing'],
+                                'Outrage': ['Extreme Speed', 'Aqua Tail', 'Iron Head', 'Ice Beam', 'Giga Drain'],
+                                'Calm Mind': ['Ice Beam', 'Thunder', 'Focus Blast', 'Shadow Claw', 'Recover',
+                                              'Swords Dance'],
+                                'Swords Dance': ['Extreme Speed', 'Shadow Claw', 'Dragon Claw', 'Giga Drain',
+                                                 'Calm Mind'],
+                                'Gravity': ['Thunder', 'Blizzard', 'Focus Blast', 'Draco Meteor', 'Judgement'],
+                                'Trick Room': ['Judgement', 'Draco Meteor', 'Fire Blast', 'Thunder', 'Focus Blast'],
+                                'Extreme Speed': ['Judgement', 'Swords Dance', 'Draco Meteor', 'Will-O-Wisp',
+                                                  'Recover'],
+                                'Fire Blast': ['Draco Meteor', 'Thunder', 'Ice Beam', 'Earthquake'],
+                                'Earthquake': ['Stone Edge', 'Outrage', 'Dragon Claw', 'Flamethrower'],
+                                'Recover': ['Judgement', 'Calm Mind', 'Swords Dance', 'Will-O-Wisp', 'Toxic']
+                            }
+                        ),
+
+                        # MoveSet 3: "The Perish Trapper". A specific, high-risk alternate strategy.
+                        pokemon_ddl.MoveSet(
+                            ['Perish Song'],
+                            {
+                                'Mean Look': ['Protect', 'Recover', 'Judgement'],
+                                'Perish Song': ['Mean Look']
+                            }
+                        )
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-water.png', 'arceus-water (1).png')
                 )
 
     if 'Pokemon Probabilities':

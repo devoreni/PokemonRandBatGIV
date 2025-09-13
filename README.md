@@ -3,10 +3,9 @@ To run with pip installed:
     "pip install -r requirements.txt"
 2. Run pokemon_dml.py with
     "python pokemon_dml.py"
+    or simply
 3. Run the application with
     "python app.py"
 
-WIP: app.py is the main function and runs the gui. Pokemon sets are still being constructed.
-Current sets progress: 270/292 
-Dragon, Ice, Fighting, Dark, Fire, Ghost, Steel, Electric, Rock, Poison, Ground, Bug,
-Grass, Psychic, Flying, Normal
+WIP: app.py is the main function and runs the gui. Items function is being made
+All pokemon sets have been constructed 292/292
