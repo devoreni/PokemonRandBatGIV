@@ -6856,13 +6856,20 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect'],
                             {
-                                'Protect': ['Toxic', 'Ice Beam', 'Hyper Voice', 'Toxic', 'Ice Beam', 'Mud Bomb'],
+                                'Protect': ['Toxic', 'Ice Beam', 'Hyper Voice', 'Toxic', 'Ice Beam', 'Mud Bomb', 'Perish Song', 'Belly Drum', 'Hypnosis'],
                                 'Toxic': ['Encore', 'Ice Beam', 'Refresh'],
                                 'Encore': ['Surf'],
                                 'Ice Beam': ['Encore', 'Surf', 'Hydro Pump'],
                                 'Refresh': ['Encore'],
                                 'Surf': ['Psychic', 'Focus Blast'],
-                                'Hydro Pump': ['Psychic', 'Focus Blast']
+                                'Hydro Pump': ['Psychic', 'Focus Blast'],
+                                'Perish Song': ['Whirlpool'],
+                                'Whirlpool': ['Refresh', 'Rest'],
+                                'Belly Drum': ['Waterfall'],
+                                'Waterfall': ['Brick Break', 'Earthquake'],
+                                'Hyper Voice': ['Toxic', 'Ice Beam', 'Mud Bomb', 'Hypnosis'],
+                                'Mud Bomb': ['Toxic', 'Ice Beam', 'Mud Bomb', 'Hypnosis'],
+                                'Hypnosis': ['Ice Beam', 'Mud Bomb', 'Surf', 'Hydro Pump', 'Perish Song']
                             }
                         ),
                     ), baseStats=(90, 75, 75, 90, 100, 70), genders=('M', 'F'), images=('186.gif', '186-m.png', '186-m (1).png')
@@ -6871,12 +6878,40 @@ def runDML():
                 root.pokesets['Qwilfish'] = pokemon_ddl.PokemonSet(
                     name='Qwilfish', species='Qwilfish', abilities=('Poison Point', 'Swift Swim'),
                     pkTypes=('Water', 'Poison'),
-                    sets=(), baseStats=(65, 95, 75, 55, 55, 85), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Toxic Spikes', 'Spikes', 'Swords Dance', 'Rain Dance', 'Spikes', 'Toxic Spikes'],
+                                'Toxic Spikes': ['Explosion'],
+                                'Explosion': ['Waterfall', 'Poison Jab'],
+                                'Spikes': ['Explosion', 'Pain Split'],
+                                'Swords Dance': ['Poison Jab'],
+                                'Rain Dance': ['Waterfall'],
+                                'Waterfall': ['Poison Jab', 'Explosion', 'Taunt', 'Destiny Bond'],
+                                'Pain Split': ['Taunt', 'Poison Jab', 'Aqua Jet'],
+                                'Poison Jab': ['Waterfall']
+                            }
+                        ),
+                    ), baseStats=(65, 95, 75, 55, 55, 85), genders=('M', 'F'), images=('211.gif', '211.png', '211 (1).png')
                 )
             if 'Octillery':
                 root.pokesets['Octillery'] = pokemon_ddl.PokemonSet(
                     name='Octillery', species='Octillery', abilities=('Suction Cups', 'Sniper'), pkTypes=('Water',),
-                    sets=(), baseStats=(75, 105, 75, 105, 75, 45), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Surf', 'Octazooka', 'Water Spout', 'Water Spout'],
+                                'Surf': ['Ice Beam', 'Energy Ball', 'Flash Cannon', 'Aurora Beam', 'Charge Beam', 'Fire Blast',
+                                         'Flamethrower', 'Hyper Beam', 'Psychic', 'Signal Beam', 'Sludge Bomb'],
+                                'Octazooka': ['Ice Beam', 'Energy Ball', 'Flash Cannon', 'Aurora Beam', 'Charge Beam', 'Fire Blast',
+                                         'Flamethrower', 'Hyper Beam', 'Psychic', 'Signal Beam', 'Sludge Bomb'],
+                                'Water Spout': ['Ice Beam', 'Energy Ball', 'Flash Cannon', 'Aurora Beam', 'Charge Beam', 'Fire Blast',
+                                         'Flamethrower', 'Hyper Beam', 'Psychic', 'Signal Beam', 'Sludge Bomb']
+                            }
+                        ),
+                    ), baseStats=(75, 105, 75, 105, 75, 45), genders=('M', 'F'), images=('224.gif', '224-m.png', '224-m (1).png')
                 )
             if 'Suicune':
                 root.pokesets['Suicune'] = pokemon_ddl.PokemonSet(
