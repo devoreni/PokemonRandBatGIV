@@ -6746,32 +6746,126 @@ def runDML():
             if 'Kingler':
                 root.pokesets['Kingler'] = pokemon_ddl.PokemonSet(
                     name='Kingler', species='Kingler', abilities=('Hyper Cutter', 'Shell Armor'), pkTypes=('Water',),
-                    sets=(), baseStats=(55, 130, 115, 50, 50, 75), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Agility', 'Swords Dance', 'Crabhammer', 'Icy Wind'],
+                                'Agility': ['Crabhammer'],
+                                'Swords Dance': ['Crabhammer'],
+                                'Crabhammer': ['Return', 'X-Scissor', 'Rock Slide', 'Superpower'],
+                                'Icy Wind': ['Haze', 'Guillotine', 'Knock Off'],
+                                'Haze': ['Crabhammer'],
+                                'Guillotine': ['Crabhammer'],
+                                'Knock Off': ['Crabhammer']
+                            }
+                        ),
+                    ), baseStats=(55, 130, 115, 50, 50, 75), genders=('M', 'F'), images=('099.gif', '099.png', '099 (1).png')
                 )
             if 'Seaking':
                 root.pokesets['Seaking'] = pokemon_ddl.PokemonSet(
                     name='Seaking', species='Seaking', abilities=('Swift Swim', 'Water Veil'), pkTypes=('Water',),
-                    sets=(), baseStats=(80, 92, 65, 65, 80, 68), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Waterfall', 'Aqua Tail'],
+                                'Waterfall': ['Megahorn', 'Poison Jab'],
+                                'Aqua Tail': ['Megahorn', 'Poison Jab'],
+                                'Megahorn': ['Return', 'Ice Beam', 'Rain Dance', 'Horn Drill'],
+                                'Poison Jab': ['Megahorn', 'Knock Off', 'Rain Dance']
+                            }
+                        ),
+                    ), baseStats=(80, 92, 65, 65, 80, 68), genders=('M', 'F'), images=('119.gif', '119-m.png', '119-m (1).png'),
+                    ability_weights=(0.7, 0.3)
                 )
             if 'Vaporeon':
                 root.pokesets['Vaporeon'] = pokemon_ddl.PokemonSet(
                     name='Vaporeon', species='Vaporeon', abilities=('Water Absorb',), pkTypes=('Water',),
-                    sets=(), baseStats=(130, 65, 60, 110, 95, 65), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Wish'],
+                            {
+                                'Protect': ['Surf', 'Hydro Pump', 'Shadow Ball'],
+                                'Surf': ['Substitute', 'Ice Beam'],
+                                'Hydro Pump': ['Substitute', 'Ice Beam'],
+                                'Substitute': ['Ice Beam', 'Baton Pass'],
+                                'Ice Beam': ['Baton Pass', 'Substitute'],
+                                'Wish': ['Baton Pass'],
+                                'Baton Pass': ['Acid Armor', 'Helping Hand', 'Yawn'],
+                                'Acid Armor': ['Surf', 'Hydro Pump', 'Muddy Water', 'Water Pulse'],
+                                'Helping Hand': ['Muddy Water', 'Icy Wind', 'Brine'],
+                                'Shadow Ball': ['Hyper Beam', 'Ice Beam', 'Signal Beam', 'Hidden Power [Electric]'],
+                                'Yawn': ['Hydro Pump', 'Muddy Water', 'Water Pulse'],
+                                'Hyper Beam': ['Brine', 'Muddy Water', 'Surf', 'Hydro Pump'],
+                                'Signal Beam': ['Brine', 'Muddy Water', 'Water Pulse', 'Hydro Pump'],
+                                'Hidden Power [Electric]': ['Hydro Pump', 'Surf']
+                            }
+                        ),
+                    ), baseStats=(130, 65, 60, 110, 95, 65), genders=('M', 'F'), images=('134.gif', '134.png', '134 (1).png')
                 )
             if 'Feraligatr':
                 root.pokesets['Feraligatr'] = pokemon_ddl.PokemonSet(
                     name='Feraligatr', species='Feraligatr', abilities=('Torrent',), pkTypes=('Water',),
-                    sets=(), baseStats=(85, 105, 100, 79, 83, 78), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Dragon Dance', 'Rock Slide' , 'Hydro Cannon', 'Waterfall', 'Aqua Tail', 'Swords Dance'],
+                                'Dragon Dance': ['Earthquake', 'Low Kick'],
+                                'Earthquake': ['Waterfall'],
+                                'Low Kick': ['Waterfall'],
+                                'Rock Slide': ['Ice Fang'],
+                                'Ice Fang': ['Waterfall'],
+                                'Waterfall': ['Return', 'Earthquake', 'Crunch', 'Dragon Claw', 'Ice Fang', 'Outrage', 'Superpower'],
+                                'Aqua Tail': ['Return', 'Earthquake', 'Crunch', 'Dragon Claw', 'Ice Fang', 'Outrage', 'Superpower'],
+                                'Swords Dance': ['Aqua Jet'],
+                                'Aqua Jet': ['Waterfall', 'Aqua Tail', 'Metal Claw', 'Dragon Claw', 'Outrage'],
+                                'Hydro Cannon': ['Ice Beam', 'Dragon Pulse', 'Hyper Beam', 'Focus Blast', 'Ancient Power']
+                            }
+                        ),
+                    ), baseStats=(85, 105, 100, 79, 83, 78), genders=('M', 'F'), images=('160.gif', '160.png', '160 (1).png')
                 )
             if 'Azumarill':
                 root.pokesets['Azumarill'] = pokemon_ddl.PokemonSet(
                     name='Azumarill', species='Azumarill', abilities=('Thick Fat', 'Huge Power'), pkTypes=('Water',),
-                    sets=(), baseStats=(100, 50, 80, 50, 80, 50), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Protect', 'Substitute', 'Rest'],
+                            {
+                                'Protect': ['Waterfall', 'Aqua Jet'],
+                                'Waterfall': ['Ice Punch', 'Superpower'],
+                                'Aqua Jet': ['Waterfall', 'Ice Punch', 'Superpower'],
+                                'Ice Punch': ['Return', 'Double-Edge'],
+                                'Superpower': ['Return', 'Double-Edge'],
+                                'Substitute': ['Focus Punch'],
+                                'Focus Punch': ['Aqua Jet', 'Encore', 'Toxic'],
+                                'Encore': ['Ice Punch', 'Waterfall'],
+                                'Toxic': ['Ice Punch', 'Waterfall'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Waterfall']
+                            }
+                        ),
+                    ), baseStats=(100, 50, 80, 50, 80, 50), genders=('M', 'F'), images=('184.gif', '184.png', '184 (1).png'),
+                    ability_weights=(0.2, 0.8)
                 )
             if 'Politoed':
                 root.pokesets['Politoed'] = pokemon_ddl.PokemonSet(
                     name='Politoed', species='Politoed', abilities=('Water Absorb', 'Damp'), pkTypes=('Water',),
-                    sets=(), baseStats=(90, 75, 75, 90, 100, 70), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Toxic', 'Ice Beam', 'Hyper Voice', 'Toxic', 'Ice Beam', 'Mud Bomb'],
+                                'Toxic': ['Encore', 'Ice Beam', 'Refresh'],
+                                'Encore': ['Surf'],
+                                'Ice Beam': ['Encore', 'Surf', 'Hydro Pump'],
+                                'Refresh': ['Encore'],
+                                'Surf': ['Psychic', 'Focus Blast'],
+                                'Hydro Pump': ['Psychic', 'Focus Blast']
+                            }
+                        ),
+                    ), baseStats=(90, 75, 75, 90, 100, 70), genders=('M', 'F'), images=('186.gif', '186-m.png', '186-m (1).png')
                 )
             if 'Qwilfish':
                 root.pokesets['Qwilfish'] = pokemon_ddl.PokemonSet(
