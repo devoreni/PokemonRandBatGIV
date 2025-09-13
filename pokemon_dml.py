@@ -6916,7 +6916,24 @@ def runDML():
             if 'Suicune':
                 root.pokesets['Suicune'] = pokemon_ddl.PokemonSet(
                     name='Suicune', species='Suicune', abilities=('Pressure',), pkTypes=('Water',),
-                    sets=(), baseStats=(100, 75, 115, 90, 115, 85), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Rest'],
+                            {
+                                'Protect': ['Hail', 'Calm Mind', 'Mirror Coat'],
+                                'Rest': ['Sleep Talk'],
+                                'Sleep Talk': ['Calm Mind'],
+                                'Calm Mind': ['Surf', 'Hydro Pump'],
+                                'Surf': ['Air Slash', 'Ice Beam'],
+                                'Hydro Pump': ['Air Slash', 'Ice Beam'],
+                                'Hail': ['Blizzard'],
+                                'Blizzard': ['Hydro Pump', 'Extrasensory'],
+                                'Mirror Coat': ['Ominous Wind', 'Aurora Beam'],
+                                'Ominous Wind': ['Sheer Cold', 'Signal Beam', 'Tailwind', 'Hydro Pump'],
+                                'Aurora Beam': ['Hydro Pump']
+                            }
+                        ),
+                    ), baseStats=(100, 75, 115, 90, 115, 85), genders=('',), images=('245.gif', '245.png', '245 (1).png')
                 )
             if 'Wailord':
                 root.pokesets['Wailord'] = pokemon_ddl.PokemonSet(
