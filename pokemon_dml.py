@@ -6938,32 +6938,123 @@ def runDML():
             if 'Wailord':
                 root.pokesets['Wailord'] = pokemon_ddl.PokemonSet(
                     name='Wailord', species='Wailord', abilities=('Water Veil', 'Oblivious'), pkTypes=('Water',),
-                    sets=(), baseStats=(170, 90, 45, 90, 45, 60), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Water Spout'],
+                                'Water Spout': ['Self-Destruct', 'Bounce', 'Attract'],
+                                'Self-Destruct': ['Ice Beam', 'Hidden Power [Grass]'],
+                                'Bounce': ['Body Slam', 'Earthquake', 'Fissure', 'Iron Head', 'Self-Destruct', 'Giga Impact'],
+                                'Attract': ['Icy Wind', 'Blizzard', 'Icy Wind', 'Giga Impact']
+                            }
+                        ),
+                    ), baseStats=(170, 90, 45, 90, 45, 60), genders=('M', 'F'), images=('321.gif', '321.png', '321 (1).png')
                 )
             if 'Milotic':
                 root.pokesets['Milotic'] = pokemon_ddl.PokemonSet(
                     name='Milotic', species='Milotic', abilities=('Marvel Scale',), pkTypes=('Water',),
-                    sets=(), baseStats=(95, 60, 79, 100, 125, 81), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Surf', 'Hidden Power [Grass]', 'Mirror Coat', 'Hydro Pump', 'Confuse Ray', 'Dragon Pulse'],
+                                'Surf': ['Recover'],
+                                'Recover': ['Ice Beam', 'Haze', 'Toxic'],
+                                'Mirror Coat': ['Surf', 'Ice Beam'],
+                                'Ice Beam': ['Recover'],
+                                'Hydro Pump': ['Recover'],
+                                'Confuse Ray': ['Toxic'],
+                                'Toxic': ['Double Team', 'Attract'],
+                                'Dragon Pulse': ['Surf', 'Ice Beam', 'Hydro Pump']
+                            }
+                        ),
+                    ), baseStats=(95, 60, 79, 100, 125, 81), genders=('M', 'F'), images=('350.gif', '350-m.png', '350-m (1).png')
                 )
             if 'Huntail':
                 root.pokesets['Huntail'] = pokemon_ddl.PokemonSet(
                     name='Huntail', species='Huntail', abilities=('Swift Swim',), pkTypes=('Water',),
-                    sets=(), baseStats=(55, 104, 105, 94, 75, 52), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Aqua Tail', 'Waterfall', 'Rain Dance'],
+                                'Aqua Tail': ['Hydro Pump', 'Ice Beam', 'Double-Edge'],
+                                'Hydro Pump': ['Hidden Power [Grass]'],
+                                'Ice Beam': ['Hidden Power [Grass]'],
+                                'Waterfall': ['Hydro Pump', 'Ice Beam', 'Double-Edge'],
+                                'Double-Edge': ['Crunch', 'Sucker Punch', 'Ice Beam']
+                            }
+                        ),
+                    ), baseStats=(55, 104, 105, 94, 75, 52), genders=('M', 'F'), images=('367.gif', '367.png', '367 (1).png')
                 )
             if 'Gorebyss':
                 root.pokesets['Gorebyss'] = pokemon_ddl.PokemonSet(
                     name='Gorebyss', species='Gorebyss', abilities=('Swift Swim',), pkTypes=('Water',),
-                    sets=(), baseStats=(55, 84, 105, 114, 75, 52), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Hydro Pump', 'Surf', 'Water Pulse', 'Baton Pass', 'Baton Pass'],
+                                'Hydro Pump': ['Psychic'],
+                                'Psychic': ['Ice Beam', 'Hidden Power [Grass]', 'Hidden Power [Electric]', 'Hidden Power [Dragon]',
+                                            'Shadow Ball', 'Signal Beam'],
+                                'Surf': ['Psychic'],
+                                'Water Pulse': ['Psychic'],
+                                'Baton Pass': ['Agility', 'Substitute'],
+                                'Agility': ['Substitute', 'Surf', 'Hydro Pump', 'Psychic', 'Water Pulse'],
+                                'Substitute': ['Agility', 'Water Pulse', 'Hydro Pump', 'Psychic']
+                            }
+                        ),
+                    ), baseStats=(55, 84, 105, 114, 75, 52), genders=('M', 'F'), images=('368.gif', '368.png', '368 (1).png')
                 )
             if 'Luvdisc':
                 root.pokesets['Luvdisc'] = pokemon_ddl.PokemonSet(
                     name='Luvdisc', species='Luvdisc', abilities=('Swift Swim',), pkTypes=('Water',),
-                    sets=(), baseStats=(43, 30, 55, 40, 65, 97), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect', 'Endure'],
+                            {
+                                'Protect': ['Rain Dance', 'Whirlpool'],
+                                'Rain Dance': ['Toxic'],
+                                'Toxic': ['Sweet Kiss', 'Attract'],
+                                'Endure': ['Flail'],
+                                'Flail': ['Agility', 'Rain Dance', 'Safeguard', 'Waterfall', 'Surf'],
+                                'Whirlpool': ['Toxic']
+                            }
+                        ),
+                    ), baseStats=(43, 30, 55, 40, 65, 97), genders=('M', 'F'), images=('370.gif', '370.png', '370 (1).png')
                 )
             if 'Kyogre':
                 root.pokesets['Kyogre'] = pokemon_ddl.PokemonSet(
                     name='Kyogre', species='Kyogre', abilities=('Drizzle',), pkTypes=('Water',),
-                    sets=(), baseStats=(100, 100, 90, 150, 140, 90), genders=('',)
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Water Spout', 'Water Pulse', 'Water Spout'],
+                            {
+                                'Water Spout': ['Ancient Power', 'Aqua Ring', 'Aqua Tail', 'Avalanche', 'Blizzard', 'Block',
+                                                'Body Slam', 'Brick Break', 'Brine', 'Calm Mind', 'Defense Curl', 'Dive',
+                                                'Double-Edge', 'Double Team', 'Earthquake', 'Endure', 'Facade', 'Giga Impact',
+                                                'Hail', 'Headbutt', 'Hydro Pump', 'Hyper Beam', 'Ice Beam', 'Icy Wind',
+                                                'Iron Head', 'Mimic', 'Muddy Water', 'Mud-Slap', 'Protect', 'Psych Up',
+                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Romb', 'Safeguard',
+                                                'Scary Face', 'Secret Power', 'Sheer Cold', 'Shock Wave', 'Signal Beam',
+                                                'Strength', 'Substitute', 'Surf', 'Swagger', 'Swift', 'Thunder', 'Thunderbolt',
+                                                'Thunder Wave', 'Toxic', 'Uproar', 'Waterfall', 'Water Pulse', 'Water Spout',
+                                                'Whirlpool'],
+                                'Water Pulse': ['Ancient Power', 'Aqua Ring', 'Aqua Tail', 'Avalanche', 'Blizzard', 'Block',
+                                                'Body Slam', 'Brick Break', 'Brine', 'Calm Mind', 'Defense Curl', 'Dive',
+                                                'Double-Edge', 'Double Team', 'Earthquake', 'Endure', 'Facade', 'Giga Impact',
+                                                'Hail', 'Headbutt', 'Hydro Pump', 'Hyper Beam', 'Ice Beam', 'Icy Wind',
+                                                'Iron Head', 'Mimic', 'Muddy Water', 'Mud-Slap', 'Protect', 'Psych Up',
+                                                'Rest', 'Return', 'Roar', 'Rock Slide', 'Rock Smash', 'Rock Romb', 'Safeguard',
+                                                'Scary Face', 'Secret Power', 'Sheer Cold', 'Shock Wave', 'Signal Beam',
+                                                'Strength', 'Substitute', 'Surf', 'Swagger', 'Swift', 'Thunder', 'Thunderbolt',
+                                                'Thunder Wave', 'Toxic', 'Uproar', 'Waterfall', 'Water Pulse', 'Water Spout',
+                                                'Whirlpool']
+                            }
+                        ),
+                    ), baseStats=(100, 100, 90, 150, 140, 90), genders=('',), images=('382.gif', '382.png', '382 (1).png')
                 )
             if 'Floatzel':
                 root.pokesets['Floatzel'] = pokemon_ddl.PokemonSet(
