@@ -6700,12 +6700,48 @@ def runDML():
             if 'Blastoise':
                 root.pokesets['Blastoise'] = pokemon_ddl.PokemonSet(
                     name='Blastoise', species='Blastoise', abilities=('Torrent',), pkTypes=('Water',),
-                    sets=(), baseStats=(79, 83, 100, 85, 105, 78), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rapid Spin', 'Double Team', 'Hydro Pump', 'Water Spout', 'Aqua Tail', 'Waterfall', 'Rapid Spin', 'Water Spout', 'Double Team'],
+                                'Rapid Spin': ['Roar', 'Rest', 'Ice Beam', 'Signal Beam'],
+                                'Roar': ['Hydro Pump', 'Surf', 'Water Spout', 'Muddy Water'],
+                                'Rest': ['Hydro Pump', 'Surf', 'Water Spout', 'Muddy Water'],
+                                'Ice Beam': ['Hydro Pump', 'Surf', 'Water Spout', 'Muddy Water'],
+                                'Signal Beam': ['Hydro Pump', 'Surf', 'Water Spout', 'Muddy Water'],
+                                'Double Team': ['Focus Punch', 'Hydro Cannon'],
+                                'Focus Punch': ['Hydro Cannon', 'Skull Bash', 'Aqua Ring', 'Aqua Tail', 'Earthquake', 'Waterfall'],
+                                'Hydro Cannon': ['Flash Cannon', 'Signal Beam', 'Ice Beam', 'Blizzard', 'Focus Blast', 'Hidden Power [Grass]',],
+                                'Hydro Pump': ['Mirror Coat', 'Flash Cannon', 'Signal Beam', 'Focus Blast', 'Hidden Power [Grass]', 'Rapid Spin', 'Icy Wind'],
+                                'Water Spout': ['Mirror Coat', 'Flash Cannon', 'Signal Beam', 'Focus Blast', 'Hidden Power [Grass]', 'Rapid Spin', 'Icy Wind'],
+                                'Mirror Coat': ['Ice Beam', 'Blizzard', 'Signal Beam', 'Rest'],
+                                'Flash Cannon': ['Hidden Power [Grass]', 'Icy Wind'],
+                                'Aqua Tail': ['Earthquake', 'Avalanche', 'Zen Headbutt', 'Bite', 'Skull Bash', 'Rest', 'Outrage'],
+                                'Waterfall': ['Earthquake', 'Avalanche', 'Zen Headbutt', 'Bite', 'Skull Bash', 'Rest', 'Outrage']
+                            }
+                        ),
+                    ), baseStats=(79, 83, 100, 85, 105, 78), genders=('M', 'F'), images=('009.gif', '009.png', '009 (1).png')
                 )
             if 'Golduck':
                 root.pokesets['Golduck'] = pokemon_ddl.PokemonSet(
                     name='Golduck', species='Golduck', abilities=('Damp', 'Cloud Nine'), pkTypes=('Water',),
-                    sets=(), baseStats=(80, 82, 78, 95, 80, 85), genders=('M', 'F')
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Encore', 'Calm Mind', 'Confuse Ray', 'Aqua Tail'],
+                                'Encore': ['Hidden Power [Grass]'],
+                                'Hidden Power [Grass]': ['Surf', 'Hydro Pump'],
+                                'Calm Mind': ['Surf', 'Hydro Pump'],
+                                'Surf': ['Psychic', 'Ice Beam', 'Hidden Power [Grass]', 'Encore'],
+                                'Hydro Pump': ['Psychic', 'Ice Beam', 'Hidden Power [Grass]', 'Encore', 'Cross Chop'],
+                                'Confuse Ray': ['Surf', 'Hydro Pump'],
+                                'Aqua Tail': ['Cross Chop'],
+                                'Cross Chop': ['Shadow Claw', 'Ice Punch', 'Zen Headbutt']
+                            }
+                        ),
+                    ), baseStats=(80, 82, 78, 95, 80, 85), genders=('M', 'F'), images=('055.gif', '055.png', '055 (1).png')
                 )
             if 'Kingler':
                 root.pokesets['Kingler'] = pokemon_ddl.PokemonSet(
