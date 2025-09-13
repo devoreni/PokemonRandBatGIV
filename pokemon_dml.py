@@ -29,6 +29,8 @@ def runDML():
         root.pokesets = OOBTree()
     if not hasattr(root, 'pokeprobability'):
         root.pokeprobability = OOBTree()
+    if not hasattr(root, 'items'):
+        root.items = OOBTree()
 
     if 'Pokemon':
         # Dragon type pokemon
@@ -8040,6 +8042,25 @@ def runDML():
         # Fire-type moves
         root.moves['Sunny Day'] = pokemon_ddl.Move('Sunny Day', 0, 1.0, 'Stat', 'Fire')
         root.moves['Will-O-Wisp'] = pokemon_ddl.Move('Will-O-Wisp', 0, 0.75, 'Stat', 'Fire')
+
+    if 'items':
+        root.items['items'] = ['Big Root', 'Binding Band', 'Bright Powder', 'Choice Band', 'Choice Scarf', 'Choice Specs',
+                               'Damp Rock', 'Destiny Knot', 'Expert Belt', 'Flame Orb', 'Focus Band', 'Focus Sash', 'Grip Claw',
+                               'Heat Rock', 'Icy Rock', 'Iron Ball', "King's Rock", 'Lagging Tail', 'Lax Incense',
+                               'Life Orb', 'Light Clay', 'Metronome', 'Muscle Band', 'Power Herb', 'Quick Claw', 'Razor Claw',
+                               'Razor Fang', 'Scope Lens', 'Shed Shell', 'Smooth Rock', 'Sticky Barb', 'Toxic Orb', 'White Herb',
+                               'Wide Lens', 'Wise Glasses', 'Zoom Lens', 'Draco Plate', 'Dread Plate', 'Earth Plate', 'Fist Plate',
+                               'Flame Plate', 'Icicle Plate', 'Insect Plate', 'Iron Plate', 'Meadow Plate', 'Mind Plate',
+                               'Sky Plate', 'Splash Plate', 'Spooky Plate', 'Stone Plate', 'Toxic Plate', 'Zap Plate', 'Leftovers',
+                               'Black Sludge', 'Custap Berry', 'Ganlon Berry', 'Leichi Berry', 'Micle Berry', 'Salac Berry', 'Starf Berry',
+                               'Sitrus Berry', 'Apicot Berry', 'Petaya Berry', 'Enigma Berry', 'Jaboca Berry',
+                               'Rowap Berry', 'Lansat Berry', 'Big Nugget', 'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet',
+                               'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon',
+                               'Poison Barb', 'Hard Stone', 'Dragon Fang', 'Silver Powder', 'Shell Bell']
+        root.items['Berries'] = ['Barbiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry',
+                                 'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry',
+                                 'Rindo Berry', 'Shuka Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry']
+
     transaction.commit()
 
     print(root.pokesets['Dragonite'].toString())
