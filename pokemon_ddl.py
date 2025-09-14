@@ -178,8 +178,7 @@ class PokemonSet(persistent.Persistent):
         for move in detail.moves:
             if (root.moves[move].category == 'Phys'
                     or move in {'Dragon Dance', 'Swords Dance', 'Bulk Up', 'Howl', 'Belly Drum',
-                                                      'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Shell Smash',
-                                                      'Work Up'})\
+                                                      'Coil', 'Curse', 'Growth', 'Hone Claws', 'Meditate', 'Work Up'})\
                     and move not in {'Bide', 'Counter', 'Endeavor', 'Metal Burst', 'Seismic Toss', 'Super Fang',
                                      'Explosion', 'Selfdestruct', 'Fissure', 'Guillotine', 'Horn Drill'}:
                 phys += 1
@@ -187,8 +186,7 @@ class PokemonSet(persistent.Persistent):
                 points['Spe'] += 0.5
 
             if (root.moves[move].category == 'Spec'
-                    or move in {'Calm Mind', 'Growth', 'Nasty Plot', 'Shell Smash', 'Tail Glow',
-                                                      'Work Up'})\
+                    or move in {'Calm Mind', 'Growth', 'Nasty Plot', 'Tail Glow', 'Work Up'})\
                     and move not in {'Dragon Rage', 'Mirror Coat', 'Night Shade', 'Sonic Boom', 'Psywave', 'Sheer Cold'}:
                 spec += 1
                 points['SpA'] += min(3, root.moves[move].power / 35)
