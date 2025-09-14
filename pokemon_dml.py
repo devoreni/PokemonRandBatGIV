@@ -7453,6 +7453,30 @@ def runDML():
         root.pokeprobability['pokemon'] = (poke_key, poke_value)
         root.pokeprobability['pokemon_to_types_map'] = pokemon_to_types_map
         root.pokeprobability['type_names'] = type_names
+        root.pokeprobability['abilities'] = ['Snow Warning', 'Pressure', 'Super Luck', 'Rock Head', 'Sturdy',
+                                             'Synchronize', 'Inner Focus', 'Natural Cure', 'Technician', 'Static',
+                                             'Intimidate', 'Shed Skin', 'Flash Fire', 'Multitype', 'Swarm', 'Insomnia',
+                                             'Battle Armor', 'Levitate', 'Thick Fat', 'Huge Power', 'Frisk',
+                                             'Chlorophyll', 'Simple', 'Unaware', 'Torrent', 'Blaze', 'Serene Grace',
+                                             'Effect Spore', 'Poison Heal', 'Heatproof', 'Compound Eyes', 'Sand Veil',
+                                             'Magma Armor', 'Solid Rock', 'Keen Eye', 'Tangled Feet', 'Flower Gift',
+                                             'Cute Charm', 'Magic Guard', 'Shell Armor', 'Skill Link', 'Hustle',
+                                             'Suction Cups', 'Hyper Cutter', 'Bad Dreams', 'Normalize', 'Vital Spirit',
+                                             'Hydration', 'Limber', 'Run Away', 'Early Bird', 'Sniper', 'Aftermath',
+                                             'Unburden', 'Arena Trap', 'Shield Dust', 'Motor Drive', 'Soundproof',
+                                             'Swift Swim', 'Snow Cloak', 'Steadfast', 'Trace', 'Sticky Hold',
+                                             'Storm Drain', 'Ice Body', 'Damp', 'Cloud Nine', 'Quick Feet', 'Drought',
+                                             'Own Tempo', 'Guts', 'Sand Stream', 'Iron Fist', 'Reckless', 'Forewarn',
+                                             'Oblivious', 'Tinted Lens', 'Volt Absorb', 'Leaf Guard', 'Scrappy',
+                                             'Color Change', 'Drizzle', 'Water Absorb', 'Gluttony', 'Klutz', 'Rain Dish',
+                                             'Rivalry', 'No Guard', 'Flame Body', 'Magnet Pull', 'Lightning Rod',
+                                             'Pure Power', 'Overgrow', 'Clear Body', 'Marvel Scale', 'Minus', 'Filter',
+                                             'Poison Point', 'Speed Boost', 'Pick Up', 'Dry Skin', 'Mold Breaker',
+                                             'Plus', 'Adaptability', 'Download', 'Anger Point', 'Air Lock', 'Slow Start',
+                                             'Stall', 'Water Veil', 'Rough Skin', 'Wonder Guard', 'Truant', 'Immunity',
+                                             'Solar Power', 'Liquid Ooze', 'White Smoke', 'Anticipation', 'Competitive',
+                                             'Shadow Tag']
+
 
     if 'Physical Moves':
         # Normal-type moves

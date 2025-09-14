@@ -63,7 +63,7 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    '''_, before = getPokemonTeam(30, root)
+    _, before = getPokemonTeam(30, root)
     team = createIndivPokemon(before, root)
     '''
 
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     pk8 = root.pokesets['Arceus-Water']
     pk9 = root.pokesets['Arceus-Water']
     pk0 = root.pokesets['Arceus-Water']
-    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
+    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)'''
 
     for pk in team:
         print(pk.toString())

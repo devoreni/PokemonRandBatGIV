@@ -17,3 +17,6 @@ notes.txt
 
 # OS-specific files
 .DS_Store
+
+# Other files
+temp.py
