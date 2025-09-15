@@ -3,8 +3,188 @@ import persistent
 from typing import List, Tuple, Set
 import random
 
+def arcDrag():
+    return 'Draco Plate'
+def arcIce():
+    return 'Icicle Plate'
+def arcFight():
+    return 'Fist Plate'
+def arcFire():
+    return 'Flame Plate'
+def arcWater():
+    return 'Splash Plate'
+def arcGrass():
+    return 'Meadow Plate'
+def arcElec():
+    return 'Zap Plate'
+def arcPsychic():
+    return 'Mind Plate'
+def arcPoison():
+    return 'Toxic Plate'
+def arcGround():
+    return 'Earth Plate'
+def arcFly():
+    return 'Sky Plate'
+def arcBug():
+    return 'Insect Plate'
+def arcRock():
+    return 'Stone Plate'
+def arcGhost():
+    return 'Spooky Plate'
+def arcDark():
+    return 'Dread Plate'
+def arcSteel():
+    return 'Iron Plate'
+def lati():
+    return 'Soul Dew'
+def dialga():
+    return 'Adamant Orb'
+def palkia():
+    return 'Lustrous Orb'
+def farf():
+    return 'Stick'
+def maro():
+    return 'Thick Club'
+def pika():
+    return 'Light Ball'
 
 
+ITEM_LOGIC_REGISTRY = {
+    'arcDrag': arcDrag,
+    'arcIce': arcIce,
+    'arcFight': arcFight,
+    'arcFire': arcFire,
+    'arcWater': arcWater,
+    'arcGrass': arcGrass,
+    'arcElec': arcElec,
+    'arcPsychic': arcPsychic,
+    'arcPoison': arcPoison,
+    'arcGround': arcGround,
+    'arcFly': arcFly,
+    'arcBug': arcBug,
+    'arcRock': arcRock,
+    'arcGhost': arcGhost,
+    'arcDark': arcDark,
+    'arcSteel': arcSteel,
+    'lati': lati,
+    'dialga': dialga,
+    'palkia': palkia,
+    'farf': farf,
+    'maro': maro,
+    'pika': pika
+}
+
+# Arceus getEvsandNature function
+def arcStat(self_obj, indiv_obj, root=None):
+    if root is None:
+        storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+        db = ZODB.DB(storage)
+        connection = db.open()
+        root = connection.root
+
+    points = {'HP': 2, 'Atk': 0.9, 'Def': 1, 'SpA': 1, 'SpD': 1, 'Spe': 1}
+    phys, spec, stat = 0, 0, 0
+    ppow, spow = 0, 0
+    for move_name in indiv_obj.moves:
+        move = root.moves[move_name]
+        if move.category == 'Phys':
+            phys += 1
+            ppow += move.power
+        elif move.category == 'Spec':
+            spec += 1
+            spow += move.power
+        elif move.category == 'Stat':
+            stat += 1
+    if {'Gyro Ball', 'Trick Room'}.intersection(set(indiv_obj.moves)):
+        points['Spe'] = -10
+    if phys == 0:
+        points['Atk'] = -7
+    else:
+        points['Atk'] += phys
+    if spec == 0:
+        points['SpA'] = -5
+    else:
+        points['SpA'] += spec
+    if phys > 0 and spow > 0:
+        if ppow > spow + 30:
+            points['SpA'] = -5
+        elif spow > ppow + 30:
+            points['Atk'] = -10
+        else:
+            points['Def'] = -3
+
+    sorted_stats = sorted(points.items(), key=lambda item: item[1], reverse=True)
+    top_five_names = [sorted_stats[0][0], sorted_stats[1][0], sorted_stats[2][0], sorted_stats[3][0],
+                      sorted_stats[4][0]]
+    stat_order = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
+    ordered_top_five = sorted(top_five_names, key=lambda high_stat: stat_order.index(high_stat))
+
+    h1 = ordered_top_five[0]
+    h2 = ordered_top_five[1]
+    h3 = ordered_top_five[2]
+    h4 = ordered_top_five[3]
+    h5 = ordered_top_five[4]
+    indiv_obj.EVs = f'100 {h1} / 100 {h2} / 100 {h3} / 100 {h4} / 100 {h5}'
+
+    if sorted_stats[0][0] != 'HP':
+        plus = sorted_stats[0][0]
+    else:
+        plus = sorted_stats[1][0]
+    if sorted_stats[5][0] != 'HP':
+        minus = sorted_stats[5][0]
+    else:
+        minus = sorted_stats[4][0]
+    nature_list = {
+        'Atk': {'Def': 'Lonely', 'SpA': 'Adamant', 'SpD': 'Naughty', 'Spe': 'Brave'},
+        'Def': {'Atk': 'Bold', 'SpA': 'Impish', 'SpD': 'Lax', 'Spe': 'Relaxed'},
+        'SpA': {'Atk': 'Modest', 'Def': 'Mild', 'SpD': 'Rash', 'Spe': 'Quiet'},
+        'SpD': {'Atk': 'Calm', 'Def': 'Gentle', 'SpA': 'Careful', 'Spe': 'Sassy'},
+        'Spe': {'Atk': 'Timid', 'Def': 'Hasty', 'SpA': 'Jolly', 'SpD': 'Naive'}
+    }
+
+    indiv_obj.nature = nature_list[plus][minus]
+    stat_list = [h1, h2, h3, h4, h5]
+
+    indiv_obj.hpStat = int((2 * self_obj.baseStats[0] + indiv_obj.hpIV + (
+        100 if 'HP' in stat_list else 0) / 4) * indiv_obj.level / 100 + indiv_obj.level + 10)
+    indiv_obj.atkStat = int(((2 * self_obj.baseStats[1] + indiv_obj.atkIV + (
+        100 if 'Atk' in stat_list else 0) / 4) * indiv_obj.level / 100 + 5) * (
+                             1.1 if plus == "Atk" else 0.9 if minus == "Atk" else 1))
+    indiv_obj.defStat = int(((2 * self_obj.baseStats[2] + indiv_obj.defIV + (
+        100 if 'Def' in stat_list else 0) / 4) * indiv_obj.level / 100 + 5) * (
+                             1.1 if plus == "Def" else 0.9 if minus == "Def" else 1))
+    indiv_obj.spaStat = int(((2 * self_obj.baseStats[3] + indiv_obj.spaIV + (
+        100 if 'SpA' in stat_list else 0) / 4) * indiv_obj.level / 100 + 5) * (
+                             1.1 if plus == "SpA" else 0.9 if minus == "SpA" else 1))
+    indiv_obj.spdStat = int(((2 * self_obj.baseStats[4] + indiv_obj.spdIV + (
+        100 if 'SpD' in stat_list else 0) / 4) * indiv_obj.level / 100 + 5) * (
+                             1.1 if plus == "SpD" else 0.9 if minus == "SpD" else 1))
+    indiv_obj.speStat = int(((2 * self_obj.baseStats[5] + indiv_obj.speIV + (
+        100 if 'Spe' in stat_list else 0) / 4) * indiv_obj.level / 100 + 5) * (
+                             1.1 if plus == "Spe" else 0.9 if minus == "Spe" else 1))
+    return indiv_obj
+def shedStat(self_obj, indiv_obj, root=None):
+    indiv_obj.hpStat = 1
+    indiv_obj.nature = 'Lonely'
+    indiv_obj.EVs = f'252 Atk / 252 Spe'
+    plus, minus = 'Atk', 'Def'
+
+    indiv_obj.atkStat = int(((2 * self_obj.baseStats[1] + indiv_obj.atkIV + 252 / 4) * indiv_obj.level / 100 + 5) * (
+                                1.1 if plus == "Atk" else 0.9 if minus == "Atk" else 1))
+    indiv_obj.defStat = int(((2 * self_obj.baseStats[2] + indiv_obj.defIV + 0) * indiv_obj.level / 100 + 5) * (
+                                1.1 if plus == "Def" else 0.9 if minus == "Def" else 1))
+    indiv_obj.spaStat = int(((2 * self_obj.baseStats[3] + indiv_obj.spaIV + 0) * indiv_obj.level / 100 + 5) * (
+                                1.1 if plus == "SpA" else 0.9 if minus == "SpA" else 1))
+    indiv_obj.spdStat = int(((2 * self_obj.baseStats[4] + indiv_obj.spdIV + 0) * indiv_obj.level / 100 + 5) * (
+                                1.1 if plus == "SpD" else 0.9 if minus == "SpD" else 1))
+    indiv_obj.speStat = int(((2 * self_obj.baseStats[5] + indiv_obj.speIV + 0) * indiv_obj.level / 100 + 5) * (
+                                1.1 if plus == "Spe" else 0.9 if minus == "Spe" else 1))
+
+
+STAT_LOGIC_REGISTRY = {
+    'arcStat': arcStat,
+    'shedStat': shedStat
+}
 class Move(persistent.Persistent):
     """
     holds data about a move for reference when needed
@@ -91,7 +271,7 @@ IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {
 {attacks}'''
 
 class PokemonSet(persistent.Persistent):
-    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png'), ability_weights = None):
+    def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png'), ability_weights = None, item_key = None, stat_key = None):
         self.name = name
         self.species = species
         self.abilities = abilities
@@ -104,6 +284,8 @@ class PokemonSet(persistent.Persistent):
         self.baseStats = baseStats
         self.genders = genders
         self.images = images
+        self.item_key = item_key
+        self.stat_key = stat_key
         pass
 
     def chooseMoves(self) -> List:
@@ -149,7 +331,7 @@ class PokemonSet(persistent.Persistent):
         return chosen_moves
 
     def chooseItem(self) -> str:
-        return ''
+        return 'Big Nugget'
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
         if root is None:
@@ -422,7 +604,14 @@ class PokemonSet(persistent.Persistent):
         except Exception as e:
             pass
         new_guy.hpIV, new_guy.atkIV, new_guy.defIV, new_guy.spaIV, new_guy.spdIV, new_guy.speIV = self.chooseIV(new_guy.moves, root)
-        self.chooseEVsAndNature(new_guy, root)
+        if stat_func := STAT_LOGIC_REGISTRY.get(self.stat_key):
+            stat_func(self, new_guy, root)
+        else:
+            self.chooseEVsAndNature(new_guy, root)
+        if item_func := ITEM_LOGIC_REGISTRY.get(self.item_key):
+            new_guy.item = item_func()
+        else:
+            new_guy.item = self.chooseItem()
         return new_guy
 
     def toString(self) -> str:

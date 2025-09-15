@@ -8,7 +8,6 @@ import random
 import pprint
 import version_control
 
-
 def runDML():
     storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
     db = ZODB.DB(storage)
@@ -130,7 +129,8 @@ def runDML():
                              'Thunder Wave': ['Mist Ball', 'Psychic', 'Wish'],
                              'Roost': ['Draco Meteor', 'Hyper Beam', 'Dragon Pulse']
                          }
-                    ),), baseStats=(80, 80, 90, 110, 130, 110), genders=('F',), images=('380.gif', '380.png', '380 (1).png')
+                    ),), baseStats=(80, 80, 90, 110, 130, 110), genders=('F',), images=('380.gif', '380.png', '380 (1).png'),
+                    item_key='lati'
                 )
             if 'Latios':
                 root.pokesets['Latios'] = pokemon_ddl.PokemonSet(
@@ -189,7 +189,7 @@ def runDML():
                         ),
                     ),
                     baseStats=(80, 90, 80, 130, 110, 110),
-                    genders=('M',), images=('381.gif', '381.png', '381 (1).png')
+                    genders=('M',), images=('381.gif', '381.png', '381 (1).png'), item_key = 'lati'
                 )
             if 'Rayquaza':
                 root.pokesets['Rayquaza'] = pokemon_ddl.PokemonSet(
@@ -314,7 +314,7 @@ def runDML():
                         )
                     ),
                     baseStats=(100, 120, 120, 150, 100, 90),
-                    genders=('',), images=('483.gif', '483.png', '483 (1).png')
+                    genders=('',), images=('483.gif', '483.png', '483 (1).png'), item_key='dialga'
                 )
             if 'Palkia':
                 root.pokesets['Palkia'] = pokemon_ddl.PokemonSet(
@@ -372,7 +372,7 @@ def runDML():
                         )
                     ),
                     baseStats=(90, 120, 100, 150, 120, 100),
-                    genders=('',), images=('484.gif', '484.png', '484 (1).png')
+                    genders=('',), images=('484.gif', '484.png', '484 (1).png'), item_key='palkia'
                 )
             if 'Giratina':
                 root.pokesets['Giratina'] = pokemon_ddl.PokemonSet(
@@ -505,7 +505,8 @@ def runDML():
                         )
                     ),
                     baseStats=(120, 120, 120, 120, 120, 120),
-                    genders=('',), images=('493.gif', 'arceus-dragon.png', 'arceus-dragon (1).png')
+                    genders=('',), images=('493.gif', 'arceus-dragon.png', 'arceus-dragon (1).png'), item_key='arcDrag',
+                    stat_key='arcStat'
                 )
 
         # Ice type pokemon
@@ -837,7 +838,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ice.png', 'arceus-ice (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ice.png', 'arceus-ice (1).png'),
+                    item_key='arcIce', stat_key='arcStat'
                 )
 
         #Fighting type pokemon
@@ -1191,7 +1193,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fighting.png', 'arceus-fighting (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fighting.png', 'arceus-fighting (1).png'),
+                    item_key='arcFight', stat_key='arcStat'
                 )
 
         # Dark type pokemon
@@ -1538,7 +1541,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-dark.png', 'arceus-dark (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-dark.png', 'arceus-dark (1).png'),
+                    item_key='arcDark', stat_key='arcStat'
                 )
 
         # Fire type pokemon
@@ -1859,7 +1863,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fire.png', 'arceus-fire (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-fire.png', 'arceus-fire (1).png'),
+                    item_key='arcFire', stat_key='arcStat'
                 )
 
         # Ghost type pokemon
@@ -1899,7 +1904,8 @@ def runDML():
                                 'X-Scissor': ['Aerial Ace', 'Will-O-Wisp', 'Dig', 'Metal Claw', 'Mimic']
                             }
                         ),
-                    ), baseStats=(1, 90, 45, 30, 30, 40), genders=('',), images=('292.gif', '292.png', '292 (1).png')
+                    ), baseStats=(1, 90, 45, 30, 30, 40), genders=('',), images=('292.gif', '292.png', '292 (1).png'),
+                    stat_key='shedStat'
                 )
             if 'Banette':
                 root.pokesets['Banette'] = pokemon_ddl.PokemonSet(
@@ -2153,7 +2159,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ghost.png', 'arceus-ghost (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ghost.png', 'arceus-ghost (1).png'),
+                    item_key='arcGhost', stat_key='arcStat'
                 )
 
         # Steel type pokemon
@@ -2492,7 +2499,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-steel.png', 'arceus-steel (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-steel.png', 'arceus-steel (1).png'),
+                    item_key='arcSteel', stat_key='arcStat'
                 )
 
         # Electric type pokemon
@@ -2509,7 +2517,8 @@ def runDML():
                                 'Volt Tackle': ['Fake Out', 'Endeavor', 'Quick Attack', 'Iron Tail']
                             }
                         ),
-                    ), baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F'), images=('025.gif', '025-m.png', '025-m (1).png')
+                    ), baseStats=(35, 55, 30, 50, 40, 90), genders=('M', 'F'), images=('025.gif', '025-m.png', '025-m (1).png'),
+                    item_key='pika'
                 )
             if 'Raichu':
                 root.pokesets['Raichu'] = pokemon_ddl.PokemonSet(
@@ -2802,7 +2811,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-electric.png', 'arceus-electric (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-electric.png', 'arceus-electric (1).png'),
+                    item_key='arcElec', stat_key='arcStat'
                 )
 
         # Rock type pokemon
@@ -3190,7 +3200,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-rock.png', 'arceus-rock (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-rock.png', 'arceus-rock (1).png'),
+                    item_key='arcRock', stat_key='arcStat'
                 )
 
         # Poison type pokemon
@@ -3597,7 +3608,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-poison.png', 'arceus-poison (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-poison.png', 'arceus-poison (1).png'),
+                    item_key='arcPoison', stat_key='arcStat'
                 )
 
         # Ground type pokemon
@@ -3659,7 +3671,8 @@ def runDML():
                                 'Fling': ['Iron Head', 'Outrage', 'Skull Bash', 'Stealth Rock']
                             }
                         ),
-                    ), baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F'), images=('105.gif', '105.png', '105 (1).png')
+                    ), baseStats=(60, 80, 110, 50, 80, 45), genders=('M', 'F'), images=('105.gif', '105.png', '105 (1).png'),
+                    item_key='maro'
                 )
             if 'Quagsire':
                 root.pokesets['Quagsire'] = pokemon_ddl.PokemonSet(
@@ -4113,7 +4126,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ground.png', 'arceus-ground (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-ground.png', 'arceus-ground (1).png'),
+                    item_key='arcGround', stat_key='arcStat'
                 )
 
         # Bug type pokemon
@@ -4437,7 +4451,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-bug.png', 'arceus-bug (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-bug.png', 'arceus-bug (1).png'),
+                    item_key='arcBug', stat_key='arcStat'
                 )
 
         # Grass type pokemon
@@ -4834,7 +4849,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-grass.png', 'arceus-grass (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-grass.png', 'arceus-grass (1).png'),
+                    item_key='arcGrass', stat_key='arcStat'
                 )
 
         # Psychic type pokemon
@@ -5539,7 +5555,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-psychic.png', 'arceus-psychic (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-psychic.png', 'arceus-psychic (1).png'),
+                    item_key='arcPsychic', stat_key='arcStat'
                 )
 
         # Flying type pokemon
@@ -5594,7 +5611,8 @@ def runDML():
                                 'Swords Dance': ['Double-Edge', 'Aerial Ace', 'Quick Attack', 'Substitute']
                             }
                         ),
-                    ), baseStats=(52, 65, 55, 58, 62, 60), genders=('M', 'F'), images=('083.gif', '083.png', '083 (1).png')
+                    ), baseStats=(52, 65, 55, 58, 62, 60), genders=('M', 'F'), images=('083.gif', '083.png', '083 (1).png'),
+                    item_key='farf'
                 )
             if 'Dodrio':
                 root.pokesets['Dodrio'] = pokemon_ddl.PokemonSet(
@@ -5868,7 +5886,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-flying.png', 'arceus-flying (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-flying.png', 'arceus-flying (1).png'),
+                    item_key='arcFly', stat_key='arcStat'
                 )
 
         # Normal type pokemon
@@ -6694,7 +6713,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus.png', 'arceus (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus.png', 'arceus (1).png'),
+                    stat_key='arcStat'
                 )
 
         # Water type pokemon
@@ -7199,7 +7219,8 @@ def runDML():
                                 'Perish Song': ['Mean Look']
                             }
                         )
-                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-water.png', 'arceus-water (1).png')
+                    ), baseStats=(120, 120, 120, 120, 120, 120), genders=('',), images=('493.gif', 'arceus-water.png', 'arceus-water (1).png'),
+                    item_key='arcWater', stat_key='arcStat'
                 )
 
     if 'Pokemon Probabilities':
