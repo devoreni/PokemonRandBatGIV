@@ -1,0 +1,103 @@
+This file serves as a general guide for choosing the most optimal item for a pokemon.
+
+'Big Root':
+    When there are multiple draining moves including ingrain and aqua ting
+'Binding Band':
+    When a pokemon's main source of damage is a binding move
+'Grip Claw':
+    When a pokemon wants to trap with a binding move
+'Bright Powder':
+    When the pokemon can evasion stack or is hoping for a miss for a crucial turn
+'Choice Band':
+    When the pokemon has a physical move it would like to spam and 2 other physical attacks
+'Choice Scarf':
+    When a pokemon needs speed to be threatening or if trick/switcheroo is in its arsenal
+'Choice Specs':
+    When the pokemon has a special move it would like to spam and 2 other special attacks
+'Damp Rock':
+    When the pokemon has rain dance and would like it to stay up
+'Heat Rock':
+    When the pokemon has Sunny day and would like it to stay up
+'Icy Rock':
+    When the pokemon has Hail and would like it to stay up
+'Smooth Rock'
+    When the pokemon has sandstorm and would like it to stay up
+'Expert Belt':
+    When the pokemon has many coverage options but not a single move to spam
+'Flame Orb':
+    When guts or marvel scale is the ability or quick feet and only facade or special attacks. Or fling and fire etc
+'Focus Band':
+    Blaze, Overgrow, Torrent, Swarm attacker with bulk and offensive moves
+'Focus Sash':
+    Frail pokemon that wants to get off at least a single attack
+'Iron Ball':
+    Already slow with fling or trick, or trick room, weird but you'll know
+'Razor Fang':
+    Multi Strike moves with ok speed
+'Lagging Tail':
+    Bulky payback users
+'Life Orb':
+    Aggressive pokemon with many attacks, good accuracy, and can pick up one shots
+'Light Clay':
+    Dual screen mons or reflect/light screen without a need for another item
+'Metronome':
+    When one move will be spammed
+'Muscle Band':
+    Low coverage and 3 physical attacks
+'Wise Glasses'
+    Low in coverage and 3 special attacks
+'Power Herb':
+    Has a two-turn attack and not solar beam
+'Quick Claw':
+    OHKO spammers, slow pokemon who can pick up one shots but need to set up first (ex, crawdaunt with swords dance)
+'Razor Claw':
+    Crit Spammers or Sniper
+'Shed Shell':
+    Scared of trappers like magnezone (scizor)
+'Sticky Barb':
+    Klutz, magic guard
+'Toxic Orb':
+    Facade without guts, quick feet without guts, poison heal
+'White Herb':
+    Status dropping move
+'Wide Lens':
+    slightly inaccurate moves that would love a boost (fire blast and will-o-wisp on the same set)
+'Zoom Lens':
+    slow with inaccurate moves that want boosing
+'XXX Plate':
+    XXX Type specific attack and fling (not poison type)
+'Leftovers':
+    Bulky pokemon that will get more than sitrus
+'Black Sludge':
+    Bulky poison, bonus points with trick
+'Custap Berry':
+    Priority Explosion or destiny bond on a slow pokemon
+'Leichi Berry':
+    Agility and can tank one, substitute and fast, endure, baton pass
+'Petaya Berry'
+    Same as leichi but SpA
+'Salac Berry':
+    Same as leichi but different
+'Starf Berry':
+    gluttony and hp recovery move
+'Sitrus Berry':
+    need a chunk of health
+'Jaboca Berry':
+    Counter/Mirror Coat users with poor way of dealing damage otherwise
+'Rowap Berry':
+    Counter/Mirror Coat users with poor way of dealing damage otherwise
+'Big Nugget':
+    Fling and no need for another item
+'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet', 'Dragon Fang', 'Silver Powder',
+'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon':
+    2+ XXX type attacks
+'Poison Barb':
+    poison type attack and fling or 2+ poison type attacks
+'Hard Stone':
+    fling and rock type attack
+'Shell Bell':
+    2+ multi target moves and high damage
+'Lum Berry':
+    scared of status (physical attackers with setup)
+'Chesto Berry':
+    rest but no sleep talk
