@@ -19,6 +19,22 @@ def main():
         while (chosen_item := input('Item: ')) not in DB_ROOT.items['items']:
             print('Item not found')
 
+        types_hit_super_effectively = set()
+        already_hit = set()
+        for move_name in indiv.moves:
+            move = DB_ROOT.moves[move_name]
+            if move.category not in {'Phys', 'Spec'}:
+                continue
+            for target_type in DB_ROOT.pokeprobability['type_names']:
+                if target_type in already_hit:
+                    continue
+                damage_modifier = functions.getDamageModifier(move.moveType, target_type)
+                if damage_modifier == 2:
+                    types_hit_super_effectively.add(target_type)
+                    already_hit.add(target_type)
+        num_super_effective_hits = len(types_hit_super_effectively)
+        print(num_super_effective_hits)
+
         not_exists = False
         header_row = []
         if not os.path.exists(f'./item_files/{chosen_item}.csv'):
@@ -61,7 +77,7 @@ def main():
                           'Water': 0}
             setup_moves = {'HP': 0, 'Atk': 0, 'Def': 0, 'SpA': 0, 'SpD': 0, 'Spe': 0, 'Evasion': 0}
             other_moves = {'Draining Moves': 0, 'Baton Pass': 0, 'Trapping Moves': 0, 'Item Bestowing': 0, 'Multi Hit': 0, 'Screens': 0,
-                           'High Crit Ratio': 0, 'Self Stat Drop': 0, 'Low Accuracy': 0}
+                           'High Crit Ratio': 0, 'Self Stat Drop': 0, 'Low Accuracy': 0, 'Two Turn Attack': 0}
             for move_name in indiv.moves:
                 move = DB_ROOT.moves[move_name]
                 if move.category == 'Phys':
@@ -112,6 +128,8 @@ def main():
                     other_moves['Self Stat Drop'] += 1
                 if move.accuracy < 1:
                     other_moves['Low Accuracy'] += 1
+                if move.name in {'Bounce', 'Dig', 'Dive', 'Fly', 'Shadow Force', 'Razor Wind', 'Skull Bash', 'Sky Attack'}:
+                    other_moves['Two Turn Attack'] += 1
 
             if indiv.ability in {'Dry Skin', 'Ice Body', 'Poison Heal', 'Rain Dish'}:
                 setup_moves['HP'] += 1
@@ -142,15 +160,7 @@ def main():
                 header_row.extend(setup_header)
                 header_row.extend(list(other_moves.keys()))
 
-            types_hit_super_effectively = set()
-            for move_name in indiv.moves:
-                move = DB_ROOT.moves[move_name]
-                if move.category in {'Phys', 'Spec'}:
-                    for target_type in DB_ROOT.pokeprobability['type_names']:
-                        damage_modifier = functions.getDamageModifier(move.moveType, target_type)
-                        if damage_modifier == 2:
-                            types_hit_super_effectively.add(target_type)
-            num_super_effective_hits = len(types_hit_super_effectively)
+
             input_layer.append(num_super_effective_hits)
             if not_exists:
                 header_row.append('Coverage')
