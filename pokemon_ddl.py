@@ -2,6 +2,8 @@ import ZODB, ZODB.FileStorage
 import persistent
 from typing import List, Tuple, Set
 import random
+import os
+import pickle
 
 def arcDrag():
     return 'Draco Plate'
@@ -180,11 +182,11 @@ def shedStat(self_obj, indiv_obj, root=None):
     indiv_obj.speStat = int(((2 * self_obj.baseStats[5] + indiv_obj.speIV + 0) * indiv_obj.level / 100 + 5) * (
                                 1.1 if plus == "Spe" else 0.9 if minus == "Spe" else 1))
 
-
 STAT_LOGIC_REGISTRY = {
     'arcStat': arcStat,
     'shedStat': shedStat
 }
+
 class Move(persistent.Persistent):
     """
     holds data about a move for reference when needed
@@ -331,7 +333,11 @@ class PokemonSet(persistent.Persistent):
         return chosen_moves
 
     def chooseItem(self) -> str:
-        return 'Big Nugget'
+        if not os.exists('./pickle_model'):
+            return 'Big Nugget'
+        packed = open('./pickle_model', 'rb')
+        unpacked = pick.load(packed)
+
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
         if root is None:

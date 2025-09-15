@@ -8089,18 +8089,19 @@ def runDML():
 
     if 'items':
         root.items['items'] = ['Big Root', 'Binding Band', 'Bright Powder', 'Choice Band', 'Choice Scarf', 'Choice Specs',
-                               'Damp Rock', 'Destiny Knot', 'Expert Belt', 'Flame Orb', 'Focus Band', 'Focus Sash', 'Grip Claw',
-                               'Heat Rock', 'Icy Rock', 'Iron Ball', "King's Rock", 'Lagging Tail', 'Lax Incense',
+                               'Damp Rock', 'Expert Belt', 'Flame Orb', 'Focus Band', 'Focus Sash', 'Grip Claw',
+                               'Heat Rock', 'Icy Rock', 'Iron Ball', 'Lagging Tail',
                                'Life Orb', 'Light Clay', 'Metronome', 'Muscle Band', 'Power Herb', 'Quick Claw', 'Razor Claw',
                                'Razor Fang', 'Scope Lens', 'Shed Shell', 'Smooth Rock', 'Sticky Barb', 'Toxic Orb', 'White Herb',
                                'Wide Lens', 'Wise Glasses', 'Zoom Lens', 'Draco Plate', 'Dread Plate', 'Earth Plate', 'Fist Plate',
                                'Flame Plate', 'Icicle Plate', 'Insect Plate', 'Iron Plate', 'Meadow Plate', 'Mind Plate',
                                'Sky Plate', 'Splash Plate', 'Spooky Plate', 'Stone Plate', 'Toxic Plate', 'Zap Plate', 'Leftovers',
-                               'Black Sludge', 'Custap Berry', 'Ganlon Berry', 'Leichi Berry', 'Micle Berry', 'Salac Berry', 'Starf Berry',
-                               'Sitrus Berry', 'Apicot Berry', 'Petaya Berry', 'Enigma Berry', 'Jaboca Berry',
-                               'Rowap Berry', 'Lansat Berry', 'Big Nugget', 'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet',
+                               'Black Sludge', 'Custap Berry', 'Leichi Berry', 'Salac Berry', 'Starf Berry',
+                               'Sitrus Berry', 'Apicot Berry', 'Petaya Berry', 'Jaboca Berry',
+                               'Rowap Berry', 'Big Nugget', 'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet',
                                'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon',
-                               'Poison Barb', 'Hard Stone', 'Dragon Fang', 'Silver Powder', 'Shell Bell', 'Lum Berry', 'Chesto Berry']
+                               'Poison Barb', 'Hard Stone', 'Dragon Fang', 'Silver Powder', 'Shell Bell', 'Lum Berry', 'Chesto Berry', 'Black Belt',
+                               'Metal Coat']
         root.items['Berries'] = ['Barbiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry',
                                  'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry',
                                  'Rindo Berry', 'Shuka Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry']

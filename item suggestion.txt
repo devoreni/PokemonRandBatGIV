@@ -32,8 +32,6 @@ This file serves as a general guide for choosing the most optimal item for a pok
     Frail pokemon that wants to get off at least a single attack
 'Iron Ball':
     Already slow with fling or trick, or trick room, weird but you'll know
-'Razor Fang':
-    Multi Strike moves with ok speed
 'Lagging Tail':
     Bulky payback users
 'Life Orb':
@@ -52,6 +50,8 @@ This file serves as a general guide for choosing the most optimal item for a pok
     OHKO spammers, slow pokemon who can pick up one shots but need to set up first (ex, crawdaunt with swords dance)
 'Razor Claw':
     Crit Spammers or Sniper
+'Razor Fang':
+    Multi Strike moves with ok speed
 'Shed Shell':
     Scared of trappers like magnezone (scizor)
 'Sticky Barb':
@@ -89,7 +89,7 @@ This file serves as a general guide for choosing the most optimal item for a pok
 'Big Nugget':
     Fling and no need for another item
 'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet', 'Dragon Fang', 'Silver Powder',
-'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon':
+'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon', 'Black Belt':
     2+ XXX type attacks
 'Poison Barb':
     poison type attack and fling or 2+ poison type attacks

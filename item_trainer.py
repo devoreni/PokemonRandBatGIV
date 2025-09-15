@@ -15,10 +15,6 @@ def main():
         indiv = indiv_in_list[0]
         print(indiv.toString())
         print(indiv.hpStat, indiv.atkStat, indiv.defStat, indiv.spaStat, indiv.spdStat, indiv.speStat)
-
-        while (chosen_item := input('Item: ')) not in DB_ROOT.items['items']:
-            print('Item not found')
-
         types_hit_super_effectively = set()
         already_hit = set()
         for move_name in indiv.moves:
@@ -35,6 +31,13 @@ def main():
         num_super_effective_hits = len(types_hit_super_effectively)
         print(num_super_effective_hits)
 
+        while (chosen_item := input('Item: ')) not in DB_ROOT.items['items']:
+            if chosen_item == 'Skip':
+                break
+            print('Item not found')
+        if chosen_item == 'Skip':
+            print('\n\n')
+            continue
         not_exists = False
         header_row = []
         if not os.path.exists(f'./item_files/{chosen_item}.csv'):
@@ -77,7 +80,7 @@ def main():
                           'Water': 0}
             setup_moves = {'HP': 0, 'Atk': 0, 'Def': 0, 'SpA': 0, 'SpD': 0, 'Spe': 0, 'Evasion': 0}
             other_moves = {'Draining Moves': 0, 'Baton Pass': 0, 'Trapping Moves': 0, 'Item Bestowing': 0, 'Multi Hit': 0, 'Screens': 0,
-                           'High Crit Ratio': 0, 'Self Stat Drop': 0, 'Low Accuracy': 0, 'Two Turn Attack': 0}
+                           'High Crit Ratio': 0, 'Self Stat Drop': 0, 'Low Accuracy': 0, 'Two Turn Attack': 0, 'Multi Target': 0}
             for move_name in indiv.moves:
                 move = DB_ROOT.moves[move_name]
                 if move.category == 'Phys':
@@ -130,6 +133,10 @@ def main():
                     other_moves['Low Accuracy'] += 1
                 if move.name in {'Bounce', 'Dig', 'Dive', 'Fly', 'Shadow Force', 'Razor Wind', 'Skull Bash', 'Sky Attack'}:
                     other_moves['Two Turn Attack'] += 1
+                if move.name in {'Discharge', 'Earthquake', 'Lava Plume', 'Magnitude', 'Surf', 'Acid', 'Air Cutter', 'Blizzard',
+                                 'Bubble', 'Eruption', 'Heat Wave', 'Hyper Voice', 'Icy Wind', 'Muddy Water', 'Poison Gas',
+                                 'Powder Snow', 'Razor Leaf', 'Razor Wind', 'Rock Slide', 'Swift', 'Twister', 'Water Spout'}:
+                    other_moves['Multi Target'] += 1
 
             if indiv.ability in {'Dry Skin', 'Ice Body', 'Poison Heal', 'Rain Dish'}:
                 setup_moves['HP'] += 1
