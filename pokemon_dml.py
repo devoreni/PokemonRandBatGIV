@@ -7510,6 +7510,7 @@ def runDML():
         root.moves['Crush Claw'] = pokemon_ddl.Move('Crush Claw', 75, .95, 'Phys', 'Normal')
         root.moves['Crush Grip'] = pokemon_ddl.Move('Crush Grip', 0, 1.0, 'Phys', 'Normal')
         root.moves['Cut'] = pokemon_ddl.Move('Cut', 50, 0.95, 'Phys', 'Normal')
+        root.moves['Dizzy Punch'] = pokemon_ddl.Move('Dizzy Punch', 70, 1.0, 'Phys', 'Normal')
         root.moves['Double-Edge'] = pokemon_ddl.Move('Double-Edge', 120, 1.0, 'Phys', 'Normal')
         root.moves['Double Hit'] = pokemon_ddl.Move('Double Hit', 35, 0.9, 'Phys', 'Normal')
         root.moves['Double Slap'] = pokemon_ddl.Move('Double Slap', 15, 0.85, 'Phys', 'Normal')
@@ -7691,7 +7692,6 @@ def runDML():
         root.moves['Volt Tackle'] = pokemon_ddl.Move('Volt Tackle', 120, 1.0, 'Phys', 'Electric')
 
         # Psychic-type moves
-        root.moves['Dizzy Punch'] = pokemon_ddl.Move('Dizzy Punch', 70, 1.0, 'Phys', 'Psychic')
         root.moves['Psycho Cut'] = pokemon_ddl.Move('Psycho Cut', 70, 1.0, 'Phys', 'Psychic')
         root.moves['Zen Headbutt'] = pokemon_ddl.Move('Zen Headbutt', 80, 0.9, 'Phys', 'Psychic')
 
