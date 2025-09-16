@@ -101,3 +101,5 @@ This file serves as a general guide for choosing the most optimal item for a pok
     scared of status (physical attackers with setup)
 'Chesto Berry':
     rest but no sleep talk
+'Ganlon Berry', 'Apicot Berry'
+    Has Recovery or baton pass and can make use of it (skarmory with roost)

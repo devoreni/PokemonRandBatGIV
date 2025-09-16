@@ -8101,7 +8101,7 @@ def runDML():
                                'Rowap Berry', 'Big Nugget', 'Black Glasses', 'Charcoal', 'Mystic Water', 'Silk Scarf', 'Magnet',
                                'Miracle Seed', 'Never-Melt Ice', 'Sharp Beak', 'Soft Sand', 'Spell Tag', 'Twisted Spoon',
                                'Poison Barb', 'Hard Stone', 'Dragon Fang', 'Silver Powder', 'Shell Bell', 'Lum Berry', 'Chesto Berry', 'Black Belt',
-                               'Metal Coat']
+                               'Metal Coat', 'Ganlon Berry', 'Apicot Berry']
         root.items['Berries'] = ['Barbiri Berry', 'Charti Berry', 'Chilan Berry', 'Chople Berry', 'Coba Berry', 'Colbur Berry',
                                  'Haban Berry', 'Kasib Berry', 'Kebia Berry', 'Occa Berry', 'Passho Berry', 'Payapa Berry',
                                  'Rindo Berry', 'Shuka Berry', 'Tanga Berry', 'Wacan Berry', 'Yache Berry']

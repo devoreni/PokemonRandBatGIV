@@ -507,8 +507,34 @@ class PokemonSet(persistent.Persistent):
         input_layer.append(offence_score)
 
 
-        prediction = model.predict([input_layer])[0]
-        return keys[prediction]
+        prediction = model.predict_proba([input_layer])[0]
+        print(prediction)
+        proba = max(prediction)
+        print(proba, '\n\n')
+        predict_index = list(prediction).index(proba)
+        possible_items = [keys[predict_index]]
+        item_weights = [10]
+        if proba <= 0.5:
+            attacking_types = {'Dragon': 1, 'Ice': 1, 'Fighting': 1, 'Dark': 1, 'Fire': 1, 'Ghost': 1, 'Steel': 1, 'Electric': 1,
+             'Rock': 1, 'Poison': 1, 'Ground': 1,
+             'Bug': 1, 'Grass': 1, 'Psychic': 1, 'Flying': 1, 'Normal': 1, 'Water': 1}
+            super_effective_berry = {'Dragon': 'Haban Berry', 'Ice': 'Yache Berry', 'Fighting': 'Chople Berry', 'Dark': 'Colbur Berry',
+                                     'Fire': 'Occa Berry', 'Ghost': 'Kasib Berry', 'Steel': 'Babiri Berry', 'Electric': 'Wacan Berry',
+                                     'Rock': 'Charti Berry', 'Poison': 'Kebia Berry', 'Ground': 'Shuca Berry', 'Bug': 'Tanga Berry',
+                                     'Grass': 'Rindo Berry', 'Psychic': 'Payapa Berry', 'Flying': 'Coba Berry', 'Water': 'Passho Berry',
+                                     'Normal': 'Chilan Berry'}
+
+            for defensive_type in self.pkTypes:
+                for attack in attacking_types.keys():
+                    attacking_types[attack] *= functions.getDamageModifier(attack, defensive_type)
+            for key, value in attacking_types.items():
+                if value == 2:
+                    possible_items.append(super_effective_berry[key])
+                    item_weights.append(1)
+                elif value == 4:
+                    possible_items.append(super_effective_berry[key])
+                    item_weights.append(4)
+        return random.choices(possible_items, item_weights)[0]
 
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:

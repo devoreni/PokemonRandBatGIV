@@ -105,7 +105,7 @@ if __name__ == '__main__':
     connection = db.open()
     root = connection.root
 
-    _, before = getPokemonTeam(30, root)
+    _, before = getPokemonTeam(50, root)
     team = createIndivPokemon(before, root)
     '''
 
