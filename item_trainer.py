@@ -235,7 +235,7 @@ def createMode():
         new_guy.ability = poke_ability
         moves = []
         for i in range(4):
-            while (move_name := input(f'Move {i}: ')) not in set(DB_ROOT.moves.keys()).union({''}):
+            while (move_name := input(f'Move {i + 1}: ')) not in set(DB_ROOT.moves.keys()).union({''}):
                 print('Move name not recognized')
             if move_name == '':
                 break

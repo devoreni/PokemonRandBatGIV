@@ -5616,7 +5616,7 @@ def runDML():
                 )
             if 'Dodrio':
                 root.pokesets['Dodrio'] = pokemon_ddl.PokemonSet(
-                    name='Dodrio', species='Dodrio', abilities=('Run Away', 'Early Bird'), pkTypes=('Normal', 'Flying'),
+                    name='Dodrio', species='Dodrio', abilities=('Early Bird',), pkTypes=('Normal', 'Flying'),
                     sets=(
                         pokemon_ddl.MoveSet(
                             ['Protect'],

@@ -6,6 +6,7 @@ import os
 import pickle
 import functions
 
+
 def arcDrag():
     return 'Draco Plate'
 def arcIce():
@@ -508,7 +509,12 @@ class PokemonSet(persistent.Persistent):
 
 
         prediction = model.predict_proba([input_layer])[0]
-        print(prediction)
+
+        results = {}
+        for i, num in enumerate(prediction):
+            if float(num) > 0:
+                results[keys[i]] = float(num)
+        print(results)
         proba = max(prediction)
         print(proba, '\n\n')
         predict_index = list(prediction).index(proba)
