@@ -257,6 +257,7 @@ class PokemonGeneratorApp(QMainWindow):
             self.pokemon_sets = pokemon_set_objects
             self.team = functions.createIndivPokemon(self.pokemon_sets, DB_ROOT)
             self.update_pokeballs()
+            print('-----------------------------------------------------------------------------')
 
     def update_pokeballs(self):
         for i in reversed(range(self.pokeball_layout.count())):
