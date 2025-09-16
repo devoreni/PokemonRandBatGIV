@@ -360,20 +360,20 @@ class PokemonSet(persistent.Persistent):
         pk_types = set(root.pokeprobability['pokemon_to_types_map'][indiv.name])
         for l_type in root.pokeprobability['type_names']:
             input_layer.append(0 if l_type not in pk_types else 1)
-        print(len(input_layer))
+
         for ability in root.pokeprobability['abilities']:
             input_layer.append(0 if ability != indiv.ability else 1)
-        print(len(input_layer))
+
         input_layer.append(indiv.hpStat)
         input_layer.append(indiv.atkStat)
         input_layer.append(indiv.defStat)
         input_layer.append(indiv.spaStat)
         input_layer.append(indiv.spdStat)
         input_layer.append(indiv.speStat)
-        print(len(input_layer))
+
         for move in list(root.moves.values()):
             input_layer.append(0 if move.name not in indiv.moves else 1)
-        print(len(input_layer))
+
         move_categories = {'Phys': 0, 'Spec': 0, 'Stat': 0}
         move_types = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
                       'Rock': 0, 'Poison': 0, 'Ground': 0, 'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0,
@@ -470,9 +470,9 @@ class PokemonSet(persistent.Persistent):
         input_layer.extend(list(move_types.values()))
         input_layer.extend(list(setup_moves.values()))
         input_layer.extend(list(other_moves.values()))
-        print(len(input_layer))
+
         input_layer.append(num_super_effective_hits)
-        print(len(input_layer))
+
         num_weaknesses = 0
         num_quad_weaknesses = 0
         num_resistances = 0
@@ -491,21 +491,21 @@ class PokemonSet(persistent.Persistent):
             if multiplier == 0.25:
                 num_quad_resistances += 1
         input_layer.extend([num_weaknesses, num_quad_weaknesses, num_resistances, num_quad_resistances])
-        print(len(input_layer))
+
         bulk_score = ((indiv.hpStat + indiv.defStat + indiv.spdStat)
                       * ((num_resistances + num_quad_resistances + 1)
                          / (num_weaknesses + 2 * num_quad_weaknesses + 1))
                       * (((other_moves['Draining Moves'] + setup_moves['HP'] + setup_moves['Def'] + setup_moves[
                     'SpD']) + 2) / 2))
         input_layer.append(bulk_score)
-        print(len(input_layer))
+
         total_power = 0
         for move in indiv.moves:
             total_power += root.moves[move].power
         offence_score = (max(indiv.atkStat, indiv.spaStat) + 0.5 * min(indiv.atkStat, indiv.spaStat)) * max(
             num_super_effective_hits, 1) * (total_power / 10)
         input_layer.append(offence_score)
-        print(len(input_layer))
+
 
         prediction = model.predict([input_layer])[0]
         return keys[prediction]
