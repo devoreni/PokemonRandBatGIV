@@ -507,20 +507,26 @@ class PokemonSet(persistent.Persistent):
             num_super_effective_hits, 1) * (total_power / 10)
         input_layer.append(offence_score)
 
+        probs = model.predict_proba([input_layer])[0]
+        class_probs = dict(zip([keys[i] for i in model.classes_], [float(j) for j in probs]))
 
-        prediction = model.predict_proba([input_layer])[0]
+        sorted_probs = sorted(class_probs.items(), key=lambda x: x[1], reverse=True)
 
         results = {}
-        for i, num in enumerate(prediction):
-            if float(num) > 0:
-                results[keys[i]] = float(num)
-        print(results)
-        proba = max(prediction)
-        predict_index = list(prediction).index(proba)
-        print(proba, keys[predict_index], '\n\n')
-        possible_items = [keys[predict_index]]
-        item_weights = [10]
+        choices = []
+        item_weights = []
 
+        for label, prob in sorted_probs:
+            if prob >= 0.1 and sum(item_weights) < 0.5:
+                choices.append(label)
+                item_weights.append(prob)
+            if prob > 0:
+                results[label] = prob
+        print(results)
+        print(list(zip(choices, item_weights)), '\n')
+
+        berries = []
+        berry_weights = []
         attacking_types = {'Dragon': 1, 'Ice': 1, 'Fighting': 1, 'Dark': 1, 'Fire': 1, 'Ghost': 1, 'Steel': 1, 'Electric': 1,
          'Rock': 1, 'Poison': 1, 'Ground': 1,
          'Bug': 1, 'Grass': 1, 'Psychic': 1, 'Flying': 1, 'Normal': 1, 'Water': 1}
@@ -535,20 +541,24 @@ class PokemonSet(persistent.Persistent):
                 attacking_types[attack] *= functions.getDamageModifier(attack, defensive_type)
         for key, value in attacking_types.items():
             if value == 2:
-                if proba <= 0.5:
+                if sum(item_weights) <= 0.5:
                     if (key == 'Fire' and indiv.ability == 'Flash Fire') or \
                             (key == 'Water' and indiv.ability in {'Water Absorb', 'Dry Skin'}) or \
                             (key == 'Electric' and indiv.ability in {'Motor Drive', 'Volt Absorb'}):
                         continue
-                    possible_items.append(super_effective_berry[key])
-                    item_weights.append(1)
+                    berries.append(super_effective_berry[key])
+                    berry_weights.append(1)
             elif value == 4:
-                possible_items.append(super_effective_berry[key])
-                if proba <= 0.5:
-                    item_weights.append(4)
+                berries.append(super_effective_berry[key])
+                if sum(item_weights) <= 0.5:
+                    berry_weights.append(4)
                 else:
-                    item_weights.append(1)
-        return random.choices(possible_items, item_weights)[0]
+                    berry_weights.append(1)
+
+        item_weights = [i * 14 if i <= 0.7 else 10 for i in item_weights]
+        item_weights.extend(berry_weights)
+        choices.extend(berries)
+        return random.choices(choices, item_weights)[0]
 
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
