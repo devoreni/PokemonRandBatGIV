@@ -104,22 +104,35 @@ if __name__ == '__main__':
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
+    types = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
+              'Rock': 0, 'Poison': 0, 'Ground': 0,
+              'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
+    pokedict = {}
+    for i in range(2000):
+        _, before = getPokemonTeam(8, root)
+        for name in _:
+            for pk_type in root.pokeprobability['pokemon_to_types_map'][name]:
+                types[pk_type] += 1
+                pokedict[name] = pokedict.get(name, 0) + 1
 
-    '''_, before = getPokemonTeam(50, root)
-    team = createIndivPokemon(before, root)
+    pprint.pprint(types)
+    print()
+    pprint.pprint(pokedict)
+
+
     '''
-
-    pk1 = root.pokesets['Deoxys-Speed']
-    pk2 = root.pokesets['Deoxys-Speed']
-    pk3 = root.pokesets['Deoxys-Speed']
-    pk4 = root.pokesets['Deoxys-Speed']
-    pk5 = root.pokesets['Deoxys-Speed']
-    pk6 = root.pokesets['Deoxys-Speed']
-    pk7 = root.pokesets['Deoxys-Speed']
-    pk8 = root.pokesets['Deoxys-Speed']
-    pk9 = root.pokesets['Deoxys-Speed']
-    pk0 = root.pokesets['Deoxys-Speed']
+    team = createIndivPokemon(before, root)
+    pk1 = root.pokesets['Rotom-Wash']
+    pk2 = root.pokesets['Rotom-Wash']
+    pk3 = root.pokesets['Rotom-Wash']
+    pk4 = root.pokesets['Rotom-Wash']
+    pk5 = root.pokesets['Rotom-Wash']
+    pk6 = root.pokesets['Rotom-Wash']
+    pk7 = root.pokesets['Rotom-Wash']
+    pk8 = root.pokesets['Rotom-Wash']
+    pk9 = root.pokesets['Rotom-Wash']
+    pk0 = root.pokesets['Rotom-Wash']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
 
     for pk in team:
-        print(pk.toString())
+        print(pk.toString())'''

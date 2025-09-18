@@ -558,7 +558,9 @@ class PokemonSet(persistent.Persistent):
         item_weights = [i * 14 if i <= 0.7 else 10 for i in item_weights]
         item_weights.extend(berry_weights)
         choices.extend(berries)
-        return random.choices(choices, item_weights)[0]
+        if choices:
+            return random.choices(choices, item_weights)[0]
+        return 'Chilan Berry'
 
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
