@@ -538,7 +538,7 @@ class PokemonSet(persistent.Persistent):
                 if proba <= 0.5:
                     if (key == 'Fire' and indiv.ability == 'Flash Fire') or \
                             (key == 'Water' and indiv.ability in {'Water Absorb', 'Dry Skin'}) or \
-                            (key == 'Electric' and indiv.ability in {'Motor Drive', 'Volt Abstorb'}):
+                            (key == 'Electric' and indiv.ability in {'Motor Drive', 'Volt Absorb'}):
                         continue
                     possible_items.append(super_effective_berry[key])
                     item_weights.append(1)
