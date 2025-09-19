@@ -20,3 +20,8 @@ notes.txt
 
 # Other files
 temp.py
+
+# pyinstaller folders
+/build/
+/dist/
+DNi Generation 4 Random Battles.spec

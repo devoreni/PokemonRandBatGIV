@@ -1,4 +1,3 @@
-import sys
 import ZODB, ZODB.FileStorage
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
                              QPushButton, QLabel, QLineEdit, QTabWidget, QFrame,
@@ -7,27 +6,24 @@ from PyQt6.QtGui import QPixmap, QMovie, QIntValidator, QFont
 from PyQt6.QtCore import Qt, QSize
 from typing import List
 import os
+import sys
+import ZODB, ZODB.FileStorage
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-# Import project files
-sys.path.insert(0, PROJECT_ROOT)
-import pokemon_ddl
+import config
 import functions
+import pokemon_ddl
 import pokemon_dml
 import version_control
 
 # --- Database Setup ---
 dml_required = False
-db_path = os.path.join(PROJECT_ROOT, 'data', 'PokeData.fs')
-version_file_path = os.path.join(PROJECT_ROOT, 'dml_version.txt')
-data_dir_path = os.path.join(PROJECT_ROOT, 'data')
 
-db_exists = os.path.exists(db_path)
+db_exists = os.path.exists(config.DB_FILE)
 if not db_exists:
     dml_required = True
 else:
     try:
-        temp_storage = ZODB.FileStorage.FileStorage(db_path)
+        temp_storage = ZODB.FileStorage.FileStorage(config.DB_FILE)
         temp_db = ZODB.DB(temp_storage)
         temp_conn = temp_db.open()
         temp_root = temp_conn.root
@@ -36,7 +32,7 @@ else:
         temp_db.close()
         temp_storage.close()
 
-        with open(version_file_path, 'r') as f:
+        with open(config.DML_VERSION_FILE, 'r') as f:
             target_version = f.read().strip()
 
         if db_version != target_version:
@@ -44,31 +40,21 @@ else:
     except (FileNotFoundError, Exception) as e:
         dml_required = True
 if dml_required:
-    os.makedirs(data_dir_path, exist_ok=True)
+    os.makedirs(config.DB_DIR, exist_ok=True)
     pokemon_dml.runDML()
 
 try:
-    STORAGE = ZODB.FileStorage.FileStorage(db_path)
+    STORAGE = ZODB.FileStorage.FileStorage(config.DB_FILE)
     DB = ZODB.DB(STORAGE)
     CONNECTION = DB.open()
     DB_ROOT = CONNECTION.root
 except Exception as e:
     print(
-        f"Error: Could not open the database file at '{db_path}'. Please ensure the file exists and is not corrupt. Details: {e}")
+        f"Error: Could not open the database file at '{config.DB_FILE}'. Details: {e}")
     sys.exit(1)
 
 # --- Asset Paths ---
-ASSET_PATHS = {
-    "types": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.gif"),
-    "categories": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.png"),
-    "stats": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.gif"),
-    "pokeballs": os.path.join(PROJECT_ROOT, "assets", "pokeballs", "{}"),
-    "sprites": os.path.join(PROJECT_ROOT, "assets", "PokemonSprites", "{}"),
-    "shiny_star": os.path.join(PROJECT_ROOT, "assets", "icons", "ShinyVIStar.png"),
-    "item_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "item.png"),
-    "male_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "male.png"),
-    "female_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "female.png")
-}
+ASSET_PATHS = config.ASSET_PATHS
 
 
 class ClickableLabel(QLabel):

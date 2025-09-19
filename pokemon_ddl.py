@@ -6,7 +6,7 @@ import os
 import pickle
 import sys
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__))))
+import config
 import functions
 
 
@@ -84,7 +84,7 @@ ITEM_LOGIC_REGISTRY = {
 # Arceus getEvsandNature function
 def arcStat(self_obj, indiv_obj, root=None):
     if root is None:
-        storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
+        storage = ZODB.FileStorage.FileStorage(config.DB_FILE)
         db = ZODB.DB(storage)
         connection = db.open()
         root = connection.root
@@ -337,10 +337,10 @@ class PokemonSet(persistent.Persistent):
 
         return chosen_moves
 
-    def chooseItem(self, indiv, root = None, debug = False) -> str:
-        if not os.path.exists(os.path.join(os.path.dirname(__file__), 'pickle_model')) or not root:
+    def chooseItem(self, indiv, root=None, debug = False) -> str:
+        if not os.path.exists(config.PICKLE_MODEL_FILE) or not root:
             return 'Big Nugget'
-        packed = open(os.path.join(os.path.dirname(__file__), 'pickle_model'), 'rb')
+        packed = open(config.PICKLE_MODEL_FILE, 'rb')
         unpacked = pickle.load(packed)
         model = unpacked['model']
         keys = unpacked['keys']

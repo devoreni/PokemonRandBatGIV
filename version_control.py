@@ -1,15 +1,14 @@
 import hashlib
 import os
-
-DML_FILE_PATH = os.path.join(os.path.dirname(__file__), 'pokemon_dml.py')
+import config
 
 def get_dml_hash():
     try:
-        with open(DML_FILE_PATH, 'rb') as f:
+        with open(config.DML_SOURCE_FILE, 'rb') as f:
             file_bytes = f.read()
             hasher = hashlib.sha256()
             hasher.update(file_bytes)
             return hasher.hexdigest()
     except FileNotFoundError:
-        print(f"Could not find file {DML_FILE_PATH}")
+        print(f"Could not find file {config.DML_SOURCE_FILE}")
         return None

@@ -6,13 +6,13 @@ import numpy as np
 import random
 import pprint
 import os
-import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__))))
+
+import config
 import pokemon_ddl
 import version_control
 
 def runDML():
-    storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
+    storage = ZODB.FileStorage.FileStorage(config.DB_FILE)
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
@@ -8121,7 +8121,7 @@ def runDML():
     db.close()
     storage.close()
 
-    with open(os.path.join(os.path.dirname(__file__), 'dml_version.txt'), 'w') as f:
+    with open(config.DML_VERSION_FILE, 'w') as f:
         f.write(current_dml_hash)
 
 

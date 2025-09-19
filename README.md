@@ -1,11 +1,9 @@
-To run with pip installed:
-1. activate the virtual environment and run
-    "pip install -r requirements.txt"
-2. Run pokemon_dml.py with
-    "python pokemon_dml.py"
-    or simply
-3. Run the application with
-    "python app.py"
+The project is now done. To run on windows: navigate to the dist folder and download the .exe
+or refer below...
 
-WIP: app.py is the main function and runs the gui. Items function is being made. Help Train by running item_trainer.py and typing the name of the most optimal item.
-All pokemon sets have been constructed 292/292
+to run on another operating system:
+1. pull the project
+2. run pip install -r requirements.txt (after you have created a venv)
+3. run whatever your operating system command is for the following pyinstaller windows command
+
+pyinstaller --onefile --windowed --name "DNi Generation 4 Random Battles" --hidden-import=_cffi_backend --hidden-import=sklearn --hidden-import=sklearn.ensemble._forest --hidden-import=scipy.special._cdflib --hidden-import=sklearn.neighbors._typedefs --hidden-import=sklearn.neighbors._quad_tree --hidden-import=sklearn.tree._utils --hidden-import=numpy --hidden-import=scipy --hidden-import=pandas --add-data "assets;assets" --add-data "data;data" --add-data "pickle_model;." --add-data "dml_version.txt;." app.py
