@@ -7443,7 +7443,7 @@ def runDML():
         type_names = ['Dragon', 'Ice', 'Fighting', 'Dark', 'Fire', 'Ghost', 'Steel', 'Electric', 'Rock', 'Poison',
                       'Ground',
                       'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water']
-        smoothing = 0.67
+        smoothing = 1.5
 
         raw_type_totals = {name: 0.0 for name in type_names}
         for pokemon, weight in pokemon_weights.items():
@@ -7451,11 +7451,16 @@ def runDML():
             for p_type in pokemon_to_types_map[pokemon]:
                 raw_type_totals[p_type] += 1 / num_types
 
-        smoothed_type_totals = {k: (float(np.mean(list(raw_type_totals.values()))) - v) * smoothing + v for k, v in
+
+
+
+        smoothed_type_totals = {k: (float(np.median(list(raw_type_totals.values()))) - v) * smoothing + v for k, v in
                                 raw_type_totals.items()}
-        # total_smoothed_weight = sum(smoothed_type_totals.values())
-        # percentage_type_totals = {k: v / total_smoothed_weight for k, v in smoothed_type_totals.items()}
-        # pprint.pprint(sorted(percentage_type_totals.items(), key=lambda item: item[1]))
+
+
+        total_smoothed_weight = sum(smoothed_type_totals.values())
+        percentage_type_totals = {k: v / total_smoothed_weight for k, v in smoothed_type_totals.items()}
+        pprint.pprint(sorted(percentage_type_totals.items(), key=lambda item: item[1]))
 
         total_scaled_weights = 0
         pokemon_scaled_weights = {}
@@ -7467,7 +7472,7 @@ def runDML():
             pokemon_scaled_weights[name] = scaler * weight
             total_scaled_weights += scaler * weight
         pokemon_scaled_weights = {k: v / total_scaled_weights for k, v in pokemon_scaled_weights.items()}
-        # pprint.pprint(pokemon_scaled_weights)
+        pprint.pprint(pokemon_scaled_weights)
 
         poke_key = list(pokemon_scaled_weights.keys())
         poke_value = list(pokemon_scaled_weights.values())
