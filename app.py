@@ -8,21 +8,26 @@ from PyQt6.QtCore import Qt, QSize
 from typing import List
 import os
 
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 # Import project files
-import functions
+sys.path.insert(0, PROJECT_ROOT)
 import pokemon_ddl
+import functions
 import pokemon_dml
 import version_control
 
 # --- Database Setup ---
 dml_required = False
+db_path = os.path.join(PROJECT_ROOT, 'data', 'PokeData.fs')
+version_file_path = os.path.join(PROJECT_ROOT, 'dml_version.txt')
+data_dir_path = os.path.join(PROJECT_ROOT, 'data')
 
-db_exists = os.path.exists('./data/PokeData.fs')
+db_exists = os.path.exists(db_path)
 if not db_exists:
     dml_required = True
 else:
     try:
-        temp_storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+        temp_storage = ZODB.FileStorage.FileStorage(db_path)
         temp_db = ZODB.DB(temp_storage)
         temp_conn = temp_db.open()
         temp_root = temp_conn.root
@@ -31,7 +36,7 @@ else:
         temp_db.close()
         temp_storage.close()
 
-        with open('dml_version.txt', 'r') as f:
+        with open(version_file_path, 'r') as f:
             target_version = f.read().strip()
 
         if db_version != target_version:
@@ -39,30 +44,30 @@ else:
     except (FileNotFoundError, Exception) as e:
         dml_required = True
 if dml_required:
-    os.makedirs('./data', exist_ok=True)
+    os.makedirs(data_dir_path, exist_ok=True)
     pokemon_dml.runDML()
 
 try:
-    STORAGE = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+    STORAGE = ZODB.FileStorage.FileStorage(db_path)
     DB = ZODB.DB(STORAGE)
     CONNECTION = DB.open()
     DB_ROOT = CONNECTION.root
 except Exception as e:
     print(
-        f"Error: Could not open the database file at './data/PokeData.fs'. Please ensure the file exists and is not corrupt. Details: {e}")
+        f"Error: Could not open the database file at '{db_path}'. Please ensure the file exists and is not corrupt. Details: {e}")
     sys.exit(1)
 
 # --- Asset Paths ---
 ASSET_PATHS = {
-    "types": "./assets/icons/{}.gif",
-    "categories": "./assets/icons/{}.png",
-    "stats": "./assets/icons/{}.gif",
-    "pokeballs": "./assets/pokeballs/{}",
-    "sprites": "./assets/PokemonSprites/{}",
-    "shiny_star": "./assets/icons/ShinyVIStar.png",
-    "item_icon": "./assets/icons/item.png",
-    "male_icon": "./assets/icons/male.png",
-    "female_icon": "./assets/icons/female.png"
+    "types": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.gif"),
+    "categories": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.png"),
+    "stats": os.path.join(PROJECT_ROOT, "assets", "icons", "{}.gif"),
+    "pokeballs": os.path.join(PROJECT_ROOT, "assets", "pokeballs", "{}"),
+    "sprites": os.path.join(PROJECT_ROOT, "assets", "PokemonSprites", "{}"),
+    "shiny_star": os.path.join(PROJECT_ROOT, "assets", "icons", "ShinyVIStar.png"),
+    "item_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "item.png"),
+    "male_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "male.png"),
+    "female_icon": os.path.join(PROJECT_ROOT, "assets", "icons", "female.png")
 }
 
 
@@ -257,7 +262,6 @@ class PokemonGeneratorApp(QMainWindow):
             self.pokemon_sets = pokemon_set_objects
             self.team = functions.createIndivPokemon(self.pokemon_sets, DB_ROOT)
             self.update_pokeballs()
-            print('-----------------------------------------------------------------------------')
 
     def update_pokeballs(self):
         for i in reversed(range(self.pokeball_layout.count())):

@@ -1,15 +1,18 @@
 from BTrees.OOBTree import OOBTree
 import ZODB, ZODB.FileStorage
 import persistent
-import pokemon_ddl
 import transaction
 import numpy as np
 import random
 import pprint
+import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__))))
+import pokemon_ddl
 import version_control
 
 def runDML():
-    storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
@@ -8118,7 +8121,7 @@ def runDML():
     db.close()
     storage.close()
 
-    with open('dml_version.txt', 'w') as f:
+    with open(os.path.join(os.path.dirname(__file__), 'dml_version.txt'), 'w') as f:
         f.write(current_dml_hash)
 
 

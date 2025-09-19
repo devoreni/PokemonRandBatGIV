@@ -1,12 +1,15 @@
 from typing import List, Tuple, Set
-import pokemon_ddl
+import sys
 import random
 import ZODB, ZODB.FileStorage
 import pprint
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__))))
+import pokemon_ddl
 
 def getPokemonTeam(num: int, root = None) -> Tuple[list, list]:
     if not root:
-        storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+        storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
         db = ZODB.DB(storage)
         connection = db.open()
         root = connection.root
@@ -48,10 +51,10 @@ def getPokemonTeam(num: int, root = None) -> Tuple[list, list]:
             break
     return chosen_names, chosen_objects
 
-def createIndivPokemon(team: list, root = None) -> list:
+def createIndivPokemon(team: list, root = None, debug = False) -> list:
     created_indivs = []
     for pk_set in team:
-        created_pokemon = pk_set.buildSet(root)
+        created_pokemon = pk_set.buildSet(root, debug)
         created_indivs.append(created_pokemon)
     return created_indivs
 
@@ -100,7 +103,7 @@ def getDamageModifier(attacker: str, defender: str) -> int:
 
 
 if __name__ == '__main__':
-    storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+    storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root

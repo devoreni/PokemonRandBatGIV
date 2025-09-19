@@ -4,6 +4,9 @@ from typing import List, Tuple, Set
 import random
 import os
 import pickle
+import sys
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__))))
 import functions
 
 
@@ -81,7 +84,7 @@ ITEM_LOGIC_REGISTRY = {
 # Arceus getEvsandNature function
 def arcStat(self_obj, indiv_obj, root=None):
     if root is None:
-        storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+        storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
         db = ZODB.DB(storage)
         connection = db.open()
         root = connection.root
@@ -334,10 +337,10 @@ class PokemonSet(persistent.Persistent):
 
         return chosen_moves
 
-    def chooseItem(self, indiv, root = None) -> str:
-        if not os.path.exists('./pickle_model') or not root:
+    def chooseItem(self, indiv, root = None, debug = False) -> str:
+        if not os.path.exists(os.path.join(os.path.dirname(__file__), 'pickle_model')) or not root:
             return 'Big Nugget'
-        packed = open('./pickle_model', 'rb')
+        packed = open(os.path.join(os.path.dirname(__file__), 'pickle_model'), 'rb')
         unpacked = pickle.load(packed)
         model = unpacked['model']
         keys = unpacked['keys']
@@ -522,8 +525,9 @@ class PokemonSet(persistent.Persistent):
                 item_weights.append(prob)
             if prob > 0:
                 results[label] = prob
-        print(results)
-        print(list(zip(choices, item_weights)), '\n')
+        if debug:
+            print(results)
+            print(list(zip(choices, item_weights)), '\n')
 
         berries = []
         berry_weights = []
@@ -565,7 +569,7 @@ class PokemonSet(persistent.Persistent):
 
     def chooseEVsAndNature(self, detail, root=None, debug=False) -> PokemonIndiv:
         if root is None:
-            storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+            storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
             db = ZODB.DB(storage)
             connection = db.open()
             root = connection.root
@@ -766,7 +770,7 @@ class PokemonSet(persistent.Persistent):
             spe = 0
         has_phys_att = False
         if root is None:
-            storage = ZODB.FileStorage.FileStorage('./data/PokeData.fs')
+            storage = ZODB.FileStorage.FileStorage(os.path.join(os.path.dirname(__file__), 'data', 'PokeData.fs'))
             db = ZODB.DB(storage)
             connection = db.open()
             root = connection.root
@@ -820,7 +824,7 @@ class PokemonSet(persistent.Persistent):
         chosen_ball = random.choice(pokeball_options)
         return f"{chosen_ball}.png"
 
-    def buildSet(self, root = None) -> PokemonIndiv:
+    def buildSet(self, root = None, debug = False) -> PokemonIndiv:
         new_guy = PokemonIndiv()
         new_guy.name = self.name
         g = random.choice(self.genders)
@@ -841,7 +845,7 @@ class PokemonSet(persistent.Persistent):
         if item_func := ITEM_LOGIC_REGISTRY.get(self.item_key):
             new_guy.item = item_func()
         else:
-            new_guy.item = self.chooseItem(new_guy, root)
+            new_guy.item = self.chooseItem(new_guy, root, debug)
         return new_guy
 
     def toString(self) -> str:

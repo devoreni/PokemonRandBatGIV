@@ -1,6 +1,7 @@
 import hashlib
+import os
 
-DML_FILE_PATH = 'pokemon_dml.py'
+DML_FILE_PATH = os.path.join(os.path.dirname(__file__), 'pokemon_dml.py')
 
 def get_dml_hash():
     try:
