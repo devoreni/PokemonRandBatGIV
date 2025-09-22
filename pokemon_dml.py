@@ -1324,14 +1324,13 @@ def runDML():
                     name='Sharpedo', species='Sharpedo', abilities=('Rough Skin',), pkTypes=('Water', 'Dark'),
                     sets=(
                         pokemon_ddl.MoveSet(
-                            ['Protect', 'Dive'],
+                            ['Protect'],
                         {
                             'Protect': ['Hydro Pump', 'Crunch', 'Night Slash'],
                             'Hydro Pump': ['Dark Pulse', 'Ice Beam', 'Aqua Jet', 'Hidden Power [Grass]', 'Ancient Power'],
                             'Crunch': ['Waterfall', 'Taunt', 'Aqua Jet', 'Substitute'],
                             'Taunt': ['Earthquake', 'Ice Fang'],
                             'Substitute': ['Zen Headbutt'],
-                            'Dive': ['Crunch', 'Double-Edge', 'Night Slash'],
                             'Night Slash': ['Focus Energy'],
                             'Focus Energy': ['Waterfall', 'Earthquake', 'Ice Fang', 'Zen Headbutt']
                             }
@@ -2560,10 +2559,11 @@ def runDML():
                         pokemon_ddl.MoveSet(
                             ['Protect', 'Thunderbolt'],
                             {
-                                'Protect': ['Helping Hand', 'Mud-Slap', 'Thunderbolt', 'Fake Tears'],
-                                'Mud-Slap': ['Light Screen', 'Thunderbolt'],
-                                'Helping Hand': ['Light Screen', 'Thunderbolt'],
-                                'Thunderbolt': ['Charge Beam', 'Discharge', 'Hidden Power [Ice]', 'Hidden Power [Water]', 'Hyper Beam', 'Hidden Power [Grass]', 'Shadow Ball', 'Shock Wave', 'Signal Beam', 'Swift', 'Trump Card', 'Yawn', 'Rain Dance', 'Thunder']
+                                'Protect': ['Helping Hand', 'Rain Dance', 'Thunderbolt'],
+                                'Helping Hand': ['Thunderbolt'],
+                                'Rain Dance': ['Thunder'],
+                                'Thunderbolt': ['Hidden Power [Ice]', 'Signal Beam', 'Shadow Ball', 'Thunder Wave', 'Light Screen', 'Reflect', 'Swift'],
+                                'Thunder': ['Hidden Power [Ice]', 'Signal Beam', 'Shadow Ball', 'Thunder Wave', 'Light Screen', 'Reflect', 'Hyper Beam']
                             }
                         ),
                     ), baseStats=(65, 65, 60, 110, 95, 130), genders=('M', 'F'), images=('135.gif', '135.png', '135 (1).png')
@@ -6470,6 +6470,27 @@ def runDML():
                         ),
                     ), baseStats=(73, 115, 60, 60, 60, 90), genders=('M', 'F'), images=('335.gif', '335.png', '335 (1).png')
                 )
+            if 'Castform':
+                root.pokesets['Castform'] = pokemon_ddl.PokemonSet(
+                    name='Castform', species='Castform', abilities=('Forecast',), pkTypes=('Normal',),
+                    sets=(
+                        pokemon_ddl.MoveSet(
+                            ['Protect'],
+                            {
+                                'Protect': ['Rain Dance', 'Hail', 'Sunny Day', 'Weather Ball'],
+                                'Rain Dance': ['Thunder'],
+                                'Thunder': ['Weather Ball'],
+                                'Weather Ball': ['Energy Ball', 'Shadow Ball', 'Ominous Wind', 'Thunder Wave'],
+                                'Hail': ['Blizzard'],
+                                'Blizzard': ['Thunderbolt', 'Thunder'],
+                                'Thunderbolt': ['Energy Ball', 'Shadow Ball', 'Ominous Wind'],
+                                'Sunny Day': ['Fire Blast', 'Flamethrower', 'Weather Ball'],
+                                'Fire Blast': ['Energy Ball', 'Shadow Ball', 'Ominous Wind', 'Thunder Wave'],
+                                'Flamethrower': ['Energy Ball', 'Shadow Ball', 'Ominous Wind', 'Thunder Wave']
+                            }
+                        ),
+                    ), baseStats=(73, 115, 60, 60, 60, 90), genders=('M', 'F'), images=('335.gif', '335.png', '335 (1).png')
+                )
             if 'Kecleon':
                 root.pokesets['Kecleon'] = pokemon_ddl.PokemonSet(
                     name='Kecleon', species='Kecleon', abilities=('Color Change',), pkTypes=('Normal',),
@@ -7229,9 +7250,9 @@ def runDML():
     if 'Pokemon Probabilities':
         pokemon_weights = {
             # Dragon
-            'Dragonite': 2.0, 'Kingdra': 2.2, 'Flygon': 2.2, 'Salamence': 2.0, 'Latias': 0.5, 'Latios': 0.5,
-            'Rayquaza': 0.2,
-            'Dialga': 0.2, 'Palkia': 0.25, 'Giratina': 0.2, 'Arceus-Dragon': 0.015,
+            'Dragonite': 2.25, 'Kingdra': 2.35, 'Flygon': 2.35, 'Salamence': 2.15, 'Latias': 0.6, 'Latios': 0.6,
+            'Rayquaza': 0.25,
+            'Dialga': 0.25, 'Palkia': 0.25, 'Giratina': 0.25, 'Arceus-Dragon': 0.016,
 
             # Ice
             'Dewgong': 1.5, 'Cloyster': 2.0, 'Jynx': 1.2, 'Lapras': 2.0, 'Articuno': 2.0, 'Delibird': 0.1,
@@ -7257,10 +7278,10 @@ def runDML():
             'Heatran': 1.6, 'Arceus-Fire': 0.015,
 
             # Ghost
-            'Gengar': 2.0, 'Shedinja': 1.8, 'Banette': 1.1, 'Drifblim': 1.5, 'Mismagius': 1.0, 'Dusknoir': 2.0,
+            'Gengar': 2.05, 'Shedinja': 1.85, 'Banette': 1.1, 'Drifblim': 1.55, 'Mismagius': 1.05, 'Dusknoir': 2.05,
             'Rotom': 0.25,
             'Rotom-Fan': 0.6, 'Rotom-Frost': 0.6, 'Rotom-Heat': 0.6, 'Rotom-Mow': 0.6, 'Rotom-Wash': 0.6,
-            'Arceus-Ghost': 0.015,
+            'Arceus-Ghost': 0.0155,
 
             # Steel
             'Forretress': 2.0, 'Steelix': 2.0, 'Scizor': 2.0, 'Skarmory': 2.0, 'Mawile': 1.0, 'Aggron': 2.0,
@@ -7295,7 +7316,7 @@ def runDML():
             'Claydol': 2.0, 'Groudon': 0.2, 'Torterra': 2.0,
             'Wormadam-Sandy': 0.2,
             'Gastrodon': 1.0, 'Gastrodon-East': 1.0,  # Set value 2 -> 1 each
-            'Garchomp': 2.0, 'Hippowdon': 2.2, 'Gliscor': 2.0, 'Arceus-Ground': 0.015,
+            'Garchomp': 2.25, 'Hippowdon': 2.2, 'Gliscor': 2.0, 'Arceus-Ground': 0.015,
 
             # Bug
             'Butterfree': 1.0, 'Parasect': 0.5, 'Pinsir': 2.0, 'Ledian': 0.1, 'Beautifly': 1.0, 'Masquerain': 1.0,
@@ -7319,19 +7340,20 @@ def runDML():
             # Flying
             'Pidgeot': 1.3, 'Fearow': 1.3, 'Farfetch\'d': 0.5, 'Dodrio': 2.0, 'Gyarados': 2.0, 'Noctowl': 1.0,
             'Mantine': 1.5,
-            'Swellow': 2.0, 'Pelipper': 1.0, 'Altaria': 2.1, 'Staraptor': 2.0, 'Chatot': 0.5, 'Togekiss': 2.0,
+            'Swellow': 2.0, 'Pelipper': 1.0, 'Altaria': 2.22, 'Staraptor': 2.0, 'Chatot': 0.5, 'Togekiss': 2.0,
             'Arceus-Flying': 0.015,
 
             # Normal
-            'Raticate': 0.8, 'Clefable': 2.0, 'Wigglytuff': 1.0, 'Persian': 2.0, 'Kangaskhan': 2.0, 'Ditto': 1.2,
-            'Tauros': 2.0,
-            'Snorlax': 2.0, 'Furret': 1.0, 'Dunsparce': 1.0, 'Granbull': 1.0, 'Ursaring': 2.0, 'Porygon2': 2.0,
+            'Raticate': 0.8, 'Clefable': 2.1, 'Wigglytuff': 1.0, 'Persian': 2.0, 'Kangaskhan': 2.1, 'Ditto': 1.2,
+            'Tauros': 2.1,
+            'Snorlax': 2.1, 'Furret': 1.0, 'Dunsparce': 1.1, 'Granbull': 1.2, 'Ursaring': 2.1, 'Porygon2': 2.0,
             'Stantler': 1.0,
-            'Smeargle': 2.0, 'Miltank': 2.0, 'Blissey': 2.0, 'Linoone': 1.0, 'Slaking': 1.4, 'Exploud': 2.0,
+            'Smeargle': 2.0, 'Miltank': 2.0, 'Blissey': 2.1, 'Linoone': 1.0, 'Slaking': 1.5, 'Exploud': 2.0,
             'Delcatty': 0.5,
-            'Spinda': 0.5, 'Zangoose': 2.0, 'Kecleon': 1.0, 'Bibarel': 1.0, 'Ambipom': 2.0, 'Lopunny': 2.0,
+            'Spinda': 0.6, 'Zangoose': 2.1, 'Castform': 1.2,
+            'Kecleon': 1.1, 'Bibarel': 1.1, 'Ambipom': 2.0, 'Lopunny': 2.1,
             'Purugly': 1.0,
-            'Lickilicky': 2.0, 'Porygon-Z': 2.0, 'Regigigas': 2.0, 'Arceus': 0.015,
+            'Lickilicky': 2.0, 'Porygon-Z': 2.1, 'Regigigas': 2.0, 'Arceus': 0.016,
 
             # Water
             'Blastoise': 2.0, 'Golduck': 1.0, 'Kingler': 2.0, 'Seaking': 1.0, 'Vaporeon': 2.0, 'Feraligatr': 2.0,
@@ -7342,7 +7364,7 @@ def runDML():
             'Arceus-Water': 0.015,
         }
         pokemon_to_types_map = {
-            'Pikachu': ['Electric'],
+            'Pikachu': ['Electric'], 'Castform': ['Normal'],
             'Quagsire': ['Water', 'Ground'], 'Tangrowth': ['Grass'], 'Wailord': ['Water'],
             'Sharpedo': ['Water', 'Dark'], 'Drapion': ['Dark', 'Poison'], 'Rampardos': ['Rock'],
             'Venusaur': ['Grass', 'Poison'], 'Charizard': ['Fire', 'Flying'], 'Blastoise': ['Water'],
@@ -7504,7 +7526,7 @@ def runDML():
                                              'Plus', 'Adaptability', 'Download', 'Anger Point', 'Air Lock', 'Slow Start',
                                              'Stall', 'Water Veil', 'Rough Skin', 'Wonder Guard', 'Truant', 'Immunity',
                                              'Solar Power', 'Liquid Ooze', 'White Smoke', 'Anticipation', 'Competitive',
-                                             'Shadow Tag']
+                                             'Shadow Tag', 'Forecast']
 
     if 'Physical Moves':
         # Normal-type moves

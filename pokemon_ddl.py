@@ -548,7 +548,8 @@ class PokemonSet(persistent.Persistent):
                 if sum(item_weights) <= 0.5:
                     if (key == 'Fire' and indiv.ability == 'Flash Fire') or \
                             (key == 'Water' and indiv.ability in {'Water Absorb', 'Dry Skin'}) or \
-                            (key == 'Electric' and indiv.ability in {'Motor Drive', 'Volt Absorb'}):
+                            (key == 'Electric' and indiv.ability in {'Motor Drive', 'Volt Absorb'}) or \
+                            (key == 'Ground' and indiv.ability in {'Levitate'}):
                         continue
                     berries.append(super_effective_berry[key])
                     berry_weights.append(1)
@@ -581,6 +582,9 @@ class PokemonSet(persistent.Persistent):
                   'SpA': self.baseStats[3] / 10.0,
                   'SpD': self.baseStats[4] / 10.0,
                   'Spe': max(self.baseStats[5] / (0.01 * (self.baseStats[5] - 90)**2 + 3.75), 9.0) if 45 <= self.baseStats[5] <= 135 else 2}
+
+        if detail.ability in {'Huge Power', 'Pure Power'}:
+            points['Atk'] *= 3
 
         if self.baseStats[0] + self.baseStats[2] >= 240:
             points['HP'] += 6
@@ -831,7 +835,7 @@ class PokemonSet(persistent.Persistent):
         g = f'({g})' if g else g
         new_guy.gender = g
         new_guy.ability = random.choices(self.abilities, self.ability_weights)[0]
-        new_guy.shiny = random.choices(['Yes', 'No'], [1, 15])[0]
+        new_guy.shiny = random.choices(['Yes', 'No'], [1, 19])[0]
         new_guy.pokeball = self.choosePokeball()
         try:
             new_guy.moves = self.chooseMoves()

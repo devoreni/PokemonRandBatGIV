@@ -125,17 +125,17 @@ if __name__ == '__main__':
 
     '''
     team = createIndivPokemon(before, root)
-    pk1 = root.pokesets['Rotom-Wash']
-    pk2 = root.pokesets['Rotom-Wash']
-    pk3 = root.pokesets['Rotom-Wash']
-    pk4 = root.pokesets['Rotom-Wash']
-    pk5 = root.pokesets['Rotom-Wash']
-    pk6 = root.pokesets['Rotom-Wash']
-    pk7 = root.pokesets['Rotom-Wash']
-    pk8 = root.pokesets['Rotom-Wash']
-    pk9 = root.pokesets['Rotom-Wash']
-    pk0 = root.pokesets['Rotom-Wash']
-    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root)
+    pk1 = root.pokesets['Machamp']
+    pk2 = root.pokesets['Machamp']
+    pk3 = root.pokesets['Machamp']
+    pk4 = root.pokesets['Machamp']
+    pk5 = root.pokesets['Machamp']
+    pk6 = root.pokesets['Machamp']
+    pk7 = root.pokesets['Machamp']
+    pk8 = root.pokesets['Machamp']
+    pk9 = root.pokesets['Machamp']
+    pk0 = root.pokesets['Machamp']
+    team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root, debug=True)
 
     for pk in team:
         print(pk.toString())'''
