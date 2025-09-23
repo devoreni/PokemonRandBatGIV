@@ -342,6 +342,7 @@ class PokemonSet(persistent.Persistent):
             return 'Big Nugget'
         packed = open(config.PICKLE_MODEL_FILE, 'rb')
         unpacked = pickle.load(packed)
+        packed.close()
         model = unpacked['model']
         keys = unpacked['keys']
         input_layer = []
