@@ -12,6 +12,9 @@ import pokemon_ddl
 import version_control
 
 def runDML():
+    if os.path.exists(config.DB_FILE):
+        os.remove(config.DB_FILE)
+
     storage = ZODB.FileStorage.FileStorage(config.DB_FILE)
     db = ZODB.DB(storage)
     connection = db.open()
@@ -847,9 +850,9 @@ def runDML():
 
         #Fighting type pokemon
         if 'Fighting':
-            if 'Primape':
-                root.pokesets['Primape'] = pokemon_ddl.PokemonSet(
-                    name='Primape', species='Primape', abilities=('Vital Spirit', 'Anger Point'), pkTypes=('Fighting',),
+            if 'Primeape':
+                root.pokesets['Primeape'] = pokemon_ddl.PokemonSet(
+                    name='Primeape', species='Primeape', abilities=('Vital Spirit', 'Anger Point'), pkTypes=('Fighting',),
                     sets=(
                         pokemon_ddl.MoveSet(
                           ['Protect', 'Endure'],
@@ -7262,7 +7265,7 @@ def runDML():
             'Arceus-Ice': 0.015,
 
             # Fighting
-            'Primape': 1.0, 'Poliwrath': 2.0, 'Machamp': 2.0, 'Hitmonlee': 1.6, 'Hitmonchan': 1.6, 'Heracross': 2.0,
+            'Primeape': 1.0, 'Poliwrath': 2.0, 'Machamp': 2.0, 'Hitmonlee': 1.6, 'Hitmonchan': 1.6, 'Heracross': 2.0,
             'Hitmontop': 2.0, 'Blaziken': 2.0, 'Breloom': 2.0, 'Hariyama': 2.0, 'Medicham': 2.0, 'Infernape': 2.0,
             'Lucario': 2.0, 'Toxicroak': 2.0, 'Gallade': 2.0, 'Arceus-Fighting': 0.015,
 
@@ -7373,7 +7376,7 @@ def runDML():
             'Sandslash': ['Ground'], 'Nidoqueen': ['Poison', 'Ground'], 'Nidoking': ['Poison', 'Ground'],
             'Clefable': ['Normal'], 'Ninetales': ['Fire'], 'Wigglytuff': ['Normal'], 'Vileplume': ['Grass', 'Poison'],
             'Parasect': ['Bug', 'Grass'], 'Venomoth': ['Bug', 'Poison'], 'Dugtrio': ['Ground'], 'Persian': ['Normal'],
-            'Golduck': ['Water'], 'Primape': ['Fighting'], 'Arcanine': ['Fire'], 'Poliwrath': ['Water', 'Fighting'],
+            'Golduck': ['Water'], 'Primeape': ['Fighting'], 'Arcanine': ['Fire'], 'Poliwrath': ['Water', 'Fighting'],
             'Alakazam': ['Psychic'], 'Machamp': ['Fighting'], 'Victreebel': ['Grass', 'Poison'],
             'Tentacruel': ['Water', 'Poison'], 'Golem': ['Rock', 'Ground'], 'Rapidash': ['Fire'],
             'Slowbro': ['Water', 'Psychic'], 'Farfetch\'d': ['Normal', 'Flying'], 'Dodrio': ['Normal', 'Flying'],
