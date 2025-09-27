@@ -233,7 +233,7 @@ def runDML():
                                 # A dedicated support set branch
                                 'Extreme Speed': ['Draco Meteor', 'Overheat', 'Dragon Claw', 'Protect'],
                                 # The best move is a connector, not a finisher
-                                'Ancient Power': ['Earth Power', 'Shadow Claw', 'Signal Beam', 'Cosmic Power'],
+                                'Ancient Power': ['Earth Power', 'Shadow Claw'],
 
                                 # Weaker filler moves
                                 'Fly': ['Rest', 'Dive'],
