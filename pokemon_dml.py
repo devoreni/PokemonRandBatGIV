@@ -14,6 +14,8 @@ import version_control
 def runDML():
     if os.path.exists(config.DB_FILE):
         os.remove(config.DB_FILE)
+    if os.path.exists(os.path.join(config.DB_DIR, 'PokeData.fs.index')):
+        os.remove(os.path.join(config.DB_DIR, 'PokeData.fs.index'))
 
     storage = ZODB.FileStorage.FileStorage(config.DB_FILE)
     db = ZODB.DB(storage)
@@ -955,11 +957,14 @@ def runDML():
                     pkTypes=('Fighting',),
                     sets=(
                         pokemon_ddl.MoveSet(
-                            ['Detect', 'Toxic'],
-                            {
-                                'Detect': ['Fake Out', 'Sucker Punch', 'Feint', 'Agility', 'Close Combat', 'Gyro Ball', 'Thief'],
-                                'Toxic': ['Fake Out', 'Sucker Punch', 'Feint', 'Bulk Up', 'Triple Kick', 'Quick Attack']
-                            }
+                            ['Detect'],
+                            {'Detect': ['Fake Out', 'Rapid Spin', 'Fake Out', 'Close Combat'],
+                             'Fake Out': ['Bullet Punch', 'Close Combat', 'High Jump Kick', 'Helping Hand'],
+                             'Bullet Punch': ['Close Combat', 'High Jump Kick', 'Rock Slide', 'Earthquake'],
+                             'Close Combat': ['Bullet Punch', 'Sucker Punch', 'Aerial Ace', 'Agility', 'Bulk Up', 'Earthquake', 'Foresight'],
+                             'High Jump Kick': ['Bullet Punch', 'Sucker Punch', 'Rock Slide', 'Earthquake', 'Toxic'],
+                             'Rapid Spin': ['Fake Out', 'Close Combat', 'Triple Kick'],
+                             'Triple Kick': ['Foresight', 'Sucker Punch', 'Gyro Ball']},
                         ),
                     ), baseStats=(50, 95, 95, 35, 110, 70), genders=('M',), images=('237.gif', '237.png', '237 (1).png')
                 )

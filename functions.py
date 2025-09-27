@@ -107,7 +107,7 @@ if __name__ == '__main__':
     db = ZODB.DB(storage)
     connection = db.open()
     root = connection.root
-    types = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
+    '''types = {'Dragon': 0, 'Ice': 0, 'Fighting': 0, 'Dark': 0, 'Fire': 0, 'Ghost': 0, 'Steel': 0, 'Electric': 0,
               'Rock': 0, 'Poison': 0, 'Ground': 0,
               'Bug': 0, 'Grass': 0, 'Psychic': 0, 'Flying': 0, 'Normal': 0, 'Water': 0}
     pokedict = {}
@@ -123,19 +123,19 @@ if __name__ == '__main__':
     pprint.pprint(pokedict)
 
 
-    '''
-    team = createIndivPokemon(before, root)
-    pk1 = root.pokesets['Machamp']
-    pk2 = root.pokesets['Machamp']
-    pk3 = root.pokesets['Machamp']
-    pk4 = root.pokesets['Machamp']
-    pk5 = root.pokesets['Machamp']
-    pk6 = root.pokesets['Machamp']
-    pk7 = root.pokesets['Machamp']
-    pk8 = root.pokesets['Machamp']
-    pk9 = root.pokesets['Machamp']
-    pk0 = root.pokesets['Machamp']
+    
+    team = createIndivPokemon(before, root)'''
+    pk1 = root.pokesets['Hitmontop']
+    pk2 = root.pokesets['Hitmontop']
+    pk3 = root.pokesets['Hitmontop']
+    pk4 = root.pokesets['Hitmontop']
+    pk5 = root.pokesets['Hitmontop']
+    pk6 = root.pokesets['Hitmontop']
+    pk7 = root.pokesets['Hitmontop']
+    pk8 = root.pokesets['Hitmontop']
+    pk9 = root.pokesets['Hitmontop']
+    pk0 = root.pokesets['Hitmontop']
     team = createIndivPokemon([pk1, pk2, pk3, pk4, pk5, pk6, pk7, pk8, pk9, pk0], root, debug=True)
 
     for pk in team:
-        print(pk.toString())'''
+        print(pk.toString())
