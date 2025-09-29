@@ -2719,7 +2719,7 @@ def runDML():
                 )
             if 'Pachirisu':
                 root.pokesets['Pachirisu'] = pokemon_ddl.PokemonSet(
-                    name='Pachirisu', species='Pachirisu', abilities=('Run Away', 'Pick Up'), pkTypes=('Electric',),
+                    name='Pachirisu', species='Pachirisu', abilities=('Run Away',), pkTypes=('Electric',),
                     sets=(
                         pokemon_ddl.MoveSet(
                             ['Protect'],

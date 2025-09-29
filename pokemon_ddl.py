@@ -263,6 +263,7 @@ class PokemonIndiv:
         self.spaStat = 100
         self.spdStat = 100
         self.speStat = 100
+        self.pokeball = 'poke.png'
 
     def toString(self):
         attacks = ''
@@ -271,11 +272,10 @@ class PokemonIndiv:
         return f'''{self.name} {self.gender} @ {self.item}
 Ability: {self.ability}
 Level: {self.level}
-Shiny: {self.shiny}
-{self.nature} Nature
+{f'Shiny: Yes\n' if self.shiny == 'Yes' else ''}{self.nature} Nature
 EVs: {self.EVs}
 IVs: {self.hpIV} HP / {self.atkIV} Atk / {self.defIV} Def / {self.spaIV} SpA / {self.spdIV} SpD / {self.speIV} Spe
-{attacks}'''
+{attacks}'''.strip()
 
 class PokemonSet(persistent.Persistent):
     def __init__(self, name: str, species: str, abilities: Tuple[str, ...], pkTypes: Tuple[str, ...], sets: Tuple[MoveSet, ...], baseStats: Tuple[int, int, int, int, int, int], genders: Tuple[str, ...], images: Tuple[str, str, str] = ('qqq.png', 'qqq.png', 'qqq.png'), ability_weights = None, item_key = None, stat_key = None):
