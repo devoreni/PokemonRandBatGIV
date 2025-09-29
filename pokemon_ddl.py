@@ -196,12 +196,13 @@ class Move(persistent.Persistent):
     """
     holds data about a move for reference when needed
     """
-    def __init__(self, name: str, power: int, accuracy: float, category: str, moveType: str):
+    def __init__(self, name: str, power: int, accuracy: float, category: str, moveType: str, pp: int=5):
         self.name = name
         self.power = power
         self.accuracy = accuracy
         self.category = category
         self.moveType = moveType
+        self.pp = pp
 
 
     def toString(self) -> str:
@@ -264,6 +265,7 @@ class PokemonIndiv:
         self.spdStat = 100
         self.speStat = 100
         self.pokeball = 'poke.png'
+        self.experience = 125000
 
     def toString(self):
         attacks = ''

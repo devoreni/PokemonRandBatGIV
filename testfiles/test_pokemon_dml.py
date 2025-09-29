@@ -92,6 +92,7 @@ def test_Move_object_attributes(move, db_root):
               'Rock', 'Poison', 'Ground',
               'Bug', 'Grass', 'Psychic', 'Flying', 'Normal', 'Water'}
     assert mv.name == move
+    assert mv.pp > 0
 
 @pytest.mark.parametrize('name', ALL_POKEMON_NAMES)
 def test_pokemon_has_type_map(name, db_root):
